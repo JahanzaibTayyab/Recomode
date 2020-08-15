@@ -1,3 +1,4 @@
+// Slide conttent to show in On BoardScreen
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
 

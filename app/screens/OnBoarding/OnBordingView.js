@@ -10,7 +10,7 @@ import Subslide from './Subslide';
 const {width} = Dimensions.get('window');
 
 const BORDER_RADIUS = 75;
-
+// Slides data
 const slides = [
   {
     title: 'Relaxed',
@@ -43,11 +43,12 @@ const slides = [
 ];
 
 export default function OnBordingView() {
-  const x = useValue(0);
-  const scroll = useRef(null);
+  const x = useValue(0); // Animated value
+  const scroll = useRef(null); // on scroll press
   // const scroll = useRef < Animated.ScrollView > null;
   //for scroll event
   const onScroll = onScrollEvent({x});
+  // rendering background color based on animation  and value of x
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
     outputRange: slides.map((slide) => slide.color),
@@ -65,6 +66,7 @@ export default function OnBordingView() {
           bounces={false}
           scrollEventThrottle={1}
           {...{onScroll}}>
+          {/* Slide component and call map */}
           {slides.map(({title}, index) => (
             <Slide key={index} right={!!(index % 2)} {...{title}} />
           ))}
@@ -77,6 +79,7 @@ export default function OnBordingView() {
         <Animated.View
           style={[
             styles.footerContent,
+            //footer conent to scrool down
             {
               width: width * slides.length,
               flex: 1,

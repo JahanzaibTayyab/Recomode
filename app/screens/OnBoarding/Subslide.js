@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import colors from '../../config/colors';
-import Button from '../../components/Button';
+import Button from '../../components/Button'; // Call Button Component
 
 function Subslide({subTitle, description, last, onPress}) {
   return (
@@ -11,8 +11,8 @@ function Subslide({subTitle, description, last, onPress}) {
       <Text style={styles.description}>{description}</Text>
       <Button
         title={last ? "Let's get started" : 'Next'}
-        buttoncolor={last ? 'primary' : 'secondary'}
-        titlecolor={last ? 'white' : 'bitblue'}
+        buttoncolor={last ? 'primary' : 'secondary'} // condational renderind for button color
+        titlecolor={last ? 'white' : 'bitblue'} //condational rendering for title on button
         onPress={onPress}
       />
     </View>
