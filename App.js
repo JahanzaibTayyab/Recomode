@@ -7,14 +7,24 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import Started from './app/Screens/getStarted';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
-function App() {
-  return <Started />;
+export default function App() {
+  return (
+    <SafeAreaView style={styles.screen}>
+      <NavigationContainer>
+        <AuthNavigator />
+      </NavigationContainer>
+    </SafeAreaView>
+  );
 }
 
-const styles = StyleSheet.create({});
-
-export default App;
+const styles = StyleSheet.create({
+  screen: {
+    // paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    flex: 1,
+  },
+});
