@@ -9,16 +9,19 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
+import {ThemeProvider} from '@shopify/restyle';
 
 import AuthNavigator from './app/navigation/AuthNavigator';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.screen}>
-      <NavigationContainer>
-        <AuthNavigator />
-      </NavigationContainer>
-    </SafeAreaView>
+    <ThemeProvider>
+      <SafeAreaView style={styles.screen}>
+        <NavigationContainer>
+          <AuthNavigator />
+        </NavigationContainer>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
 
