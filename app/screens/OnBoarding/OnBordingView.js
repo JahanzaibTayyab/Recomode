@@ -9,11 +9,12 @@ import {
 import Animated, {multiply, divide} from 'react-native-reanimated';
 import colors from '../../config/colors';
 
-import Slide, {SLIDE_HEIGHT, BORDER_RADIUS} from './Slide';
-import Subslide from './Subslide';
-import Pagination from './Pagination';
-
+import Slide, {SLIDE_HEIGHT, BORDER_RADIUS} from './components/Slide';
+import Subslide from './components/Subslide';
+import Pagination from './components/Pagination';
+//width by window
 const {width} = Dimensions.get('window');
+//slides data
 const slides = [
   {
     title: 'Relaxed',
@@ -51,9 +52,10 @@ const slides = [
 
 export default function OnBordingView() {
   // const x = useValue(0);
-  const scroll = useRef(null);
+  const scroll = useRef(null); // for footer movement
+
   // const scroll = useRef < Animated.ScrollView > null;
-  //for scroll event
+  //for scroll event using readsh
   const {scrollHandler, x} = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -72,6 +74,7 @@ export default function OnBordingView() {
           bounces={false}
           scrollEventThrottle={1}
           {...scrollHandler}>
+          {/* Slide data  */}
           {slides.map(({title, picture}, index) => (
             <Slide key={index} right={!!(index % 2)} {...{title, picture}} />
           ))}
@@ -81,6 +84,7 @@ export default function OnBordingView() {
         <Animated.View
           style={{...StyleSheet.absoluteFillObject, backgroundColor}}
         />
+        {/* pagination under the slide  */}
         <Animated.View style={[styles.footerContent]}>
           <View style={styles.slidepagination}>
             {slides.map((_, index) => (
@@ -98,6 +102,7 @@ export default function OnBordingView() {
               flex: 1,
               transform: [{translateX: multiply(x, -1)}],
             }}>
+            {/* subslide data conenct */}
             {slides.map(({subTitle, description}, index) => (
               <Subslide
                 onPress={() => {

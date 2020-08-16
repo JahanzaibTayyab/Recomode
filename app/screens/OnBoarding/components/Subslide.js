@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-import colors from '../../config/colors';
-import Button from '../../components/Button';
+import colors from '../../../config/colors';
+import Button from '../../../components/Button';
 
 function Subslide({subTitle, description, last, onPress}) {
   return (
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SFProText-Regular',
     marginBottom: 18,
     lineHeight: 20,
-    color: colors.bitblue,
+    color: 'rgba(12, 13, 52,0.7)',
     textAlign: 'center',
   },
   subtitle: {

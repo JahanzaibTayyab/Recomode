@@ -29,16 +29,18 @@ function Slide({title, right, picture}) {
 const styles = StyleSheet.create({
   container: {flex: 1, width, overflow: 'hidden'},
   titleContainer: {
+    flex: 1,
     height: 100,
     justifyContent: 'center',
+    alignContent: 'center',
   },
   images: {
     ...StyleSheet.absoluteFillObject,
     //top:SLIDE_HEIGHT
-    //top
-    borderBottomRightRadius: BORDER_RADIUS,
-    width: undefined,
-    height: undefined,
+    // paddingTop: 20,
+    width: '100%',
+    height: '100%',
+    borderBottomRightRadius: 80,
   },
   title: {
     fontSize: 80,
@@ -46,6 +48,8 @@ const styles = StyleSheet.create({
     fontFamily: 'SFProText-Bold',
     color: 'white',
     alignSelf: 'center',
+    justifyContent: 'center',
+    position: 'relative',
   },
   underlay: {
     ...StyleSheet.absoluteFillObject,

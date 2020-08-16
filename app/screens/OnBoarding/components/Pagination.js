@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 
-import colors from '../../config/colors';
+import colors from '../../../config/colors';
 function Pagination({index, currentindex}) {
   const opacity = interpolate(currentindex, {
     inputRange: [index - 1, index, index + 1],
