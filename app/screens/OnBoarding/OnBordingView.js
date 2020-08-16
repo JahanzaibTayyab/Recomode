@@ -1,17 +1,23 @@
 import React, {useRef} from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import {
   useValue,
   interpolateColor,
   onScrollEvent,
   useScrollHandler,
 } from 'react-native-redash';
-import Animated, {multiply, divide} from 'react-native-reanimated';
+import Animated, {
+  multiply,
+  divide,
+  interpolate,
+  Extrapolate,
+} from 'react-native-reanimated';
 import colors from '../../config/colors';
 
 import Slide, {SLIDE_HEIGHT, BORDER_RADIUS} from './components/Slide';
 import Subslide from './components/Subslide';
 import Pagination from './components/Pagination';
+import routes from '../../navigation/routes';
 //width by window
 const {width} = Dimensions.get('window');
 //slides data
@@ -22,7 +28,11 @@ const slides = [
     description:
       "Confused about your outfit?Don't worry! Find the best outfit here!",
     color: colors.onBoradingScreen1,
-    picture: require('../../assets/images/1.png'),
+    picture: {
+      uri: require('../../assets/images/1.png'),
+      width: 480,
+      height: 640,
+    },
   },
   {
     title: 'Playfull',
@@ -30,7 +40,11 @@ const slides = [
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of outfits ideas',
     color: colors.onBoradingScreen2,
-    picture: require('../../assets/images/2.png'),
+    picture: {
+      uri: require('../../assets/images/2.jpg'),
+      width: 460,
+      height: 604,
+    },
   },
   {
     title: 'Excentric',
@@ -38,7 +52,11 @@ const slides = [
     description:
       'Create your individuals & unique style and look amzaing eveyday',
     color: colors.onBoradingScreen3,
-    picture: require('../../assets/images/3.png'),
+    picture: {
+      uri: require('../../assets/images/3.png'),
+      width: 545,
+      height: 640,
+    },
   },
   {
     title: 'Funky',
@@ -46,11 +64,14 @@ const slides = [
     description:
       'Discover the latest trends in fashion and explore your personality',
     color: colors.onBoradingScreen4,
-    picture: require('../../assets/images/4.png'),
+    picture: {
+      uri: require('../../assets/images/4.png'),
+      width: 490,
+      height: 590,
+    },
   },
 ];
-
-export default function OnBordingView() {
+function OnBordingView({navigation}) {
   // const x = useValue(0);
   const scroll = useRef(null); // for footer movement
 
@@ -64,7 +85,32 @@ export default function OnBordingView() {
 
   return (
     <View style={styles.container}>
+      {/* Picture backgroud data put in slider  */}
       <Animated.View style={[styles.slider, {backgroundColor}]}>
+        {slides.map(({picture}, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, {opacity}]} key={index}>
+              <Image
+                source={picture.uri}
+                style={{
+                  width: width - BORDER_RADIUS,
+                  height:
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                }}
+              />
+            </Animated.View>
+          );
+        })}
+        {/* Slide data put here in like backgroud color and title */}
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -102,21 +148,26 @@ export default function OnBordingView() {
               flex: 1,
               transform: [{translateX: multiply(x, -1)}],
             }}>
-            {/* subslide data conenct */}
-            {slides.map(({subTitle, description}, index) => (
-              <Subslide
-                onPress={() => {
-                  if (scroll.current) {
-                    scroll.current
-                      .getNode()
-                      .scrollTo({x: width * (index + 1), animated: true});
-                  }
-                }}
-                key={index}
-                last={index === slides.length - 1}
-                {...{subTitle, description}}
-              />
-            ))}
+            {/* data display under the slide subslide data conenct */}
+            {slides.map(({subTitle, description}, index) => {
+              const last = index === slides.length - 1;
+              return (
+                <Subslide
+                  onPress={() => {
+                    if (last) {
+                      console.log('Yha aya');
+                      navigation.navigate(routes.GETSTARTED);
+                    } else {
+                      scroll.current
+                        ?.getNode()
+                        .scrollTo({x: width * (index + 1), animated: true});
+                    }
+                  }}
+                  key={index}
+                  {...{subTitle, description, last}}
+                />
+              );
+            })}
           </Animated.View>
         </Animated.View>
       </View>
@@ -147,7 +198,15 @@ const styles = StyleSheet.create({
     marginTop: 15,
     height: BORDER_RADIUS,
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    overflow: 'hidden',
+    borderBottomRightRadius: BORDER_RADIUS,
+  },
   footer: {
     flex: 1,
   },
 });
+export default OnBordingView;

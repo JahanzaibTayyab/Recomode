@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import OnBoarding from '../screens/OnBoarding';
-import Welcome from '../screens/Welcome';
+import OnBoardingScreen from '../screens/OnBoarding';
+import WelcomeScreen from '../screens/Welcome';
 
 const Stack = createStackNavigator();
 
@@ -10,12 +10,12 @@ const AuthNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen
       name="OnBoarding"
-      component={OnBoarding}
+      component={OnBoardingScreen}
       options={{headerShown: false}}
     />
     <Stack.Screen
       name="Welcome"
-      component={Welcome}
+      component={WelcomeScreen}
       options={{headerShown: false}}
     />
   </Stack.Navigator>

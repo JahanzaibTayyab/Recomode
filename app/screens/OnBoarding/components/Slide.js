@@ -16,9 +16,6 @@ function Slide({title, right, picture}) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.underlay}>
-        <Image source={picture} style={styles.images} />
-      </View>
       <View style={(styles.titleContainer, {transform})}>
         <Text style={styles.title}>{title}</Text>
       </View>
@@ -34,14 +31,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  images: {
-    ...StyleSheet.absoluteFillObject,
-    //top:SLIDE_HEIGHT
-    // paddingTop: 20,
-    width: '100%',
-    height: '100%',
-    borderBottomRightRadius: 80,
-  },
   title: {
     fontSize: 80,
     lineHeight: 80,
@@ -50,10 +39,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     position: 'relative',
-  },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
   },
 });
 
