@@ -1,22 +1,19 @@
 import React, {useRef} from 'react';
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
-import {
-  useValue,
-  interpolateColor,
-  onScrollEvent,
-  useScrollHandler,
-} from 'react-native-redash';
+import {interpolateColor, useScrollHandler} from 'react-native-redash';
 import Animated, {
   multiply,
   divide,
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
-import colors from '../../config/colors';
 
-import Slide, {SLIDE_HEIGHT, BORDER_RADIUS} from './components/Slide';
+import colors from '../../config/colors';
+import {BORDER_RADIUS} from '../../config/Constant';
+import Slide from './components/Slide';
 import Subslide from './components/Subslide';
 import Pagination from './components/Pagination';
+import styles from './styles';
 import routes from '../../navigation/routes';
 //width by window
 const {width} = Dimensions.get('window');
@@ -71,12 +68,11 @@ const slides = [
     },
   },
 ];
-function OnBordingView({navigation}) {
+function OnBordingView(props) {
   // const x = useValue(0);
   const scroll = useRef(null); // for footer movement
 
-  // const scroll = useRef < Animated.ScrollView > null;
-  //for scroll event using readsh
+  //for scroll event using readsh change backgroud color with movemnet
   const {scrollHandler, x} = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
@@ -85,7 +81,7 @@ function OnBordingView({navigation}) {
 
   return (
     <View style={styles.container}>
-      {/* Picture backgroud data put in slider  */}
+      {/* Picture backgroud data put in slider  picture opacity  */}
       <Animated.View style={[styles.slider, {backgroundColor}]}>
         {slides.map(({picture}, index) => {
           const opacity = interpolate(x, {
@@ -104,12 +100,14 @@ function OnBordingView({navigation}) {
                 style={{
                   width: width - BORDER_RADIUS,
                   height:
-                    ((width - BORDER_RADIUS) * picture.height) / picture.width,
+                    ((width - BORDER_RADIUS) * picture.height) / picture.width, // automatiaccly set the height
                 }}
               />
             </Animated.View>
           );
         })}
+        {/* end picture backgoud  */}
+
         {/* Slide data put here in like backgroud color and title */}
         <Animated.ScrollView
           ref={scroll}
@@ -148,6 +146,7 @@ function OnBordingView({navigation}) {
               flex: 1,
               transform: [{translateX: multiply(x, -1)}],
             }}>
+            {/* end of main slide with title and color  */}
             {/* data display under the slide subslide data conenct */}
             {slides.map(({subTitle, description}, index) => {
               const last = index === slides.length - 1;
@@ -155,8 +154,7 @@ function OnBordingView({navigation}) {
                 <Subslide
                   onPress={() => {
                     if (last) {
-                      console.log('Yha aya');
-                      navigation.navigate(routes.GETSTARTED);
+                      props.navigation.navigate(routes.GETSTARTED);
                     } else {
                       scroll.current
                         ?.getNode()
@@ -174,39 +172,4 @@ function OnBordingView({navigation}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  footerContent: {
-    flex: 1,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: BORDER_RADIUS,
-    paddingTop: 40,
-  },
-  slider: {
-    height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
-  },
-  slidepagination: {
-    ...StyleSheet.absoluteFillObject,
-    // backgroundColor: 'rgba(100,200,300,0.5)',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 15,
-    height: BORDER_RADIUS,
-  },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    overflow: 'hidden',
-    borderBottomRightRadius: BORDER_RADIUS,
-  },
-  footer: {
-    flex: 1,
-  },
-});
 export default OnBordingView;

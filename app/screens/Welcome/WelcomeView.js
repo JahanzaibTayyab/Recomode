@@ -2,10 +2,10 @@ import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import colors from '../../config/colors';
 import Button from '../../components/Button';
-const {width, height} = Dimensions.get('window');
-function WelcomeView() {
+import styles from './styles';
+const {width} = Dimensions.get('window');
+function WelcomeView(props) {
   const picture = {
     uri: require('../../assets/images/4.png'),
     width: 480,
@@ -44,53 +44,4 @@ function WelcomeView() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
-  contentdata: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 44,
-    bottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    fontFamily: 'SFProText-Regular',
-    marginBottom: 18,
-    lineHeight: 16,
-    color: 'rgba(12, 13, 52,0.7)',
-    textAlign: 'center',
-  },
-  footerContent: {
-    flex: 1,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 75,
-    paddingTop: 40,
-  },
-  image: {
-    ...StyleSheet.absoluteFillObject,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    overflow: 'hidden',
-    borderBottomRightRadius: 75,
-  },
-  slide: {
-    height: 0.47 * height,
-    borderBottomRightRadius: 75,
-    backgroundColor: '#F4F0EF',
-  },
-  subtitle: {
-    fontSize: 24,
-    fontFamily: 'SFProText-Semibold',
-    marginBottom: 12,
-    lineHeight: 30,
-    color: colors.bitblue,
-  },
-  footer: {
-    flex: 1,
-  },
-});
 export default WelcomeView;

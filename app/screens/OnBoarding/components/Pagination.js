@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 
 import colors from '../../../config/colors';

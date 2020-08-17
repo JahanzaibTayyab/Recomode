@@ -2,10 +2,8 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
-export const SLIDE_HEIGHT = 0.61 * height;
-export const BORDER_RADIUS = 75;
+const {width} = Dimensions.get('window');
+import {SLIDE_HEIGHT} from '../../../config/Constant';
 
 function Slide({title, right, picture}) {
   const transform = [

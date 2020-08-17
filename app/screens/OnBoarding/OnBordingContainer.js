@@ -2,6 +2,6 @@ import React from 'react';
 import OnBordingView from './OnBordingView';
 
 function OnBordingContainer(props) {
-  return <OnBordingView {...this.props} />;
+  return <OnBordingView {...props} />;
 }
 export default OnBordingContainer;
