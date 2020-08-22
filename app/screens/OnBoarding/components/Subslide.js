@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     lineHeight: 30,
     color: colors.bitblue,
+    textAlign: 'center',
   },
 });
 export default Subslide;

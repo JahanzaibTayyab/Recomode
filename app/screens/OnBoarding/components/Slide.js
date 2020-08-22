@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   title: {
-    fontSize: 80,
+    fontSize: 65,
     lineHeight: 80,
     fontFamily: 'SFProText-Bold',
     color: 'white',
