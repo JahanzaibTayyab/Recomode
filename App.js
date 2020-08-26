@@ -15,16 +15,18 @@ import Welcome from './app/screens/Welcome';
 import Drawer from './app/screens/Drawer';
 import navigationTheme from './app/navigation/navigationTheme';
 import DrawerNavigator from './app/navigation/DrawerNavigator';
+import Favourite from './app/screens/FavouriteOutfits';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer theme={navigationTheme}>
-        {/* <AuthNavigator /> */}
+      {/* <NavigationContainer theme={navigationTheme}>
+        <AuthNavigator />
         <DrawerNavigator />
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/* <Welcome />
       <Drawer /> */}
+      <Favourite />
     </SafeAreaView>
   );
 }
