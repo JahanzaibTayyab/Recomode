@@ -12,7 +12,6 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator drawerContent={DrawerContent}>
-      <Drawer.Screen name="Data" component={Check} />
       <Drawer.Screen name="OnBoarding" component={OnBoardingScreen} />
       <Drawer.Screen name="Welcome" component={WelcomeScreen} />
     </Drawer.Navigator>

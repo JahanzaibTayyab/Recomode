@@ -19,6 +19,7 @@
     "react-native-asset": "^2.0.0",
     "react-native-fonts": "0.0.0",
     "react-native-gesture-handler": "^1.7.0",
+    "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.13.0",
     "react-native-redash": "^14.2.3",
     "react-native-safe-area-context": "^3.1.4",
