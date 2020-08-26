@@ -13,12 +13,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import Welcome from './app/screens/Welcome';
 import Drawer from './app/screens/Drawer';
+import navigationTheme from './app/navigation/navigationTheme';
 import DrawerNavigator from './app/navigation/DrawerNavigator';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer>
+      <NavigationContainer theme={navigationTheme}>
         {/* <AuthNavigator /> */}
         <DrawerNavigator />
       </NavigationContainer>

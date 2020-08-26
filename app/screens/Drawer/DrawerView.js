@@ -45,7 +45,7 @@ function DrawerView(props) {
               )}
               label="Home"
               onPress={() => {
-                props.navigation.navigate('OnBoarding');
+                props.navigation.navigate(routes.HOME);
               }}
             />
             <DrawerItem
