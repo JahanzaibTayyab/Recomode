@@ -6,6 +6,7 @@ import styles from './styles';
 import colors from '../../config/colors';
 import Icon from '../../components/Icon';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import routes from '../../navigation/routes';
 
 const {width, height} = Dimensions.get('window');
 
@@ -53,7 +54,7 @@ function DrawerView(props) {
               )}
               label="Favourite Outfits"
               onPress={() => {
-                props.navigation.navigate('Welcome');
+                props.navigation.navigate(routes.FAVOUROTE);
               }}
             />
             <DrawerItem

@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
+import styles from './styles';
 function FavouriteView() {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Favourite</Text>
     </View>
   );
