@@ -12,14 +12,16 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import AuthNavigator from './app/navigation/AuthNavigator';
 import Welcome from './app/screens/Welcome';
+import Drawer from './app/screens/Drawer';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <AuthNavigator />
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/* <Welcome /> */}
+      <Drawer />
     </SafeAreaView>
   );
 }
