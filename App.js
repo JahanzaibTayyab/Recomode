@@ -15,7 +15,8 @@ import Welcome from './app/screens/Welcome';
 import Drawer from './app/screens/Drawer';
 import navigationTheme from './app/navigation/navigationTheme';
 import DrawerNavigator from './app/navigation/DrawerNavigator';
-import Favourite from './app/screens/FavouriteOutfits';
+import Favorite from './app/screens/FavoriteOutfits';
+import FavoriteNavigator from './app/navigation/FavoriteNavigator';
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
       </NavigationContainer> */}
       {/* <Welcome />
       <Drawer /> */}
-      <Favourite />
+      <Favorite />
     </SafeAreaView>
   );
 }

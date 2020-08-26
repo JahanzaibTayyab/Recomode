@@ -2,11 +2,11 @@ import React from 'react';
 import {View, Text} from 'react-native';
 
 import styles from './styles';
-function FavouriteView(props) {
+function FavoriteView(props) {
   return (
-    <View style={styles.container}>
-      <Text>Favourite</Text>
+    <View>
+      <Text>Favorite</Text>
     </View>
   );
 }
-export default FavouriteView;
+export default FavoriteView;
