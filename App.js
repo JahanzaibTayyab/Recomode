@@ -7,19 +7,32 @@
  */
 
 import React from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, Platform} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+  Text,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 import AuthNavigator from './app/navigation/AuthNavigator';
 import Welcome from './app/screens/Welcome';
+import Register from './app/screens/Register';
+
+// import Register from './app/screens/Register';
+//import RegisterScrenn from './app/screens/Register';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <AuthNavigator />
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/* <Welcome /> */}
+      <Register />
+
+      {/* <Text>Mango</Text> */}
     </SafeAreaView>
   );
 }

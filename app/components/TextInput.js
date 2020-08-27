@@ -3,7 +3,7 @@ import {View, TextInput, StyleSheet} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import defaultStyles from '../config/styles';
-
+import colors from '../config/colors';
 function AppTextInput({icon, width = '100%', ...otherProps}) {
   return (
     <View style={[styles.container, {width}]}>
@@ -27,13 +27,17 @@ function AppTextInput({icon, width = '100%', ...otherProps}) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
+    borderColor: colors.lightGrey,
+
     borderRadius: 25,
     flexDirection: 'row',
-    padding: 15,
+    // padding: 15,
+    paddingRight: 20,
     marginVertical: 10,
   },
   icon: {
     marginRight: 10,
+    marginTop: 15,
   },
 });
 

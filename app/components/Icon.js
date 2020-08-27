@@ -2,7 +2,13 @@ import React from 'react';
 import {View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-function Icon({name, size = 40, backgroundColor = '#000', iconColor = '#fff'}) {
+function Icon({
+  name,
+  size = 40,
+  backgroundColor = '#000',
+  iconColor = '#fff',
+  onPress,
+}) {
   return (
     <View
       style={{
@@ -10,6 +16,7 @@ function Icon({name, size = 40, backgroundColor = '#000', iconColor = '#fff'}) {
         height: size,
         borderRadius: size / 2,
         backgroundColor,
+        // onPress=this.onPress,
         justifyContent: 'center',
         alignItems: 'center',
       }}>
