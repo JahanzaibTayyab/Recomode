@@ -1,7 +1,8 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, StyleSheet, Icon1} from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import colors from '../../config/colors';
 import Button from '../../components/Button';
@@ -9,16 +10,32 @@ import TextInput from '../../components/TextInput';
 import Screen from '../../components/Screen';
 import Icon from '../../components/Icon';
 
+// var [Hidden, setHidden] = useState(true);
+// var Hidden = false;
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
 
   email: yup.string().required().email().label('Email'),
   password: yup.string().required().min(4).label('Password'),
 });
+
+// showPassword = () => {
+//   this.setHidden({Hidden: !this.Hidden});
+// };
 function RegisterView(props) {
   return (
     <View style={styles.FScr}>
+      {/* First view */}
       <View style={styles.V1C}></View>
+      {/* 2nd view for top right curve */}
+      {/* <View
+        style={{
+          flex: 0.7,
+          backgroundColor: 'black',
+          alignSelf: 'flex-end',
+          height: 30,
+        }}></View> */}
+      {/* 3rd view for content  */}
       <View style={styles.V2C}>
         <Text
           style={{
@@ -60,13 +77,28 @@ function RegisterView(props) {
                 style={styles.fields}
               />
               <Text style={{color: 'red'}}>{errors.email}</Text>
-              <TextInput
-                placeholder="password"
-                icon="lock"
-                onChangeText={handleChange('password')}
-                secureTextEntry
-                style={styles.fields}
-              />
+              <View
+                style={{
+                  // borderColor: colors.lightGrey,
+                  // borderWidth: 1,
+
+                  // borderRadius: 25,
+                  flexDirection: 'row',
+                }}>
+                <TextInput
+                  placeholder="password"
+                  icon="lock"
+                  onChangeText={handleChange('password')}
+                  secureTextEntry
+                  // ={this.Hidden}
+                  style={styles.fields}
+                />
+                {/* <Icon
+                  size="10"
+                  name="eye"
+                  // onPress={() => this.setHidden({Hidden: !this.Hidden})}
+                  style={{color: 'black'}}></Icon> */}
+              </View>
               <Text style={{color: 'red'}}>{errors.password}</Text>
 
               <Button title="Register" onPress={handleSubmit}></Button>
@@ -74,39 +106,90 @@ function RegisterView(props) {
           )}
         </Formik>
       </View>
+
+      {/* Form wala View ends here */}
+
       <View
         style={{
+          // flex: 1,
           borderWidth: 5,
           borderColor: '#0c0d34',
           backgroundColor: colors.bitblue,
           // width: 250,
-          height: '20%',
-          flexDirection: 'row',
-          paddingBottom: 50,
-          paddingTop: 30,
-          justifyContent: 'center',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          flexWrap: 'wrap',
+          height: '27%',
+          // flexWrap: 'wrap',
         }}>
-        <Icon
-          name="google"
-          iconColor="#000"
-          backgroundColor="#fff"
-          style={{paddingLeft: 50}}></Icon>
-        <Icon name="facebook" iconColor="#000" backgroundColor="#fff"></Icon>
-        <Icon
-          name="google"
-          iconColor="#000"
-          backgroundColor="#fff"
-          style={{paddingLeft: 20, paddingRight: 20}}></Icon>
-
-        <Text style={{color: 'white', alignSelf: 'flex-end'}}>
-          Already Have an account?{' '}
-          <Text accessibilityRole="link" style={{color: '#00ffff'}}>
-            Login here!
-          </Text>
-        </Text>
+        <View
+          style={{
+            // alignSelf: 'flex-start',
+            backgroundColor: 'white',
+            borderBottomRightRadius: 80,
+            borderBottomLeftRadius: 80,
+            flex: 0.75,
+            // width: '100%',
+            // height: '20%',
+            // paddingBottom: 30,
+            marginLeft: -5,
+            marginRight: -5,
+            paddingRight: 10,
+            marginTop: -10,
+          }}></View>
+        <View
+          style={{
+            flexDirection: 'column',
+            // justifyContent: 'center',
+            // justifyContent: 'space-evenly',
+            // alignItems: 'center',
+            paddingBottom: 50,
+            paddingTop: 10,
+          }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              // justifyContent: 'space-evenly',
+              padding: 10,
+              // alignSelf: 'stretch',
+            }}>
+            <View style={{paddingRight: 20}}>
+              {/* <Icon
+                name="google"
+                iconColor="green"
+                backgroundColor="#fff"
+                // style={{marginRight: 50}}
+              ></Icon> */}
+              <MaterialCommunityIcons
+                name="google"
+                color="green"
+                size={50}
+                backgroundColor="#fff"
+              />
+            </View>
+            <View>
+              {/* <Icon
+                name="facebook"
+                iconColor="blue"
+                backgroundColor="#fff"
+                // style={{marginLeft: 50}}
+              ></Icon> */}
+              <MaterialCommunityIcons
+                name="facebook"
+                color="blue"
+                size={50}
+                backgroundColor="#fff"
+              />
+            </View>
+          </View>
+          <View>
+            <Text
+              style={{color: 'white', alignSelf: 'baseline', paddingLeft: 60}}>
+              Already Have an account?{' '}
+              <Text accessibilityRole="link" style={{color: 'red'}}>
+                Login here!
+              </Text>
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -128,17 +211,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   fields: {
-    borderWidth: 1,
-    // borderColor: colors.lightGrey,
+    // borderBottomWidth: 1,
+    // borderBottomColor: 'black',
+    // borderColor: colors.black,
     width: '100%',
-    borderRadius: 10,
+    // borderRadius: 10,
     // marginBottom: -20,
   },
   V2C: {
     // borderWidth: 5,
     // borderColor: '#0c0d34',
     // width: 250,
-    height: '62%',
+    height: '58%',
     borderTopRightRadius: 75,
     borderTopLeftRadius: 75,
     borderBottomRightRadius: 75,
@@ -146,7 +230,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     // justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 30,
+    paddingTop: 10,
     paddingHorizontal: 30,
     marginVertical: 10,
   },
@@ -154,11 +238,11 @@ const styles = StyleSheet.create({
     // borderWidth: 5,
     // borderColor: '#0c0d34',
     backgroundColor: 'blue',
-    height: '18%',
+    height: '15%',
 
-    borderTopRightRadius: 50,
+    borderTopRightRadius: 75,
     borderTopLeftRadius: 75,
-    borderBottomRightRadius: 25,
+    // borderBottomRightRadius: 25,
     borderBottomLeftRadius: 95,
   },
 });

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultStyles.colors.light,
     borderColor: colors.lightGrey,
+    borderWidth: 1,
 
     borderRadius: 25,
     flexDirection: 'row',
