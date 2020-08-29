@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, Image, TouchableWithoutFeedback} from 'react-native';
 import * as yup from 'yup';
-import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 
 import colors from '../../config/colors';
 import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
+import {ic_facebook, ic_google} from '../helper/constants';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
@@ -14,6 +14,13 @@ const validationSchema = yup.object().shape({
 });
 
 function RegisterView(props) {
+  const [icon, setIcon] = useState('eye-off-outline');
+  const [hidePassword, setHidePassword] = useState(true);
+  const _changeIcon = () => {
+    icon !== 'eye-off-outline'
+      ? (setIcon('eye-off-outline'), setHidePassword(true))
+      : (setIcon('eye-outline'), setHidePassword(false));
+  };
   return (
     <View style={styles.container}>
       <View style={styles.upperbox}>
@@ -27,244 +34,83 @@ function RegisterView(props) {
               Let's us know what is your name, email and your pasword!
             </Text>
           </View>
+          <Form
+            initialValues={{name: '', email: '', password: ''}}
+            onSubmit={(values) => console.log(values)}
+            validationSchema={validationSchema}>
+            <FormField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="account"
+              keyboardType="default"
+              name="name"
+              placeholder="Name"
+              textContentType="name"
+            />
+            <FormField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="email"
+              keyboardType="email-address"
+              name="email"
+              placeholder="Email"
+              textContentType="emailAddress"
+            />
+            <FormField
+              autoCapitalize="none"
+              autoCorrect={false}
+              icon="lock"
+              name="password"
+              showpassword={icon}
+              onPress={_changeIcon}
+              placeholder="Password"
+              secureTextEntry={hidePassword}
+              textContentType="password"
+            />
+            <SubmitButton title="Login" />
+          </Form>
         </View>
       </View>
       <View style={styles.footer}>
         <View style={styles.innerfooter}>
-          <View>
-            <FontAwesome name="facebook-f" color="white" size={50} />
-            <FontAwesome name="google" color="white" size={50} />
+          <View style={styles.logocontainer}>
+            <View style={styles.logoinnercontainer}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  console.log('FaceBook');
+                }}>
+                <Image
+                  resizeMode="contain"
+                  source={ic_facebook}
+                  style={styles.logoimage}
+                />
+              </TouchableWithoutFeedback>
+            </View>
+            <View style={styles.logoinnercontainer}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  console.log('Google');
+                }}>
+                <Image
+                  resizeMode="contain"
+                  source={ic_google}
+                  style={styles.logoimage}
+                />
+              </TouchableWithoutFeedback>
+            </View>
           </View>
           <View style={styles.footerdata}>
             <Text style={styles.footertitle}>
               Already Have an account ?
-              <TouchableOpacity onPress={() => console.log('1st')}>
+              <TouchableWithoutFeedback onPress={() => console.log('Login')}>
                 <Text style={{color: colors.primary}}> Login here!</Text>
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </Text>
           </View>
         </View>
       </View>
     </View>
-    // <View style={styles.FScr}>
-    //   {/* First view */}
-    //   <View style={styles.V1C}></View>
-    //   {/* 2nd view for top right curve */}
-    //   {/* <View
-    //     style={{
-    //       flex: 0.7,
-    //       backgroundColor: 'black',
-    //       alignSelf: 'flex-end',
-    //       height: 30,
-    //     }}></View> */}
-    //   {/* 3rd view for content  */}
-    //   <View style={styles.V2C}>
-    //     <Text
-    //       style={{
-    //         fontFamily: 'SFProText-Bold',
-    //         fontSize: 20,
-    //         // paddingHorizontal: 100,
-    //       }}>
-    //       Create Account
-    //     </Text>
-    //     <Text
-    //       style={{
-    //         fontFamily: 'SFProText-Regular',
-    //         textAlign: 'center',
-    //         paddingBottom: 30,
-    //       }}>
-    //       Let us know what is your name, email and your pasword!
-    //     </Text>
-    //     {/* Using formik for Input fields */}
-    //     <Formik
-    //       initialValues={{name: '', email: '', password: ''}}
-    //       onSubmit={(values) => console.log(values)}
-    //       validationSchema={validationSchema}>
-    //       {({handleChange, handleSubmit, errors}) => (
-    //         <>
-    //           <TextInput
-    //             placeholder="Name"
-    //             icon="account-cowboy-hat"
-    //             onChangeText={handleChange('name')}
-    //             // keyboardType="email-address"
-    //             style={styles.fields}
-    //           />
-    //           <Text style={{color: 'red'}}>{errors.name}</Text>
-
-    //           <TextInput
-    //             placeholder="email address"
-    //             icon="email"
-    //             onChangeText={handleChange('email')}
-    //             // keyboardType="email-address"
-    //             style={styles.fields}
-    //           />
-    //           <Text style={{color: 'red'}}>{errors.email}</Text>
-    //           <View
-    //             style={{
-    //               // borderColor: colors.lightGrey,
-    //               // borderWidth: 1,
-
-    //               // borderRadius: 25,
-    //               flexDirection: 'row',
-    //             }}>
-    //             <TextInput
-    //               placeholder="password"
-    //               icon="lock"
-    //               onChangeText={handleChange('password')}
-    //               secureTextEntry
-    //               // ={this.Hidden}
-    //               style={styles.fields}
-    //             />
-    //             {/* <Icon
-    //               size="10"
-    //               name="eye"
-    //               // onPress={() => this.setHidden({Hidden: !this.Hidden})}
-    //               style={{color: 'black'}}></Icon> */}
-    //           </View>
-    //           <Text style={{color: 'red'}}>{errors.password}</Text>
-
-    //           <Button title="Register" onPress={handleSubmit}></Button>
-    //         </>
-    //       )}
-    //     </Formik>
-    //   </View>
-
-    //   {/* Form wala View ends here */}
-
-    //   <View
-    //     style={{
-    //       // flex: 1,
-    //       borderWidth: 5,
-    //       borderColor: '#0c0d34',
-    //       backgroundColor: colors.bitblue,
-    //       // width: 250,
-    //       height: '27%',
-    //       // flexWrap: 'wrap',
-    //     }}>
-    //     <View
-    //       style={{
-    //         // alignSelf: 'flex-start',
-    //         backgroundColor: 'white',
-    //         borderBottomRightRadius: 80,
-    //         borderBottomLeftRadius: 80,
-    //         flex: 0.75,
-    //         // width: '100%',
-    //         // height: '20%',
-    //         // paddingBottom: 30,
-    //         marginLeft: -5,
-    //         marginRight: -5,
-    //         paddingRight: 10,
-    //         marginTop: -10,
-    //       }}></View>
-    //     <View
-    //       style={{
-    //         flexDirection: 'column',
-    //         // justifyContent: 'center',
-    //         // justifyContent: 'space-evenly',
-    //         // alignItems: 'center',
-    //         paddingBottom: 50,
-    //         paddingTop: 10,
-    //       }}>
-    //       <View
-    //         style={{
-    //           flexDirection: 'row',
-    //           justifyContent: 'center',
-    //           // justifyContent: 'space-evenly',
-    //           padding: 10,
-    //           // alignSelf: 'stretch',
-    //         }}>
-    //         <View style={{paddingRight: 20}}>
-    //           {/* <Icon
-    //             name="google"
-    //             iconColor="green"
-    //             backgroundColor="#fff"
-    //             // style={{marginRight: 50}}
-    //           ></Icon> */}
-    //           <MaterialCommunityIcons
-    //             name="google"
-    //             color="green"
-    //             size={50}
-    //             backgroundColor="#fff"
-    //           />
-    //         </View>
-    //         <View>
-    //           {/* <Icon
-    //             name="facebook"
-    //             iconColor="blue"
-    //             backgroundColor="#fff"
-    //             // style={{marginLeft: 50}}
-    //           ></Icon> */}
-    //           <MaterialCommunityIcons
-    //             name="facebook"
-    //             color="blue"
-    //             size={50}
-    //             backgroundColor="#fff"
-    //           />
-    //         </View>
-    //       </View>
-    //       <View>
-    //         <Text
-    //           style={{color: 'white', alignSelf: 'baseline', paddingLeft: 60}}>
-    //           Already Have an account?{' '}
-    //           <Text accessibilityRole="link" style={{color: 'red'}}>
-    //             Login here!
-    //           </Text>
-    //         </Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </View>
   );
 }
 
 export default RegisterView;
-
-// const styles = StyleSheet.create({
-//   FScr: {
-//     flex: 1,
-//     justifyContent: 'flex-start',
-//     alignContent: 'center',
-//     alignItems: 'stretch',
-//     backgroundColor: colors.white,
-//   },
-//   TextI: {
-//     width: '100%',
-//     // borderColor: 'black',
-//     borderWidth: 1,
-//   },
-//   fields: {
-//     // borderBottomWidth: 1,
-//     // borderBottomColor: 'black',
-//     // borderColor: colors.black,
-//     width: '100%',
-//     // borderRadius: 10,
-//     // marginBottom: -20,
-//   },
-//   V2C: {
-//     // borderWidth: 5,
-//     // borderColor: '#0c0d34',
-//     // width: 250,
-//     height: '58%',
-//     borderTopRightRadius: 75,
-//     borderTopLeftRadius: 75,
-//     borderBottomRightRadius: 75,
-//     borderBottomLeftRadius: 75,
-//     flexDirection: 'column',
-//     // justifyContent: 'flex-start',
-//     alignItems: 'center',
-//     paddingTop: 10,
-//     paddingHorizontal: 30,
-//     marginVertical: 10,
-//   },
-//   V1C: {
-//     // borderWidth: 5,
-//     // borderColor: '#0c0d34',
-//     backgroundColor: 'blue',
-//     height: '15%',
-
-//     borderTopRightRadius: 75,
-//     borderTopLeftRadius: 75,
-//     // borderBottomRightRadius: 25,
-//     borderBottomLeftRadius: 95,
-//   },
-// });

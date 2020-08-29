@@ -4,7 +4,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import defaultStyles from '../config/styles';
 import colors from '../config/colors';
-function AppTextInput({icon, width = '100%', ...otherProps}) {
+function AppTextInput({
+  icon,
+  showpassword,
+  onPress,
+  width = '90%',
+  ...otherProps
+}) {
   return (
     <View style={[styles.container, {width}]}>
       {icon && (
@@ -15,6 +21,17 @@ function AppTextInput({icon, width = '100%', ...otherProps}) {
           style={styles.icon}
         />
       )}
+      <View style={{alignItems: 'flex-end'}}>
+        {showpassword && (
+          <MaterialCommunityIcons
+            name={showpassword}
+            size={17}
+            color={defaultStyles.colors.medium}
+            style={styles.showicon}
+            onPress={onPress}
+          />
+        )}
+      </View>
       <TextInput
         placeholderTextColor={defaultStyles.colors.medium}
         style={defaultStyles.text}
@@ -26,19 +43,26 @@ function AppTextInput({icon, width = '100%', ...otherProps}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultStyles.colors.light,
+    backgroundColor: defaultStyles.colors.white,
     borderColor: colors.lightGrey,
     borderWidth: 1,
-
+    alignSelf: 'center',
     borderRadius: 25,
     flexDirection: 'row',
-    // padding: 15,
     paddingRight: 20,
     marginVertical: 10,
   },
   icon: {
     marginRight: 10,
     marginTop: 15,
+    marginLeft: 10,
+  },
+  showicon: {
+    marginRight: 10,
+    marginTop: 15,
+    marginLeft: 10,
+    position: 'absolute',
+    left: 210,
   },
 });
 
