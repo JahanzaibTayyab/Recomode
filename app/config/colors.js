@@ -9,6 +9,9 @@ export default {
   onBoradingScreen2: '#BEECC4',
   onBoradingScreen3: '#FFE4D9',
   onBoradingScreen4: '#FFDDDD',
-  Text: '',
   lightGrey: '#D3D3D3',
+  medium: '#6e6969',
+  light: '#f8f4f4',
+  dark: '#0c0c0c',
+  danger: '#ff5252',
 };
