@@ -10,7 +10,19 @@ const FavoriteNavigator = () => (
     <Stack.Screen
       name="Favorites"
       component={FavoriteScreen}
-      options={{headerShown: true}}
+      options={{
+        title: 'FAVORITE OUTFITS',
+        headerStyle: {
+          backgroundColor: '#fff',
+        },
+        headerTintColor: '#000',
+        headerTitleStyle: {
+          // fontWeight: 'bold',
+          fontFamily: 'SFProText-Bold',
+          justifyContent: 'center',
+          alignSelf: 'center',
+        },
+      }}
     />
   </Stack.Navigator>
 );

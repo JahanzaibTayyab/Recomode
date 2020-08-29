@@ -21,13 +21,14 @@ import FavoriteNavigator from './app/navigation/FavoriteNavigator';
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      {/* <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator />
-        <DrawerNavigator />
-      </NavigationContainer> */}
+      <NavigationContainer theme={navigationTheme}>
+        {/* <AuthNavigator />
+        <DrawerNavigator /> */}
+        <FavoriteNavigator />
+      </NavigationContainer>
       {/* <Welcome />
       <Drawer /> */}
-      <Favorite />
+      {/* <Favorite /> */}
     </SafeAreaView>
   );
 }

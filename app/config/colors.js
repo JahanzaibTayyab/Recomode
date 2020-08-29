@@ -3,7 +3,7 @@ export default {
   secondary: 'rgba(12,13,52,0.05)',
   cyan: '#00ffff',
   white: '#fff',
-  black: '#0000',
+  black: '#000',
   bitblue: '#0c0d34',
   onBoradingScreen1: '#BFEAF5',
   onBoradingScreen2: '#BEECC4',
