@@ -18,6 +18,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Favorite from './app/screens/FavoriteOutfits';
 // import FavoriteNavigator from './app/navigation/FavoriteNavigator';
 import Height from './app/screens/Height';
+import Check from './app/screens/checkScreen';
 
 export default function App() {
   return (
@@ -30,7 +31,8 @@ export default function App() {
       {/* <Welcome />
       <Drawer /> */}
       {/* <Favorite /> */}
-      <Height />
+      {/* <Height /> */}
+      <Check />
     </SafeAreaView>
   );
 }
