@@ -108,7 +108,20 @@ const outfits = [
     aspectRatio: 1,
   },
 ];
+const formatData = (data, numColumns) => {
+  const numberOfFullRows = Math.floor(data.length / numColumns);
 
+  let numberOfElementsLastRow = data.length - numberOfFullRows * numColumns;
+  while (
+    numberOfElementsLastRow !== numColumns &&
+    numberOfElementsLastRow !== 0
+  ) {
+    data.push({id: `blank-${numberOfElementsLastRow}`, empty: true});
+    numberOfElementsLastRow++;
+  }
+
+  return data;
+};
 function FavoriteView(props) {
   const [colum, setColum] = useState(3);
 
@@ -117,7 +130,7 @@ function FavoriteView(props) {
       <View style={{flex: 1}}>
         <FlatList
           numColumns={colum}
-          data={outfits}
+          data={formatData(outfits, colum)}
           keyExtractor={(outfit) => outfit.id.toString()}
           renderItem={({item}) => (
             <Outfit

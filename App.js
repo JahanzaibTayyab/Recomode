@@ -10,25 +10,27 @@ import React from 'react';
 import {StyleSheet, SafeAreaView, StatusBar, Platform} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
-import AuthNavigator from './app/navigation/AuthNavigator';
-import Welcome from './app/screens/Welcome';
-import Drawer from './app/screens/Drawer';
-import navigationTheme from './app/navigation/navigationTheme';
-import DrawerNavigator from './app/navigation/DrawerNavigator';
+// import AuthNavigator from './app/navigation/AuthNavigator';
+// import Welcome from './app/screens/Welcome';
+// import Drawer from './app/screens/Drawer';
+// import navigationTheme from './app/navigation/navigationTheme';
+// import DrawerNavigator from './app/navigation/DrawerNavigator';
 import Favorite from './app/screens/FavoriteOutfits';
-import FavoriteNavigator from './app/navigation/FavoriteNavigator';
+// import FavoriteNavigator from './app/navigation/FavoriteNavigator';
+import Height from './app/screens/Height';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer theme={navigationTheme}>
-        {/* <AuthNavigator />
-        <DrawerNavigator /> */}
+      {/* <NavigationContainer theme={navigationTheme}>
+        <AuthNavigator />
+        <DrawerNavigator />
         <FavoriteNavigator />
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/* <Welcome />
       <Drawer /> */}
-      {/* <Favorite /> */}
+      <Favorite />
+      {/* <Height /> */}
     </SafeAreaView>
   );
 }
