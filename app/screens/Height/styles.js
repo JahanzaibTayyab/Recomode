@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   conatiner: {flex: 1, backgroundColor: '#fff'},
   footertext: {textAlign: 'center', fontFamily: 'SFProText-Regular'},
-  footerbutton: {flex: 1, justifyContent: 'space-evenly'},
+  footerbutton: {flex: 1, justifyContent: 'space-evenly', alignItems: 'center'},
   header: {backgroundColor: 'white', alignItems: 'center', margin: 20},
   headertext: {color: colors.primary, fontFamily: 'SFProText-Regular'},
   sizecontainer: {

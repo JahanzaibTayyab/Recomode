@@ -31,8 +31,8 @@ export default function App() {
       {/* <Welcome />
       <Drawer /> */}
       {/* <Favorite /> */}
-      {/* <Height /> */}
-      <Check />
+      <Height />
+      {/* <Check /> */}
     </SafeAreaView>
   );
 }
