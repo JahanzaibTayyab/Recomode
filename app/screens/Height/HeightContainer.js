@@ -1,6 +1,6 @@
-// import React from 'react';
-// import HeightView from './HeightView';
+import React from 'react';
+import HeightView from './HeightView';
 
-// export default function HeightContainer(props) {
-//   return <HeightView {...props} />;
-// }
+export default function HeightContainer(props) {
+  return <HeightView {...props} />;
+}

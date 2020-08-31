@@ -1,2 +1,2 @@
-// import HeightContainer from './HeightContainer';
-// export default HeightContainer;
+import HeightContainer from './HeightContainer';
+export default HeightContainer;
