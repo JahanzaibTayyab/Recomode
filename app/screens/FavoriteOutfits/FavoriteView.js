@@ -1,11 +1,20 @@
-import React, {useState} from 'react';
-import {View, Text, Image, Dimensions, FlatList} from 'react-native';
+import React, {useState, useCallback} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  FlatList,
+  RefreshControl,
+  ToastAndroid,
+} from 'react-native';
 
 import styles from './styles';
 import {ScrollView} from 'react-native-gesture-handler';
 import Outfit from './Outfit';
 const {width, height} = Dimensions.get('window');
 
+import refreshdata from './data';
 const outfits = [
   {
     id: 1,
@@ -124,13 +133,26 @@ const formatData = (data, numColumns) => {
 };
 function FavoriteView(props) {
   const [colum, setColum] = useState(3);
+  const [refreshing, setRefreshing] = useState(false);
+  const [listData, setListData] = useState(outfits);
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    if (listData.length < 40) {
+      setListData(refreshdata);
+      setRefreshing(false);
+    } else {
+      ToastAndroid.show('No more new data available', ToastAndroid.SHORT);
+      setRefreshing(false);
+    }
+  }, [refreshing]);
 
   return (
     <View style={styles.container}>
       <View style={{flex: 1}}>
         <FlatList
           numColumns={colum}
-          data={formatData(outfits, colum)}
+          data={formatData(listData, colum)}
           keyExtractor={(outfit) => outfit.id.toString()}
           renderItem={({item}) => (
             <Outfit
@@ -138,6 +160,9 @@ function FavoriteView(props) {
               image={item.image}
             />
           )}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       </View>
     </View>

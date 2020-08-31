@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 
 import colors from '../../config/colors';
 import Button from '../../components/Button';
 import styles from './styles';
-const loose = 'M';
-const regular = 'S';
-const tight = 'XS';
 
 function HeightView() {
+  const [loose, setLoose] = useState('M');
+  const [regular, setRegular] = useState('S');
+  const [tight, setTight] = useState('XS');
+
   return (
     <View style={styles.conatiner}>
       <View style={styles.header}>

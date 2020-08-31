@@ -30,8 +30,8 @@ export default function App() {
       </NavigationContainer> */}
       {/* <Welcome />
       <Drawer /> */}
-      {/* <Favorite /> */}
-      <Height />
+      <Favorite />
+      {/* <Height /> */}
       {/* <Check /> */}
     </SafeAreaView>
   );
