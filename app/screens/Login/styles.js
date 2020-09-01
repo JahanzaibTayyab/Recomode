@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('window');
 
 import colors from '../../config/colors';
 
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     //flex: 0.1,
     alignSelf: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: 16,
+    paddingBottom: 20,
   },
   footertitle: {
     fontFamily: 'SFProText-Regular',
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
   },
   logocontainer: {
     flex: 1,
+    // position: 'absolute',
     flexDirection: 'row',
     justifyContent: 'center',
     paddingRight: 10,
@@ -74,7 +76,15 @@ const styles = StyleSheet.create({
     bottom: 10,
   },
   logoimage: {width: '100%', height: 50},
-  footer: {flex: 0.2, backgroundColor: colors.white},
+  footer: {
+    flex: 0.2,
+    backgroundColor: colors.white,
+    // position: 'absolute',
+    // alignSelf: 'center',
+    // top: height / 1.1,
+    // width: '100%',
+    // height: undefined,
+  },
   innerfooter: {flex: 1, backgroundColor: colors.bitblue},
 });
 

@@ -19,7 +19,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import Welcome from './app/screens/Welcome';
 import Register from './app/screens/Register';
-
+import Login from './app/screens/Login';
 // import Register from './app/screens/Register';
 //import RegisterScrenn from './app/screens/Register';
 
@@ -30,8 +30,8 @@ export default function App() {
         <AuthNavigator />
       </NavigationContainer> */}
       {/* <Welcome /> */}
-      <Register />
-
+      {/* <Register /> */}
+      <Login />
       {/* <Text>Mango</Text> */}
     </SafeAreaView>
   );
