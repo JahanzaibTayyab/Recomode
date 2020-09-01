@@ -20,6 +20,8 @@ import AuthNavigator from './app/navigation/AuthNavigator';
 import Welcome from './app/screens/Welcome';
 import Register from './app/screens/Register';
 import Login from './app/screens/Login';
+import ForgetPassword from './app/screens/ForgetPassword';
+// import ForgetPasswordView from './app/screens/ForgetPassword/ForgetPasswordView';
 // import Register from './app/screens/Register';
 //import RegisterScrenn from './app/screens/Register';
 
@@ -31,7 +33,8 @@ export default function App() {
       </NavigationContainer> */}
       {/* <Welcome /> */}
       {/* <Register /> */}
-      <Login />
+      {/* <Login /> */}
+      <ForgetPassword />
       {/* <Text>Mango</Text> */}
     </SafeAreaView>
   );
