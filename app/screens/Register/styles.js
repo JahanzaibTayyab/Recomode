@@ -3,28 +3,23 @@ import {StyleSheet} from 'react-native';
 import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: colors.light},
+  container: {flex: 1, backgroundColor: colors.bitblue},
   upperbox: {flex: 0.1, backgroundColor: colors.white},
   innerbox: {
     flex: 1,
     backgroundColor: colors.bitblue,
     borderBottomRightRadius: 75,
   },
-  content: {flex: 0.9, backgroundColor: colors.bitblue},
   contentdata: {
-    position: 'absolute',
+    flex: 0.9,
     backgroundColor: colors.white,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     borderTopLeftRadius: 75,
     borderBottomRightRadius: 60,
     borderBottomLeftRadius: 60,
-    alignItems: 'flex-start',
-    padding: 15,
-    paddingBottom: 40,
+    alignItems: 'center',
+    padding: 20,
   },
+<<<<<<< HEAD
   contentdata2: {
     flex: 1,
     width: '100%',
@@ -38,13 +33,15 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   titlecontainer: {flex: 1, alignItems: 'center'},
+=======
+>>>>>>> 2f26770dd22c8695404cb0c3f5ef47a2164ed3d1
   titleheader: {fontFamily: 'SFProText-Bold', fontSize: 20},
   subtitle: {
-    flex: 1,
     fontFamily: 'SFProText-Regular',
     textAlign: 'center',
     padding: 5,
     color: colors.medium,
+    marginBottom: 20,
   },
   footerdata: {
     //flex: 0.1,

@@ -18,7 +18,6 @@ function AppButton({
     </TouchableOpacity>
   );
 }
-
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.primary,
@@ -26,8 +25,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 15,
+<<<<<<< HEAD
     // width: '100%',
+=======
+>>>>>>> 2f26770dd22c8695404cb0c3f5ef47a2164ed3d1
     marginVertical: 10,
+    top: 20,
   },
   text: {
     color: colors.bitblue,
