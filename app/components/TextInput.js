@@ -30,7 +30,10 @@ function AppTextInput({
           style={styles.icon}
         />
       )}
-      <View style={{alignItems: 'flex-end'}}>
+      <View
+        style={{
+          alignItems: 'flex-end',
+        }}>
         {showpassword && (
           <MaterialCommunityIcons
             name={showpassword}
@@ -51,6 +54,7 @@ function AppTextInput({
                 : colors.primary
               : colors.danger,
           },
+          // {left:}
         ]}>
         {touched && (
           <FeatherIcons name={!error ? 'check' : 'x'} size={10} color="white" />
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginLeft: 10,
     position: 'absolute',
-    left: 210,
+    left: width - 180,
   },
   showerror: {
     alignItems: 'center',
