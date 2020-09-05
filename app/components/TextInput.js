@@ -9,15 +9,22 @@ function AppTextInput({
   showpassword,
   onPress,
   width = '90%',
+  error,
+  touched,
   ...otherProps
 }) {
+  const reColor = !touched
+    ? colors.secondary
+    : error
+    ? colors.danger
+    : colors.primary;
   return (
-    <View style={[styles.container, {width}]}>
+    <View style={[styles.container, {width}, {borderColor: reColor}]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
           size={20}
-          color={defaultStyles.colors.medium}
+          color={reColor}
           style={styles.icon}
         />
       )}
@@ -26,15 +33,29 @@ function AppTextInput({
           <MaterialCommunityIcons
             name={showpassword}
             size={17}
-            color={defaultStyles.colors.medium}
+            color={reColor}
             style={styles.showicon}
             onPress={onPress}
           />
         )}
       </View>
+      {/* <View
+        style={{
+          alignItems: 'flex-end',
+          backgroundColor: !error ? colors.primary : colors.danger,
+        }}>
+        {touched && (
+          <MaterialCommunityIcons
+            name={!error ? 'check' : 'x'}
+            size={17}
+            color="white"
+            style={styles.showerror}
+          />
+        )}
+      </View> */}
       <TextInput
         placeholderTextColor={defaultStyles.colors.medium}
-        style={defaultStyles.text}
+        underlineColorAndroid="transparent"
         {...otherProps}
       />
     </View>
@@ -43,11 +64,9 @@ function AppTextInput({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultStyles.colors.white,
-    borderColor: colors.lightGrey,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     alignSelf: 'center',
-    borderRadius: 25,
+    borderRadius: 5,
     flexDirection: 'row',
     paddingRight: 20,
     marginVertical: 10,
@@ -58,6 +77,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   showicon: {
+    marginRight: 10,
+    marginTop: 15,
+    marginLeft: 10,
+    position: 'absolute',
+    left: 210,
+  },
+  showerror: {
     marginRight: 10,
     marginTop: 15,
     marginLeft: 10,
