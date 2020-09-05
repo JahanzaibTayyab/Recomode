@@ -13,8 +13,8 @@ import {NavigationContainer} from '@react-navigation/native';
 // import AuthNavigator from './app/navigation/AuthNavigator';
 // import Welcome from './app/screens/Welcome';
 // import Drawer from './app/screens/Drawer';
-// import navigationTheme from './app/navigation/navigationTheme';
-// import DrawerNavigator from './app/navigation/DrawerNavigator';
+import navigationTheme from './app/navigation/navigationTheme';
+import DrawerNavigator from './app/navigation/DrawerNavigator';
 import Favorite from './app/screens/FavoriteOutfits';
 // import FavoriteNavigator from './app/navigation/FavoriteNavigator';
 import Height from './app/screens/Height';
@@ -23,14 +23,14 @@ import Check from './app/screens/checkScreen';
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      {/* <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator />
+      <NavigationContainer theme={navigationTheme}>
+        {/* <AuthNavigator /> */}
         <DrawerNavigator />
-        <FavoriteNavigator />
-      </NavigationContainer> */}
+        {/* <FavoriteNavigator /> */}
+      </NavigationContainer>
       {/* <Welcome />
       <Drawer /> */}
-      <Favorite />
+      {/* <Favorite /> */}
       {/* <Height /> */}
       {/* <Check /> */}
     </SafeAreaView>

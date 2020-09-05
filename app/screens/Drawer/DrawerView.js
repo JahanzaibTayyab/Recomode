@@ -67,7 +67,7 @@ function DrawerView(props) {
               )}
               label="Edit Profile"
               onPress={() => {
-                props.navigation.navigate('Welcome');
+                props.navigation.navigate('Height');
               }}
             />
             <DrawerItem
