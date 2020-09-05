@@ -1,12 +1,19 @@
-import React from "react";
-import { useFormikContext } from "formik";
+import React from 'react';
+import {useFormikContext} from 'formik';
 
-import Button from "../Button";
+import Button from '../Button';
 
-function SubmitButton({ title }) {
-  const { handleSubmit } = useFormikContext();
+function SubmitButton({title, width, titlecolor}) {
+  const {handleSubmit} = useFormikContext();
 
-  return <Button title={title} onPress={handleSubmit} />;
+  return (
+    <Button
+      title={title}
+      onPress={handleSubmit}
+      width={width}
+      titlecolor={titlecolor}
+    />
+  );
 }
 
 export default SubmitButton;

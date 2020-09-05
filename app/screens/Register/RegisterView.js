@@ -43,6 +43,7 @@ function RegisterView(props) {
             name="name"
             placeholder="Name"
             textContentType="name"
+            width="90%"
           />
           <FormField
             autoCapitalize="none"
@@ -52,6 +53,7 @@ function RegisterView(props) {
             name="email"
             placeholder="Email"
             textContentType="emailAddress"
+            width="90%"
           />
           <FormField
             autoCapitalize="none"
@@ -63,8 +65,9 @@ function RegisterView(props) {
             placeholder="Password"
             secureTextEntry={hidePassword}
             textContentType="password"
+            width="90%"
           />
-          <SubmitButton title="Login" />
+          <SubmitButton title="Register" width="70%" titlecolor="white" />
         </Form>
       </View>
       <View style={styles.footer}>

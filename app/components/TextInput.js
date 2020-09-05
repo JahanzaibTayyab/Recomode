@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import {View, TextInput, StyleSheet, Dimensions} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FeatherIcons from 'react-native-vector-icons/Feather';
 
 import defaultStyles from '../config/styles';
 import colors from '../config/colors';
+const {width} = Dimensions.get('window');
 function AppTextInput({
   icon,
   showpassword,
   onPress,
-  width = '90%',
+  width = '100%',
   error,
   touched,
   ...otherProps
@@ -39,20 +41,21 @@ function AppTextInput({
           />
         )}
       </View>
-      {/* <View
-        style={{
-          alignItems: 'flex-end',
-          backgroundColor: !error ? colors.primary : colors.danger,
-        }}>
+      <View
+        style={[
+          styles.showerror,
+          {
+            backgroundColor: !error
+              ? !touched
+                ? colors.white
+                : colors.primary
+              : colors.danger,
+          },
+        ]}>
         {touched && (
-          <MaterialCommunityIcons
-            name={!error ? 'check' : 'x'}
-            size={17}
-            color="white"
-            style={styles.showerror}
-          />
+          <FeatherIcons name={!error ? 'check' : 'x'} size={10} color="white" />
         )}
-      </View> */}
+      </View>
       <TextInput
         placeholderTextColor={defaultStyles.colors.medium}
         underlineColorAndroid="transparent"
@@ -84,11 +87,14 @@ const styles = StyleSheet.create({
     left: 210,
   },
   showerror: {
-    marginRight: 10,
-    marginTop: 15,
-    marginLeft: 10,
+    alignItems: 'center',
+    height: 18,
+    width: 18,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    borderRadius: 9,
     position: 'absolute',
-    left: 210,
+    left: width - 100,
   },
 });
 
