@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-<<<<<<< HEAD
   contentdata2: {
     flex: 1,
     width: '100%',
@@ -33,8 +32,6 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   titlecontainer: {flex: 1, alignItems: 'center'},
-=======
->>>>>>> 2f26770dd22c8695404cb0c3f5ef47a2164ed3d1
   titleheader: {fontFamily: 'SFProText-Bold', fontSize: 20},
   subtitle: {
     fontFamily: 'SFProText-Regular',
