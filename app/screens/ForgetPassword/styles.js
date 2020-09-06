@@ -4,6 +4,7 @@ import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.bitblue},
+  container1: {flex: 1, backgroundColor: colors.bitblue, position: 'absolute'},
   upperbox: {flex: 0.1, backgroundColor: colors.white},
   innerbox: {
     flex: 1,

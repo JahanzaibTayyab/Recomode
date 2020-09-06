@@ -33,9 +33,9 @@ export default function App() {
         <AuthNavigator />
       </NavigationContainer> */}
       {/* <Welcome /> */}
-      {/* <Register /> */}
+      <Register />
       {/* <Login /> */}
-      <ForgetPassword />
+      {/* <ForgetPassword /> */}
       {/* <EnterCode /> */}
       {/* <Text>Mango</Text> */}
     </SafeAreaView>

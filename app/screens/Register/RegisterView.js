@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View, Image, TouchableWithoutFeedback} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+} from 'react-native';
 import * as yup from 'yup';
 
 import colors from '../../config/colors';
