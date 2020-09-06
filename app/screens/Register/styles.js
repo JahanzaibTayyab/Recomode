@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 75,
   },
   contentdata: {
-    flex: 0.9,
+    flex: 1,
     backgroundColor: colors.white,
     borderTopLeftRadius: 75,
     borderBottomRightRadius: 60,

@@ -9,52 +9,29 @@ import colors from '../../config/colors';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.bitblue,
-  },
+  container: {flex: 1, backgroundColor: colors.bitblue},
   upperbox: {flex: 0.1, backgroundColor: colors.white},
   innerbox: {
     flex: 1,
     backgroundColor: colors.bitblue,
-    borderBottomRightRadius: 75,
   },
-  content: {flex: 0.9, backgroundColor: colors.white},
   contentdata: {
-    flex: 0.9,
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 75,
-    borderBottomRightRadius: 60,
-    borderBottomLeftRadius: 60,
-    alignItems: 'flex-start',
-    padding: 15,
-    paddingBottom: 40,
-    justifyContent: 'flex-end',
-  },
-  contentdata2: {
     flex: 1,
-    width: '100%',
     backgroundColor: colors.white,
     borderTopLeftRadius: 75,
+    borderTopRightRadius: 75,
     borderBottomRightRadius: 60,
     borderBottomLeftRadius: 60,
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 120,
-    // paddingBottom: 20,
+    padding: 20,
   },
-  titlecontainer: {flex: 1, alignItems: 'center', textAlign: 'center'},
-  titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 20,
-    textAlign: 'center',
-  },
+  titleheader: {fontFamily: 'SFProText-Bold', fontSize: 25, marginBottom: 10},
   subtitle: {
-    flex: 1,
     fontFamily: 'SFProText-Regular',
     textAlign: 'center',
-    padding: 5,
+    padding: 15,
     color: colors.medium,
+    marginTop: 10,
   },
   footerdata: {
     //flex: 0.1,
@@ -68,13 +45,8 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   footer: {
-    flex: 0.2,
+    flex: 0.1,
     backgroundColor: colors.white,
-    // position: 'absolute',
-    // alignSelf: 'center',
-    // top: height / 1.1,
-    // width: '100%',
-    // height: undefined,
   },
   innerfooter: {flex: 1, backgroundColor: colors.bitblue},
   //EnterCode Styling
@@ -113,12 +85,8 @@ const styles = StyleSheet.create({
   // =======================
 
   root: {
-    minHeight: 800,
-    padding: 20,
-    flex: 1,
-    // marginVertical: 150,
-    // position: 'absolute',
-    paddingTop: 280,
+    // minHeight: 800,
+    //padding: 20,
   },
   title: {
     paddingTop: 50,
