@@ -11,8 +11,7 @@ const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.light,
-    justifyContent: 'flex-end',
+    backgroundColor: colors.bitblue,
   },
   upperbox: {flex: 0.1, backgroundColor: colors.white},
   innerbox: {
@@ -20,14 +19,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.bitblue,
     borderBottomRightRadius: 75,
   },
-  content: {flex: 0.9, backgroundColor: colors.bitblue},
+  content: {flex: 0.9, backgroundColor: colors.white},
   contentdata: {
-    position: 'absolute',
+    flex: 0.9,
     backgroundColor: colors.white,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     borderTopLeftRadius: 75,
     borderBottomRightRadius: 60,
     borderBottomLeftRadius: 60,

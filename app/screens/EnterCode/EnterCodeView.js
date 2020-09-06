@@ -32,97 +32,97 @@ import {Form, FormField, SubmitButton} from '../../components/form';
 import {ic_facebook, ic_google} from '../helper/constants';
 
 //net k animated Example walay constants
-const {Value, Text: AnimatedText} = Animated;
-const CELL_COUNT = 4;
+// const {Value} = Animated;
+// const CELL_COUNT = 4;
 const source = {
   uri: require('../../assets/images/ECLock.png'),
 };
 
-const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
-const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell = ({hasValue, index, isFocused}) => {
-  Animated.parallel([
-    Animated.timing(animationsColor[index], {
-      useNativeDriver: false,
-      toValue: isFocused ? 1 : 0,
-      duration: 250,
-    }),
-    Animated.spring(animationsScale[index], {
-      useNativeDriver: false,
-      toValue: hasValue ? 0 : 1,
-      duration: hasValue ? 300 : 250,
-    }),
-  ]).start();
-};
-const hardCoded = 1234;
-const err = 'Enter Correct Code!';
+// const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
+// const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
+// const animateCell = ({hasValue, index, isFocused}) => {
+//   Animated.parallel([
+//     Animated.timing(animationsColor[index], {
+//       useNativeDriver: false,
+//       toValue: isFocused ? 1 : 0,
+//       duration: 250,
+//     }),
+//     Animated.spring(animationsScale[index], {
+//       useNativeDriver: false,
+//       toValue: hasValue ? 0 : 1,
+//       duration: hasValue ? 300 : 250,
+//     }),
+//   ]).start();
+// };
+// const hardCoded = 1234;
+// const err = 'Enter Correct Code!';
 
-const validationSchema = yup.object().shape({
-  value: yup.string().required().label('Code'),
-});
+// const validationSchema = yup.object().shape({
+//   value: yup.string().required().label('Code'),
+// });
 
 //   const AnimatedExample = () => {
 
 //main FUnction hamara
 
 function EnterCodeView(props) {
-  const [value, setValue] = useState('');
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
-  const [one, getCellOnLayoutHandler] = useClearByFocusCell({
-    value,
-    setValue,
-  });
-  const checkIF = () => {
-    if (value === hardCoded) {
-      console.log('Entered Value is Correct! Let him Go');
-      console.log(value);
-    } else if (value !== hardCoded) {
-      return <Text>{err}</Text>;
-    }
-  };
+  // const [value, setValue] = useState('');
+  // const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  // const [one, getCellOnLayoutHandler] = useClearByFocusCell({
+  //   value,
+  //   setValue,
+  // });
+  // const checkIF = () => {
+  //   if (value === hardCoded) {
+  //     console.log('Entered Value is Correct! Let him Go');
+  //     console.log(value);
+  //   } else if (value !== hardCoded) {
+  //     return <Text>{err}</Text>;
+  //   }
+  // };
 
   //net k animated Example wala code
 
-  const renderCell = ({index, symbol, isFocused}) => {
-    const hasValue = Boolean(symbol);
-    const animatedCellStyle = {
-      backgroundColor: hasValue
-        ? animationsScale[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          })
-        : animationsColor[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          }),
-      borderRadius: animationsScale[index].interpolate({
-        inputRange: [0, 1],
-        outputRange: [CELL_SIZE, CELL_BORDER_RADIUS],
-      }),
-      transform: [
-        {
-          scale: animationsScale[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [0.2, 1],
-          }),
-        },
-      ],
-    };
+  // const renderCell = ({index, symbol, isFocused}) => {
+  //   const hasValue = Boolean(symbol);
+  //   const animatedCellStyle = {
+  //     backgroundColor: hasValue
+  //       ? animationsScale[index].interpolate({
+  //           inputRange: [0, 1],
+  //           outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+  //         })
+  //       : animationsColor[index].interpolate({
+  //           inputRange: [0, 1],
+  //           outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+  //         }),
+  //     borderRadius: animationsScale[index].interpolate({
+  //       inputRange: [0, 1],
+  //       outputRange: [CELL_SIZE, CELL_BORDER_RADIUS],
+  //     }),
+  //     transform: [
+  //       {
+  //         scale: animationsScale[index].interpolate({
+  //           inputRange: [0, 1],
+  //           outputRange: [0.2, 1],
+  //         }),
+  //       },
+  //     ],
+  //   };
 
-    // Run animation on next event loop tik
-    // Because we need first return new style prop and then animate this value
-    setTimeout(() => {
-      animateCell({hasValue, index, isFocused});
-    }, 0);
-    return (
-      <AnimatedText
-        key={index}
-        style={[styles.cell, animatedCellStyle]}
-        onLayout={getCellOnLayoutHandler(index)}>
-        {symbol || (isFocused ? <Cursor /> : null)}
-      </AnimatedText>
-    );
-  };
+  //   // Run animation on next event loop tik
+  //   // Because we need first return new style prop and then animate this value
+  //   setTimeout(() => {
+  //     animateCell({hasValue, index, isFocused});
+  //   }, 0);
+  //   return (
+  //     <AnimatedText
+  //       key={index}
+  //       style={[styles.cell, animatedCellStyle]}
+  //       onLayout={getCellOnLayoutHandler(index)}>
+  //       {symbol || (isFocused ? <Cursor /> : null)}
+  //     </AnimatedText>
+  //   );
+  // };
 
   return (
     <KeyboardAvoidingView
@@ -147,7 +147,7 @@ function EnterCodeView(props) {
               <SafeAreaView style={styles.root}>
                 <Image style={styles.icon} source={source.uri} />
 
-                <CodeField
+                {/* <CodeField
                   ref={ref}
                   {...props}
                   value={value}
@@ -157,7 +157,7 @@ function EnterCodeView(props) {
                   keyboardType="number-pad"
                   textContentType="oneTimeCode"
                   renderCell={renderCell}
-                />
+                /> */}
               </SafeAreaView>
               <View
                 style={{
@@ -169,8 +169,9 @@ function EnterCodeView(props) {
                 <Button
                   title="Confirm"
                   titlecolor="white"
-                  width="40%"
-                  onPress={console.log('kuch b krdo!')}></Button>
+                  width="50%"
+                  onPress={console.log('kuch b krdo!')}
+                />
               </View>
             </View>
           </View>

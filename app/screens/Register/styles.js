@@ -19,19 +19,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  contentdata2: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: colors.white,
-    borderTopLeftRadius: 75,
-    borderBottomRightRadius: 60,
-    borderBottomLeftRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    paddingBottom: 100,
-  },
-  titlecontainer: {flex: 1, alignItems: 'center'},
   titleheader: {fontFamily: 'SFProText-Bold', fontSize: 20},
   subtitle: {
     fontFamily: 'SFProText-Regular',

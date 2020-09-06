@@ -33,10 +33,10 @@ export default function App() {
         <AuthNavigator />
       </NavigationContainer> */}
       {/* <Welcome /> */}
-      {/* <Register /> */}
+      <Register />
       {/* <Login /> */}
       {/* <ForgetPassword /> */}
-      <EnterCode />
+      {/* <EnterCode /> */}
       {/* <Text>Mango</Text> */}
     </SafeAreaView>
   );

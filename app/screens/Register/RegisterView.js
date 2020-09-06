@@ -26,52 +26,49 @@ function RegisterView(props) {
       <View style={styles.upperbox}>
         <View style={styles.innerbox} />
       </View>
-      <View style={styles.content}>
-        <View style={styles.contentdata}>
-          <View style={styles.titlecontainer}>
-            <Text style={styles.titleheader}>Create Account</Text>
-            <Text style={styles.subtitle}>
-              Let's us know what is your name, email and your pasword!
-            </Text>
-          </View>
-          <View style={styles.contentdata2}>
-            <Form
-              initialValues={{name: '', email: '', password: ''}}
-              onSubmit={(values) => console.log(values)}
-              validationSchema={validationSchema}>
-              <FormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="account"
-                keyboardType="default"
-                name="name"
-                placeholder="Name"
-                textContentType="name"
-              />
-              <FormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="email"
-                keyboardType="email-address"
-                name="email"
-                placeholder="Email"
-                textContentType="emailAddress"
-              />
-              <FormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="lock"
-                name="password"
-                showpassword={icon}
-                onPress={_changeIcon}
-                placeholder="Password"
-                secureTextEntry={hidePassword}
-                textContentType="password"
-              />
-              <SubmitButton title="Register" titlecolor="white" width="70%" />
-            </Form>
-          </View>
-        </View>
+      <View style={styles.contentdata}>
+        <Text style={styles.titleheader}>Create Account</Text>
+        <Text style={styles.subtitle}>
+          Let's us know what is your name, email and your pasword!
+        </Text>
+        <Form
+          initialValues={{name: '', email: '', password: ''}}
+          onSubmit={(values) => console.log(values)}
+          validationSchema={validationSchema}>
+          <FormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="account"
+            keyboardType="default"
+            name="name"
+            placeholder="Name"
+            textContentType="name"
+            width="90%"
+          />
+          <FormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="email"
+            keyboardType="email-address"
+            name="email"
+            placeholder="Email"
+            textContentType="emailAddress"
+            width="90%"
+          />
+          <FormField
+            autoCapitalize="none"
+            autoCorrect={false}
+            icon="lock"
+            name="password"
+            showpassword={icon}
+            onPress={_changeIcon}
+            placeholder="Password"
+            secureTextEntry={hidePassword}
+            textContentType="password"
+            width="90%"
+          />
+          <SubmitButton title="Register" titlecolor="white" width="70%" />
+        </Form>
       </View>
       <View style={styles.footer}>
         <View style={styles.innerfooter}>
