@@ -25,7 +25,7 @@ const validationSchema = yup.object().shape({
 function RegisterView(props) {
   const [icon, setIcon] = useState('eye-off-outline');
   const [hidePassword, setHidePassword] = useState(true);
-  const [push, setpush] = useState(true);
+  const [push, setpush] = useState(false);
   const _changeIcon = () => {
     icon !== 'eye-off-outline'
       ? (setIcon('eye-off-outline'), setHidePassword(true))
