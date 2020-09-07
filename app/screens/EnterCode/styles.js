@@ -10,22 +10,28 @@ const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.bitblue},
-  upperbox: {flex: 0.1, backgroundColor: colors.white},
+  upperbox: {flex: 0.2, backgroundColor: colors.white},
   innerbox: {
     flex: 1,
     backgroundColor: colors.bitblue,
+    borderBottomLeftRadius: 75,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   contentdata: {
     flex: 1,
     backgroundColor: colors.white,
-    borderTopLeftRadius: 75,
     borderTopRightRadius: 75,
-    borderBottomRightRadius: 60,
-    borderBottomLeftRadius: 60,
+    borderBottomLeftRadius: 75,
     alignItems: 'center',
+    justifyContent: 'space-evenly',
     padding: 20,
   },
-  titleheader: {fontFamily: 'SFProText-Bold', fontSize: 25, marginBottom: 10},
+  titleheader: {
+    fontFamily: 'SFProText-Bold',
+    fontSize: 25,
+    color: colors.white,
+  },
   subtitle: {
     fontFamily: 'SFProText-Regular',
     textAlign: 'center',
@@ -45,10 +51,14 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   footer: {
-    flex: 0.1,
+    flex: 0.2,
     backgroundColor: colors.white,
   },
-  innerfooter: {flex: 1, backgroundColor: colors.bitblue},
+  innerfooter: {
+    flex: 1,
+    backgroundColor: colors.bitblue,
+    borderTopRightRadius: 75,
+  },
   //EnterCode Styling
 
   codeFieldRoot: {

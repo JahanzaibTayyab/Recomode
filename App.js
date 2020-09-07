@@ -35,8 +35,8 @@ export default function App() {
       {/* <Welcome /> */}
       {/* <Register /> */}
       {/* <Login /> */}
-      <ForgetPassword />
-      {/* <EnterCode /> */}
+      {/* <ForgetPassword /> */}
+      <EnterCode />
       {/* <Text>Mango</Text> */}
     </SafeAreaView>
   );

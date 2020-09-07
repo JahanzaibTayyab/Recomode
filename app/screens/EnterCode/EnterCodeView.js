@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {Animated, Text, View, Image, KeyboardAvoidingView} from 'react-native';
+import {
+  Animated,
+  Text,
+  View,
+  Image,
+  KeyboardAvoidingView,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {
   CodeField,
   Cursor,
@@ -116,45 +124,48 @@ function EnterCodeView(props) {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
-      <View style={styles.container}>
-        <View style={styles.upperbox}>
-          <View style={styles.innerbox} />
-        </View>
-        <View style={styles.contentdata}>
-          <Text style={styles.titleheader}>Verification!</Text>
-          <Image style={styles.icon} source={ic_Elock} />
-          <Text style={styles.subtitle}>
-            A code has been sent to your email, please enter code to continue{' '}
-          </Text>
-          <ErrorMessage error="Invalid Code." visible={varificationFailed} />
-          <View>
-            <CodeField
-              ref={ref}
-              {...props}
-              value={value}
-              onChangeText={setValue}
-              cellCount={CELL_COUNT}
-              rootStyle={styles.codeFieldRoot}
-              keyboardType="number-pad"
-              textContentType="oneTimeCode"
-              renderCell={renderCell}
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={{flex: 1}}>
+        <View style={styles.container}>
+          <View style={styles.upperbox}>
+            <View style={styles.innerbox}>
+              <Text style={styles.titleheader}>Verification!</Text>
+            </View>
+          </View>
+          <View style={styles.contentdata}>
+            <Image style={styles.icon} source={ic_Elock} />
+            <Text style={styles.subtitle}>
+              A code has been sent to your email, please enter code to continue{' '}
+            </Text>
+            <ErrorMessage error="Invalid Code." visible={varificationFailed} />
+            <View>
+              <CodeField
+                ref={ref}
+                {...props}
+                value={value}
+                onChangeText={setValue}
+                cellCount={CELL_COUNT}
+                rootStyle={styles.codeFieldRoot}
+                keyboardType="number-pad"
+                textContentType="oneTimeCode"
+                renderCell={renderCell}
+              />
+            </View>
+            <Button
+              title="Confrim"
+              width="70%"
+              titlecolor="white"
+              onPress={checkIF}
             />
           </View>
-          <Button
-            title="Confrim"
-            width="70%"
-            titlecolor="white"
-            onPress={checkIF}
-          />
+          <View style={styles.footer}>
+            <View style={styles.innerfooter}></View>
+          </View>
         </View>
-        <View style={styles.footer}>
-          <View style={styles.innerfooter}></View>
-        </View>
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
 export default EnterCodeView;
