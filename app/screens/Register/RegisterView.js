@@ -15,7 +15,7 @@ import colors from '../../config/colors';
 import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
 import {ic_facebook, ic_google, ic_Register} from '../helper/constants';
-
+import SocialContainer from '../../components/SocialContainer';
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email'),
@@ -52,9 +52,6 @@ function RegisterView(props) {
               />
             </View>
 
-            {/* <Text style={styles.subtitle}>
-              Let's us know what is your name, {'\n'}email and your password!
-            </Text> */}
             <Form
               initialValues={{name: '', email: '', password: ''}}
               onSubmit={(values) => console.log(values)}
@@ -111,32 +108,7 @@ function RegisterView(props) {
           </View>
           <View style={styles.footer}>
             <View style={styles.innerfooter}>
-              <View style={styles.logocontainer}>
-                <View style={styles.logoinnercontainer}>
-                  <TouchableWithoutFeedback
-                    onPress={() => {
-                      console.log('FaceBook');
-                    }}>
-                    <Image
-                      resizeMode="contain"
-                      source={ic_facebook}
-                      style={styles.logoimage}
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
-                <View style={styles.logoinnercontainer}>
-                  <TouchableWithoutFeedback
-                    onPress={() => {
-                      console.log('Google');
-                    }}>
-                    <Image
-                      resizeMode="contain"
-                      source={ic_google}
-                      style={styles.logoimage}
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
-              </View>
+              <SocialContainer />
               <View style={styles.footerdata}>
                 <Text style={styles.footertitle}>
                   Already Have an account ?

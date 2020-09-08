@@ -22,6 +22,10 @@ import Register from './app/screens/Register';
 import Login from './app/screens/Login';
 import ForgetPassword from './app/screens/ForgetPassword';
 import EnterCode from './app/screens/EnterCode';
+import ResetPassword from './app/screens/ResetPassword/ResetPasswordView';
+
+// import ChangePassword from './app/screens/ChangePassword';
+// import ChangePasswordView from './app/screens/ChangePassword/ChangePasswordView';
 
 // import Register from './app/screens/Register';
 //import RegisterScrenn from './app/screens/Register';
@@ -34,10 +38,11 @@ export default function App() {
       </NavigationContainer> */}
       {/* <Welcome /> */}
       {/* <Register /> */}
-      {/* <Login /> */}
+      <Login />
       {/* <ForgetPassword /> */}
-      <EnterCode />
+      {/* <EnterCode /> */}
       {/* <Text>Mango</Text> */}
+      {/* <ResetPassword /> */}
     </SafeAreaView>
   );
 }

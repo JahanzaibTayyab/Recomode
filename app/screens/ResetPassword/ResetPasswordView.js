@@ -17,12 +17,10 @@ import styles from './styles';
 import {ic_login} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 const validationSchema = yup.object().shape({
-  name: yup.string().required().label('Name'),
-  email: yup.string().required().email().label('Email'),
   password: yup.string().required().min(4).label('Password'),
 });
 
-function LoginView(props) {
+function ResetPasswordView() {
   const [icon, setIcon] = useState('eye-off-outline');
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
@@ -40,38 +38,14 @@ function LoginView(props) {
         <View style={styles.container}>
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
-              <Text style={styles.titleheader}>Welcome Back! </Text>
+              <Text style={styles.titleheader}>Reset Password! </Text>
             </View>
           </View>
           <View style={styles.contentdata}>
-            <View style={styles.registercontainer}>
-              <Image
-                style={styles.icon}
-                source={ic_login}
-                resizeMode="contain"
-              />
-            </View>
-
-            {/* <Text style={styles.subtitle}>
-            Let's us know what is your name, {'\n'}email and your password!
-          </Text> */}
             <Form
-              initialValues={{email: '', password: ''}}
+              initialValues={{password: ''}}
               onSubmit={(values) => console.log(values)}
               validationSchema={validationSchema}>
-              <FormField
-                autoCapitalize="none"
-                autoCorrect={false}
-                icon="email"
-                keyboardType="email-address"
-                name="email"
-                placeholder="Email"
-                textContentType="emailAddress"
-                width="90%"
-                onFocus={() => {
-                  setpush(true);
-                }}
-              />
               <FormField
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -84,28 +58,15 @@ function LoginView(props) {
                 textContentType="password"
                 width="90%"
               />
-              <SubmitButton title="Login" titlecolor="white" width="70%" />
+              <SubmitButton
+                title="Reset Password"
+                titlecolor="white"
+                width="70%"
+              />
             </Form>
-            <Text
-              style={{
-                fontFamily: 'SFProText-Semibold',
-                //padding: 10,
-                marginTop: 20,
-                color: colors.medium,
-              }}>
-              OR be Social
-            </Text>
           </View>
           <View style={styles.footer}>
-            <View style={styles.innerfooter}>
-              <SocialContainer />
-
-              <View style={styles.footerdata}>
-                <Text style={styles.footertitle}>
-                  Login using Facebook or Google account!
-                </Text>
-              </View>
-            </View>
+            <View style={styles.innerfooter}></View>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -113,4 +74,4 @@ function LoginView(props) {
   );
 }
 
-export default LoginView;
+export default ResetPasswordView;
