@@ -19,20 +19,22 @@ import Favorite from './app/screens/FavoriteOutfits';
 // import FavoriteNavigator from './app/navigation/FavoriteNavigator';
 import Height from './app/screens/Height';
 import Check from './app/screens/checkScreen';
+import TakeImage from './app/screens/TakeImage';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      <NavigationContainer theme={navigationTheme}>
-        {/* <AuthNavigator /> */}
+      {/* <NavigationContainer theme={navigationTheme}>
+        <AuthNavigator /> 
         <DrawerNavigator />
-        {/* <FavoriteNavigator /> */}
-      </NavigationContainer>
+         <FavoriteNavigator /> 
+      </NavigationContainer> */}
       {/* <Welcome />
       <Drawer /> */}
       {/* <Favorite /> */}
       {/* <Height /> */}
       {/* <Check /> */}
+      <TakeImage />
     </SafeAreaView>
   );
 }
