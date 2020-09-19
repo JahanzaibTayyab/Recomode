@@ -7,7 +7,13 @@
  */
 
 import React from 'react';
-import {StyleSheet, SafeAreaView, StatusBar, Platform} from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+  Text,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 // import AuthNavigator from './app/navigation/AuthNavigator';
@@ -20,6 +26,19 @@ import Favorite from './app/screens/FavoriteOutfits';
 import Height from './app/screens/Height';
 import Check from './app/screens/checkScreen';
 import TakeImage from './app/screens/TakeImage';
+import AuthNavigator from './app/navigation/AuthNavigator';
+import Welcome from './app/screens/Welcome';
+import Register from './app/screens/Register';
+import Login from './app/screens/Login';
+import ForgetPassword from './app/screens/ForgetPassword';
+import EnterCode from './app/screens/EnterCode';
+import ResetPassword from './app/screens/ResetPassword/ResetPasswordView';
+
+// import ChangePassword from './app/screens/ChangePassword';
+// import ChangePasswordView from './app/screens/ChangePassword/ChangePasswordView';
+
+// import Register from './app/screens/Register';
+//import RegisterScrenn from './app/screens/Register';
 
 export default function App() {
   return (
@@ -35,6 +54,16 @@ export default function App() {
       {/* <Height /> */}
       {/* <Check /> */}
       <TakeImage />
+      {/* <NavigationContainer>
+        <AuthNavigator />
+      </NavigationContainer> */}
+      {/* <Welcome /> */}
+      {/* <Register /> */}
+      {/* <Login /> */}
+      {/* <ForgetPassword /> */}
+      {/* <EnterCode /> */}
+      {/* <Text>Mango</Text> */}
+      {/* <ResetPassword /> */}
     </SafeAreaView>
   );
 }
