@@ -26,12 +26,18 @@ export default function ImageView() {
       setProgress(progress),
     );
     if (!result.ok) {
+      console.log('Network ');
       console.log(result.problem);
+      setUploadVisible(false);
+      setTitle('Try Again');
       setError(true);
       setErrorJSON(require('../../assets/animations/3097-network-error.json'));
     } else {
       if (result.data.length === 0) {
         setError(true);
+        setErrorJSON(
+          require('../../assets/animations/14651-error-animation.json'),
+        );
         setTitle('Try Again');
       }
       console.log(result.data.length);
