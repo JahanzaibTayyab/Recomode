@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Modal} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import base64ToArrayBuffer from 'base64-arraybuffer';
+import LottieView from 'lottie-react-native';
 
 import Button from '../../components/Button';
 import ImageApi from '../../api/ImageAttributes';
 import styles from './styles';
+import UploadScreen from './UploadScreen';
 
 export default function ImageView() {
-  const [fileUri, SetFileuri] = useState();
-  const [responsedata, Setresponsedata] = useState([]);
-  const [gender, setGender] = useState('');
-  const [age, setAge] = useState('');
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [error, setError] = useState(false);
+  const [title, setTitle] = useState('Take Image');
+  const [errorJSON, setErrorJSON] = useState(
+    require('../../assets/animations/3227-error-404-facebook-style.json'),
+  );
 
   //api call
   const handleSubmit = async (Image) => {
@@ -24,16 +27,18 @@ export default function ImageView() {
     );
     if (!result.ok) {
       console.log(result.problem);
+      setError(true);
+      setErrorJSON(require('../../assets/animations/3097-network-error.json'));
     } else {
-      Setresponsedata(result.data);
-      console.log(result.data);
+      if (result.data.length === 0) {
+        setError(true);
+        setTitle('Try Again');
+      }
+      console.log(result.data.length);
       result.data.forEach((face) => {
         console.log('Face ID: ' + face.faceId);
         console.log('Gender: ' + face.faceAttributes.gender);
-        setGender(face.faceAttributes.gender);
-        // console.log(gender);
         console.log('Age: ' + face.faceAttributes.age);
-        //console.log(age);
         console.log('Glasses: ' + face.faceAttributes.glasses);
         console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
         console.log();
@@ -62,7 +67,6 @@ export default function ImageView() {
         console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
       } else {
-        SetFileuri(response.uri);
         const data = base64ToArrayBuffer.decode(response.data);
         handleSubmit(data);
       }
@@ -71,9 +75,29 @@ export default function ImageView() {
 
   return (
     <View style={styles.container}>
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
+      {!error ? (
+        <LottieView
+          autoPlay
+          loop={true}
+          source={require('../../assets/animations/selfi.json')}
+          style={{width: '100%', top: -20}}
+        />
+      ) : (
+        <LottieView
+          autoPlay
+          loop={true}
+          source={errorJSON}
+          style={{width: '90%', top: -20, padding: 20, margin: 10}}
+        />
+      )}
       <View style={styles.button}>
         <Button
-          title="Take Image"
+          title={title}
           titlecolor="white"
           width="60%"
           onPress={chooseImage}
