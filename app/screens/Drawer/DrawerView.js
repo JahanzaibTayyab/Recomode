@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Dimensions} from 'react-native';
-import {Avatar} from 'react-native-paper';
+// import {Avatar} from 'react-native-paper';
 
 import styles from './styles';
 import colors from '../../config/colors';
@@ -29,11 +29,11 @@ function DrawerView(props) {
         <View style={{flex: 1, backgroundColor: colors.bitblue}}></View>
         <View style={{flex: 1, backgroundColor: colors.bitblue}}></View>
         <View style={styles.content}>
-          <Avatar.Image
+          {/* <Avatar.Image
             style={{alignSelf: 'center', top: -53}}
             source={require('../../assets/images/userprofile.jpg')}
             size={90}
-          />
+          /> */}
           <View style={{alignSelf: 'center', top: -30}}>
             <Text style={styles.userName}>Jahanzaib Tayyab</Text>
             <Text style={styles.userEmail}>jtayyab204@gmail.com</Text>

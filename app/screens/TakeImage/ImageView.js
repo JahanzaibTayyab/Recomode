@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Modal} from 'react-native';
+import {View, Dimensions} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import base64ToArrayBuffer from 'base64-arraybuffer';
 import LottieView from 'lottie-react-native';
@@ -8,12 +8,17 @@ import Button from '../../components/Button';
 import ImageApi from '../../api/ImageAttributes';
 import styles from './styles';
 import UploadScreen from './UploadScreen';
+import ErrorMessage from './../../components/form/ErrorMessage';
+
+const {width, height} = Dimensions.get('window');
 
 export default function ImageView() {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
+  const [widthIcon, setWidthIcon] = useState('100%');
   const [title, setTitle] = useState('Take Image');
+  const [errorMessage, seterrorMessage] = useState(false);
   const [errorJSON, setErrorJSON] = useState(
     require('../../assets/animations/3227-error-404-facebook-style.json'),
   );
@@ -26,20 +31,26 @@ export default function ImageView() {
       setProgress(progress),
     );
     if (!result.ok) {
+      //network error
       console.log('Network ');
       console.log(result.problem);
       setUploadVisible(false);
       setTitle('Try Again');
       setError(true);
       setErrorJSON(require('../../assets/animations/3097-network-error.json'));
+      setWidthIcon('100%');
     } else {
       if (result.data.length === 0) {
+        //face error
         setError(true);
         setErrorJSON(
-          require('../../assets/animations/14651-error-animation.json'),
+          require('../../assets/animations/3227-error-404-facebook-style.json'),
         );
+        setWidthIcon('50%');
         setTitle('Try Again');
+        seterrorMessage(true);
       }
+      //respone api data
       console.log(result.data.length);
       result.data.forEach((face) => {
         console.log('Face ID: ' + face.faceId);
@@ -86,21 +97,26 @@ export default function ImageView() {
         progress={progress}
         visible={uploadVisible}
       />
-      {!error ? (
-        <LottieView
-          autoPlay
-          loop={true}
-          source={require('../../assets/animations/selfi.json')}
-          style={{width: '100%', top: -20}}
-        />
-      ) : (
-        <LottieView
-          autoPlay
-          loop={true}
-          source={errorJSON}
-          style={{width: '90%', top: -20, padding: 20, margin: 10}}
-        />
-      )}
+      <View style={{alignSelf: 'center'}}>
+        {!error ? (
+          <LottieView
+            autoPlay
+            loop={true}
+            source={require('../../assets/animations/selfi.json')}
+            style={{width: '100%', top: -20}}
+          />
+        ) : (
+          <LottieView
+            autoPlay
+            loop={true}
+            source={errorJSON}
+            style={{width: widthIcon, top: -60}}
+          />
+        )}
+      </View>
+      <View style={{alignSelf: 'center'}}>
+        <ErrorMessage error="OOPS ! Face not Found." visible={errorMessage} />
+      </View>
       <View style={styles.button}>
         <Button
           title={title}
