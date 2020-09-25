@@ -33,6 +33,7 @@ import Login from './app/screens/Login';
 import ForgetPassword from './app/screens/ForgetPassword';
 import EnterCode from './app/screens/EnterCode';
 import ResetPassword from './app/screens/ResetPassword/ResetPasswordView';
+import UserAttributes from './app/screens/UserAttributes';
 
 // import ChangePassword from './app/screens/ChangePassword';
 // import ChangePasswordView from './app/screens/ChangePassword/ChangePasswordView';
@@ -53,7 +54,8 @@ export default function App() {
       {/* <Favorite /> */}
       {/* <Height /> */}
       {/* <Check /> */}
-      <TakeImage />
+      {/* <TakeImage /> */}
+      <UserAttributes />
       {/* <NavigationContainer>
         <AuthNavigator />
       </NavigationContainer> */}
