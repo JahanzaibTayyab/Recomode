@@ -34,6 +34,7 @@ import ForgetPassword from './app/screens/ForgetPassword';
 import EnterCode from './app/screens/EnterCode';
 import ResetPassword from './app/screens/ResetPassword/ResetPasswordView';
 import UserAttributes from './app/screens/UserAttributes';
+import HeightandWeight from './app/screens/UserHeightandWeight';
 
 // import ChangePassword from './app/screens/ChangePassword';
 // import ChangePasswordView from './app/screens/ChangePassword/ChangePasswordView';
@@ -55,7 +56,8 @@ export default function App() {
       {/* <Height /> */}
       {/* <Check /> */}
       {/* <TakeImage /> */}
-      <UserAttributes />
+      {/* <UserAttributes /> */}
+      <HeightandWeight />
       {/* <NavigationContainer>
         <AuthNavigator />
       </NavigationContainer> */}
