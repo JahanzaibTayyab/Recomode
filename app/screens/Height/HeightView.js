@@ -5,10 +5,11 @@ import colors from '../../config/colors';
 import Button from '../../components/Button';
 import styles from './styles';
 
-function HeightView() {
+function HeightView(props) {
   const [loose, setLoose] = useState('M');
   const [regular, setRegular] = useState('S');
   const [tight, setTight] = useState('XS');
+  console.log(props.route.params);
 
   return (
     <View style={styles.conatiner}>

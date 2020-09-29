@@ -9,10 +9,11 @@ import ImageApi from '../../api/ImageAttributes';
 import styles from './styles';
 import UploadScreen from './UploadScreen';
 import ErrorMessage from './../../components/form/ErrorMessage';
+import routes from '../../navigation/routes';
 
 const {width, height} = Dimensions.get('window');
 
-export default function ImageView() {
+export default function ImageView({navigation}) {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
@@ -49,17 +50,19 @@ export default function ImageView() {
         setWidthIcon('50%');
         setTitle('Try Again');
         seterrorMessage(true);
+      } else {
+        //respone api data
+        console.log(result.data.length);
+        result.data.forEach((face) => {
+          console.log('Face ID: ' + face.faceId);
+          console.log('Gender: ' + face.faceAttributes.gender);
+          console.log('Age: ' + face.faceAttributes.age);
+          console.log('Glasses: ' + face.faceAttributes.glasses);
+          console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
+          console.log();
+        });
+        navigation.navigate(routes.USERATTRIBUTES);
       }
-      //respone api data
-      console.log(result.data.length);
-      result.data.forEach((face) => {
-        console.log('Face ID: ' + face.faceId);
-        console.log('Gender: ' + face.faceAttributes.gender);
-        console.log('Age: ' + face.faceAttributes.age);
-        console.log('Glasses: ' + face.faceAttributes.glasses);
-        console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
-        console.log();
-      });
     }
   };
   // Select the Image From mobile

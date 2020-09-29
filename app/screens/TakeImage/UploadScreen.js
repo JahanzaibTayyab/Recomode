@@ -10,7 +10,6 @@ function UploadScreen({onDone, progress = 0, visible = false, error = false}) {
           <LottieView
             autoPlay
             loop={true}
-            onAnimationFinish={onDone}
             source={require('../../assets/animations/lf30_editor_2C6Qrn.json')}
           />
         ) : error ? (

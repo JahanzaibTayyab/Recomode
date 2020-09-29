@@ -36,6 +36,8 @@ import ResetPassword from './app/screens/ResetPassword/ResetPasswordView';
 import UserAttributes from './app/screens/UserAttributes';
 import HeightandWeight from './app/screens/UserHeightandWeight';
 
+import ImageNavigator from './app/navigation/ImageNavigator';
+
 // import ChangePassword from './app/screens/ChangePassword';
 // import ChangePasswordView from './app/screens/ChangePassword/ChangePasswordView';
 
@@ -45,11 +47,12 @@ import HeightandWeight from './app/screens/UserHeightandWeight';
 export default function App() {
   return (
     <SafeAreaView style={styles.screen}>
-      {/* <NavigationContainer theme={navigationTheme}>
-        <AuthNavigator /> 
+      <NavigationContainer theme={navigationTheme}>
+        {/* <AuthNavigator /> 
         <DrawerNavigator />
-         <FavoriteNavigator /> 
-      </NavigationContainer> */}
+         <FavoriteNavigator />  */}
+        <ImageNavigator />
+      </NavigationContainer>
       {/* <Welcome />
       <Drawer /> */}
       {/* <Favorite /> */}
@@ -57,7 +60,7 @@ export default function App() {
       {/* <Check /> */}
       {/* <TakeImage /> */}
       {/* <UserAttributes /> */}
-      <HeightandWeight />
+      {/* <HeightandWeight /> */}
       {/* <NavigationContainer>
         <AuthNavigator />
       </NavigationContainer> */}

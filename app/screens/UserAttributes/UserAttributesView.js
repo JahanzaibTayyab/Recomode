@@ -18,6 +18,7 @@ import {
   ic_womenRed,
   ic_womenWhite,
 } from '../helper/constants';
+import routes from '../../navigation/routes';
 
 function UserAttributesView(props) {
   const [right, setRight] = useState(0);
@@ -72,7 +73,7 @@ function UserAttributesView(props) {
           buttoncolor="medium"
           width="60%"
           onPress={() => {
-            console.log('Try Again');
+            props.navigation.goBack();
           }}
         />
         <Button
@@ -80,7 +81,7 @@ function UserAttributesView(props) {
           titlecolor="white"
           width="60%"
           onPress={() => {
-            console.log('Next');
+            props.navigation.navigate(routes.USERHEIGHTANDWEIGHT);
           }}
         />
       </View>

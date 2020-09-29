@@ -7,7 +7,9 @@ import styles from './styles';
 import Slider from './Slider';
 import colors from '../../config/colors';
 import Button from '../../components/Button';
-export default function HeightandWeightView() {
+import routes from '../../navigation/routes';
+
+export default function HeightandWeightView(props) {
   const [heightMinValue, setHeightMinValue] = useState(0);
   const [heightMaxValue, setHeightMaxValue] = useState(7);
   const [heightValue, setHeightValue] = useState(0);
@@ -93,7 +95,7 @@ export default function HeightandWeightView() {
             decimalPlaces={1}
             fontSize={16}
             backgroundColor={[heightcolor]}
-            onValueChanged={(value) => console.log(value)}
+            onValueChanged={(value) => setHeightValue(value)}
             onPressIn={() => console.log('Pressed in')}
             onPressOut={() => console.log('Pressed out')}
             onDrag={() => console.log('Dragging')}
@@ -124,7 +126,7 @@ export default function HeightandWeightView() {
             decimalPlaces={1}
             fontSize={16}
             backgroundColor={[weightcolor]}
-            onValueChanged={(value) => console.log(value)}
+            onValueChanged={(value) => setWeightValue(value)}
             onPressIn={() => console.log('Pressed in')}
             onPressOut={() => console.log('Pressed out')}
             onDrag={() => console.log('Dragging')}
@@ -170,7 +172,10 @@ export default function HeightandWeightView() {
           onPress={() => {
             !Checkstate
               ? console.log('Try Again')
-              : console.log('Try Again Primary');
+              : props.navigation.navigate(routes.HEIGHT, {
+                  heightValue,
+                  weightValue,
+                });
           }}
         />
       </View>
