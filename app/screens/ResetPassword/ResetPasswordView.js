@@ -11,11 +11,8 @@ import {
 } from 'react-native';
 import * as yup from 'yup';
 
-import colors from '../../config/colors';
 import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
-import {ic_login} from '../helper/constants';
-import SocialContainer from '../../components/SocialContainer';
 const validationSchema = yup.object().shape({
   password: yup.string().required().min(4).label('Password'),
 });

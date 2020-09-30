@@ -36,6 +36,7 @@
     "react-native-svg": "^12.1.0",
     "react-native-tab-view": "^2.15.1",
     "react-native-vector-icons": "^7.0.0",
+    "remove": "^0.1.5",
     "yup": "^0.28.5"
   },
   "devDependencies": {

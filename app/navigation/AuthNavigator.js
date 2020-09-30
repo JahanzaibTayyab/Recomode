@@ -3,6 +3,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import OnBoardingScreen from '../screens/OnBoarding';
 import WelcomeScreen from '../screens/Welcome';
+import LoginScreen from '../screens/Login';
+import RegisterScreen from '../screens/Register';
+import ForgetPasswordScreen from '../screens/ForgetPassword';
+import ResetScreen from '../screens/ResetPassword';
+import EnterCodeScreen from '../screens/EnterCode';
 
 const Stack = createStackNavigator();
 
