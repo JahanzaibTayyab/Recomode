@@ -16,6 +16,8 @@ import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
 import {ic_facebook, ic_google, ic_Register} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
+import routes from '../../navigation/routes';
+
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email'),
@@ -26,10 +28,16 @@ function RegisterView(props) {
   const [icon, setIcon] = useState('eye-off-outline');
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
+
   const _changeIcon = () => {
     icon !== 'eye-off-outline'
       ? (setIcon('eye-off-outline'), setHidePassword(true))
       : (setIcon('eye-outline'), setHidePassword(false));
+  };
+
+  const registerPress = (values) => {
+    console.log(values);
+    props.navigation.navigate(routes.TAKEIMAGE);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -54,7 +62,7 @@ function RegisterView(props) {
 
             <Form
               initialValues={{name: '', email: '', password: ''}}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => registerPress(values)}
               validationSchema={validationSchema}>
               <FormField
                 autoCapitalize="none"
@@ -113,7 +121,7 @@ function RegisterView(props) {
                 <Text style={styles.footertitle}>
                   Already Have an account ?
                   <TouchableWithoutFeedback
-                    onPress={() => console.log('Login')}>
+                    onPress={() => props.navigation.navigate(routes.LOGIN)}>
                     <Text style={{color: colors.primary}}> Login here!</Text>
                   </TouchableWithoutFeedback>
                 </Text>

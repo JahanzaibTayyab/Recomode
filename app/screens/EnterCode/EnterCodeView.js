@@ -27,6 +27,7 @@ import styles, {
 import Button from '../../components/Button';
 import ErrorMessage from './../../components/form/ErrorMessage';
 import colors from '../../config/colors';
+import routes from '../../navigation/routes';
 
 //net k animated Example walay constants
 
@@ -77,6 +78,7 @@ function EnterCodeView(props) {
       return setvarificationFailed(true);
     } else {
       setvarificationFailed(false);
+      props.navigation.navigate(routes.RESET);
     }
   };
 

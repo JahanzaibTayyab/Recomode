@@ -13,6 +13,7 @@ import * as yup from 'yup';
 import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
 import {ic_Email} from './../helper/constants';
+import routes from '../../navigation/routes';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -20,6 +21,11 @@ const validationSchema = yup.object().shape({
 
 function ForgetPasswordView(props) {
   const [enableshifting, setenableshifting] = useState(false);
+
+  const buttonHandling = (values) => {
+    console.log(values);
+    props.navigation.navigate(routes.CODEENTER);
+  };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
@@ -39,7 +45,7 @@ function ForgetPasswordView(props) {
             </Text>
             <Form
               initialValues={{email: ''}}
-              onSubmit={(values) => console.log(values)}
+              onSubmit={(values) => buttonHandling(values)}
               validationSchema={validationSchema}>
               <FormField
                 autoCapitalize="none"

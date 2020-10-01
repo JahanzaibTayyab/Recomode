@@ -4,4 +4,4 @@ function ResetPasswordContainer(props) {
   return <ResetPasswordView {...props} />;
 }
 
-export default ResetPasswordContainerprops;
+export default ResetPasswordContainer;

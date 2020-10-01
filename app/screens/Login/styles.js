@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     paddingBottom: 16,
+    top: 5,
   },
   footertitle: {
     fontFamily: 'SFProText-Regular',

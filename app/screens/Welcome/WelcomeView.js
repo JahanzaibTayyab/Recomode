@@ -4,7 +4,10 @@ import Animated from 'react-native-reanimated';
 
 import Button from '../../components/Button';
 import styles from './styles';
+import routes from '../../navigation/routes';
+
 const {width} = Dimensions.get('window');
+
 function WelcomeView(props) {
   const picture = {
     uri: require('../../assets/images/4.png'),
@@ -34,9 +37,20 @@ function WelcomeView(props) {
             <Text style={styles.description}>
               Login to your account below or signup for an amazing experience
             </Text>
-            <Button title="Have an account? Login" titlecolor="white" />
-            <Button title="Join us , it's Free" buttoncolor="secondary" />
-            <Button title="Forgot password?" buttoncolor="transparent" />
+            <Button
+              title="Have an account? Login"
+              titlecolor="white"
+              onPress={() => {
+                props.navigation.navigate(routes.LOGIN);
+              }}
+            />
+            <Button
+              title="Join us , it's Free"
+              buttoncolor="lightgrey"
+              onPress={() => {
+                props.navigation.navigate(routes.REGISTER);
+              }}
+            />
           </Animated.View>
         </Animated.View>
       </View>

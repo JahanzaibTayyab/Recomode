@@ -11,7 +11,7 @@ function Subslide({subTitle, description, last, onPress}) {
       <Text style={styles.description}>{description}</Text>
       <Button
         title={last ? "Let's get started" : 'Next'}
-        buttoncolor={last ? 'primary' : 'secondary'}
+        buttoncolor={last ? 'primary' : 'lightGrey'}
         titlecolor={last ? 'white' : 'bitblue'}
         onPress={onPress}
       />

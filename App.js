@@ -14,6 +14,7 @@ import AuthNavigator from './app/navigation/AuthNavigator';
 import HomeNavigation from './app/navigation/HomeNavigation';
 import AuthContext from './app/auth/context';
 import OfflineNotice from './app/components/OfflineNotice';
+import ResetPassword from './app/screens/ResetPassword';
 
 export default function App() {
   const [user, setUser] = useState();
@@ -21,10 +22,11 @@ export default function App() {
   return (
     // <AuthContext.Provider value={{user, setUser}}>
     //   <OfflineNotice />
-    //   <NavigationContainer theme={navigationTheme}>
-    //     {user ? <HomeNavigation /> : <AuthNavigator />}
-    //   </NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
+      <AuthNavigator />
+    </NavigationContainer>
     // </AuthContext.Provider>
-    <OfflineNotice />
+    // <OfflineNotice />
+    // <ResetPassword />
   );
 }
