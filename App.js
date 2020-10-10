@@ -20,13 +20,11 @@ export default function App() {
   const [user, setUser] = useState();
   const [isReady, setIsReady] = useState(false);
   return (
-    // <AuthContext.Provider value={{user, setUser}}>
-    //   <OfflineNotice />
+    <AuthContext.Provider value={{user, setUser}}>
+      {/* <OfflineNotice /> */}
     <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+     <AuthNavigator />
     </NavigationContainer>
-    // </AuthContext.Provider>
-    // <OfflineNotice />
-    // <ResetPassword />
+    </AuthContext.Provider>
   );
 }

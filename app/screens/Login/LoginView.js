@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import {
   Text,
   View,
@@ -22,6 +22,8 @@ import styles from './styles';
 import {ic_login} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
+import {f, databse, auth} from '../../config/config';
+import AuthContext from '../../auth/context';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
@@ -34,6 +36,10 @@ function LoginView(props) {
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
   const [loginFailed, setLoginFailed] = useState(false);
+
+//Calling UserContext to set User
+  const authContext=useContext(AuthContext)
+
 
   const _changeIcon = () => {
     icon !== 'eye-off-outline'

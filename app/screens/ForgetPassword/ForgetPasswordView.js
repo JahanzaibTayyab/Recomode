@@ -14,6 +14,7 @@ import {Form, FormField, SubmitButton} from '../../components/form';
 import styles from './styles';
 import {ic_Email} from './../helper/constants';
 import routes from '../../navigation/routes';
+import UploadScreen from './UploadScreen';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -21,9 +22,11 @@ const validationSchema = yup.object().shape({
 
 function ForgetPasswordView(props) {
   const [enableshifting, setenableshifting] = useState(false);
+  const [uploadVisible, setUploadVisible] = useState(false);
 
   const buttonHandling = (values) => {
     console.log(values);
+    setUploadVisible(true);
     props.navigation.navigate(routes.CODEENTER);
   };
   return (
@@ -33,6 +36,10 @@ function ForgetPasswordView(props) {
         style={{flex: 1}}
         enabled={enableshifting}>
         <View style={styles.container}>
+          <UploadScreen
+            onDone={() => setUploadVisible(false)}
+            visible={uploadVisible}
+          />
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
               <Text style={styles.titleheader}>Forget Password</Text>

@@ -10,6 +10,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import * as yup from 'yup';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 import {
   Form,
@@ -19,6 +20,7 @@ import {
 } from '../../components/form';
 import styles from './styles';
 import routes from '../../navigation/routes';
+import colors from '../../config/colors';
 
 const validationSchema = yup.object().shape({
   password: yup.string().required().min(4).label('Password'),
@@ -30,6 +32,7 @@ function ResetPasswordView(props) {
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
   const [confirmFailed, setConfrimFailed] = useState(false);
+  const [show, setShow] = useState(false);
 
   const _changeIcon = () => {
     icon !== 'eye-off-outline'
@@ -39,11 +42,18 @@ function ResetPasswordView(props) {
 
   const buttonHandel = (values) => {
     console.log(values);
-    if (values.password === values.confrim)
-      props.navigation.navigate(routes.LOGIN);
-    else {
+    if (values.password === values.confrim) {
+      setShow(true);
+    } else {
       setConfrimFailed(true);
     }
+  };
+  const ConfrimAlert = () => {
+    setShow(false);
+    props.navigation.navigate(routes.LOGIN);
+  };
+  const hideAlert = () => {
+    setShow(false);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -51,6 +61,23 @@ function ResetPasswordView(props) {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={{flex: 1}}
         enabled={push}>
+        <AwesomeAlert
+          show={show}
+          showProgress={false}
+          title="Password Updated"
+          message="Please Login again to continue"
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={false}
+          showConfirmButton={true}
+          confirmText="Ok"
+          confirmButtonColor={colors.primary}
+          onCancelPressed={() => {
+            hideAlert();
+          }}
+          onConfirmPressed={() => {
+            ConfrimAlert();
+          }}
+        />
         <View style={styles.container}>
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
