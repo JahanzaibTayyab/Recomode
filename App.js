@@ -21,9 +21,9 @@ export default function App() {
   const [isReady, setIsReady] = useState(false);
   return (
     <AuthContext.Provider value={{user, setUser}}>
-      {/* <OfflineNotice /> */}
+       {/* <OfflineNotice /> */}
     <NavigationContainer theme={navigationTheme}>
-     <AuthNavigator />
+    {user?<HomeNavigation/>:<AuthNavigator />}
     </NavigationContainer>
     </AuthContext.Provider>
   );

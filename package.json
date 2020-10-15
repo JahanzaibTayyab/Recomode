@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.4",
+    "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/drawer": "^5.9.0",
     "@react-navigation/material-top-tabs": "^5.2.16",
@@ -18,6 +19,7 @@
     "@react-navigation/stack": "^5.9.0",
     "apisauce": "^1.1.2",
     "base64-arraybuffer": "^0.2.0",
+    "firebase": "^7.23.0",
     "formik": "^2.1.4",
     "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
@@ -26,6 +28,7 @@
     "react-native-awesome-alerts": "^1.4.2",
     "react-native-confirmation-code-field": "^6.5.0",
     "react-native-elements": "^2.3.0",
+    "react-native-fbsdk": "^2.0.0",
     "react-native-fonts": "0.0.0",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-image-picker": "^2.3.3",

@@ -17,14 +17,16 @@ import styles from './styles';
 import {ic_facebook, ic_google, ic_Register} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
+import {f,auth} from '../../config/config';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
   email: yup.string().required().email().label('Email'),
-  password: yup.string().required().min(4).label('Password'),
+  password: yup.string().required().min(6).label('Password'),
 });
 
 function RegisterView(props) {
+  const[uid,setUid]=useState('');
   const [icon, setIcon] = useState('eye-off-outline');
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
@@ -35,9 +37,34 @@ function RegisterView(props) {
       : (setIcon('eye-outline'), setHidePassword(false));
   };
 
-  const registerPress = (values) => {
-    console.log(values);
-    props.navigation.navigate(routes.TAKEIMAGE);
+  const handleSubmit = async (data) => {
+    
+  };
+
+  const registerPress = async ({email,password,name}) => {
+    // console.log(values);
+    auth.createUserWithEmailAndPassword(email,password)
+            .then((response) => {
+                const uidg = response.user.uid
+               setUid(uidg)
+                console.log(uid)
+                const data = {
+                    id: uid,
+                    email,
+                    name
+                };
+                console.log(data)
+                 const usersRef = f.firestore().collection('users').doc(uid).set(data)
+                 console.log('Set: ', usersRef);
+                //  .then(()=>{
+                //   console.log("yha aya ")
+                // }).catch((error)=>{
+                //   alert(error)
+                // })
+             })
+            .catch((error) => {
+                alert(error)
+        });
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

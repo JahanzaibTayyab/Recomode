@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     top: 5,
   },
+  forgettitle: {
+    fontFamily: 'SFProText-Regular',
+    textAlign: 'center',
+    color: colors.primary,
+  },
   footertitle: {
     fontFamily: 'SFProText-Regular',
     textAlign: 'center',
