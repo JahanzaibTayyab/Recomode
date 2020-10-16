@@ -17,7 +17,7 @@ import styles from './styles';
 import {ic_facebook, ic_google, ic_Register} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
-import {f,auth} from '../../config/config';
+// import {f,auth} from '../../config/config';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),

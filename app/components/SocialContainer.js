@@ -3,11 +3,11 @@ import {StyleSheet} from 'react-native';
 import {ic_facebook, ic_google} from '../screens/helper/constants';
 
 import {View, Image, TouchableWithoutFeedback} from 'react-native';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-community/google-signin';
+// import {
+//   GoogleSignin,
+//   GoogleSigninButton,
+//   statusCodes,
+// } from '@react-native-community/google-signin';
 
 import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
 

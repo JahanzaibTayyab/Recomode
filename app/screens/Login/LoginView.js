@@ -22,7 +22,7 @@ import styles from './styles';
 import {ic_login} from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
-import {f, databse, auth} from '../../config/config';
+// import {f, databse, auth} from '../../config/config';
 import AuthContext from '../../auth/context';
 
 const validationSchema = yup.object().shape({

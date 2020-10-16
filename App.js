@@ -16,15 +16,18 @@ import AuthContext from './app/auth/context';
 import OfflineNotice from './app/components/OfflineNotice';
 import ResetPassword from './app/screens/ResetPassword';
 
+import CheckScreen from './app/screens/checkScreen';
+
 export default function App() {
   const [user, setUser] = useState();
   const [isReady, setIsReady] = useState(false);
   return (
-    <AuthContext.Provider value={{user, setUser}}>
-       {/* <OfflineNotice /> */}
-    <NavigationContainer theme={navigationTheme}>
-    {user?<HomeNavigation/>:<AuthNavigator />}
-    </NavigationContainer>
-    </AuthContext.Provider>
+    // <AuthContext.Provider value={{user, setUser}}>
+    //    {/* <OfflineNotice /> */}
+    // <NavigationContainer theme={navigationTheme}>
+    // {user?<HomeNavigation/>:<AuthNavigator />}
+    // </NavigationContainer>
+    // </AuthContext.Provider>
+    <CheckScreen/>
   );
 }
