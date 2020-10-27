@@ -66,16 +66,18 @@ function LoginView(props) {
   const loginpress =async (values) => {
     console.log(values.email);
     console.log(values.password);
-    auth.signInWithEmailAndPassword(values.email, values.password)
-            .then((response) => {
-                const uid = response.user.uid
-                console.log(uid)
-                userdata(uid)
-            })
-            .catch(error => {
-             alert(error)
-            })
-   // 
+    props.navigation.navigate(routes.TAKEIMAGE)
+  //   auth.signInWithEmailAndPassword(values.email, values.password)
+  //           .then((response) => {
+  //               const uid = response.user.uid
+  //               console.log(uid)
+  //               userdata(uid)
+  //           })
+  //           .catch(error => {
+  //            alert(error)
+  //           })
+  //  // 
+  pr
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

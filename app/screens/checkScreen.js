@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import {f, databse, auth} from '../config/config';
 
 import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
-
+rnf
 export default function checkScreen() {
   return (
     <View style={{flex: 1, alignItems: 'center',justifyContent: 'center'}}>

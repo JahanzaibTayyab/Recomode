@@ -3,11 +3,11 @@ import {StyleSheet} from 'react-native';
 import {ic_facebook, ic_google} from '../screens/helper/constants';
 
 import {View, Image, TouchableWithoutFeedback} from 'react-native';
-// import {
-//   GoogleSignin,
-//   GoogleSigninButton,
-//   statusCodes,
-// } from '@react-native-community/google-signin';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
 
 import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
 
@@ -16,7 +16,7 @@ const SocialContainer = (props) => {
   useEffect(() => {
     GoogleSignin.configure({
       scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-      webClientId: '938951481573-5rjmsj9f2r177svimq7imprp0pjv7h91.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      webClientId: '370194722565-mj88es6c9437pkfu0u2sjc6tnev19qi9.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
       offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
       //hostedDomain: '', // specifies a hosted domain restriction
       //loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)

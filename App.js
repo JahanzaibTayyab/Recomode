@@ -22,12 +22,12 @@ export default function App() {
   const [user, setUser] = useState();
   const [isReady, setIsReady] = useState(false);
   return (
-    // <AuthContext.Provider value={{user, setUser}}>
-    //    {/* <OfflineNotice /> */}
-    // <NavigationContainer theme={navigationTheme}>
-    // {user?<HomeNavigation/>:<AuthNavigator />}
-    // </NavigationContainer>
-    // </AuthContext.Provider>
-    <CheckScreen/>
+    <AuthContext.Provider value={{user, setUser}}>
+       {/* <OfflineNotice /> */}
+    <NavigationContainer theme={navigationTheme}>
+    {user?<HomeNavigation/>:<AuthNavigator />}
+    </NavigationContainer>
+    </AuthContext.Provider>
+    // <CheckScreen/>
   );
 }
