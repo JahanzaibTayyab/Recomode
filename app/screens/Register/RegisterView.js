@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -12,12 +12,14 @@ import {
 import * as yup from 'yup';
 
 import colors from '../../config/colors';
-import {Form, FormField, SubmitButton} from '../../components/form';
+import { Form, FormField, SubmitButton } from '../../components/form';
 import styles from './styles';
-import {ic_facebook, ic_google, ic_Register} from '../helper/constants';
+import { ic_facebook, ic_google, ic_Register } from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
-// import {f,auth} from '../../config/config';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+
 
 const validationSchema = yup.object().shape({
   name: yup.string().required().label('Name'),
@@ -26,7 +28,7 @@ const validationSchema = yup.object().shape({
 });
 
 function RegisterView(props) {
-  const[uid,setUid]=useState('');
+
   const [icon, setIcon] = useState('eye-off-outline');
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
@@ -37,40 +39,31 @@ function RegisterView(props) {
       : (setIcon('eye-outline'), setHidePassword(false));
   };
 
-  const handleSubmit = async (data) => {
-    
+  const handleSubmit = async (data, id) => {
+    const usersRef = await firestore().collection('users').doc(id).set(data)
+    props.navigation.navigate(routes.TAKEIMAGE);
   };
 
-  const registerPress = async ({email,password,name}) => {
-    // console.log(values);
-    auth.createUserWithEmailAndPassword(email,password)
-            .then((response) => {
-                const uidg = response.user.uid
-               setUid(uidg)
-                console.log(uid)
-                const data = {
-                    id: uid,
-                    email,
-                    name
-                };
-                console.log(data)
-                 const usersRef = f.firestore().collection('users').doc(uid).set(data)
-                 console.log('Set: ', usersRef);
-                //  .then(()=>{
-                //   console.log("yha aya ")
-                // }).catch((error)=>{
-                //   alert(error)
-                // })
-             })
-            .catch((error) => {
-                alert(error)
-        });
+  const registerPress = async ({ email, password, name }) => {
+    await auth().createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const userid = response.user.uid
+        const data = {
+          name,
+          email
+        };
+        console.log(data)
+        handleSubmit(data, userid)
+      })
+      .catch((error) => {
+        alert(error)
+      });
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         enabled={push}>
         <View style={styles.container}>
           <View style={styles.upperbox}>
@@ -88,7 +81,7 @@ function RegisterView(props) {
             </View>
 
             <Form
-              initialValues={{name: '', email: '', password: ''}}
+              initialValues={{ name: '', email: '', password: '' }}
               onSubmit={(values) => registerPress(values)}
               validationSchema={validationSchema}>
               <FormField
@@ -149,7 +142,7 @@ function RegisterView(props) {
                   Already Have an account ?
                   <TouchableWithoutFeedback
                     onPress={() => props.navigation.navigate(routes.LOGIN)}>
-                    <Text style={{color: colors.primary}}> Login here!</Text>
+                    <Text style={{ color: colors.primary }}> Login here!</Text>
                   </TouchableWithoutFeedback>
                 </Text>
               </View>

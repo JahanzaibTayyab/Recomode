@@ -11,28 +11,20 @@ const SocialContainer = (props) => {
 
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '370194722565-h6tpo724fki9q3m151fge4cuesqgbgpe.apps.googleusercontent.com',
+      webClientId: '423179659423-m4qj7qi6no4o72frt7hht3h617rf63vv.apps.googleusercontent.com',
     });
   }, []);
 
   async function onGoogleButtonPress() {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      var idToken = userInfo.idToken;
-      console.log(idToken);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('Sinf in cancel');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log('Sinf in progress');
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log('Sinf in service not avaiable');
-      } else {
-        console.log(error);
-        console.log(error.code);
-      }
-    }
+    // Get the users ID token
+    const { idToken, user } = await GoogleSignin.signIn();
+    console.log(user)
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
   }
   async function onFacebookButtonPress() {
     // Attempt login with permissions

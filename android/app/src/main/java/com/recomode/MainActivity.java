@@ -1,4 +1,4 @@
-package com.recomode;
+package com.soft.recomode;
 
 import com.facebook.react.ReactActivity;
 

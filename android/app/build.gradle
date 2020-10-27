@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.recomode"
+        applicationId "com.soft.recomode"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

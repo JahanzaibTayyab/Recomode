@@ -1,4 +1,4 @@
-package com.recomode;
+package com.soft.recomode;
 
 import android.app.Application;
 import android.content.Context;

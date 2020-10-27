@@ -1,4 +1,4 @@
-import React, {useState,useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Text,
   View,
@@ -19,11 +19,12 @@ import {
   ErrorMessage,
 } from '../../components/form';
 import styles from './styles';
-import {ic_login} from '../helper/constants';
+import { ic_login } from '../helper/constants';
 import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
-// import {f, databse, auth} from '../../config/config';
-import AuthContext from '../../auth/context';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+//import AuthContext from '../../auth/context';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -36,8 +37,8 @@ function LoginView(props) {
   const [push, setpush] = useState(false);
   const [loginFailed, setLoginFailed] = useState(false);
 
-//Calling UserContext to set User
-  const authContext=useContext(AuthContext)
+  //Calling UserContext to set User
+  //const authContext = useContext(AuthContext)
 
 
   const _changeIcon = () => {
@@ -46,44 +47,44 @@ function LoginView(props) {
       : (setIcon('eye-outline'), setHidePassword(false));
   };
 
-  const userdata=async(uid)=>{
-    const usersRef = await f.firestore().collection('users').doc(uid)
-    .get()
-    .then(firestoreDocument => {
-    if (!firestoreDocument.exists) {
+  const userdata = async (uid) => {
+    const userDocument = await firestore().collection('users').doc(uid)
+      .get()
+      .then(firestoreDocument => {
+        if (!firestoreDocument.exists) {
           setLoginFailed(true);
-                 return;
-          }
-           const user = firestoreDocument.data()
-           props.navigation.navigate(routes.TAKEIMAGE);
-            authContext.setUser(user);
-        })
-        .catch(error => {
-         alert(error)
-        });
+          return;
+        }
+        const user = firestoreDocument.data()
+        console.log(user)
+        props.navigation.navigate(routes.TAKEIMAGE);
+        //authContext.setUser(user);
+      })
+      .catch(error => {
+        alert(error)
+      });
   }
 
-  const loginpress =async (values) => {
+  const loginpress = async (values) => {
     console.log(values.email);
     console.log(values.password);
-    props.navigation.navigate(routes.TAKEIMAGE)
-  //   auth.signInWithEmailAndPassword(values.email, values.password)
-  //           .then((response) => {
-  //               const uid = response.user.uid
-  //               console.log(uid)
-  //               userdata(uid)
-  //           })
-  //           .catch(error => {
-  //            alert(error)
-  //           })
-  //  // 
-  pr
+    //props.navigation.navigate(routes.TAKEIMAGE)
+    // yha loader animation lgna ha 
+    auth().signInWithEmailAndPassword(values.email, values.password)
+      .then((response) => {
+        const uid = response.user.uid
+        console.log(uid)
+        userdata(uid)
+      })
+      .catch(error => {
+        alert(error)
+      })
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         enabled={push}>
         <View style={styles.container}>
           <View style={styles.upperbox}>
@@ -105,10 +106,10 @@ function LoginView(props) {
               visible={loginFailed}
             />
             <Form
-              initialValues={{email: '', password: ''}}
+              initialValues={{ email: '', password: '' }}
               onSubmit={(values) => loginpress(values)}
               validationSchema={validationSchema}
-              >
+            >
               <FormField
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -134,14 +135,14 @@ function LoginView(props) {
                 textContentType="password"
                 width="90%"
               />
-              <View style={{flexDirection:"row",alignSelf:"flex-end",right:10}}>
-                  <TouchableWithoutFeedback onPress={()=>{
-                    props.navigation.navigate(routes.FORGETPASSWORD)
-                  }}>
-                    <Text style={styles.forgettitle}>forget password?</Text>
-                  </TouchableWithoutFeedback>
-               </View>
-               <SubmitButton title="Login" titlecolor="white" width="70%" />
+              <View style={{ flexDirection: "row", alignSelf: "flex-end", right: 10 }}>
+                <TouchableWithoutFeedback onPress={() => {
+                  props.navigation.navigate(routes.FORGETPASSWORD)
+                }}>
+                  <Text style={styles.forgettitle}>forget password?</Text>
+                </TouchableWithoutFeedback>
+              </View>
+              <SubmitButton title="Login" titlecolor="white" width="70%" />
             </Form>
             <Text
               style={{
@@ -160,7 +161,7 @@ function LoginView(props) {
                   Don't Have an account ?
                   <TouchableWithoutFeedback
                     onPress={() => props.navigation.navigate(routes.REGISTER)}>
-                    <Text style={{color: colors.primary}}> SignUp here!</Text>
+                    <Text style={{ color: colors.primary }}> SignUp here!</Text>
                   </TouchableWithoutFeedback>
                 </Text>
               </View>
