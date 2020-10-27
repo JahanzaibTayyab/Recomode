@@ -1,8 +1,8 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     paddingBottom: 16,
-    top: 5,
+    top: 10,
   },
   forgettitle: {
     fontFamily: 'SFProText-Regular',
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     margin: 10,
   },
-  logoimage: {width: '100%', height: 50},
-  footer: {flex: 0.2, backgroundColor: colors.white},
+  logoimage: { width: '100%', height: 50 },
+  footer: { flex: 0.2, backgroundColor: colors.white },
   innerfooter: {
     flex: 1,
     backgroundColor: colors.bitblue,

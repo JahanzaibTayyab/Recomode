@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370194722565:android:c0dc46c0af2723b9e1916c",
+        "mobilesdk_app_id": "1:370194722565:android:20c009f96a8475cfe1916c",
         "android_client_info": {
           "package_name": "com.recomode"
         }
       },
       "oauth_client": [
         {
-          "client_id": "370194722565-h6tpo724fki9q3m151fge4cuesqgbgpe.apps.googleusercontent.com",
+          "client_id": "370194722565-430sf8poao333v4bhv6afkeqvs3fqmej.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.recomode",
-            "certificate_hash": "44c8b240907de69d2ba2a0b38a7cd262473c7cd0"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
