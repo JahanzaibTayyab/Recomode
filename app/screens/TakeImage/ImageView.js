@@ -10,6 +10,7 @@ import styles from './styles';
 import UploadScreen from './UploadScreen';
 import ErrorMessage from './../../components/form/ErrorMessage';
 import routes from '../../navigation/routes';
+import { ic_errorJSON, ic_networkJSON } from "../helper/constants";
 
 const {width, height} = Dimensions.get('window');
 
@@ -35,7 +36,6 @@ export default function ImageView({navigation}) {
       //network error
       console.log('Network ');
       console.log(result.problem);
-      setUploadVisible(false);
       setTitle('Try Again');
       setError(true);
       setErrorJSON(require('../../assets/animations/3097-network-error.json'));
