@@ -16,3 +16,6 @@ export const ic_womenBrown = require('../../assets/icons/womanBrown.png');
 export const ic_womenGrey = require('../../assets/icons/womanGrey.png');
 export const ic_womenRed = require('../../assets/icons/womanRed.png');
 export const ic_womenWhite = require('../../assets/icons/womanWhite.png');
+export const ic_men = require('../../assets/icons/men.png');
+export const ic_errorJSON = require('../../assets/animations/3227-error-404-facebook-style.json');
+export const ic_networkJSON = require("../../assets/animations/3097-network-error.json");

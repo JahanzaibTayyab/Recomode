@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../config/colors';
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: { flex: 1 },
   boxcontainer: {
     flexDirection: 'row',
     margin: 10,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: 90,
     //top: 5,
   },
-  upperheader: {alignItems: 'center', margin: 10},
+  upperheader: { alignItems: 'center', margin: 10 },
   headertext: {
     color: colors.primary,
     fontFamily: 'SFProText-Regular',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SFProText-Regular',
     fontSize: 12,
   },
-  upperGenderheader: {alignItems: 'center', margin: 10},
+  upperGenderheader: { alignItems: 'center', margin: 10 },
   genderText: {
     fontFamily: 'SFProText-Bold',
     fontSize: 20,

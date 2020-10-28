@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Dimensions} from 'react-native';
+import React, { useState } from 'react';
+import { View, Dimensions } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import base64ToArrayBuffer from 'base64-arraybuffer';
 import LottieView from 'lottie-react-native';
@@ -10,27 +10,32 @@ import styles from './styles';
 import UploadScreen from './UploadScreen';
 import ErrorMessage from './../../components/form/ErrorMessage';
 import routes from '../../navigation/routes';
-import { ic_errorJSON, ic_networkJSON } from "../helper/constants";
+import { ic_errorJSON, ic_networkJSON } from "../helper/constants"
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
-export default function ImageView({navigation}) {
+export default function ImageView({ navigation }) {
+
+
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [widthIcon, setWidthIcon] = useState('100%');
   const [title, setTitle] = useState('Take Image');
   const [errorMessage, seterrorMessage] = useState(false);
-  const [errorJSON, setErrorJSON] = useState(
-    require('../../assets/animations/3227-error-404-facebook-style.json'),
-  );
+  const [errorJSON, setErrorJSON] = useState(ic_errorJSON);
 
   //api call
   const handleSubmit = async (Image) => {
     setProgress(0);
     setUploadVisible(true);
     const result = await ImageApi.postImage(Image, (progress) =>
-      setProgress(progress),
+      //setProgress(progress),
+      console.log(progress),
+      setTimeout(function () {
+        setProgress(1),
+          console.log("Progress" + progress)
+      }, 8000),
     );
     if (!result.ok) {
       //network error
@@ -38,30 +43,34 @@ export default function ImageView({navigation}) {
       console.log(result.problem);
       setTitle('Try Again');
       setError(true);
-      setErrorJSON(require('../../assets/animations/3097-network-error.json'));
+      setErrorJSON(ic_networkJSON);
       setWidthIcon('100%');
+      setUploadVisible(false);
     } else {
       if (result.data.length === 0) {
         //face error
         setError(true);
         setErrorJSON(
-          require('../../assets/animations/3227-error-404-facebook-style.json'),
+          ic_errorJSON
         );
         setWidthIcon('50%');
         setTitle('Try Again');
         seterrorMessage(true);
       } else {
+        setTimeout(function () {
+
+        }, 3000)
         //respone api data
-        console.log(result.data.length);
-        result.data.forEach((face) => {
-          console.log('Face ID: ' + face.faceId);
-          console.log('Gender: ' + face.faceAttributes.gender);
-          console.log('Age: ' + face.faceAttributes.age);
-          console.log('Glasses: ' + face.faceAttributes.glasses);
-          console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
-          console.log();
-        });
-        navigation.navigate(routes.USERATTRIBUTES);
+        // console.log(result.data.length);
+        // result.data.forEach((face) => {
+        //   console.log('Face ID: ' + face.faceId);
+        //   console.log('Gender: ' + face.faceAttributes.gender);
+        //   console.log('Age: ' + face.faceAttributes.age);
+        //   console.log('Glasses: ' + face.faceAttributes.glasses);
+        //   console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
+        //   console.log();
+        // });
+        navigation.navigate(routes.USERATTRIBUTES, result.data);
       }
     }
   };
@@ -73,6 +82,7 @@ export default function ImageView({navigation}) {
       mediaType: 'photo',
       base64: true,
       quality: 0.75,
+      allowsEditing: true,
       storageOptions: {
         skipBackup: true,
         path: 'Recomode',
@@ -100,24 +110,24 @@ export default function ImageView({navigation}) {
         progress={progress}
         visible={uploadVisible}
       />
-      <View style={{alignSelf: 'center'}}>
+      <View style={{ alignSelf: 'center' }}>
         {!error ? (
           <LottieView
             autoPlay
             loop={true}
             source={require('../../assets/animations/selfi.json')}
-            style={{width: '100%', top: -20}}
+            style={{ width: '100%', top: -20 }}
           />
         ) : (
-          <LottieView
-            autoPlay
-            loop={true}
-            source={errorJSON}
-            style={{width: widthIcon, top: -60}}
-          />
-        )}
+            <LottieView
+              autoPlay
+              loop={true}
+              source={errorJSON}
+              style={{ width: widthIcon, top: -60 }}
+            />
+          )}
       </View>
-      <View style={{alignSelf: 'center'}}>
+      <View style={{ alignSelf: 'center' }}>
         <ErrorMessage error="OOPS ! Face not Found." visible={errorMessage} />
       </View>
       <View style={styles.button}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import TakeImageScreen from '../screens/TakeImage';
 import UserAttributesScreeen from '../screens/UserAttributes';
@@ -15,27 +15,27 @@ const ImageNavigator = () => {
       <Stack.Screen
         name="TakeImage"
         component={TakeImageScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="UserAttributes"
         component={UserAttributesScreeen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="UserHeightAndWeight"
         component={UserHeightandWeightScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Height"
         component={HeightScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{headerShown: true}}
+        options={{ headerShown: true }}
       />
     </Stack.Navigator>
   );

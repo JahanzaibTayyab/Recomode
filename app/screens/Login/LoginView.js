@@ -24,7 +24,7 @@ import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-//import AuthContext from '../../auth/context';
+import AuthContext from '../../auth/context';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -38,7 +38,7 @@ function LoginView(props) {
   const [loginFailed, setLoginFailed] = useState(false);
 
   //Calling UserContext to set User
-  //const authContext = useContext(AuthContext)
+  const authContext = useContext(AuthContext)
 
 
   const _changeIcon = () => {

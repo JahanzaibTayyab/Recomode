@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Modal} from 'react-native';
+import { View, StyleSheet, Modal } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-function UploadScreen({onDone, progress = 0, visible = false, error = false}) {
+function UploadScreen({ onDone, progress = 0, visible = false, error = false }) {
   return (
     <Modal visible={visible}>
       <View style={styles.container}>
@@ -10,18 +10,18 @@ function UploadScreen({onDone, progress = 0, visible = false, error = false}) {
           <LottieView
             autoPlay
             loop={true}
-            source={require('../../assets/animations/lf30_editor_2C6Qrn.json')}
+            source={require('../../assets/animations/lf20_QYKV0O.json')}
           />
         ) : error ? (
           console.log('Error Yha aya')
         ) : (
-          <LottieView
-            autoPlay
-            loop={false}
-            onAnimationFinish={onDone}
-            source={require('../../assets/animations/972-done.json')}
-          />
-        )}
+              <LottieView
+                autoPlay
+                loop={false}
+                onAnimationFinish={onDone}
+                source={require('../../assets/animations/lf30_editor_3zhccxej.json')}
+              />
+            )}
       </View>
     </Modal>
   );

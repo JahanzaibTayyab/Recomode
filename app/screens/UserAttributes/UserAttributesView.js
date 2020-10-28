@@ -1,31 +1,33 @@
-import React, {useState} from 'react';
-import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 
 import styles from './styles';
 import colors from '../../config/colors';
 import Button from '../../components/Button';
 import {
-  ic_manBlack,
-  ic_manBlonde,
-  ic_manBrown,
-  ic_manGrey,
-  ic_manRed,
-  ic_manWhite,
-  ic_womenBlack,
   ic_womenBlonde,
-  ic_womenBrown,
-  ic_womenGrey,
-  ic_womenRed,
-  ic_womenWhite,
+  ic_men
 } from '../helper/constants';
 import routes from '../../navigation/routes';
 
 function UserAttributesView(props) {
-  const [right, setRight] = useState(0);
-  const [gender, setGender] = useState('FEMALE');
-  const [age, setAge] = useState(26);
-  const [hairColor, sethairColor] = useState('black');
+  const data = props.route.params;
+  const [Imageuser, setImageUser] = useState(ic_men);
+  const [gender, setGender] = useState(data[0].faceAttributes.gender);
+  const [age, setAge] = useState(data[0].faceAttributes.age);
+  const [hairColor, sethairColor] = useState(data[0].faceAttributes.hair.hairColor[0].color);
   const [skinColor, setskinColor] = useState('#ecbcb4');
+
+  useEffect(() => {
+    if (gender === 'male') {
+      setGender("MALE")
+      setImageUser(ic_men)
+    }
+    else if (gender === 'female') {
+      setGender("FEMALE")
+      setImageUser(ic_womenBlonde)
+    }
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.upperheader}>
@@ -45,8 +47,8 @@ function UserAttributesView(props) {
         <Text style={styles.boxinnertext}>{gender}</Text>
         <Image
           resizeMode="contain"
-          source={ic_womenBlack}
-          style={[styles.logoimage, {right: right}]}
+          source={Imageuser}
+          style={[styles.logoimage,]}
         />
       </View>
       <View style={styles.boxcontainer}>
@@ -55,18 +57,18 @@ function UserAttributesView(props) {
       </View>
       <View style={styles.boxcontainer}>
         <Text style={styles.colorText}>HAIR COLOR</Text>
-        <View style={[styles.colorbox, {backgroundColor: hairColor}]} />
+        <View style={[styles.colorbox, { backgroundColor: hairColor }]} />
       </View>
       <View style={styles.boxcontainer}>
         <Text style={styles.colorText}>SKIN COLOR</Text>
-        <View style={[styles.colorbox, {backgroundColor: skinColor}]} />
+        <View style={[styles.colorbox, { backgroundColor: skinColor }]} />
       </View>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <TouchableWithoutFeedback
           onPress={() => {
             console.log('Detailed Info');
           }}>
-          <Text style={{color: colors.primary}}>Detailed Info</Text>
+          <Text style={{ color: colors.primary }}>Detailed Info</Text>
         </TouchableWithoutFeedback>
         <Button
           title="Try Again"
