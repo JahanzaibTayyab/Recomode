@@ -49,8 +49,8 @@ function RegisterView(props) {
       .then((response) => {
         const userid = response.user.uid
         const data = {
-          name,
-          email
+          email,
+          fullName: name
         };
         console.log(data)
         handleSubmit(data, userid)

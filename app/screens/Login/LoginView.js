@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import * as yup from 'yup';
 
+
 import colors from '../../config/colors';
 import {
   Form,
@@ -66,10 +67,6 @@ function LoginView(props) {
   }
 
   const loginpress = async (values) => {
-    console.log(values.email);
-    console.log(values.password);
-    //props.navigation.navigate(routes.TAKEIMAGE)
-    // yha loader animation lgna ha 
     auth().signInWithEmailAndPassword(values.email, values.password)
       .then((response) => {
         const uid = response.user.uid
@@ -155,7 +152,9 @@ function LoginView(props) {
           </View>
           <View style={styles.footer}>
             <View style={styles.innerfooter}>
-              <SocialContainer />
+              <SocialContainer
+                {...props}
+              />
               <View style={styles.footerdata}>
                 <Text style={styles.footertitle}>
                   Don't Have an account ?

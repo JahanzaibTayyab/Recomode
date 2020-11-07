@@ -5,7 +5,11 @@ import { ic_facebook, ic_google } from '../screens/helper/constants';
 import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+
+
+import routes from "../navigation/routes"
 
 const SocialContainer = (props) => {
 
@@ -15,16 +19,37 @@ const SocialContainer = (props) => {
     });
   }, []);
 
+  const _saveFileStore = async (data, id) => {
+    await firestore()
+      .collection('users')
+      .doc(id)
+      .set(data)
+      .then(() => {
+        props.navigation.navigate(routes.TAKEIMAGE)
+      });
+  }
+
   async function onGoogleButtonPress() {
     // Get the users ID token
     const { idToken, user } = await GoogleSignin.signIn();
     console.log(user)
-
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
+    auth().signInWithCredential(googleCredential)
+      .then((response) => {
+        const uid = response.user.uid
+        const data = {
+          email: user.email,
+          fullName: user.name
+        };
+        //save the data in file store
+        _saveFileStore(data, uid)
+      })
+      .catch(error => {
+        alert(error)
+      })
   }
   async function onFacebookButtonPress() {
     // Attempt login with permissions
@@ -33,7 +58,6 @@ const SocialContainer = (props) => {
     if (result.isCancelled) {
       throw 'User cancelled the login process';
     }
-
     // Once signed in, get the users AccesToken
     const data = await AccessToken.getCurrentAccessToken();
 
@@ -53,7 +77,6 @@ const SocialContainer = (props) => {
         response.json().then((json) => {
           const ID = json.id
           console.log("ID " + ID);
-
           const EM = json.email
           console.log("Email " + EM);
 
@@ -82,7 +105,7 @@ const SocialContainer = (props) => {
         </View>
         <View style={styles.logoinnercontainer}>
           <TouchableWithoutFeedback
-            onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!'))}>
+            onPress={() => onGoogleButtonPress()}>
             <Image
               resizeMode="contain"
               source={ic_google}
@@ -105,8 +128,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   logoinnercontainer: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     borderRadius: 50,
     overflow: 'hidden',
     padding: 5,

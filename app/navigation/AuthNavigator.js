@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import OnBoardingScreen from '../screens/OnBoarding';
 import WelcomeScreen from '../screens/Welcome';
@@ -17,66 +17,66 @@ import HomeScreen from './HomeNavigation';
 const Stack = createStackNavigator();
 
 const AuthNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Welcome">
     <Stack.Screen
       name="OnBoarding"
       component={OnBoardingScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Welcome"
       component={WelcomeScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Login"
       component={LoginScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Register"
       component={RegisterScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Forgetpassword"
       component={ForgetPasswordScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Reset"
       component={ResetScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Code"
       component={EnterCodeScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="TakeImage"
       component={TakeImageScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="UserAttributes"
       component={UserAttributesScreeen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="UserHeightAndWeight"
       component={UserHeightandWeightScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Height"
       component={HeightScreen}
-      options={{headerShown: false}}
+      options={{ headerShown: false }}
     />
     <Stack.Screen
       name="Home"
       component={HomeScreen}
-      options={{headerShown: true}}
+      options={{ headerShown: true }}
     />
   </Stack.Navigator>
 );
