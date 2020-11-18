@@ -16,10 +16,14 @@ import HomeNavigation from './app/navigation/HomeNavigation';
 import AuthContext from './app/auth/context';
 import OfflineNotice from './app/components/OfflineNotice';
 import ResetPassword from './app/screens/ResetPassword';
+import UserHeightandWeight from "./app/screens/Height"
 
 
 import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';
+import UserAttributesContainer from './app/screens/UserAttributes';
+import { YellowBox } from 'react-native';
+console.disableYellowBox = true
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -46,12 +50,14 @@ export default function App() {
   // }
   return (
     <AuthContext.Provider value={{ user, setUser }}>
-      {/* <OfflineNotice /> */}
+      <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
         {user ? <HomeNavigation /> : <AuthNavigator />}
-        {/* <ImageNavigator /> */}
       </NavigationContainer>
     </AuthContext.Provider>
-    // <CheckScreen/>
+    // <UserHeightandWeight />
+    // <CheckScreen />
+    //  <ImageNavigator />
+    // <UserAttributesContainer />
   );
 }

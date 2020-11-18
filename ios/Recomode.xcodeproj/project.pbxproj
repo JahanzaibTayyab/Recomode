@@ -35,6 +35,55 @@
 		E97A85548F8349328F71459C /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 234428BADC004309A9913B0C /* SFProText-Bold.ttf */; };
 		8116A643B7C043E0A42934B9 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0D3DADAB68F40E8952A1623 /* SFProText-Regular.ttf */; };
 		40080808910646958627854E /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F102418CA214869BA02E2C2 /* SFProText-Semibold.ttf */; };
+		88A09ACEAA9444C3859C75C4 /* ECLock.png in Resources */ = {isa = PBXBuildFile; fileRef = 6985959A3387409FA4687424 /* ECLock.png */; };
+		E179B13E052C4B97ACC0C024 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE58D06897B443B8A9A0BB3 /* email.png */; };
+		260455717F9248EC9EE780B7 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A6FD50FA55A41BDA6EA177A /* facebook.png */; };
+		05EE14CF4551430595862C69 /* google.png in Resources */ = {isa = PBXBuildFile; fileRef = BD56BDE1AD0B4941B3EE70B7 /* google.png */; };
+		8CADEDBC9F184D0595307737 /* login.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F20C5CF342848DA8352E8A3 /* login.png */; };
+		9147E47631B64EC89AB7C763 /* manBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 582D641859B141E1B1061777 /* manBlack.png */; };
+		014ABA2F28DF468985C66FE7 /* manBlonde.png in Resources */ = {isa = PBXBuildFile; fileRef = F41F810D25D248C79FDE8321 /* manBlonde.png */; };
+		C32E21E2276944A5948EE9B0 /* manBrown.png in Resources */ = {isa = PBXBuildFile; fileRef = A029C046C221454EA07A2564 /* manBrown.png */; };
+		6B823125FF33437696ACF73F /* manGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD25FF6F4434DCE86269DBE /* manGrey.png */; };
+		0F3C436199424CF191E1B6B1 /* manRed.png in Resources */ = {isa = PBXBuildFile; fileRef = E0C914E618B74ED9BE031EA9 /* manRed.png */; };
+		66D8F86AFC974CE8924B26BB /* manWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 857DE6B90A5448D39ED234AC /* manWhite.png */; };
+		CC88F465276C4D9481F174D4 /* men.png in Resources */ = {isa = PBXBuildFile; fileRef = 034F4316F38147D59162EDE4 /* men.png */; };
+		1AEEF547072C44FE9B63799D /* register.png in Resources */ = {isa = PBXBuildFile; fileRef = BB1500D4E69445B08BC2F78B /* register.png */; };
+		210E1C3DB77C495685D252CD /* womanBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DCD2330F19943D9AFA23171 /* womanBlack.png */; };
+		4B2F6A49A572462AA69315B7 /* womanBlonde.png in Resources */ = {isa = PBXBuildFile; fileRef = AEE13336E8064BABB982CE0F /* womanBlonde.png */; };
+		A62161BFBCB94833B5711572 /* womanBrown.png in Resources */ = {isa = PBXBuildFile; fileRef = 022CCCF3C8394F35882BBA25 /* womanBrown.png */; };
+		A1883F2F830248D9A88184CA /* womanGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = B3AB94E58218451AB9F3D192 /* womanGrey.png */; };
+		BE92E210E75740F1AD18DC82 /* womanRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CA17A9DD3BE46D2BF4F8285 /* womanRed.png */; };
+		F710D337CA9E4282A7442774 /* womanWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 913814B11BA340CAAF5ABD23 /* womanWhite.png */; };
+		02189BDF32E54EB8AA8204E4 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9AE6541E46C480FA37A74CC /* 1.png */; };
+		AB4C41F88CBE484190D3A062 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BFF880554AC94E69A630F6F8 /* 2.jpg */; };
+		550602F67EBF4AEBA698C1DE /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = CFE700B88B174588A438DEFC /* 2.png */; };
+		4319CAA9D1434F5DB78F99DD /* 21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6198AEF142E8475CBBF91EB1 /* 21.jpg */; };
+		3DEEF51F5BFF40318E995B2A /* 2u.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC6514991403299F4B3AA /* 2u.png */; };
+		9C0412F3F3AF44CE96A815C8 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0886BEE45E3749A3B57A9870 /* 3.png */; };
+		DC5D78DB3CEB449D8B1AC39C /* 3Update.png in Resources */ = {isa = PBXBuildFile; fileRef = 832ECB55A5E246268A083BE0 /* 3Update.png */; };
+		CEAC89CD49F34AAF88EFEEF8 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = F469638C846341AD97D5B289 /* 4.png */; };
+		9A210141BD1D446EAD626683 /* 4Update.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A32D58C635D74869A5929267 /* 4Update.jpg */; };
+		2B114B48B55C4096A3C24AEC /* lgs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F0A05BFC7EAB4059883404F1 /* lgs.jpg */; };
+		D222A7FD12BB49D1800EE1E6 /* onBoard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5015ED04EE194846BA193B29 /* onBoard.jpg */; };
+		CFDBAF8C088F48EE9EF9858B /* onBoardPro.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4D0626CCC144153A8680E94 /* onBoardPro.jpg */; };
+		8E5CDA984DB749A0AE7CA2CB /* p1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E850775C05CE4E849FF6D5CD /* p1.jpg */; };
+		10D9925045D346C4A6CDD01A /* Update2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC5BB21326149C98E19FBD6 /* Update2.png */; };
+		3EDF243CD641486DAF1F9905 /* userprofile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6D1F120AAE2423480500D38 /* userprofile.jpg */; };
+		A902664E8195471EB6902613 /* Welcome.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 26E9F197563E4152861451BF /* Welcome.jpg */; };
+		7218CEF841DA46449A92800A /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EACA2C6DD73B4C8493C3117D /* Montserrat-Black.otf */; };
+		7457EC10694A484696AB552D /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 421DD86C67504150BEBF6655 /* Montserrat-Bold.otf */; };
+		8F6843E3AF3B44EFBA06C201 /* Montserrat-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E0C16CCEB1FF4F749177CE86 /* Montserrat-BoldItalic.otf */; };
+		B3DCD8027A164EB1A464EF3A /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C99BB350DE96416CB7972172 /* Montserrat-ExtraBold.otf */; };
+		28E157A1A44A40A897431954 /* Montserrat-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 595BA30D4BA844F1BF969935 /* Montserrat-Italic.otf */; };
+		CB9AD52CF16B4D0C8910C6FA /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4D30D49814214F2BB6410CF8 /* Montserrat-Light.otf */; };
+		AC1E5843A33B4237816EF787 /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 82FB2974CDEB4F05888505B8 /* Montserrat-Medium.otf */; };
+		C44564FBB1FF4ED381504F21 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7AEB90A4CCEA4036914FB657 /* Montserrat-Regular.otf */; };
+		D4B0CCE80400407E95AA5BF3 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F6D64B23A7C246D98CB3E599 /* Montserrat-SemiBold.otf */; };
+		55AEB46B5B7C4BDBB56560FD /* Montserrat-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 63633F1A474E493B89F59E7F /* Montserrat-Thin.otf */; };
+		769CC411B8EC460B9F835904 /* MontserratAlternates-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59BE9E0A341A4435BA38EA68 /* MontserratAlternates-SemiBold.otf */; };
+		E0C6C0EACB4A45F3A1B03603 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */; };
+		E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */; };
+		F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +138,55 @@
 		234428BADC004309A9913B0C /* SFProText-Bold.ttf */ = {isa = PBXFileReference; name = "SFProText-Bold.ttf"; path = "../assets/fonts/SFProText-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F0D3DADAB68F40E8952A1623 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; name = "SFProText-Regular.ttf"; path = "../assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1F102418CA214869BA02E2C2 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6985959A3387409FA4687424 /* ECLock.png */ = {isa = PBXFileReference; name = "ECLock.png"; path = "../app/assets/icons/ECLock.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CDE58D06897B443B8A9A0BB3 /* email.png */ = {isa = PBXFileReference; name = "email.png"; path = "../app/assets/icons/email.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8A6FD50FA55A41BDA6EA177A /* facebook.png */ = {isa = PBXFileReference; name = "facebook.png"; path = "../app/assets/icons/facebook.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BD56BDE1AD0B4941B3EE70B7 /* google.png */ = {isa = PBXFileReference; name = "google.png"; path = "../app/assets/icons/google.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2F20C5CF342848DA8352E8A3 /* login.png */ = {isa = PBXFileReference; name = "login.png"; path = "../app/assets/icons/login.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		582D641859B141E1B1061777 /* manBlack.png */ = {isa = PBXFileReference; name = "manBlack.png"; path = "../app/assets/icons/manBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F41F810D25D248C79FDE8321 /* manBlonde.png */ = {isa = PBXFileReference; name = "manBlonde.png"; path = "../app/assets/icons/manBlonde.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A029C046C221454EA07A2564 /* manBrown.png */ = {isa = PBXFileReference; name = "manBrown.png"; path = "../app/assets/icons/manBrown.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ADD25FF6F4434DCE86269DBE /* manGrey.png */ = {isa = PBXFileReference; name = "manGrey.png"; path = "../app/assets/icons/manGrey.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E0C914E618B74ED9BE031EA9 /* manRed.png */ = {isa = PBXFileReference; name = "manRed.png"; path = "../app/assets/icons/manRed.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		857DE6B90A5448D39ED234AC /* manWhite.png */ = {isa = PBXFileReference; name = "manWhite.png"; path = "../app/assets/icons/manWhite.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		034F4316F38147D59162EDE4 /* men.png */ = {isa = PBXFileReference; name = "men.png"; path = "../app/assets/icons/men.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB1500D4E69445B08BC2F78B /* register.png */ = {isa = PBXFileReference; name = "register.png"; path = "../app/assets/icons/register.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5DCD2330F19943D9AFA23171 /* womanBlack.png */ = {isa = PBXFileReference; name = "womanBlack.png"; path = "../app/assets/icons/womanBlack.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AEE13336E8064BABB982CE0F /* womanBlonde.png */ = {isa = PBXFileReference; name = "womanBlonde.png"; path = "../app/assets/icons/womanBlonde.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		022CCCF3C8394F35882BBA25 /* womanBrown.png */ = {isa = PBXFileReference; name = "womanBrown.png"; path = "../app/assets/icons/womanBrown.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B3AB94E58218451AB9F3D192 /* womanGrey.png */ = {isa = PBXFileReference; name = "womanGrey.png"; path = "../app/assets/icons/womanGrey.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9CA17A9DD3BE46D2BF4F8285 /* womanRed.png */ = {isa = PBXFileReference; name = "womanRed.png"; path = "../app/assets/icons/womanRed.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		913814B11BA340CAAF5ABD23 /* womanWhite.png */ = {isa = PBXFileReference; name = "womanWhite.png"; path = "../app/assets/icons/womanWhite.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9AE6541E46C480FA37A74CC /* 1.png */ = {isa = PBXFileReference; name = "1.png"; path = "../app/assets/images/1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BFF880554AC94E69A630F6F8 /* 2.jpg */ = {isa = PBXFileReference; name = "2.jpg"; path = "../app/assets/images/2.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CFE700B88B174588A438DEFC /* 2.png */ = {isa = PBXFileReference; name = "2.png"; path = "../app/assets/images/2.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6198AEF142E8475CBBF91EB1 /* 21.jpg */ = {isa = PBXFileReference; name = "21.jpg"; path = "../app/assets/images/21.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD5FC6514991403299F4B3AA /* 2u.png */ = {isa = PBXFileReference; name = "2u.png"; path = "../app/assets/images/2u.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0886BEE45E3749A3B57A9870 /* 3.png */ = {isa = PBXFileReference; name = "3.png"; path = "../app/assets/images/3.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		832ECB55A5E246268A083BE0 /* 3Update.png */ = {isa = PBXFileReference; name = "3Update.png"; path = "../app/assets/images/3Update.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F469638C846341AD97D5B289 /* 4.png */ = {isa = PBXFileReference; name = "4.png"; path = "../app/assets/images/4.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A32D58C635D74869A5929267 /* 4Update.jpg */ = {isa = PBXFileReference; name = "4Update.jpg"; path = "../app/assets/images/4Update.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F0A05BFC7EAB4059883404F1 /* lgs.jpg */ = {isa = PBXFileReference; name = "lgs.jpg"; path = "../app/assets/images/lgs.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5015ED04EE194846BA193B29 /* onBoard.jpg */ = {isa = PBXFileReference; name = "onBoard.jpg"; path = "../app/assets/images/onBoard.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B4D0626CCC144153A8680E94 /* onBoardPro.jpg */ = {isa = PBXFileReference; name = "onBoardPro.jpg"; path = "../app/assets/images/onBoardPro.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E850775C05CE4E849FF6D5CD /* p1.jpg */ = {isa = PBXFileReference; name = "p1.jpg"; path = "../app/assets/images/p1.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4BC5BB21326149C98E19FBD6 /* Update2.png */ = {isa = PBXFileReference; name = "Update2.png"; path = "../app/assets/images/Update2.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F6D1F120AAE2423480500D38 /* userprofile.jpg */ = {isa = PBXFileReference; name = "userprofile.jpg"; path = "../app/assets/images/userprofile.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		26E9F197563E4152861451BF /* Welcome.jpg */ = {isa = PBXFileReference; name = "Welcome.jpg"; path = "../app/assets/images/Welcome.jpg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EACA2C6DD73B4C8493C3117D /* Montserrat-Black.otf */ = {isa = PBXFileReference; name = "Montserrat-Black.otf"; path = "../app/assets/fonts/Montserrat-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		421DD86C67504150BEBF6655 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; name = "Montserrat-Bold.otf"; path = "../app/assets/fonts/Montserrat-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E0C16CCEB1FF4F749177CE86 /* Montserrat-BoldItalic.otf */ = {isa = PBXFileReference; name = "Montserrat-BoldItalic.otf"; path = "../app/assets/fonts/Montserrat-BoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C99BB350DE96416CB7972172 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; name = "Montserrat-ExtraBold.otf"; path = "../app/assets/fonts/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		595BA30D4BA844F1BF969935 /* Montserrat-Italic.otf */ = {isa = PBXFileReference; name = "Montserrat-Italic.otf"; path = "../app/assets/fonts/Montserrat-Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4D30D49814214F2BB6410CF8 /* Montserrat-Light.otf */ = {isa = PBXFileReference; name = "Montserrat-Light.otf"; path = "../app/assets/fonts/Montserrat-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		82FB2974CDEB4F05888505B8 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; name = "Montserrat-Medium.otf"; path = "../app/assets/fonts/Montserrat-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7AEB90A4CCEA4036914FB657 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; name = "Montserrat-Regular.otf"; path = "../app/assets/fonts/Montserrat-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F6D64B23A7C246D98CB3E599 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; name = "Montserrat-SemiBold.otf"; path = "../app/assets/fonts/Montserrat-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		63633F1A474E493B89F59E7F /* Montserrat-Thin.otf */ = {isa = PBXFileReference; name = "Montserrat-Thin.otf"; path = "../app/assets/fonts/Montserrat-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		59BE9E0A341A4435BA38EA68 /* MontserratAlternates-SemiBold.otf */ = {isa = PBXFileReference; name = "MontserratAlternates-SemiBold.otf"; path = "../app/assets/fonts/MontserratAlternates-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */ = {isa = PBXFileReference; name = "SFProText-Bold.ttf"; path = "../app/assets/fonts/SFProText-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */ = {isa = PBXFileReference; name = "SFProText-Regular.ttf"; path = "../app/assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProText-Semibold.ttf"; path = "../app/assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +316,55 @@
 				234428BADC004309A9913B0C /* SFProText-Bold.ttf */,
 				F0D3DADAB68F40E8952A1623 /* SFProText-Regular.ttf */,
 				1F102418CA214869BA02E2C2 /* SFProText-Semibold.ttf */,
+				6985959A3387409FA4687424 /* ECLock.png */,
+				CDE58D06897B443B8A9A0BB3 /* email.png */,
+				8A6FD50FA55A41BDA6EA177A /* facebook.png */,
+				BD56BDE1AD0B4941B3EE70B7 /* google.png */,
+				2F20C5CF342848DA8352E8A3 /* login.png */,
+				582D641859B141E1B1061777 /* manBlack.png */,
+				F41F810D25D248C79FDE8321 /* manBlonde.png */,
+				A029C046C221454EA07A2564 /* manBrown.png */,
+				ADD25FF6F4434DCE86269DBE /* manGrey.png */,
+				E0C914E618B74ED9BE031EA9 /* manRed.png */,
+				857DE6B90A5448D39ED234AC /* manWhite.png */,
+				034F4316F38147D59162EDE4 /* men.png */,
+				BB1500D4E69445B08BC2F78B /* register.png */,
+				5DCD2330F19943D9AFA23171 /* womanBlack.png */,
+				AEE13336E8064BABB982CE0F /* womanBlonde.png */,
+				022CCCF3C8394F35882BBA25 /* womanBrown.png */,
+				B3AB94E58218451AB9F3D192 /* womanGrey.png */,
+				9CA17A9DD3BE46D2BF4F8285 /* womanRed.png */,
+				913814B11BA340CAAF5ABD23 /* womanWhite.png */,
+				E9AE6541E46C480FA37A74CC /* 1.png */,
+				BFF880554AC94E69A630F6F8 /* 2.jpg */,
+				CFE700B88B174588A438DEFC /* 2.png */,
+				6198AEF142E8475CBBF91EB1 /* 21.jpg */,
+				AD5FC6514991403299F4B3AA /* 2u.png */,
+				0886BEE45E3749A3B57A9870 /* 3.png */,
+				832ECB55A5E246268A083BE0 /* 3Update.png */,
+				F469638C846341AD97D5B289 /* 4.png */,
+				A32D58C635D74869A5929267 /* 4Update.jpg */,
+				F0A05BFC7EAB4059883404F1 /* lgs.jpg */,
+				5015ED04EE194846BA193B29 /* onBoard.jpg */,
+				B4D0626CCC144153A8680E94 /* onBoardPro.jpg */,
+				E850775C05CE4E849FF6D5CD /* p1.jpg */,
+				4BC5BB21326149C98E19FBD6 /* Update2.png */,
+				F6D1F120AAE2423480500D38 /* userprofile.jpg */,
+				26E9F197563E4152861451BF /* Welcome.jpg */,
+				EACA2C6DD73B4C8493C3117D /* Montserrat-Black.otf */,
+				421DD86C67504150BEBF6655 /* Montserrat-Bold.otf */,
+				E0C16CCEB1FF4F749177CE86 /* Montserrat-BoldItalic.otf */,
+				C99BB350DE96416CB7972172 /* Montserrat-ExtraBold.otf */,
+				595BA30D4BA844F1BF969935 /* Montserrat-Italic.otf */,
+				4D30D49814214F2BB6410CF8 /* Montserrat-Light.otf */,
+				82FB2974CDEB4F05888505B8 /* Montserrat-Medium.otf */,
+				7AEB90A4CCEA4036914FB657 /* Montserrat-Regular.otf */,
+				F6D64B23A7C246D98CB3E599 /* Montserrat-SemiBold.otf */,
+				63633F1A474E493B89F59E7F /* Montserrat-Thin.otf */,
+				59BE9E0A341A4435BA38EA68 /* MontserratAlternates-SemiBold.otf */,
+				1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */,
+				1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */,
+				2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -380,6 +527,55 @@
 				E97A85548F8349328F71459C /* SFProText-Bold.ttf in Resources */,
 				8116A643B7C043E0A42934B9 /* SFProText-Regular.ttf in Resources */,
 				40080808910646958627854E /* SFProText-Semibold.ttf in Resources */,
+				88A09ACEAA9444C3859C75C4 /* ECLock.png in Resources */,
+				E179B13E052C4B97ACC0C024 /* email.png in Resources */,
+				260455717F9248EC9EE780B7 /* facebook.png in Resources */,
+				05EE14CF4551430595862C69 /* google.png in Resources */,
+				8CADEDBC9F184D0595307737 /* login.png in Resources */,
+				9147E47631B64EC89AB7C763 /* manBlack.png in Resources */,
+				014ABA2F28DF468985C66FE7 /* manBlonde.png in Resources */,
+				C32E21E2276944A5948EE9B0 /* manBrown.png in Resources */,
+				6B823125FF33437696ACF73F /* manGrey.png in Resources */,
+				0F3C436199424CF191E1B6B1 /* manRed.png in Resources */,
+				66D8F86AFC974CE8924B26BB /* manWhite.png in Resources */,
+				CC88F465276C4D9481F174D4 /* men.png in Resources */,
+				1AEEF547072C44FE9B63799D /* register.png in Resources */,
+				210E1C3DB77C495685D252CD /* womanBlack.png in Resources */,
+				4B2F6A49A572462AA69315B7 /* womanBlonde.png in Resources */,
+				A62161BFBCB94833B5711572 /* womanBrown.png in Resources */,
+				A1883F2F830248D9A88184CA /* womanGrey.png in Resources */,
+				BE92E210E75740F1AD18DC82 /* womanRed.png in Resources */,
+				F710D337CA9E4282A7442774 /* womanWhite.png in Resources */,
+				02189BDF32E54EB8AA8204E4 /* 1.png in Resources */,
+				AB4C41F88CBE484190D3A062 /* 2.jpg in Resources */,
+				550602F67EBF4AEBA698C1DE /* 2.png in Resources */,
+				4319CAA9D1434F5DB78F99DD /* 21.jpg in Resources */,
+				3DEEF51F5BFF40318E995B2A /* 2u.png in Resources */,
+				9C0412F3F3AF44CE96A815C8 /* 3.png in Resources */,
+				DC5D78DB3CEB449D8B1AC39C /* 3Update.png in Resources */,
+				CEAC89CD49F34AAF88EFEEF8 /* 4.png in Resources */,
+				9A210141BD1D446EAD626683 /* 4Update.jpg in Resources */,
+				2B114B48B55C4096A3C24AEC /* lgs.jpg in Resources */,
+				D222A7FD12BB49D1800EE1E6 /* onBoard.jpg in Resources */,
+				CFDBAF8C088F48EE9EF9858B /* onBoardPro.jpg in Resources */,
+				8E5CDA984DB749A0AE7CA2CB /* p1.jpg in Resources */,
+				10D9925045D346C4A6CDD01A /* Update2.png in Resources */,
+				3EDF243CD641486DAF1F9905 /* userprofile.jpg in Resources */,
+				A902664E8195471EB6902613 /* Welcome.jpg in Resources */,
+				7218CEF841DA46449A92800A /* Montserrat-Black.otf in Resources */,
+				7457EC10694A484696AB552D /* Montserrat-Bold.otf in Resources */,
+				8F6843E3AF3B44EFBA06C201 /* Montserrat-BoldItalic.otf in Resources */,
+				B3DCD8027A164EB1A464EF3A /* Montserrat-ExtraBold.otf in Resources */,
+				28E157A1A44A40A897431954 /* Montserrat-Italic.otf in Resources */,
+				CB9AD52CF16B4D0C8910C6FA /* Montserrat-Light.otf in Resources */,
+				AC1E5843A33B4237816EF787 /* Montserrat-Medium.otf in Resources */,
+				C44564FBB1FF4ED381504F21 /* Montserrat-Regular.otf in Resources */,
+				D4B0CCE80400407E95AA5BF3 /* Montserrat-SemiBold.otf in Resources */,
+				55AEB46B5B7C4BDBB56560FD /* Montserrat-Thin.otf in Resources */,
+				769CC411B8EC460B9F835904 /* MontserratAlternates-SemiBold.otf in Resources */,
+				E0C6C0EACB4A45F3A1B03603 /* SFProText-Bold.ttf in Resources */,
+				E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */,
+				F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

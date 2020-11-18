@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableWithoutFeedback} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableWithoutFeedback, StatusBar } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 import LabeledSwitch from './LabeledSwitch';
@@ -24,12 +24,14 @@ export default function HeightandWeightView(props) {
   const [color, setColor] = useState('light');
   const [Checkstate, setCheckState] = useState(false);
 
+
+
   const handleheight = () => {
     if (state === false) {
       setState(true);
       setHeightMinValue(0);
       setHeightValue(0);
-      setHeightMaxValue(243);
+      setHeightMaxValue(213);
       setHeightUnit('cm');
       setHeightcolor('rgb(5, 223, 215)');
     } else {
@@ -58,8 +60,31 @@ export default function HeightandWeightView(props) {
       setWeightcolor('rgb(3, 169, 244)');
     }
   };
+  const covertHeightValue = (value) => {
+    console.log("Dragg")
+    console.log(heightValue)
+    if (heightUnit === 'cm') {
+      console.log("Dragg in Height")
+      setHeightValue(value / 30.48)
+      console.log(heightValue)
+    }
+    else {
+      setHeightValue(value)
+    }
+  };
+  const covertWeightValue = (value) => {
+    console.log(weightValue)
+    if (weightUnit === 'kg') {
+      setWeightValue(value * 2.20462)
+      console.log(weightValue)
+    }
+    else {
+      setWeightValue(value)
+    }
+  };
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
       <View style={styles.upperheader}>
         <Text style={styles.headertext}>
           {' '}
@@ -74,8 +99,8 @@ export default function HeightandWeightView(props) {
       <View style={styles.upperTitleheader}>
         <Text style={styles.genderText}>HOW TALL ARE YOU?</Text>
       </View>
-      <View style={{alignSelf: 'center'}}>
-        <View style={{alignItems: 'center'}}>
+      <View style={{ alignSelf: 'center' }}>
+        <View style={{ alignItems: 'center' }}>
           <LabeledSwitch
             value={state}
             onChange={handleheight}
@@ -86,7 +111,7 @@ export default function HeightandWeightView(props) {
             width={80}
           />
         </View>
-        <View style={{padding: 20}}>
+        <View style={{ padding: 20 }}>
           <Slider
             min={heightMinValue}
             height={50}
@@ -95,18 +120,18 @@ export default function HeightandWeightView(props) {
             decimalPlaces={1}
             fontSize={16}
             backgroundColor={[heightcolor]}
-            onValueChanged={(value) => setHeightValue(value)}
+            onValueChanged={(value) => covertHeightValue(value)}
             onPressIn={() => console.log('Pressed in')}
-            onPressOut={() => console.log('Pressed out')}
+            onPressOut={() => console.log('Pressed Out')}
             onDrag={() => console.log('Dragging')}
           />
         </View>
       </View>
-      <View style={{alignSelf: 'center'}}>
+      <View style={{ alignSelf: 'center' }}>
         <View style={styles.upperTitleheader}>
           <Text style={styles.genderText}>WHAT IS YOUR WEIGHT?</Text>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <LabeledSwitch
             value={state}
             onChange={handleweight}
@@ -117,7 +142,7 @@ export default function HeightandWeightView(props) {
             width={100}
           />
         </View>
-        <View style={{padding: 20}}>
+        <View style={{ padding: 20 }}>
           <Slider
             min={weightMinValue}
             height={50}
@@ -126,9 +151,9 @@ export default function HeightandWeightView(props) {
             decimalPlaces={1}
             fontSize={16}
             backgroundColor={[weightcolor]}
-            onValueChanged={(value) => setWeightValue(value)}
+            onValueChanged={(value) => covertWeightValue(value)}
             onPressIn={() => console.log('Pressed in')}
-            onPressOut={() => console.log('Pressed out')}
+            onPressOut={() => console.log("Pressed Out")}
             onDrag={() => console.log('Dragging')}
           />
         </View>
@@ -136,7 +161,7 @@ export default function HeightandWeightView(props) {
       <View style={styles.checkContainer}>
         <CheckBox
           value={Checkstate}
-          tintColors={{true: colors.primary}}
+          tintColors={{ true: colors.primary }}
           onValueChange={(value) => {
             setCheckState(value);
             !Checkstate ? setColor('primary') : setColor('light');
@@ -145,7 +170,7 @@ export default function HeightandWeightView(props) {
         <Text
           style={[
             styles.checkText,
-            {color: Checkstate ? colors.primary : colors.medium},
+            { color: Checkstate ? colors.primary : colors.medium },
           ]}>
           I accept
           <TouchableWithoutFeedback
@@ -155,7 +180,7 @@ export default function HeightandWeightView(props) {
             <Text
               style={[
                 styles.checkText,
-                {color: Checkstate ? colors.primary : colors.medium},
+                { color: Checkstate ? colors.primary : colors.medium },
               ]}>
               {' '}
               Terms and Conditions
@@ -163,7 +188,7 @@ export default function HeightandWeightView(props) {
           </TouchableWithoutFeedback>
         </Text>
       </View>
-      <View style={{alignItems: 'center'}}>
+      <View style={{ alignItems: 'center' }}>
         <Button
           title="Next"
           buttoncolor={color}
@@ -172,10 +197,11 @@ export default function HeightandWeightView(props) {
           onPress={() => {
             !Checkstate
               ? console.log('Try Again')
-              : props.navigation.navigate(routes.HEIGHT, {
-                  heightValue,
-                  weightValue,
-                });
+              :
+              props.navigation.navigate(routes.HEIGHT, {
+                heightValue,
+                weightValue
+              });
           }}
         />
       </View>

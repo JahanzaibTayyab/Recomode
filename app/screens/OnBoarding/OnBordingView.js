@@ -1,6 +1,6 @@
-import React, {useRef} from 'react';
-import {StyleSheet, Text, View, Dimensions, Image} from 'react-native';
-import {interpolateColor, useScrollHandler} from 'react-native-redash';
+import React, { useRef } from 'react';
+import { StyleSheet, Text, View, Dimensions, Image, StatusBar } from 'react-native';
+import { interpolateColor, useScrollHandler } from 'react-native-redash';
 import Animated, {
   multiply,
   divide,
@@ -9,17 +9,19 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import colors from '../../config/colors';
-import {BORDER_RADIUS} from '../../config/Constant';
+import { BORDER_RADIUS } from '../../config/Constant';
 import Slide from './components/Slide';
 import Subslide from './components/Subslide';
 import Pagination from './components/Pagination';
 import styles from './styles';
 import routes from '../../navigation/routes';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 //width by window
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 //slides data
 const slides = [
   {
+    id: 1,
     title: 'Relaxed',
     subTitle: 'Find Your Outfits',
     description:
@@ -28,43 +30,46 @@ const slides = [
     picture: {
       uri: require('../../assets/images/1.png'),
       width: 480,
-      height: 640,
+      height: 610,
     },
   },
   {
+    id: 2,
     title: 'Playfull',
     subTitle: 'Hear it First , Wear it First',
     description:
       'Hating the clothes in your wardrobe? Explore hundreds of outfits ideas',
     color: colors.onBoradingScreen2,
     picture: {
-      uri: require('../../assets/images/2.jpg'),
-      width: 460,
-      height: 604,
+      uri: require('../../assets/images/21.jpg'),
+      width: 3072,
+      height: 4608,
     },
   },
   {
+    id: 3,
     title: 'Excentric',
     subTitle: 'Your Style , Your Way',
     description:
       'Create your individuals & unique style and look amzaing eveyday',
     color: colors.onBoradingScreen3,
     picture: {
-      uri: require('../../assets/images/3.png'),
-      width: 545,
-      height: 640,
+      uri: require('../../assets/images/3Update.png'),
+      width: 400,
+      height: 500,
     },
   },
   {
+    id: 4,
     title: 'Funky',
     subTitle: 'Look Good , Fell Good',
     description:
       'Discover the latest trends in fashion and explore your personality',
     color: colors.onBoradingScreen4,
     picture: {
-      uri: require('../../assets/images/4.png'),
-      width: 490,
-      height: 590,
+      uri: require('../../assets/images/4Update.jpg'),
+      width: 2585,
+      height: 3150,
     },
   },
 ];
@@ -73,7 +78,7 @@ function OnBordingView(props) {
   const scroll = useRef(null); // for footer movement
 
   //for scroll event using readsh change backgroud color with movemnet
-  const {scrollHandler, x} = useScrollHandler();
+  const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {
     inputRange: slides.map((_, i) => i * width),
     outputRange: slides.map((slide) => slide.color),
@@ -81,9 +86,10 @@ function OnBordingView(props) {
 
   return (
     <View style={styles.container}>
+
       {/* Picture backgroud data put in slider  picture opacity  */}
-      <Animated.View style={[styles.slider, {backgroundColor}]}>
-        {slides.map(({picture}, index) => {
+      <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture, color, id }, index) => {
           const opacity = interpolate(x, {
             inputRange: [
               (index - 0.5) * width,
@@ -94,9 +100,10 @@ function OnBordingView(props) {
             extrapolate: Extrapolate.CLAMP,
           });
           return (
-            <Animated.View style={[styles.underlay, {opacity}]} key={index}>
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
               <Image
                 source={picture.uri}
+                resizeMode="contain"
                 style={{
                   width: width - BORDER_RADIUS,
                   height:
@@ -119,14 +126,14 @@ function OnBordingView(props) {
           scrollEventThrottle={1}
           {...scrollHandler}>
           {/* Slide data  */}
-          {slides.map(({title, picture}, index) => (
-            <Slide key={index} right={!!(index % 2)} {...{title, picture}} />
+          {slides.map(({ title, picture }, index) => (
+            <Slide key={index} right={!!(index % 2)} {...{ title, picture }} />
           ))}
         </Animated.ScrollView>
       </Animated.View>
       <View style={styles.footer}>
         <Animated.View
-          style={{...StyleSheet.absoluteFillObject, backgroundColor}}
+          style={{ ...StyleSheet.absoluteFillObject, backgroundColor }}
         />
         {/* pagination under the slide  */}
         <Animated.View style={[styles.footerContent]}>
@@ -135,7 +142,7 @@ function OnBordingView(props) {
               <Pagination
                 key={index}
                 currentindex={divide(x, width)}
-                {...{index}}
+                {...{ index }}
               />
             ))}
           </View>
@@ -144,11 +151,11 @@ function OnBordingView(props) {
               width: width * slides.length,
               flexDirection: 'row',
               flex: 1,
-              transform: [{translateX: multiply(x, -1)}],
+              transform: [{ translateX: multiply(x, -1) }],
             }}>
             {/* end of main slide with title and color  */}
             {/* data display under the slide subslide data conenct */}
-            {slides.map(({subTitle, description}, index) => {
+            {slides.map(({ subTitle, description }, index) => {
               const last = index === slides.length - 1;
               return (
                 <Subslide
@@ -158,11 +165,11 @@ function OnBordingView(props) {
                     } else {
                       scroll.current
                         ?.getNode()
-                        .scrollTo({x: width * (index + 1), animated: true});
+                        .scrollTo({ x: width * (index + 1), animated: true });
                     }
                   }}
                   key={index}
-                  {...{subTitle, description, last}}
+                  {...{ subTitle, description, last }}
                 />
               );
             })}

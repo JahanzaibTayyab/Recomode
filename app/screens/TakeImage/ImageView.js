@@ -14,9 +14,7 @@ import { ic_errorJSON, ic_networkJSON } from "../helper/constants"
 
 const { width, height } = Dimensions.get('window');
 
-export default function ImageView({ navigation }) {
-
-
+export default function ImageView(props) {
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
@@ -60,17 +58,7 @@ export default function ImageView({ navigation }) {
         setTimeout(function () {
 
         }, 3000)
-        //respone api data
-        // console.log(result.data.length);
-        // result.data.forEach((face) => {
-        //   console.log('Face ID: ' + face.faceId);
-        //   console.log('Gender: ' + face.faceAttributes.gender);
-        //   console.log('Age: ' + face.faceAttributes.age);
-        //   console.log('Glasses: ' + face.faceAttributes.glasses);
-        //   console.log('Hair: ' + JSON.stringify(face.faceAttributes.hair));
-        //   console.log();
-        // });
-        navigation.navigate(routes.USERATTRIBUTES, result.data);
+        props.navigation.navigate(routes.USERATTRIBUTES, result.data);
       }
     }
   };

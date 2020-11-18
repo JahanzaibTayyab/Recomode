@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -8,6 +8,7 @@ import {
   Keyboard,
   Platform,
   SafeAreaView,
+  StatusBar
 } from 'react-native';
 import * as yup from 'yup';
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -59,7 +60,7 @@ function ResetPasswordView(props) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         enabled={push}>
         <AwesomeAlert
           show={show}
@@ -79,6 +80,7 @@ function ResetPasswordView(props) {
           }}
         />
         <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor={colors.bitblue} />
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
               <Text style={styles.titleheader}>Reset Password! </Text>
@@ -90,7 +92,7 @@ function ResetPasswordView(props) {
               visible={confirmFailed}
             />
             <Form
-              initialValues={{password: '', confrim: ''}}
+              initialValues={{ password: '', confrim: '' }}
               onSubmit={(values) => buttonHandel(values)}
               validationSchema={validationSchema}>
               <FormField

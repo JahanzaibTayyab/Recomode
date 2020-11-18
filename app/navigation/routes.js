@@ -10,6 +10,7 @@ export default Object.freeze({
   CODEENTER: 'Code',
   TAKEIMAGE: 'TakeImage',
   USERATTRIBUTES: 'UserAttributes',
+  USERDETAILATTRIBUTES: 'UserDetailAttributes',
   USERHEIGHTANDWEIGHT: 'UserHeightAndWeight',
   HEIGHT: 'Height',
 });

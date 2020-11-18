@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Animated,
   Text,
@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  StatusBar
 } from 'react-native';
 import {
   CodeField,
@@ -31,13 +32,13 @@ import routes from '../../navigation/routes';
 
 //net k animated Example walay constants
 
-const {Value, Text: AnimatedText} = Animated;
+const { Value, Text: AnimatedText } = Animated;
 const CELL_COUNT = 4;
-import {ic_Elock} from './../helper/constants';
+import { ic_Elock } from './../helper/constants';
 
 const animationsColor = [...new Array(CELL_COUNT)].map(() => new Value(0));
 const animationsScale = [...new Array(CELL_COUNT)].map(() => new Value(1));
-const animateCell = ({hasValue, index, isFocused}) => {
+const animateCell = ({ hasValue, index, isFocused }) => {
   Animated.parallel([
     Animated.timing(animationsColor[index], {
       useNativeDriver: false,
@@ -67,7 +68,7 @@ function EnterCodeView(props) {
   const [value, setValue] = useState();
   const [serverValue, setServerValue] = useState('1234');
   const [varificationFailed, setvarificationFailed] = useState(false);
-  const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [one, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
@@ -84,18 +85,18 @@ function EnterCodeView(props) {
 
   //net k animated Example wala code
 
-  const renderCell = ({index, symbol, isFocused}) => {
+  const renderCell = ({ index, symbol, isFocused }) => {
     const hasValue = Boolean(symbol);
     const animatedCellStyle = {
       backgroundColor: hasValue
         ? animationsScale[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          })
+          inputRange: [0, 1],
+          outputRange: [NOT_EMPTY_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+        })
         : animationsColor[index].interpolate({
-            inputRange: [0, 1],
-            outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
-          }),
+          inputRange: [0, 1],
+          outputRange: [DEFAULT_CELL_BG_COLOR, ACTIVE_CELL_BG_COLOR],
+        }),
       borderRadius: animationsScale[index].interpolate({
         inputRange: [0, 1],
         outputRange: [CELL_SIZE, CELL_BORDER_RADIUS],
@@ -113,7 +114,7 @@ function EnterCodeView(props) {
     // Run animation on next event loop tik
     // Because we need first return new style prop and then animate this value
     setTimeout(() => {
-      animateCell({hasValue, index, isFocused});
+      animateCell({ hasValue, index, isFocused });
     }, 0);
     return (
       <AnimatedText
@@ -129,8 +130,9 @@ function EnterCodeView(props) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
+        style={{ flex: 1 }}>
         <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor={colors.bitblue} />
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
               <Text style={styles.titleheader}>Verification!</Text>

@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     top: 10,
   },
+  overlay: {
+    position: "absolute",
+    backgroundColor: "white",
+    height: "100%",
+    opacity: 0.8,
+    width: "100%",
+    zIndex: 1,
+  },
   footertitle: {
     fontFamily: 'SFProText-Regular',
     textAlign: 'center',

@@ -1,9 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
-const {height} = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
-import {BORDER_RADIUS} from '../../config/Constant';
+import { BORDER_RADIUS } from '../../config/Constant';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   slide: {
     height: 0.47 * height,
     borderBottomRightRadius: BORDER_RADIUS,
-    backgroundColor: '#F4F0EF',
+    backgroundColor: 'white',
   },
   subtitle: {
     fontSize: 24,

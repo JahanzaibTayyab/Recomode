@@ -8,6 +8,7 @@ import {
   Keyboard,
   Platform,
   SafeAreaView,
+  StatusBar
 } from 'react-native';
 import * as yup from 'yup';
 
@@ -26,6 +27,7 @@ import routes from '../../navigation/routes';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import AuthContext from '../../auth/context';
+import ActivityIndicator from "../../components/ActivityIndicator"
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -37,6 +39,7 @@ function LoginView(props) {
   const [hidePassword, setHidePassword] = useState(true);
   const [push, setpush] = useState(false);
   const [loginFailed, setLoginFailed] = useState(false);
+  const [showActivityIndicator, setActivityIndicator] = useState(false);
 
   //Calling UserContext to set User
   const authContext = useContext(AuthContext)
@@ -65,8 +68,8 @@ function LoginView(props) {
         alert(error)
       });
   }
-
   const loginpress = async (values) => {
+    setActivityIndicator(true)
     auth().signInWithEmailAndPassword(values.email, values.password)
       .then((response) => {
         const uid = response.user.uid
@@ -84,6 +87,8 @@ function LoginView(props) {
         style={{ flex: 1 }}
         enabled={push}>
         <View style={styles.container}>
+          <ActivityIndicator visible={showActivityIndicator} />
+          <StatusBar barStyle="light-content" backgroundColor={colors.bitblue} />
           <View style={styles.upperbox}>
             <View style={styles.innerbox}>
               <Text style={styles.titleheader}>Welcome Back! </Text>

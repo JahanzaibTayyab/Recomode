@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../config/colors';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/Constant"
 const styles = StyleSheet.create({
   container: { flex: 1 },
   boxcontainer: {
@@ -80,6 +81,51 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 50 / 2,
   },
+  detailContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.white
+  },
+  blurViewStyles: {
+    position: 'absolute',
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+  },
+  containerOnModal: {
+    width: "100%",
+    position: 'absolute',
+    alignSelf: 'center',
+    borderRadius: 10,
+    shadowColor: colors.black,
+    shadowOpacity: 0.1,
+    elevation: 1,
+    shadowRadius: 10,
+    backgroundColor: colors.white,
+    shadowOffset: { width: 0, height: 1 },
+    height: 389,
+  },
+  emojiView: {
+    borderRadius: 20,
+    borderColor: colors.bitblue,
+    borderWidth: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: colors.black,
+    shadowOpacity: 0.1,
+    elevation: 2,
+    shadowRadius: 10,
+    shadowOffset: { width: 1, height: 50 },
+    height: 82,
+    width: 88,
+    marginLeft: 15,
+    alignSelf: "center",
+    marginBottom: 5,
+    marginTop: 10,
+    backgroundColor: "#dbdbdb"
+  }
+
 });
+
 
 export default styles;

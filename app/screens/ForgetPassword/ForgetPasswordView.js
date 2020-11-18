@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -7,14 +7,16 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Platform,
+  StatusBar
 } from 'react-native';
 import * as yup from 'yup';
 
-import {Form, FormField, SubmitButton} from '../../components/form';
+import { Form, FormField, SubmitButton } from '../../components/form';
 import styles from './styles';
-import {ic_Email} from './../helper/constants';
+import { ic_Email } from './../helper/constants';
 import routes from '../../navigation/routes';
 import UploadScreen from './UploadScreen';
+import colors from "../../config/colors"
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -33,9 +35,10 @@ function ForgetPasswordView(props) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}
+        style={{ flex: 1 }}
         enabled={enableshifting}>
         <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor={colors.bitblue} />
           <UploadScreen
             onDone={() => setUploadVisible(false)}
             visible={uploadVisible}
@@ -51,7 +54,7 @@ function ForgetPasswordView(props) {
               Enter the email address associated {'\n'} with your account{' '}
             </Text>
             <Form
-              initialValues={{email: ''}}
+              initialValues={{ email: '' }}
               onSubmit={(values) => buttonHandling(values)}
               validationSchema={validationSchema}>
               <FormField

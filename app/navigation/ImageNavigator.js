@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const ImageNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="TakeImage">
       <Stack.Screen
         name="TakeImage"
         component={TakeImageScreen}

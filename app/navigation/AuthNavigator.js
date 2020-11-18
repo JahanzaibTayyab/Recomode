@@ -17,7 +17,7 @@ import HomeScreen from './HomeNavigation';
 const Stack = createStackNavigator();
 
 const AuthNavigator = () => (
-  <Stack.Navigator initialRouteName="Welcome">
+  <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: 'papayawhip' } }} initialRouteName="OnBoarding">
     <Stack.Screen
       name="OnBoarding"
       component={OnBoardingScreen}
