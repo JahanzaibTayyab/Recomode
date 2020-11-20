@@ -23,6 +23,8 @@ import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';
 import UserAttributesContainer from './app/screens/UserAttributes';
 import { YellowBox } from 'react-native';
+import Header from './app/components/Header';
+import ShirtsViewController from './app/screens/Shirts/ShirtViewController';
 console.disableYellowBox = true
 
 export default function App() {
@@ -49,15 +51,17 @@ export default function App() {
   //   );
   // }
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <OfflineNotice />
-      <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <AuthNavigator />}
-      </NavigationContainer>
-    </AuthContext.Provider>
+    // <AuthContext.Provider value={{ user, setUser }}>
+    //   <OfflineNotice />
+    //   <NavigationContainer theme={navigationTheme}>
+    //     {user ? <HomeNavigation /> : <AuthNavigator />}
+    //   </NavigationContainer>
+    // </AuthContext.Provider>
     // <UserHeightandWeight />
     // <CheckScreen />
     //  <ImageNavigator />
     // <UserAttributesContainer />
+    // <Header />
+    <ShirtsViewController />
   );
 }

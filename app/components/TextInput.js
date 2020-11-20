@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, TextInput, StyleSheet, Dimensions} from 'react-native';
+import { View, TextInput, StyleSheet, Dimensions } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeatherIcons from 'react-native-vector-icons/Feather';
 
 import defaultStyles from '../config/styles';
 import colors from '../config/colors';
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 function AppTextInput({
   icon,
   showpassword,
@@ -13,15 +13,16 @@ function AppTextInput({
   width = '100%',
   error,
   touched,
+  height = "50%",
   ...otherProps
 }) {
   const reColor = !touched
     ? colors.secondary
     : error
-    ? colors.danger
-    : colors.primary;
+      ? colors.danger
+      : colors.primary;
   return (
-    <View style={[styles.container, {width}, {borderColor: reColor}]}>
+    <View style={[styles.container, { width }, { borderColor: reColor }, { height }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
