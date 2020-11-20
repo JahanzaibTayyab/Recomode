@@ -7,7 +7,7 @@ import {
     StatusBar,
     Image,
     ScrollView,
-    RefreshControl
+    RefreshControl, FlatList
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 // import constants from '../../../../Constants/Constants'
@@ -23,6 +23,7 @@ import Header from "../../components/Header"
 import colors from '../../config/colors';
 import { Avatar } from 'react-native-paper';
 import FeatherIcons from 'react-native-vector-icons/Feather';
+import Card from "../../components/Card"
 
 const wait = (timeout) => {
     return new Promise(resolve => {
@@ -32,132 +33,39 @@ const wait = (timeout) => {
 
 const ShirtsViewController = ({ navigation }) => {
     const [selectedIndex, setSelectedIndex] = React.useState(0)
-
+    const [showAddToBagModal, setShowAddToBagModal] = React.useState(false)
+    const [selectedItem, setSelectedItem] = React.useState(null)
+    const [selectedSize, setSelectedSize] = React.useState("")
     const [refreshing, setRefreshing] = React.useState(false);
-    const [data, setData] = React.useState(
-        [
-            {
-                "id": "1",
-                "categoryName": "College of Agriculture and Life Scieces",
-                "categories": [
-                    {
-                        "name": "Agriculture & Applied Economics",
-                    },
-                    {
-                        "name": 'Agriculture Business Management ',
-                    },
-                    {
-                        "name": 'Agronomy',
-                    },
-                    {
-                        "name": 'Animal Sciences',
-                    },
-                ]
-            },
-            {
-                "id": "2",
-                "categoryName": "Wisconisin School of Buisness",
-                "categories": [
-                    {
-                        "name": "Accounting",
-                    },
-                    {
-                        "name": "Actuarial Sciences",
-                    },
-                    {
-                        "name": "Finance, Investment, and Banking",
-                    },
-                    {
-                        "name": "Infomation Systems",
-                    },
-                    {
-                        "name": "Accounting",
-                    },
-                    {
-                        "name": "Finance, Investment, and Banking",
-                    },
-                ]
-            },
-            {
-
-                "id": "3",
-                "categoryName": "School of Education",
-                "categories": [
-                    {
-                        "name": "Art (BFA)",
-                    },
-                    {
-                        "name": "Art (BS)",
-                    },
-                    {
-                        "name": "Art Education",
-                    },
-                    {
-                        "name": "Communction Science and Disorders",
-                    },
-                    {
-                        "name": "Art Education",
-                    },
-                    {
-                        "name": "Art Education",
-                    },
-                ]
-
-            },
-            {
-                "id": "4",
-                "categoryName": "College of Engineering",
-                "categories": [
-                    {
-                        "name": "Biomedical Engineering",
-                    },
-                    {
-                        "name": "Chemical Engineering",
-                    },
-                    {
-                        "name": "Civil Engineering",
-                    },
-                    {
-                        "name": "Geological Engineering",
-                    },
-                    {
-                        "name": "Civil Engineering",
-                    },
-                    {
-                        "name": "BioMedical Engineering",
-                    },
-                ]
-
-
-            },
-            {
-
-                "id": "5",
-                "categoryName": "Scholle of Human Ecology",
-                "categories": [
-                    {
-                        "name": "Cummonity & NonProfit",
-                    },
-                    {
-                        "name": "Human Development & Family Studies",
-                    },
-                    {
-                        "name": "Interior Acrhitecture",
-                    },
-                    {
-                        "name": "Personal Finance",
-                    },
-                    {
-                        "name": "Cummonity & NonProfit",
-                    },
-                    {
-                        "name": "Cummonity & NonProfit",
-                    },
-                ]
-            },
-        ]
-    )
-
+    const [trending, setTrending] = React.useState([
+        {
+            id: 0,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            bgColor: "#BF012C",
+            type: "T Shirt",
+            price: "$186",
+            sizes: ['M', 'L', 'S']
+        },
+        {
+            id: 1,
+            name: "Nike Metcon 5",
+            img: require("../../assets/images/Shirt1.png"),
+            bgColor: "#D39C67",
+            type: "T Shirt",
+            price: "$135",
+            sizes: ['M', 'L', 'S']
+        },
+        {
+            id: 2,
+            name: "Nike Air Zoom Kobe 1 Proto",
+            img: require("../../assets/images/Shirt1.png"),
+            bgColor: "#7052A0",
+            type: "T Shirt",
+            price: "$199",
+            sizes: ['M', 'L', 'S']
+        },
+    ]);
     const handleIndexChange = (index) => {
         setSelectedIndex(index)
     };
@@ -167,7 +75,6 @@ const ShirtsViewController = ({ navigation }) => {
 
         wait(2000).then(() => setRefreshing(false));
     }, []);
-
     const renderPopularViews = () => {
         return (
             <TouchableOpacity style={{
@@ -178,13 +85,14 @@ const ShirtsViewController = ({ navigation }) => {
                 justifyContent: 'center',
                 shadowColor: colors.COLOR_FILLED,
                 shadowOpacity: 0.9,
-                elevation: 2,
-                shadowRadius: 10,
+                elevation: 4,
+                shadowRadius: 20,
                 shadowOffset: { width: 1, height: 50 },
                 height: 70,
                 width: 150,
                 marginLeft: 15,
-                marginTop: 10
+                marginTop: 5,
+                marginBottom: 10,
             }}>
                 <View style={{
                     flexDirection: 'row',
@@ -199,7 +107,7 @@ const ShirtsViewController = ({ navigation }) => {
                         />
                     </View>
                     <View style={{ flexDirection: "column" }}>
-                        <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: "#5F478C", marginTop: 5, }}>T Shirt</Text>
+                        <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: colors.bitblue, marginTop: 5, }}>T Shirt</Text>
                         <Text style={{ fontFamily: FONT_Regular, fontSize: 10, color: "#333333", }}>Adidas</Text>
                         <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, color: "black" }}>900 RS</Text>
                         <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between" }}>
@@ -212,14 +120,45 @@ const ShirtsViewController = ({ navigation }) => {
             </TouchableOpacity>
         );
     }
-
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: "#f0f2f5" }]}>
             {/* <TopBar from="Groups" /> */}
             <Header />
             <View style={{ flex: 1, justifyContent: "flex-start" }}>
-                <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: "#5F478C", marginHorizontal: 16, marginTop: 10, }}>Popular Shirts</Text>
-                {renderPopularViews()}
+                <ScrollView>
+                    <View style={{ backgroundColor: colors.white }}>
+                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
+                    </View>
+                    {renderPopularViews()}
+                    <View style={{ marginBottom: 5, }}>
+                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
+                    </View>
+                    <Card
+                        title="Jahnzaib"
+                        subTitle="Love"
+                        image={require("../../assets/images/Shirt1.png")}
+                    />
+                    <Card
+                        title="Jahnzaib"
+                        subTitle="Love"
+                        image={require("../../assets/images/Shirt1.png")}
+                    />
+                    <Card
+                        title="Jahnzaib"
+                        subTitle="Love"
+                        image={require("../../assets/images/Shirt1.png")}
+                    />
+                </ScrollView>
+
+                {/* <View style={{ height: 260, marginTop: 10 }}>
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={trending}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={({ item, index }) => renderShirtView(item, index)}
+                    />
+                </View> */}
             </View>
             {/* <View style={styles.segmentBarContainer} >
                     <SegmentedControlTab

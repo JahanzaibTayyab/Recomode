@@ -25,6 +25,7 @@ import UserAttributesContainer from './app/screens/UserAttributes';
 import { YellowBox } from 'react-native';
 import Header from './app/components/Header';
 import ShirtsViewController from './app/screens/Shirts/ShirtViewController';
+import ShirtSample from "./app/screens/Shirts/ShirtSample/Home"
 console.disableYellowBox = true
 
 export default function App() {

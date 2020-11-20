@@ -84,6 +84,7 @@
 		E0C6C0EACB4A45F3A1B03603 /* SFProText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */; };
 		E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */; };
 		F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */; };
+		590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */ = {isa = PBXBuildFile; fileRef = 590E380E8083482CB56BC262 /* Shirt1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +188,7 @@
 		1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */ = {isa = PBXFileReference; name = "SFProText-Bold.ttf"; path = "../app/assets/fonts/SFProText-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */ = {isa = PBXFileReference; name = "SFProText-Regular.ttf"; path = "../app/assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProText-Semibold.ttf"; path = "../app/assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		590E380E8083482CB56BC262 /* Shirt1.png */ = {isa = PBXFileReference; name = "Shirt1.png"; path = "../app/assets/images/Shirt1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +367,7 @@
 				1166EFABF85840E0B0423E4A /* SFProText-Bold.ttf */,
 				1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */,
 				2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */,
+				590E380E8083482CB56BC262 /* Shirt1.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				E0C6C0EACB4A45F3A1B03603 /* SFProText-Bold.ttf in Resources */,
 				E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */,
 				F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */,
+				590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

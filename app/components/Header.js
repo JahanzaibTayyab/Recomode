@@ -23,7 +23,7 @@ export default function Header() {
                     <Avatar.Image size={35} source={require('../assets/images/userprofile.jpg')} style={{ marginTop: 20, }} />
                 </View>
             </View>
-            <View style={{ marginHorizontal: 20, }}>
+            <View style={{ marginHorizontal: 20, marginTop: -20, }}>
                 <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>Nov 19, 2020</Text>
                 <Text style={styles.text}>Have a nice day,</Text>
                 <Text style={styles.text}>Jahanzaib!</Text>
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: 'row',
         paddingRight: 20,
-        marginVertical: 10,
         width: "90%",
         height: 40,
         borderColor: colors.bitblue,
