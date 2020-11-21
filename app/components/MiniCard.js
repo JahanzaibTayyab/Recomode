@@ -5,7 +5,7 @@ import FeatherIcons from 'react-native-vector-icons/Feather';
 import colors from "../config/colors"
 import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_MEDIUM } from "../config/Constant"
 
-export default function MiniCard({ title, subtitle, price, like, image, onPress }) {
+export default function MiniCard({ title, subtitle, price, like, image, onPress, icon }) {
     return (
         <View>
             <TouchableOpacity style={styles.card}
@@ -25,7 +25,7 @@ export default function MiniCard({ title, subtitle, price, like, image, onPress 
                         <Text style={{ fontFamily: FONT_Regular, fontSize: 10, color: "#333333", }}>{subtitle}</Text>
                         <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, color: "black" }}>{price}</Text>
                         <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between" }}>
-                            <FeatherIcons name="heart" />
+                            {icon && <FeatherIcons name="heart" />}
                             <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{like}</Text>
                         </View>
 

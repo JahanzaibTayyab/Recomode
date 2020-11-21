@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import colors from '../config/colors';
+import { FONT_SEMIBOLD } from "../config/Constant"
 
 function AppButton({
   title,
@@ -12,9 +13,9 @@ function AppButton({
 }) {
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor: colors[buttoncolor]}, {width}]}
+      style={[styles.button, { backgroundColor: colors[buttoncolor] }, { width }]}
       onPress={onPress}>
-      <Text style={[styles.text, {color: colors[titlecolor]}]}>{title}</Text>
+      <Text style={[styles.text, { color: colors[titlecolor] }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.bitblue,
     fontSize: 15,
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_SEMIBOLD,
     //textTransform: "uppercase",
     //fontWeight: "bold",
   },

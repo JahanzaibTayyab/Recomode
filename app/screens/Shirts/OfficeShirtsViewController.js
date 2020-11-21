@@ -7,25 +7,32 @@ import {
     StatusBar,
     Image,
     ScrollView,
-    RefreshControl, FlatList
+    RefreshControl, FlatList, TouchableWithoutFeedback
+
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from "../../assets/stylesheet/styles"
-import { SCREEN_WIDTH, SCREEN_HEIGHT, FONT_SEMIBOLD, FONT_Regular, FONT_LIGHT } from "../../config/Constant"
+import { SCREEN_WIDTH, SCREEN_HEIGHT, FONT_SEMIBOLD, FONT_Regular, FONT_LIGHT, FONT_MEDIUM } from "../../config/Constant"
 import Header from "../../components/Header"
 import colors from '../../config/colors';
 import Card from "../../components/Card"
 import MiniCard from "../../components/MiniCard"
+import Modal from 'react-native-modal';
+import Button from "../../components/Button"
+import FeatherIcons from 'react-native-vector-icons/Feather';
+import AIcon from 'react-native-vector-icons/MaterialIcons';
 
 const wait = (timeout) => {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
     });
 }
-
 function OfficeShirtsViewController(props) {
     const [selectedItem, setSelectedItem] = React.useState(null)
     const [refreshing, setRefreshing] = React.useState(false);
+    const [showComplateLookModal, setComplateLookModal] = React.useState(false)
+    const [liked, setLiked] = React.useState(false);
+    const [counter, setCounter] = React.useState(-2);
     const [popularData, setPopularData] = React.useState([
         {
             id: 0,
@@ -68,6 +75,43 @@ function OfficeShirtsViewController(props) {
             like: 12
         },
     ]);
+    const [recentData, setRecentData] = React.useState([
+        {
+            id: 0,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            type: "Adidas",
+            price: "186 RS",
+        },
+        {
+            id: 1,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            type: "Adidas",
+            price: "186 RS",
+        },
+        {
+            id: 2,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            type: "Adidas",
+            price: "186 RS",
+        },
+        {
+            id: 3,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            type: "Adidas",
+            price: "186 RS",
+        },
+        {
+            id: 4,
+            name: "T Shirt",
+            img: require("../../assets/images/Shirt1.png"),
+            type: "Adidas",
+            price: "186 RS",
+        },
+    ]);
     const [dataSource, setDataSource] = React.useState([
         { "Brand": "Adidas", "Color": "Green", "Size": "L", "Type": "Full Sleeves", "Url": "https://firebasestorage.googleapis.com/v0/b/hometofb-6f06b.appspot.com/o/GFS1.jpg?alt=media&token=685a862d-ba37-4bd2-ae9b-2ef78a272182", "id": "1MGblThhikhsGxFSYEhS" },
         { "Brand": "Adidas", "Color": "Green", "Size": "S", "Type": "Full Sleeves", "Url": "https://firebasestorage.googleapis.com/v0/b/hometofb-6f06b.appspot.com/o/GFS4.jpg?alt=media&token=e52da5ad-2b66-4d52-accb-c804826c42fa", "id": "Ck51Ota5w6u4jvq1UKNm" },
@@ -96,11 +140,41 @@ function OfficeShirtsViewController(props) {
                         price={item.price}
                         image={item.img}
                         like={item.like}
-                        onPress={() => console.log(item.id)}
+                        icon={true}
+                        onPress={() => {
+                            setSelectedItem(item),
+                                setComplateLookModal(true)
+                        }
+                        }
                     />
                 }
                 keyExtractor={(item, index) => index.toString()}
             />
+        );
+    }
+    const renderRecentViews = () => {
+        return (
+            <>
+                <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Recently Views</Text>
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={recentData}
+                    renderItem={({ item, index }) =>
+                        <MiniCard
+                            title={item.name}
+                            subtitle={item.type}
+                            price={item.price}
+                            image={item.img}
+                            onPress={() => {
+                                setSelectedItem(item),
+                                    setComplateLookModal(true)
+                            }}
+                        />
+                    }
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </>
         );
     }
     const renderRecomendationViwes = () => {
@@ -109,18 +183,21 @@ function OfficeShirtsViewController(props) {
                 showsVerticalScrollIndicator={false}
                 data={dataSource}
                 renderItem={({ item, index }) =>
-                    <Card
-                        index={index}
-                        title={item.Brand}
-                        subTitle={item.Type}
-                        image={item.Url}
-                        brandlogo={require("../../assets/images/Adidas_Logo.png")}
-                        onPress={() => {
-                            console.log(item.Brand)
-                            console.log(item.Size)
-                            console.log(index)
-                        }}
-                    />
+                    <>
+                        {index === 3 ? renderRecentViews() : null}
+                        <Card
+                            index={index}
+                            title={item.Brand}
+                            subTitle={item.Type}
+                            image={item.Url}
+                            brandlogo={require("../../assets/images/Adidas_Logo.png")}
+                            onPress={() => {
+                                setSelectedItem(item),
+                                    setComplateLookModal(true)
+
+                            }}
+                        />
+                    </>
                 }
                 keyExtractor={(item, index) => index.toString()}
             />
@@ -142,6 +219,117 @@ function OfficeShirtsViewController(props) {
                     {renderRecomendationViwes()}
                 </ScrollView>
             </View>
+            {selectedItem && <View>
+                <Modal
+                    isVisible={showComplateLookModal}
+                    coverScreen={true}
+                    onSwipeComplete={() => setComplateLookModal(false)}
+                    swipeDirection={['up', 'left', 'right', 'down']}
+                    onBackButtonPress={() => setComplateLookModal(false)}
+                    backdropColor={colors.bitblue}
+                    backdropOpacity={0.5}
+                    animationIn="zoomInDown"
+                    animationOut="zoomOutUp"
+                    animationInTiming={600}
+                    animationOutTiming={600}
+                    backdropTransitionInTiming={600}
+                    backdropTransitionOutTiming={600}
+                >
+
+                    <View style={styles.modelCard}>
+                        <View style={{ alignItems: "center" }}>
+                            <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
+                                STEP 1
+                                 <View>
+                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                </View>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                <View>
+                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                </View>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
+                            </Text>
+                        </View>
+                        <Image style={{
+                            width: "100%",
+                            height: 300,
+                            marginTop: 10
+                        }} source={{ uri: selectedItem.Url }} resizeMode="contain" />
+                        <View style={{
+                            marginHorizontal: 25,
+                            marginBottom: 10,
+                            marginTop: 20,
+                        }}>
+                            <View style={styles.modelInner}>
+                                <Image
+                                    source={require("../../assets/images/Adidas_Logo.png")}
+                                    resizeMode="contain"
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: 10,
+                                        width: "80%",
+                                        height: 80,
+                                    }}
+                                />
+                            </View>
+                            <TouchableWithoutFeedback
+                                onPress={() => {
+                                    setLiked(!liked);
+                                }}
+                            >
+                                <View style={styles.modrlHeart}>
+                                    <AIcon
+                                        name='favorite'
+                                        size={25}
+                                        color={liked ? 'red' : 'white'}
+                                    >
+                                    </AIcon>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <Text style={{
+                                marginBottom: 5,
+                                fontFamily: FONT_SEMIBOLD,
+                                color: colors.bitblue
+                            }} numberOfLines={1}>
+                                {selectedItem.Brand}
+                            </Text>
+                            <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
+                                {selectedItem.Type}
+                            </Text>
+                            <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
+                                    <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.Size}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
+                                    <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.Color }]}>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
+                                <FeatherIcons name="heart" />
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>16</Text>
+                            </View>
+                            <ScrollView style={{ height: 30, marginTop: 5, }}>
+                                <Text
+                                    numberOfLines={2}
+                                    style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry</Text>
+                            </ScrollView>
+                            <View style={{ alignItems: "center", marginTop: -15, }}>
+                                <Button
+                                    title="Complete Look"
+                                    titlecolor="white"
+                                    width="60%"
+                                    onPress={() => {
+
+                                    }}
+                                />
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+            </View>}
         </View>
     )
 }

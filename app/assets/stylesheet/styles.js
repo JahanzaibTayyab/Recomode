@@ -46,6 +46,46 @@ const styles = StyleSheet.create({
     opacity: 1,
     width: "100%"
   },
+  modelCard: {
+    flex: 1,
+    justifyContent: "flex-start",
+    backgroundColor: 'white',
+    borderColor: colors.COLOR_BORDER,
+    borderWidth: 0,
+    shadowColor: colors.COLOR_FILLED,
+    shadowOpacity: 0.9,
+    //elevation: 70,
+    shadowRadius: 40,
+    shadowOffset: { width: 1, height: 50 },
+    borderRadius: 20,
+    overflow: "hidden"
+  },
+  modelInner: {
+    position: "absolute",
+    right: 10,
+    top: -40,
+    backgroundColor: 'white',
+    borderColor: colors.COLOR_BORDER,
+    borderWidth: 0,
+    justifyContent: 'center',
+    overflow: "hidden",
+    backgroundColor: "transparent",
+    width: 50,
+    height: 100
+  },
+  modrlHeart: {
+    width: 40, height: 40, borderRadius: 50, position: "absolute",
+    right: -15, bottom: 3,
+    top: -320,
+    shadowColor: colors.COLOR_FILLED,
+    shadowOpacity: 0.9,
+    zIndex: 10,
+    elevation: 5,
+    shadowRadius: 10,
+    shadowOffset: { width: 1, height: 50 },
+    alignItems: "center", justifyContent: "center",
+    backgroundColor: colors.bitblue
+  }
 });
 
 export default styles;
