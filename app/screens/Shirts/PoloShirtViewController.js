@@ -7,16 +7,13 @@ import {
     StatusBar,
     Image,
     ScrollView,
-    RefreshControl,
-    FlatList
+    RefreshControl, FlatList
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from "../../assets/stylesheet/styles"
 import { SCREEN_WIDTH, SCREEN_HEIGHT, FONT_SEMIBOLD, FONT_Regular, FONT_LIGHT } from "../../config/Constant"
 import Header from "../../components/Header"
 import colors from '../../config/colors';
-import { Avatar } from 'react-native-paper';
-import FeatherIcons from 'react-native-vector-icons/Feather';
 import Card from "../../components/Card"
 import MiniCard from "../../components/MiniCard"
 
@@ -25,15 +22,10 @@ const wait = (timeout) => {
         setTimeout(resolve, timeout);
     });
 }
-
-const ShirtsViewController = ({ navigation }) => {
-    console.log(navigation)
-    const [selectedIndex, setSelectedIndex] = React.useState(0)
-    const [showAddToBagModal, setShowAddToBagModal] = React.useState(false)
+function PoloShirtViewController(props) {
     const [selectedItem, setSelectedItem] = React.useState(null)
-    const [selectedSize, setSelectedSize] = React.useState("")
     const [refreshing, setRefreshing] = React.useState(false);
-    const [trending, setTrending] = React.useState([
+    const [popularData, setPopularData] = React.useState([
         {
             id: 0,
             name: "T Shirt",
@@ -93,10 +85,9 @@ const ShirtsViewController = ({ navigation }) => {
     const renderPopularViews = () => {
         return (
             <FlatList
-                //key={dataSource.id}
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={trending}
+                data={popularData}
                 renderItem={({ item, index }) =>
                     <MiniCard
                         title={item.name}
@@ -112,11 +103,8 @@ const ShirtsViewController = ({ navigation }) => {
         );
     }
     const renderRecomendationViwes = () => {
-        console.log("*******************************8")
-
         return (
             <FlatList
-                //key={dataSource.id}
                 showsVerticalScrollIndicator={false}
                 data={dataSource}
                 renderItem={({ item, index }) =>
@@ -139,11 +127,9 @@ const ShirtsViewController = ({ navigation }) => {
     }
     return (
         <View style={[styles.container, { backgroundColor: "#f0f2f5", }]}>
-            {/* <TopBar from="Groups" /> */}
             <View style={{ flex: 1, justifyContent: "flex-start" }}>
                 <ScrollView showsVerticalScrollIndicator={false}
                     onScrollToTop={() => console.log("yha")}
-
                 >
                     <View style={{ backgroundColor: colors.white }}>
                         <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
@@ -158,4 +144,4 @@ const ShirtsViewController = ({ navigation }) => {
         </View>
     )
 }
-export default ShirtsViewController
+export default PoloShirtViewController

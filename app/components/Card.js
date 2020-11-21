@@ -9,12 +9,24 @@ function Card({ title, subTitle, image, index, onPress, brandlogo }) {
   const [liked, setLiked] = useState(false);
   const [counter, setCounter] = useState(-2);
   return (
-    <View>
+    <View style={{ flex: 1, width: "100%" }}>
+      <View style={styles.logoImage}>
+        <Image
+          source={brandlogo}
+          resizeMode="contain"
+          style={{
+            position: 'absolute',
+            bottom: 10,
+            width: "80%",
+            height: 80,
+          }}
+        />
+      </View>
       <TouchableWithoutFeedback
         onPress={onPress}
       >
         <View style={styles.card}>
-          <Image style={styles.image} source={image} resizeMode='contain' />
+          <Image style={styles.image} source={{ uri: image }} resizeMode='contain' />
           <View style={styles.detailsContainer}>
             <TouchableWithoutFeedback
               onPress={() => {
@@ -40,9 +52,7 @@ function Card({ title, subTitle, image, index, onPress, brandlogo }) {
                 </AIcon>
               </View>
             </TouchableWithoutFeedback>
-            <View style={{ overflow: "hidden" }}>
 
-            </View>
             <Text style={styles.title} numberOfLines={1}>
               {title}
             </Text>
@@ -62,20 +72,28 @@ const styles = StyleSheet.create({
 
   },
   logoImage: {
+    position: "absolute",
+    right: 25,
+    top: 90,
+    // zIndex: 100,
     backgroundColor: 'white',
     borderColor: colors.COLOR_BORDER,
     borderWidth: 0,
     justifyContent: 'center',
     shadowColor: colors.COLOR_FILLED,
     shadowOpacity: 0.9,
-    elevation: 40,
     shadowRadius: 40,
+    elevation: 80,
     shadowOffset: { width: 1, height: 50 },
     overflow: "hidden",
+    backgroundColor: "transparent",
+    width: 50,
+    height: 100
   },
   card: {
     overflow: "hidden",
     borderRadius: 20,
+    //zIndex: -40,
     backgroundColor: 'white',
     borderColor: colors.COLOR_BORDER,
     borderWidth: 0,
@@ -83,14 +101,16 @@ const styles = StyleSheet.create({
     shadowColor: colors.COLOR_FILLED,
     shadowOpacity: 0.9,
     elevation: 40,
-    shadowRadius: 40,
+    shadowRadius: 50,
     shadowOffset: { width: 1, height: 50 },
     marginHorizontal: 50,
-    marginBottom: 10
+    marginBottom: 10,
+    // zIndex: 1
   },
   detailsContainer: {
     marginHorizontal: 25,
     marginBottom: 10,
+    zIndex: -1
   },
   image: {
     marginTop: 10,

@@ -5,53 +5,91 @@ import colors from "../config/colors"
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FONT_SEMIBOLD, FONT_MEDIUM, FONT_LIGHT, FONT_Regular } from "../config/Constant"
-export default function Header() {
+export default function Header({ topBar, marginBottom = 10, showUserInfo }) {
     return (
-        <View style={styles.container}>
-            <View style={{ flexDirection: "row", marginHorizontal: 20, justifyContent: "space-between" }}>
-                <TouchableOpacity
-                    style={{ marginTop: 20 }}
-                >
-                    <FeatherIcons name='menu' color={colors.bitblue} size={25} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{ marginTop: 20, marginLeft: 200, }}
-                >
-                    <MaterialIcons name='notifications-none' size={25} color={colors.bitblue} />
-                </TouchableOpacity>
-                <View style={styles.ImageContainer}>
-                    <Avatar.Image size={35} source={require('../assets/images/userprofile.jpg')} style={{ marginTop: 20, }} />
+        <View style={[styles.container]}>
+            {showUserInfo ? <View>
+                <View style={{ flexDirection: "row", marginHorizontal: 20, justifyContent: "space-between" }}>
+                    <TouchableOpacity
+                        style={{ marginTop: 20 }}
+                    >
+                        <FeatherIcons name='menu' color={colors.bitblue} size={25} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{ marginTop: 20, marginLeft: 200, }}
+                    >
+                        <MaterialIcons name='notifications-none' size={25} color={colors.bitblue} />
+                    </TouchableOpacity>
+                    <View style={[styles.ImageContainer, { marginBottom }]}>
+                        <Avatar.Image size={35} source={require('../assets/images/userprofile.jpg')} style={{ marginTop: 20, }} />
+                    </View>
                 </View>
-            </View>
-            <View style={{ marginHorizontal: 20, marginTop: -20, }}>
-                <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>Nov 19, 2020</Text>
-                <Text style={styles.text}>Have a nice day,</Text>
-                <Text style={styles.text}>Jahanzaib!</Text>
-            </View>
-            <View style={styles.textContainer}>
-                <TextInput
-                    placeholderTextColor={colors.medium}
-                    underlineColorAndroid="transparent"
-                    style={{ width: "75%", marginHorizontal: 20, }}
-                    placeholder="Search for an Outfit"
-                />
-                <MaterialIcons
-                    name="search"
-                    size={20}
-                    color={colors.medium}
-                    style={styles.icon}
-                />
+                <View style={{ marginHorizontal: 20, marginTop: -20, }}>
+                    <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>Nov 19, 2020</Text>
+                    <Text style={styles.text}>Have a nice day,</Text>
+                    <Text style={styles.text}>Jahanzaib!</Text>
+                </View>
+                <View style={styles.textContainer}>
+                    <TextInput
+                        placeholderTextColor={colors.medium}
+                        underlineColorAndroid="transparent"
+                        style={{ width: "75%", marginHorizontal: 20, }}
+                        placeholder="Search for an Outfit"
+                    />
+                    <MaterialIcons
+                        name="search"
+                        size={20}
+                        color={colors.medium}
+                        style={styles.icon}
+                    />
+                </View>
+            </View> :
+                <View>
+                    <View style={{ flexDirection: "row", marginHorizontal: 20, justifyContent: "space-between" }}>
+                        <TouchableOpacity
+                            style={{ marginTop: 20 }}
+                        >
+                            <FeatherIcons name='menu' color={colors.bitblue} size={25} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ marginTop: 20, marginLeft: 200, }}
+                        >
+                            <MaterialIcons name='notifications-none' size={25} color={colors.bitblue} />
+                        </TouchableOpacity>
+                        <View style={[styles.ImageContainer, { marginBottom }]}>
+                            <Avatar.Image size={35} source={require('../assets/images/userprofile.jpg')} style={{ marginTop: 20, }} />
+                        </View>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <TextInput
+                            placeholderTextColor={colors.medium}
+                            underlineColorAndroid="transparent"
+                            style={{ width: "75%", marginHorizontal: 20, }}
+                            placeholder="Search for an Outfit"
+                        />
+                        <MaterialIcons
+                            name="search"
+                            size={20}
+                            color={colors.medium}
+                            style={styles.icon}
+                        />
+                    </View>
 
-            </View>
+
+
+
+
+                </View>}
+
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
     },
-    ImageContainer: { width: 50, height: 70, backgroundColor: colors.bitblue, borderBottomRightRadius: 50, borderBottomLeftRadius: 50, justifyContent: "center", alignItems: "center" },
+    ImageContainer: { width: 50, height: 70, backgroundColor: colors.bitblue, borderBottomRightRadius: 50, borderBottomLeftRadius: 50, justifyContent: "center", alignItems: "center", },
     textContainer: {
         marginHorizontal: 20,
         borderWidth: 0.5,
