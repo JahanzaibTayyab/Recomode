@@ -15,7 +15,7 @@ function ShirtNavigation() {
     return (
         <>
             <Header topBar={"T-Shirt"} />
-            <Tab.Navigator initialRouteName="Shirt"
+            <Tab.Navigator initialRouteName="T-Shirt"
                 tabBarOptions={{
                     activeTintColor: colors.bitblue,
                     labelStyle: { fontFamily: FONT_Regular, fontSize: 12, },
