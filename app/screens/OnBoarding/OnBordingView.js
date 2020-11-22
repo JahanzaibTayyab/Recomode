@@ -25,7 +25,7 @@ const slides = [
     title: 'Relaxed',
     subTitle: 'Find Your Outfits',
     description:
-      "Confused about your outfit?Don't worry! Find the best outfit here!",
+      "Confused about your outfit? Don't worry! Find the best outfit here!",
     color: colors.onBoradingScreen1,
     picture: {
       uri: require('../../assets/images/1.png'),
@@ -148,7 +148,7 @@ function OnBordingView(props) {
           </View>
           <Animated.View
             style={{
-              width: width * slides.length,
+              width: width * slides.length + 10,
               flexDirection: 'row',
               flex: 1,
               transform: [{ translateX: multiply(x, -1) }],

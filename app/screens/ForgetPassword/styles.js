@@ -1,9 +1,10 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../config/colors';
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: colors.bitblue},
+  container: { flex: 1, backgroundColor: colors.bitblue },
   upperbox: {
     flex: 0.2,
     backgroundColor: colors.white,
@@ -26,19 +27,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 22,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     color: colors.white,
     justifyContent: 'center',
   },
   subtitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     padding: 5,
     color: colors.medium,
     marginBottom: 20,
   },
-  footer: {flex: 0.2, backgroundColor: colors.white},
+  footer: { flex: 0.2, backgroundColor: colors.white },
   innerfooter: {
     flex: 1,
     backgroundColor: colors.bitblue,

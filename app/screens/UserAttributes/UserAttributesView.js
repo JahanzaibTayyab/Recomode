@@ -29,7 +29,7 @@ function UserAttributesView(props) {
   const [skinColor, setskinColor] = useState('#ecbcb4');
   const [isDetailedView, setIsDetailedView] = useState(false)
   const toggleDetailView = () => {
-    setIsDetailedView(!isDetailedView)
+    setIsDetailedView(false)
   }
 
   useEffect(() => {
@@ -70,10 +70,10 @@ function UserAttributesView(props) {
               alignSelf: "center",
               marginBottom: 5,
               marginTop: 10,
-            }, { backgroundColor: item.color }]}>
-              <Text style={[{ fontFamily: FONT_Regular, fontSize: 12, color: colors.white }, item.color === 'white' || item.color === "other" ? { color: colors.black } : { color: colors.white }]}>{item.color}</Text>
-              <Text style={[{ fontFamily: FONT_Regular, fontSize: 12, color: colors.white }, item.color === 'white' || item.color === "other" ? { color: colors.black } : { color: colors.white }]}>Confidence</Text>
-              <Text style={[{ fontFamily: FONT_SEMIBOLD, fontSize: 12, }, item.color === 'white' || item.color === "other" ? { color: colors.black } : { color: colors.white }]}>{item.confidence}</Text>
+            }, item.color === 'blond' ? { backgroundColor: "#FAF0BE" } : { backgroundColor: item.color }]}>
+              <Text style={[{ fontFamily: FONT_Regular, fontSize: 12, color: colors.white }, item.color === 'white' || item.color === "other" || item.color === "blond" ? { color: colors.black } : { color: colors.white }]}>{item.color}</Text>
+              <Text style={[{ fontFamily: FONT_Regular, fontSize: 12, color: colors.white }, item.color === 'white' || item.color === "other" || item.color === "blond" ? { color: colors.black } : { color: colors.white }]}>Confidence</Text>
+              <Text style={[{ fontFamily: FONT_SEMIBOLD, fontSize: 12, }, item.color === 'white' || item.color === "other" || item.color === "blond" ? { color: colors.black } : { color: colors.white }]}>{item.confidence}</Text>
             </View>
           }
           keyExtractor={(item, index) => index.toString()}
@@ -163,7 +163,7 @@ function UserAttributesView(props) {
           <View style={{ borderRadius: 5, borderColor: "#00A9FF", borderWidth: 0.2, marginTop: 5, flex: 1 }}>
             <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, marginHorizontal: 20, marginBottom: 5, marginTop: 10, }}>Hair</Text>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", marginHorizontal: 30, marginBottom: 5, }}>
-              <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12 }} >Blad</Text>
+              <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12 }} >Bald</Text>
               <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }} >{item.faceAttributes.hair.bald}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: "space-between", marginHorizontal: 30, }}>
@@ -253,11 +253,11 @@ function UserAttributesView(props) {
           onPress={() => {
             setIsDetailedView(true)
           }}>
-          <Text style={{ color: colors.primary }}>Detailed Info</Text>
+          <Text style={{ color: colors.primary, fontFamily: FONT_MEDIUM }}>Detailed Info</Text>
         </TouchableWithoutFeedback>
         <Button
           title="Try Again"
-          buttoncolor="medium"
+          buttoncolor="bluelight"
           width="60%"
           onPress={() => {
             props.navigation.goBack();

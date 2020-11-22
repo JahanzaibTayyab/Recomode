@@ -28,6 +28,7 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import AuthContext from '../../auth/context';
 import ActivityIndicator from "../../components/ActivityIndicator"
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -141,7 +142,7 @@ function LoginView(props) {
                 <TouchableWithoutFeedback onPress={() => {
                   props.navigation.navigate(routes.FORGETPASSWORD)
                 }}>
-                  <Text style={styles.forgettitle}>forget password?</Text>
+                  <Text style={styles.forgettitle}>Forget password?</Text>
                 </TouchableWithoutFeedback>
               </View>
               <SubmitButton title="Login" titlecolor="white" width="70%" />
@@ -165,7 +166,7 @@ function LoginView(props) {
                   Don't Have an account ?
                   <TouchableWithoutFeedback
                     onPress={() => props.navigation.navigate(routes.REGISTER)}>
-                    <Text style={{ color: colors.primary }}> SignUp here!</Text>
+                    <Text style={{ color: colors.primary, fontFamily: FONT_SEMIBOLD }}> SignUp here!</Text>
                   </TouchableWithoutFeedback>
                 </Text>
               </View>

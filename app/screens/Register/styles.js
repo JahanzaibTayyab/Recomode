@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
 const { width, height } = Dimensions.get('window');
 
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 25,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     color: colors.white,
     justifyContent: 'flex-end',
   },
   subtitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     padding: 5,
     color: colors.medium,
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   footertitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     color: colors.white,
   },

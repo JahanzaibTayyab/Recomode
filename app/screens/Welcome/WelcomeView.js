@@ -5,6 +5,7 @@ import Animated from 'react-native-reanimated';
 import Button from '../../components/Button';
 import styles from './styles';
 import routes from '../../navigation/routes';
+import { ic_logo, ic_imagebackgroud } from "../../screens/helper/constants"
 
 const { width } = Dimensions.get('window');
 
@@ -19,10 +20,19 @@ function WelcomeView(props) {
       <Animated.View style={[styles.slide]}>
         <Animated.View style={styles.image}>
           <ImageBackground
-            blurRadius={5}
-            source={require("../../assets/images/lgs.jpg")}
+            blurRadius={9}
+            source={ic_imagebackgroud}
             style={{ width: "100%", height: "100%" }}
-          />
+          >
+            <View style={{ overflow: "hidden", width: 330, height: 300, alignSelf: "center", justifyContent: "center" }}>
+              <Image
+                source={ic_logo}
+                style={{ height: 100, width: "100%" }}
+                resizeMod="contain"
+              />
+            </View>
+
+          </ImageBackground>
           {/* <Image
             source={picture.uri}
             resizeMode="contain"
@@ -38,8 +48,8 @@ function WelcomeView(props) {
           style={{ ...StyleSheet.absoluteFillObject, backgroundColor: 'white' }}
         >
           <ImageBackground
-            blurRadius={5}
-            source={require("../../assets/images/lgs.jpg")}
+            blurRadius={9}
+            source={ic_imagebackgroud}
             style={{ width: "50%", height: "100%" }}
           />
         </Animated.View>

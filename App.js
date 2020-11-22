@@ -18,13 +18,13 @@ import OfflineNotice from './app/components/OfflineNotice';
 import ResetPassword from './app/screens/ResetPassword';
 import UserHeightandWeight from "./app/screens/Height"
 import ShirtNavigator from "./app/navigation/ShirtsNavigation"
+import PantNavigator from "./app/navigation/PantsNavigation"
 
 import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';
 import UserAttributesContainer from './app/screens/UserAttributes';
 import { YellowBox } from 'react-native';
 import Header from './app/components/Header';
-import ShirtsViewController from './app/screens/Shirts/ShirtViewController';
 console.disableYellowBox = true
 
 export default function App() {
@@ -54,7 +54,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <ShirtNavigator />}
+        {user ? <HomeNavigation /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
     // <UserHeightandWeight />

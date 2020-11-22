@@ -24,8 +24,8 @@ import routes from '../../navigation/routes';
 import colors from '../../config/colors';
 
 const validationSchema = yup.object().shape({
-  password: yup.string().required().min(4).label('Password'),
-  confrim: yup.string().required().min(4).label('ConfrimPassword'),
+  password: yup.string().required().min(6).label('Password'),
+  confrim: yup.string().required().min(6).label('ConfrimPassword'),
 });
 
 function ResetPasswordView(props) {

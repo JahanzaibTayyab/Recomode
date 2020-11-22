@@ -1,16 +1,17 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 export const CELL_SIZE = 70;
 export const CELL_BORDER_RADIUS = 8;
 export const DEFAULT_CELL_BG_COLOR = '#fff';
 export const NOT_EMPTY_CELL_BG_COLOR = '#3557b7';
 export const ACTIVE_CELL_BG_COLOR = '#f7fafe';
 import colors from '../../config/colors';
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: colors.bitblue},
-  upperbox: {flex: 0.2, backgroundColor: colors.white},
+  container: { flex: 1, backgroundColor: colors.bitblue },
+  upperbox: { flex: 0.2, backgroundColor: colors.white },
   innerbox: {
     flex: 1,
     backgroundColor: colors.bitblue,
@@ -28,12 +29,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 25,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     color: colors.white,
   },
   subtitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     padding: 15,
     color: colors.medium,
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     height: CELL_SIZE,
     width: CELL_SIZE,
     lineHeight: CELL_SIZE - 5,
-    ...Platform.select({web: {lineHeight: 65}}),
+    ...Platform.select({ web: { lineHeight: 65 } }),
     fontSize: 30,
     textAlign: 'center',
     borderRadius: CELL_BORDER_RADIUS,

@@ -23,6 +23,7 @@ import routes from '../../navigation/routes';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import ActivityIndicator from "../../components/ActivityIndicator"
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
 
 const validationSchema = yup.object().shape({
@@ -164,13 +165,15 @@ function RegisterView(props) {
             </View>
             <View style={styles.footer}>
               <View style={styles.innerfooter}>
-                <SocialContainer />
+                <SocialContainer
+                  {...props}
+                />
                 <View style={styles.footerdata}>
                   <Text style={styles.footertitle}>
                     Already Have an account ?
                   <TouchableWithoutFeedback
                       onPress={() => props.navigation.navigate(routes.LOGIN)}>
-                      <Text style={{ color: colors.primary }}> Login here!</Text>
+                      <Text style={{ color: colors.primary, fontFamily: FONT_SEMIBOLD }}> Login here!</Text>
                     </TouchableWithoutFeedback>
                   </Text>
                 </View>

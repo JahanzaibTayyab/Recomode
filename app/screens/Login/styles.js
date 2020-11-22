@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import colors from '../../config/colors';
 
 const { width, height } = Dimensions.get('window');
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 
 const styles = StyleSheet.create({
   container: {
@@ -33,13 +34,13 @@ const styles = StyleSheet.create({
     // marginTop: 40,
   },
   titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 25,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     color: colors.white,
     justifyContent: 'flex-end',
   },
   subtitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     padding: 5,
     color: colors.medium,
@@ -53,12 +54,12 @@ const styles = StyleSheet.create({
     top: 10,
   },
   forgettitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_SEMIBOLD,
     textAlign: 'center',
     color: colors.primary,
   },
   footertitle: {
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
     textAlign: 'center',
     color: colors.white,
   },

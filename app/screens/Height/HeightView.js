@@ -4,6 +4,7 @@ import { View, Text, StatusBar } from 'react-native';
 import colors from '../../config/colors';
 import Button from '../../components/Button';
 import styles from './styles';
+import { FONT_SEMIBOLD } from './../../config/Constant';
 
 function HeightView(props) {
   const [loose, setLooseFit] = useState("M");
@@ -11,14 +12,14 @@ function HeightView(props) {
   const [smart, setSmartFit] = useState("XS");
   const [plusSize, setPlusSize] = useState('');
   const size = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
-  console.log(props.route.params);
   const height = props.route.params.heightValue;
   const weight = props.route.params.weightValue;
   console.log(weight)
+  console.log(height)
   useEffect(() => {
-    console.log(weight)
-    console.log(height)
-    selection(6.0, 200)
+    console.log("use effect value " + weight)
+    console.log("use effect height value " + height)
+    selection(5.4, weight)
     setSizes(regular)
   }); //Pass Array as second argument
 
@@ -381,6 +382,9 @@ function HeightView(props) {
   }
   const selection = (height, weight) => {
 
+    console.log("Switch weight value" + weight)
+    console.log("Switch Height Value " + height)
+
     switch (height) {
       case 5.1:
         height_5_1(weight)
@@ -484,14 +488,14 @@ function HeightView(props) {
       <View style={{ flex: 1 }}>
         <Text style={styles.footertext}>
           Your
-          <Text style={{ fontFamily: 'SFProText-Semibold' }}>
+          <Text style={{ fontFamily: FONT_SEMIBOLD }}>
             {' '}
             Recomode Profile{' '}
           </Text>
           is completed.
         </Text>
         <Text style={styles.footertext}>
-          Outfits recommendation are now available
+          Outfit recommendations are now available
         </Text>
         <View style={styles.footerbutton}>
           <Button title="Go HOME" titlecolor="white" width="70%" />

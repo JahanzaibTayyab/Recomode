@@ -1,9 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
 
-const {width, height} = Dimensions.get('window');
-
+const { width, height } = Dimensions.get('window');
+import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     // marginTop: 40,
   },
   titleheader: {
-    fontFamily: 'SFProText-Bold',
-    fontSize: 25,
+    fontFamily: FONT_BOLD,
+    fontSize: 24,
     color: colors.white,
     justifyContent: 'flex-end',
   },
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     margin: 10,
   },
-  logoimage: {width: '100%', height: 50},
-  footer: {flex: 0.2, backgroundColor: colors.white},
+  logoimage: { width: '100%', height: 50 },
+  footer: { flex: 0.2, backgroundColor: colors.white },
   innerfooter: {
     flex: 1,
     backgroundColor: colors.bitblue,

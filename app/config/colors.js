@@ -16,4 +16,5 @@ export default {
   danger: '#ff5252',
   COLOR_FILLED: '#00A9FF',
   COLOR_BORDER: '#707070',
+  bluelight: "#8bd3f7",
 };

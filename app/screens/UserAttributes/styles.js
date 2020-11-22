@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 import colors from '../../config/colors';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../config/Constant"
+import { SCREEN_HEIGHT, SCREEN_WIDTH, FONT_BOLD, FONT_SEMIBOLD, FONT_Regular, FONT_LIGHT } from "../../config/Constant"
+
 const styles = StyleSheet.create({
   container: { flex: 1 },
   boxcontainer: {
@@ -22,12 +23,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 18,
     borderTopRightRadius: 18,
     borderTopLeftRadius: 18,
-    borderColor: colors.primary,
+    borderColor: "#0a3012",
   },
   boxinnertext: {
     alignSelf: 'center',
     alignContent: 'center',
-    fontFamily: 'SFProText-Semibold',
+    fontFamily: FONT_SEMIBOLD,
     fontSize: 14,
     top: 5,
   },
@@ -43,36 +44,36 @@ const styles = StyleSheet.create({
   upperheader: { alignItems: 'center', margin: 10 },
   headertext: {
     color: colors.primary,
-    fontFamily: 'SFProText-Regular',
-    fontSize: 12,
+    fontFamily: FONT_LIGHT,
+    fontSize: 10,
   },
   headerinnertext: {
     color: colors.lightGrey,
-    fontFamily: 'SFProText-Regular',
-    fontSize: 12,
+    fontFamily: FONT_LIGHT,
+    fontSize: 10,
   },
   headerinnertext2: {
     color: colors.lightGrey,
-    fontFamily: 'SFProText-Regular',
-    fontSize: 12,
+    fontFamily: FONT_LIGHT,
+    fontSize: 10,
   },
   upperGenderheader: { alignItems: 'center', margin: 10 },
   genderText: {
-    fontFamily: 'SFProText-Bold',
+    fontFamily: FONT_BOLD,
     fontSize: 20,
   },
   AgeText: {
-    fontFamily: 'SFProText-Bold',
+    fontFamily: FONT_BOLD,
     fontSize: 15,
     marginRight: 15,
   },
   AgeText2: {
-    fontFamily: 'SFProText-Bold',
+    fontFamily: FONT_SEMIBOLD,
     fontSize: 16,
     marginRight: 15,
   },
   colorText: {
-    fontFamily: 'SFProText-Bold',
+    fontFamily: FONT_BOLD,
     fontSize: 15,
     marginTop: 20,
   },

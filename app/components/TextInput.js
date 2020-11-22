@@ -13,7 +13,7 @@ function AppTextInput({
   width = '100%',
   error,
   touched,
-  height = "50%",
+  // height = "50%",
   ...otherProps
 }) {
   const reColor = !touched
@@ -22,7 +22,7 @@ function AppTextInput({
       ? colors.danger
       : colors.primary;
   return (
-    <View style={[styles.container, { width }, { borderColor: reColor }, { height }]}>
+    <View style={[styles.container, { width }, { borderColor: reColor }]}>
       {icon && (
         <MaterialCommunityIcons
           name={icon}
