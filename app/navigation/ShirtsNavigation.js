@@ -11,10 +11,10 @@ import colors from "../config/colors"
 import { FONT_SEMIBOLD, FONT_Regular } from './../config/Constant';
 import Header from "../components/Header"
 const Tab = createMaterialTopTabNavigator();
-function ShirtNavigation() {
+function ShirtNavigation(props) {
     return (
         <>
-            <Header topBar={"T-Shirt"} />
+            <Header showUserInfo={true} navigation={props.navigation} />
             <Tab.Navigator initialRouteName="T-Shirt"
                 tabBarOptions={{
                     activeTintColor: colors.bitblue,

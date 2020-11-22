@@ -145,7 +145,9 @@ function LoginView(props) {
                   <Text style={styles.forgettitle}>Forget password?</Text>
                 </TouchableWithoutFeedback>
               </View>
-              <SubmitButton title="Login" titlecolor="white" width="70%" />
+              <SubmitButton title="Login" titlecolor="white" width="70%"
+                onPress={() => props.navigation.navigate(routes.HOME)}>
+              </SubmitButton>
             </Form>
             <Text
               style={{

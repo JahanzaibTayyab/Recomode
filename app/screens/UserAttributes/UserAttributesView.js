@@ -17,8 +17,9 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH, FONT_Regular, FONT_MEDIUM, FONT_SEMIBOLD }
 function UserAttributesView(props) {
   /// console.log(props.route.params)
   // const data = props.route.params.userImageData;
-  //const userData = props.route.params.userData
-  const [dataSource, setDataSource] = useState(props.route.params)
+  const userData = props.route.params.user
+  console.log(userData)
+  const [dataSource, setDataSource] = useState(props.route.params.data)
   const [Imageuser, setImageUser] = useState(ic_men);
   const [gender, setGender] = useState(dataSource[0].faceAttributes.gender);
   const [age, setAge] = useState(dataSource[0].faceAttributes.age);
@@ -26,7 +27,7 @@ function UserAttributesView(props) {
   // const [gender, setGender] = useState('male');
   // const [age, setAge] = useState(26);
   // const [hairColor, sethairColor] = useState('black');
-  const [skinColor, setskinColor] = useState('#ecbcb4');
+  const [skinColor, setskinColor] = useState('#f3c6a5');
   const [isDetailedView, setIsDetailedView] = useState(false)
   const toggleDetailView = () => {
     setIsDetailedView(false)
@@ -268,8 +269,9 @@ function UserAttributesView(props) {
           titlecolor="white"
           width="60%"
           onPress={() => {
-
-            props.navigation.navigate(routes.USERHEIGHTANDWEIGHT);
+            userData.faceAttributes = dataSource[0].faceAttributes
+            userData.skinColor = skinColor
+            props.navigation.navigate(routes.USERHEIGHTANDWEIGHT, { userData });
           }}
         />
       </View>

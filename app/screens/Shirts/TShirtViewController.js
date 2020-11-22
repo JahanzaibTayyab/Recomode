@@ -21,6 +21,8 @@ import Modal from 'react-native-modal';
 import Button from "../../components/Button"
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import AIcon from 'react-native-vector-icons/MaterialIcons';
+import HomeActivityIndicator from './../../components/HomeActivityIndicator';
+import ActivityIndicator from './../../components/ActivityIndicator';
 
 const wait = (timeout) => {
     return new Promise(resolve => {
@@ -28,6 +30,7 @@ const wait = (timeout) => {
     });
 }
 function TShirtViewController(props) {
+    const [showActivityIndicator, setActivityIndicator] = React.useState(false);
     const [selectedItem, setSelectedItem] = React.useState(null)
     const [refreshing, setRefreshing] = React.useState(false);
     const [showComplateLookModal, setComplateLookModal] = React.useState(false)
@@ -203,133 +206,140 @@ function TShirtViewController(props) {
         )
     }
     return (
-        <View style={[styles.container, { backgroundColor: "#f0f2f5", }]}>
-            <View style={{ flex: 1, justifyContent: "flex-start" }}>
-                <ScrollView showsVerticalScrollIndicator={false}
-                    onScrollToTop={() => console.log("yha")}
-                >
-                    <View style={{ backgroundColor: colors.white }}>
-                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
-                    </View>
-                    {renderPopularViews()}
-                    <View style={{ marginBottom: 5, }}>
-                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
-                    </View>
-                    {renderRecomendationViwes()}
-                </ScrollView>
-            </View>
-            {selectedItem && <View>
-                <Modal
-                    isVisible={showComplateLookModal}
-                    coverScreen={true}
-                    onSwipeComplete={() => setComplateLookModal(false)}
-                    swipeDirection={['up', 'left', 'right', 'down']}
-                    onBackButtonPress={() => setComplateLookModal(false)}
-                    backdropColor={colors.bitblue}
-                    backdropOpacity={0.5}
-                    animationIn="zoomInDown"
-                    animationOut="zoomOutUp"
-                    animationInTiming={600}
-                    animationOutTiming={600}
-                    backdropTransitionInTiming={600}
-                    backdropTransitionOutTiming={600}
-                >
-
-                    <View style={styles.modelCard}>
-                        <View style={{ alignItems: "center" }}>
-                            <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
-                                STEP 1
-                                 <View>
-                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                </View>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
-                                <View>
-                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                </View>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
-                            </Text>
+        <>
+            <HomeActivityIndicator visible={showActivityIndicator} />
+            <View style={[styles.container, { backgroundColor: "#f0f2f5", }]}>
+                <View style={{ flex: 1, justifyContent: "flex-start" }}>
+                    <ScrollView showsVerticalScrollIndicator={false}
+                        onScrollToTop={() => console.log("yha")}
+                    >
+                        <View style={{ backgroundColor: colors.white }}>
+                            <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
                         </View>
-                        <Image style={{
-                            width: "100%",
-                            height: 300,
-                            marginTop: 10
-                        }} source={{ uri: selectedItem.Url }} resizeMode="contain" />
-                        <View style={{
-                            marginHorizontal: 25,
-                            marginBottom: 10,
-                            marginTop: 20,
-                        }}>
-                            <View style={styles.modelInner}>
-                                <Image
-                                    source={require("../../assets/images/Adidas_Logo.png")}
-                                    resizeMode="contain"
-                                    style={{
-                                        position: 'absolute',
-                                        bottom: 10,
-                                        width: "80%",
-                                        height: 80,
-                                    }}
-                                />
+                        {renderPopularViews()}
+                        <View style={{ marginBottom: 5, }}>
+                            <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
+                        </View>
+                        {renderRecomendationViwes()}
+                    </ScrollView>
+                </View>
+                {selectedItem && <View>
+                    <Modal
+                        isVisible={showComplateLookModal}
+                        coverScreen={true}
+                        onSwipeComplete={() => setComplateLookModal(false)}
+                        swipeDirection={['up', 'left', 'right', 'down']}
+                        onBackButtonPress={() => setComplateLookModal(false)}
+                        backdropColor={colors.bitblue}
+                        backdropOpacity={0.5}
+                        animationIn="zoomInDown"
+                        animationOut="zoomOutUp"
+                        animationInTiming={600}
+                        animationOutTiming={600}
+                        backdropTransitionInTiming={300}
+                        backdropTransitionOutTiming={300}
+                    >
+                        <View style={styles.modelCard}>
+                            <View style={{ alignItems: "center" }}>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
+                                    STEP 1
+                                 <View>
+                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                    </View>
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                    <View>
+                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                    </View>
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
+                                </Text>
                             </View>
-                            <TouchableWithoutFeedback
-                                onPress={() => {
-                                    setLiked(!liked);
-                                }}
-                            >
-                                <View style={styles.modrlHeart}>
-                                    <AIcon
-                                        name='favorite'
-                                        size={25}
-                                        color={liked ? 'red' : 'white'}
-                                    >
-                                    </AIcon>
+                            <Image style={{
+                                width: "100%",
+                                height: 300,
+                                marginTop: 10
+                            }} source={{ uri: selectedItem.Url }} resizeMode="contain" />
+                            <View style={{
+                                marginHorizontal: 25,
+                                marginBottom: 10,
+                                marginTop: 20,
+                            }}>
+                                <View style={styles.modelInner}>
+                                    <Image
+                                        source={require("../../assets/images/Adidas_Logo.png")}
+                                        resizeMode="contain"
+                                        style={{
+                                            position: 'absolute',
+                                            bottom: 10,
+                                            width: "80%",
+                                            height: 80,
+                                        }}
+                                    />
                                 </View>
-                            </TouchableWithoutFeedback>
-                            <Text style={{
-                                marginBottom: 5,
-                                fontFamily: FONT_SEMIBOLD,
-                                color: colors.bitblue
-                            }} numberOfLines={1}>
-                                {selectedItem.Brand}
-                            </Text>
-                            <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
-                                {selectedItem.Type}
-                            </Text>
-                            <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
-                                <View style={{ flexDirection: 'row', }}>
-                                    <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
-                                    <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.Size}</Text>
-                                </View>
-                                <View style={{ flexDirection: 'row', }}>
-                                    <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
-                                    <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.Color }]}>
+                                <TouchableWithoutFeedback
+                                    onPress={() => {
+                                        setLiked(!liked);
+                                    }}
+                                >
+                                    <View style={styles.modrlHeart}>
+                                        <AIcon
+                                            name='favorite'
+                                            size={25}
+                                            color={liked ? 'red' : 'white'}
+                                        >
+                                        </AIcon>
+                                    </View>
+                                </TouchableWithoutFeedback>
+                                <Text style={{
+                                    marginBottom: 5,
+                                    fontFamily: FONT_SEMIBOLD,
+                                    color: colors.bitblue
+                                }} numberOfLines={1}>
+                                    {selectedItem.Brand}
+                                </Text>
+                                <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
+                                    {selectedItem.Type}
+                                </Text>
+                                <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
+                                    <View style={{ flexDirection: 'row', }}>
+                                        <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
+                                        <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.Size}</Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', }}>
+                                        <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
+                                        <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.Color }]}>
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
-                                <FeatherIcons name="heart" />
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>16</Text>
-                            </View>
-                            <ScrollView style={{ height: 30, marginTop: 5, }}>
-                                <Text
-                                    numberOfLines={2}
-                                    style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry</Text>
-                            </ScrollView>
-                            <View style={{ alignItems: "center", marginTop: -15, }}>
-                                <Button
-                                    title="Complete Look"
-                                    titlecolor="white"
-                                    width="60%"
-                                    onPress={() => {
-
-                                    }}
-                                />
+                                <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
+                                    <FeatherIcons name="heart" />
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>16</Text>
+                                </View>
+                                <ScrollView style={{ height: 30, marginTop: 5, }}>
+                                    <Text
+                                        numberOfLines={2}
+                                        style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>Lorem Ipsum is simply dummy text of the printing and typesetting industry</Text>
+                                </ScrollView>
+                                <View style={{ alignItems: "center", marginTop: -15, }}>
+                                    <Button
+                                        title="Complete Look"
+                                        titlecolor="white"
+                                        width="60%"
+                                        onPress={() => {
+                                            setComplateLookModal(false)
+                                            //setActivityIndicator(!showActivityIndicator)
+                                            setTimeout(function () {
+                                                props.navigation.navigate("Pant")
+                                            }, 700)
+                                            // props.navigation.navigate("Pant")
+                                        }}
+                                    />
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </Modal>
-            </View>}
-        </View >
+                    </Modal>
+                </View>}
+            </View >
+        </>
     )
 }
 export default TShirtViewController

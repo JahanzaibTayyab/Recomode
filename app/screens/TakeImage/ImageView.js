@@ -15,6 +15,11 @@ import { ic_errorJSON, ic_networkJSON } from "../helper/constants"
 const { width, height } = Dimensions.get('window');
 
 export default function ImageView(props) {
+
+
+  const userdata1 = props.route.params.userData
+  console.log("Register Object ", userdata1)
+
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
@@ -58,7 +63,8 @@ export default function ImageView(props) {
         setTimeout(function () {
 
         }, 3000)
-        props.navigation.navigate(routes.USERATTRIBUTES, result.data);
+        console.log(userdata1)
+        props.navigation.navigate(routes.USERATTRIBUTES, { data: result.data, user: userdata1 });
       }
     }
   };
@@ -85,6 +91,7 @@ export default function ImageView(props) {
         console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
       } else {
+        userdata1.imageUrl = response.uri
         const data = base64ToArrayBuffer.decode(response.data);
         handleSubmit(data);
       }

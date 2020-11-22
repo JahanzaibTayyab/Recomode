@@ -19,6 +19,7 @@ import ResetPassword from './app/screens/ResetPassword';
 import UserHeightandWeight from "./app/screens/Height"
 import ShirtNavigator from "./app/navigation/ShirtsNavigation"
 import PantNavigator from "./app/navigation/PantsNavigation"
+import HeightView from "./app/screens/Height"
 
 import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';

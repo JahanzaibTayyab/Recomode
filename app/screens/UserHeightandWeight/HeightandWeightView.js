@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 import routes from '../../navigation/routes';
 
 export default function HeightandWeightView(props) {
+  const userdata = props.route.params.userData
   const [heightMinValue, setHeightMinValue] = useState(0);
   const [heightMaxValue, setHeightMaxValue] = useState(7);
   const [heightValue, setHeightValue] = useState(0);
@@ -195,12 +196,15 @@ export default function HeightandWeightView(props) {
           titlecolor="white"
           width="60%"
           onPress={() => {
+            userdata.height = heightValue;
+            userdata.weight = weightValue
             !Checkstate
               ? console.log('Try Again')
               :
               props.navigation.navigate(routes.HEIGHT, {
                 heightValue,
-                weightValue
+                weightValue,
+                userdata
               });
           }}
         />

@@ -1,18 +1,59 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import * as React from 'react';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from '../screens/Home';
+import FavoriteNavigator from './FavoriteNavigator';
+import Height from './TabNavigation';
+//import Check from '../screens/check';
 
-const Stack = createStackNavigator();
+import DrawerContent from '../screens/Drawer';
+import ShirtNavigation from './ShirtsNavigation';
+import PantNavigation from './PantsNavigation';
 
-const AuthNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{headerShown: true}}
+const HomeStack = createStackNavigator();
+const HomeStackScreen = ({ navigation }) => (
+  <HomeStack.Navigator
+  // screenOptions={{
+  //   headerStyle: {
+  //     backgroundColor: '#009387',
+  //   },
+  //   headerTintColor: '#fff',
+  //   headerTitleStyle: {
+  //     fontWeight: 'bold'
+  //   }
+  // }}
+  >
+    <HomeStack.Screen name="Shirt" component={ShirtNavigation}
+      options={{ headerShown: false }}
+    // options={{
+    //   title: 'Overview',
+    //   headerLeft: () => (
+    //     <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
+    //   )
+    // }}
     />
-  </Stack.Navigator>
+    <HomeStack.Screen name="Pant" component={PantNavigation}
+      options={{ headerShown: false }}
+    // options={{
+    //   title: 'Overview',
+    //   headerLeft: () => (
+    //     <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
+    //   )
+    // }}
+    />
+  </HomeStack.Navigator>
 );
 
-export default AuthNavigator;
+
+const Drawer = createDrawerNavigator();
+
+function HomeNavigator() {
+  return (
+    <Drawer.Navigator drawerContent={DrawerContent}>
+      <Drawer.Screen name="Home" component={HomeStackScreen} />
+      <Drawer.Screen name="Favorites" component={FavoriteNavigator} />
+      <Drawer.Screen name="Height" component={Height} />
+    </Drawer.Navigator>
+  );
+}
+export default HomeNavigator;

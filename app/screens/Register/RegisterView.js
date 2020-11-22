@@ -52,8 +52,8 @@ function RegisterView(props) {
       setActivityIndicator(false);
       setPopUp(true)
       setTimeout(function () {
-        userData['UserID'] = id;
-        props.navigation.navigate(routes.TAKEIMAGE);
+        userData['id'] = id;
+        props.navigation.navigate(routes.TAKEIMAGE, { userData });
       }, 4000)
     }).catch((error) => {
       alert(error)

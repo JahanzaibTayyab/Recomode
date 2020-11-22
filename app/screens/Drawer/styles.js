@@ -1,6 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import colors from '../../config/colors';
+import { FONT_SEMIBOLD, FONT_MEDIUM, FONT_LIGHT, FONT_Regular } from "../../config/Constant"
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
@@ -41,13 +42,15 @@ const styles = StyleSheet.create({
     color: 'white',
     justifyContent: 'center',
     alignSelf: 'center',
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_Regular,
+    fontSize: 12
   },
-  userName: {fontFamily: 'SFProText-Bold', fontSize: 20},
+  userName: { fontFamily: FONT_SEMIBOLD, fontSize: 18, alignSelf: "center", textAlign: "center" },
   userEmail: {
     alignSelf: 'center',
-    fontFamily: 'SFProText-Regular',
+    fontFamily: FONT_LIGHT,
     color: 'blue',
+    fontSize: 12
   },
 });
 
