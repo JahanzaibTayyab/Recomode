@@ -26,7 +26,9 @@ import ImageNavigator from './app/navigation/ImageNavigator';
 import UserAttributesContainer from './app/screens/UserAttributes';
 import { YellowBox, Platform, StatusBar } from 'react-native';
 import Header from './app/components/Header';
+import ShoesScreen from "./app/screens/Shoes/NokeShoesViewController"
 import authStorage from "./app/auth/storage";
+import ShoesNavigation from "./app/navigation/ShoesNavigation"
 
 console.disableYellowBox = true
 
@@ -72,7 +74,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <HomeNavigation />}
+        {user ? <ShoesNavigation /> : <ShoesNavigation />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

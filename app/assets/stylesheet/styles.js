@@ -85,6 +85,33 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 50 },
     alignItems: "center", justifyContent: "center",
     backgroundColor: colors.bitblue
+  },
+  trendingShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+  },
+  recentContainerShadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 15,
+  },
+  absolute: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   }
 });
 
