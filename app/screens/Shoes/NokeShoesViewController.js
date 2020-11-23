@@ -250,6 +250,7 @@ const NikeShoesViewController = (props) => {
                     <View style={{ flex: 1, paddingBottom: SIZES.padding, justifyContent: "center" }}>
                         <FlatList
                             showsVerticalScrollIndicator={false}
+                            nestedScrollEnabled={true}
                             data={recentlyViewed}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({ item, index }) => renderRecentlyViewed(item, index)}
