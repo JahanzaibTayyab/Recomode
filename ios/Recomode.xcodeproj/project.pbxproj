@@ -85,6 +85,8 @@
 		E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */; };
 		F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */; };
 		590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */ = {isa = PBXBuildFile; fileRef = 590E380E8083482CB56BC262 /* Shirt1.png */; };
+		93C361ED40FF4F338BE051FC /* Adidas_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */; };
+		F23F6752F3F14C20BFB17CEC /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AA45680FB62949CE8BC177E4 /* Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +191,8 @@
 		1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */ = {isa = PBXFileReference; name = "SFProText-Regular.ttf"; path = "../app/assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProText-Semibold.ttf"; path = "../app/assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		590E380E8083482CB56BC262 /* Shirt1.png */ = {isa = PBXFileReference; name = "Shirt1.png"; path = "../app/assets/images/Shirt1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */ = {isa = PBXFileReference; name = "Adidas_Logo.png"; path = "../app/assets/images/Adidas_Logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AA45680FB62949CE8BC177E4 /* Logo.png */ = {isa = PBXFileReference; name = "Logo.png"; path = "../app/assets/images/Logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +372,8 @@
 				1E5EA8E19CCC484591794A5C /* SFProText-Regular.ttf */,
 				2979F0E3411B4CF1B19DD664 /* SFProText-Semibold.ttf */,
 				590E380E8083482CB56BC262 /* Shirt1.png */,
+				521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */,
+				AA45680FB62949CE8BC177E4 /* Logo.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -580,6 +586,8 @@
 				E69E96A2489E4780A45D049E /* SFProText-Regular.ttf in Resources */,
 				F3A151BBB92C40A3BDB35C43 /* SFProText-Semibold.ttf in Resources */,
 				590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */,
+				93C361ED40FF4F338BE051FC /* Adidas_Logo.png in Resources */,
+				F23F6752F3F14C20BFB17CEC /* Logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

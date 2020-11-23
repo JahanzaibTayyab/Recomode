@@ -3,6 +3,7 @@ import ShirtColors from "./ShirtColors";
 const pantsarray = [];
 
 // const Combo1 ={
+
 const shirts1 = [
     "navyBlue",
     "maroon",
@@ -10,12 +11,9 @@ const shirts1 = [
     "darkGreen",
     "black",
     "brown",
-    "Purple",
+    "purple",
     "blue",
-    "teal",
     "darkBlue",
-    "cherry",
-    "crimson"
 ]
 const pants1 = [
     "khaki",
@@ -29,7 +27,7 @@ const shirts2 = [
     "darkGreen",
     "black",
     "brown",
-    "Purple",
+    "purple",
     "blue",
     "teal",
     "cherry",
@@ -71,10 +69,7 @@ const pants4 = [
     //jeans all shades
     "blue",
     "glacierBlue",
-    "seagullBlue",
-    "eastBayBlue",
     "tunaBlue",
-    "cloudBurstBlue"
 ]
 // }
 // const Combo5={
@@ -82,7 +77,7 @@ const shirts5 = [
     "white",
     "mustard",
     "peach",
-    "gray",
+    "grey",
     "royalBlue",
     "blue",
     "green"

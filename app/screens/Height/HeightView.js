@@ -11,7 +11,7 @@ import { FONT_SEMIBOLD } from './../../config/Constant';
 import routes from '../../navigation/routes';
 import HomeActivityIndicator from "../../components/HomeActivityIndicator"
 import ShirtColors from './../../api/ShirtColors';
-import AuthContext from './../../auth/context';
+import useAuth from "../../auth/useAuth";
 
 
 function HeightView(props) {
@@ -24,7 +24,7 @@ function HeightView(props) {
   const height = props.route.params.heightValue;
   const weight = props.route.params.weightValue;
   const userData = props.route.params.userdata
-  const authContext = useContext(AuthContext)
+  const apiAuth = useAuth();
   useEffect(() => {
     selection(6.0, 180)
   }); //Pass Array as second argument
@@ -482,7 +482,7 @@ function HeightView(props) {
     firestore().collection('users').doc(userData.id).update(userData).then(() => {
       userData.shirtColors = ShirtColors(userData.skinColor)
       console.log(userData)
-      authContext.setUser(userData)
+      apiAuth.logIn(userData)
       setActivityIndicator(false)
     }
     )

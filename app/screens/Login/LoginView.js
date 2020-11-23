@@ -14,6 +14,7 @@ import * as yup from 'yup';
 
 
 import colors from '../../config/colors';
+import ShirtColors from './../../api/ShirtColors';
 import {
   Form,
   FormField,
@@ -26,9 +27,9 @@ import SocialContainer from '../../components/SocialContainer';
 import routes from '../../navigation/routes';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import AuthContext from '../../auth/context';
 import ActivityIndicator from "../../components/ActivityIndicator"
 import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
+import useAuth from "../../auth/useAuth";
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -43,7 +44,7 @@ function LoginView(props) {
   const [showActivityIndicator, setActivityIndicator] = useState(false);
 
   //Calling UserContext to set User
-  const authContext = useContext(AuthContext)
+  const { login } = useAuth();
 
 
   const _changeIcon = () => {
@@ -61,9 +62,10 @@ function LoginView(props) {
           return;
         }
         const user = firestoreDocument.data()
+        user.shirtColors = ShirtColors(user.skinColor)
+        login(user)
         console.log(user)
-        props.navigation.navigate(routes.TAKEIMAGE);
-        //authContext.setUser(user);
+
       })
       .catch(error => {
         alert(error)
@@ -74,7 +76,6 @@ function LoginView(props) {
     auth().signInWithEmailAndPassword(values.email, values.password)
       .then((response) => {
         const uid = response.user.uid
-        console.log(uid)
         userdata(uid)
       })
       .catch(error => {
@@ -145,9 +146,7 @@ function LoginView(props) {
                   <Text style={styles.forgettitle}>Forget password?</Text>
                 </TouchableWithoutFeedback>
               </View>
-              <SubmitButton title="Login" titlecolor="white" width="70%"
-                onPress={() => props.navigation.navigate(routes.HOME)}>
-              </SubmitButton>
+              <SubmitButton title="Login" titlecolor="white" width="70%" />
             </Form>
             <Text
               style={{

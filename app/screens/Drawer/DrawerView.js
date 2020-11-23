@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { View, Text, Dimensions, Image } from 'react-native';
 import { Avatar } from 'react-native-paper';
 
@@ -8,13 +8,13 @@ import Icon from '../../components/Icon';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import routes from '../../navigation/routes';
 import { FONT_LIGHT, FONT_MEDIUM, FONT_Regular, FONT_SEMIBOLD } from '../../config/Constant';
-import AuthContext from './../../auth/context';
+import useAuth from "../../auth/useAuth";
 
 const { width, height } = Dimensions.get('window');
 
 
 function DrawerView(props) {
-  const { user } = useContext(AuthContext)
+  const { user, logOut } = useAuth();
   return (
     <View style={styles.conatiner}>
       <View style={styles.upperbox}>
@@ -26,7 +26,7 @@ function DrawerView(props) {
         <View style={{ flex: 1, backgroundColor: colors.bitblue }}></View>
         <View style={{ flex: 1, backgroundColor: colors.bitblue }}></View>
         <View style={styles.content}>
-          <Avatar.Image
+          {/* <Avatar.Image
             style={{ alignSelf: 'center', top: -53 }}
             source={{ uri: user.imageUrl }}
             size={90}
@@ -34,7 +34,7 @@ function DrawerView(props) {
           <View style={{ alignSelf: 'center', top: -30 }}>
             <Text style={styles.userName}>{user.fullName}</Text>
             <Text style={styles.userEmail}>{user.email}</Text>
-          </View>
+          </View> */}
           <DrawerContentScrollView
             showsVerticalScrollIndicator={false}
             style={{ marginTop: -20 }}
@@ -103,9 +103,7 @@ function DrawerView(props) {
                 <Icon name="logout" backgroundColor="black" size={size} />
               )}
               label="Logout"
-              onPress={() => {
-                props.navigation.navigate('Welcome');
-              }}
+              onPress={() => logOut()}
               labelStyle={{ fontFamily: FONT_SEMIBOLD, color: colors.bitblue, fontSize: 12 }}
             />
           </DrawerContentScrollView>

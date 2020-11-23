@@ -9,7 +9,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-
+import SplashScreen from 'react-native-splash-screen'
 import navigationTheme from './app/navigation/navigationTheme';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import HomeNavigation from './app/navigation/HomeNavigation';
@@ -24,13 +24,37 @@ import HeightView from "./app/screens/Height"
 import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';
 import UserAttributesContainer from './app/screens/UserAttributes';
-import { YellowBox } from 'react-native';
+import { YellowBox, Platform, StatusBar } from 'react-native';
 import Header from './app/components/Header';
+import authStorage from "./app/auth/storage";
+
 console.disableYellowBox = true
 
 export default function App() {
   const [user, setUser] = useState(null);
   const [isReady, setIsReady] = useState(true);
+  const [hideSplash, setHideSplash] = React.useState(false)
+
+  const restoreUser = async () => {
+    const user1 = await authStorage.getUser()
+    if (user1) setUser(user1)
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHideSplash(true);
+    }, 5000); // amount of time the splash is shown from the time component is rendered
+  }, []);
+  useEffect(() => {
+    if (!hideSplash) {
+      restoreUser()
+    }
+    hideSplash && SplashScreen.hide();
+  }, [hideSplash]);
+
+
+
+
 
   // function onAuthStateChanged(user) {
   //   setUser(user);
@@ -44,25 +68,12 @@ export default function App() {
 
   // if (isReady) return null;
 
-  // if (!user) {
-  //   return (
-  //     <View>
-  //       <Text>Login</Text>
-  //     </View>
-  //   );
-  // }
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <AuthNavigator />}
+        {user ? <HomeNavigation /> : <HomeNavigation />}
       </NavigationContainer>
     </AuthContext.Provider>
-    // <UserHeightandWeight />
-    // <CheckScreen />
-    //  <ImageNavigator />
-    // <UserAttributesContainer />
-    // <Header />
-    //<ShirtsViewController />
   );
 }

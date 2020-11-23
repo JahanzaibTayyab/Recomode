@@ -2,39 +2,39 @@
 import swatches from './Colors'
 
 const shirtGroup1= [
-    "Sapphire Blue",
-    "Red",
-    "Orange",
-    "Eggplant",
-    "Gray",
-    "Khaki",
-    "Pink",
-    "Light Blue",
-    "Mint Green",
-    "White"
+    "sapphire Blue",
+    "red",
+    "orange",
+    "eggplant",
+    "gray",
+    "khaki",
+    "pink",
+    "light Blue",
+    "mint Green",
+    "white"
 ]
 const shirtGroup2= [
-"Black",
-"Gray",
-"Navy Blue",
-"Crimson",
-"Brown",
-"Yellow",
-"Orange",
-"Green",
-"Cream",
-"Khaki",
+"black",
+"gray",
+"navy Blue",
+"crimson",
+"brown",
+"yellow",
+"orange",
+"green",
+"cream",
+"khaki",
 ],
 shirtGroup3= [
-"Black",
-"Light Yellow",
-"Khaki",
-"Coral Pink",
-"Blush Pink",
-"Peach",
-"Light Sky Blue",
-"Seafoam Green",
-"Mint Green"
+"black",
+"light Yellow",
+"khaki",
+"coral Pink",
+"blush Pink",
+"peach",
+"light Sky Blue",
+"seafoam Green",
+"mint Green"
 ]
 
 

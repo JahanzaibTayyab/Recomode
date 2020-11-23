@@ -7,7 +7,7 @@ import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_MEDIUM } from "../config/
 
 export default function MiniCard({ title, subtitle, price, like, image, onPress, icon }) {
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <TouchableOpacity style={styles.card}
                 onPress={onPress}
             >
@@ -15,13 +15,13 @@ export default function MiniCard({ title, subtitle, price, like, image, onPress,
                     flexDirection: 'row',
                 }}>
                     <View style={styles.logoImage}>
-                        <Image source={image}
+                        <Image source={{ uri: image }}
                             resizeMode="contain"
                             style={{ width: "100%", height: "100%", backgroundColor: colors.white }}
                         />
                     </View>
-                    <View style={{ flexDirection: "column" }}>
-                        <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: colors.bitblue, marginTop: 5, }} numberOfLines={2}>{title}</Text>
+                    <View style={{ flexDirection: "column", flex: 1 }}>
+                        <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: colors.bitblue, marginTop: 5, flex: 1, flexWrap: "wrap", }}>{title}</Text>
                         <Text style={{ fontFamily: FONT_Regular, fontSize: 10, color: "#333333", }}>{subtitle}</Text>
                         <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, color: "black" }}>{price}</Text>
                         <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "space-between" }}>

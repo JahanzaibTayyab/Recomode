@@ -12,7 +12,7 @@ function Card({ title, subTitle, image, index, onPress, brandlogo }) {
     <View style={{ flex: 1, width: "100%" }}>
       <View style={styles.logoImage}>
         <Image
-          source={brandlogo}
+          source={{ uri: brandlogo }}
           resizeMode="contain"
           style={{
             position: 'absolute',
