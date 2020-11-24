@@ -20,12 +20,14 @@ const SocialContainer = (props) => {
   }, []);
 
   const _saveFileStore = async (data, id) => {
+    const userData = data;
     await firestore()
       .collection('users')
       .doc(id)
       .set(data)
       .then(() => {
-        props.navigation.navigate(routes.TAKEIMAGE)
+        userData['id'] = id;
+        props.navigation.navigate(routes.TAKEIMAGE, { userData });
       });
   }
 
@@ -65,28 +67,41 @@ const SocialContainer = (props) => {
       throw 'Something went wrong obtaining access token';
     }
     const { accessToken } = data
-    initUser(accessToken)
     // Create a Firebase credential with the AccessToken
     const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
     // Sign-in the user with the credential
-    return auth().signInWithCredential(facebookCredential);
+    auth().signInWithCredential(facebookCredential)
+      .then((response) => {
+        const uid = response.user.uid
+        var fbdata = initUser(accessToken)
+        const data = {
+          fullName: fbdata.pop(),
+          email: fbdata.pop(),
+        };
+        //save the data in file store
+        _saveFileStore(data, uid)
+      })
+      .catch(error => {
+        alert(error)
+      })
   }
   const initUser = (token) => {
+    var data = [];
     fetch('https://graph.facebook.com/v2.5/me?fields=email,first_name,last_name,friends&access_token=' + token)
       .then((response) => {
         response.json().then((json) => {
           const ID = json.id
           console.log("ID " + ID);
           const EM = json.email
-          console.log("Email " + EM);
-
           const FN = json.first_name
-          console.log("First Name " + FN);
+          data.push(EM)
+          data.push(FN)
         })
       })
       .catch(() => {
         console.log('ERROR GETTING DATA FROM FACEBOOK')
       })
+    return data
   }
 
 

@@ -1,194 +1,190 @@
-import * as React from 'react';
+import React from 'react';
 import {
-    Text,
+    StyleSheet,
+    SafeAreaView,
     View,
-    TextInput,
-    TouchableOpacity,
-    StatusBar,
+    Text,
     Image,
+    TouchableOpacity,
+    FlatList,
     ScrollView,
-    RefreshControl, FlatList, TouchableWithoutFeedback
-
+    TouchableWithoutFeedback
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {
+    Svg,
+    Polygon
+} from 'react-native-svg';
+import { BlurView } from "@react-native-community/blur";
+import Modal from "react-native-modal"
 import firestore from '@react-native-firebase/firestore'
-import styles from "../../assets/stylesheet/styles"
-import { SCREEN_WIDTH, SCREEN_HEIGHT, FONT_SEMIBOLD, FONT_Regular, FONT_LIGHT, FONT_MEDIUM } from "../../config/Constant"
-import Header from "../../components/Header"
-import colors from '../../config/colors';
+
+import { images, icons, COLORS, FONTS, SIZES } from './constants';
 import Card from "../../components/Card"
-import MiniCard from "../../components/MiniCard"
-import Modal from 'react-native-modal';
+import colors from "../../config/colors"
 import Button from "../../components/Button"
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import AIcon from 'react-native-vector-icons/MaterialIcons';
-import PantColors from './../../api/PantColors';
+import styles from "../../assets/stylesheet/styles"
+import { FONT_ITALIC, FONT_Regular, FONT_SEMIBOLD, FONT_BOLD, FONT_MEDIUM, FONT_LIGHT } from "../../config/Constant"
 
-const wait = (timeout) => {
-    return new Promise(resolve => {
-        setTimeout(resolve, timeout);
-    });
-}
+const DressShoesViewController = (props) => {
 
-function CargoPantsViewController(props) {
-    const data = props.route.params
-    console.log(data)
-    const [pantColor, setPantColor] = React.useState(["khaki", "skin", "offWhite", "black", "grey", "darkGrey", "blue", "glacierBlue", "tunaBlue", "khaki"])
-    console.log(pantColor)
     const [selectedItem, setSelectedItem] = React.useState(null)
     const [refreshing, setRefreshing] = React.useState(false);
     const [showComplateLookModal, setComplateLookModal] = React.useState(false)
     const [liked, setLiked] = React.useState(false);
     const [counter, setCounter] = React.useState(-2);
-    const [popularData, setPopularData] = React.useState(null);
-    const [recentData, setRecentData] = React.useState([
-        {
-            id: 0,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 1,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 2,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 3,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 4,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-    ]);
     const [dataSource, setDataSource] = React.useState(null)
-    const recomendationdata = () => {
+
+    // Dummy Data
+    const [trending, setTrending] = React.useState([
+    ]);
+
+    const [recentlyViewed, setRecentlyViewed] = React.useState(null);
+    const fetchData = () => {
         const subscriber = firestore()
-            .collection('pants')
-            .where('type', '==', 'Cargo Pant')
-            .where('color', 'in', pantColor).limit(5)
+            .collection('shoes')
+            .where('type', '==', 'Dress Shoes').limit(5)
             .onSnapshot(querySnapshot => {
-                const pants = []
+                const shoes = []
                 querySnapshot.forEach(documentSnapshot => {
-                    pants.push({
+                    shoes.push({
                         ...documentSnapshot.data(),
                         id: documentSnapshot.id,
                     });
                 });
-                setDataSource(pants);
-                console.log("Returned from Firebase ", pants)
-                console.log('Total : ', pants.length - 1)
+                setDataSource(shoes);
+                const TD = []
+                const RV = []
+                for (var x = 0; x < 4; x++) {
+                    TD.push(shoes[x])
+                }
+                for (var x = 0; x < 3; x++) {
+                    RV.push(shoes[x])
+                }
+                setTrending(TD)
+                setRecentlyViewed(RV)
+                console.log("Returned from Firebase ", shoes)
+                console.log('Total : ', shoes.length - 1)
             });
         return () => subscriber();
-    }
-    const populardataView = () => {
-        const subscriber = firestore()
-            .collection('pants').limit(3)
-            .orderBy('like', 'desc')
-            .get()
-            .then(querySnapshot => {
-                const shirt = []
-                querySnapshot.forEach(documentSnapshot => {
-                    shirt.push({
-                        ...documentSnapshot.data(),
-                        id: documentSnapshot.id,
-                    });
-                });
-                setPopularData(shirt);
-                console.log("Returned from Firebase ", shirt)
-                console.log('Total : ', shirt.length - 1)
-            });
-        // Unsubscribe from events when no longer in use
-        return () => subscriber();
+
     }
     React.useEffect(() => {
-        recomendationdata()
-        populardataView()
+        fetchData()
     }, [])
-    const handleIndexChange = (index) => {
-        setSelectedIndex(index)
-    };
+    // Render
 
-    const onRefresh = React.useCallback(() => {
-        setRefreshing(true);
-
-        wait(2000).then(() => setRefreshing(false));
-    }, []);
-    const renderPopularViews = () => {
+    const renderRecentView = () => {
         return (
-            <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={popularData}
-                renderItem={({ item, index }) =>
-                    <MiniCard
-                        title={item.name}
-                        subtitle={item.type}
-                        price={item.price}
-                        image={item.img}
-                        like={item.like}
-                        icon={true}
-                        onPress={() => {
-                            setSelectedItem(item),
-                                setComplateLookModal(true)
-                        }
-                        }
+            <View
+                style={[{
+                    flexDirection: 'row',
+                    marginTop: SIZES.padding,
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30,
+                    backgroundColor: COLORS.white,
+                    height: 300,
+                    marginTop: -5,
+                    marginBottom: 20,
+                }, styles.recentContainerShadow]}
+            >
+                <View style={{ width: 70, marginLeft: SIZES.base }}>
+                    <Image
+                        source={images.recentlyViewedLabel}
+                        resizeMode="contain"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                        }}
                     />
-                }
-                keyExtractor={(item, index) => index.toString()}
-            />
-        );
+                </View>
+                <View style={{ flex: 1, paddingBottom: SIZES.padding, justifyContent: "center" }}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        nestedScrollEnabled={true}
+                        data={recentlyViewed}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={({ item, index }) => renderRecentlyViewed(item, index)}
+                    />
+                </View>
+            </View>
+        )
     }
-    const renderRecentViews = () => {
+    function renderTrendingShoes(item, index) {
+        var trendingStyle = {};
+
+        if (index == 0) {
+            trendingStyle = { marginLeft: SIZES.padding, }
+        } else {
+            trendingStyle = {}
+        }
+
         return (
-            <>
-                <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Recently Views</Text>
-                <FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    data={popularData}
-                    renderItem={({ item, index }) =>
-                        <MiniCard
-                            title={item.name}
-                            subtitle={item.type}
-                            price={item.price}
-                            image={item.img}
-                            onPress={() => {
-                                setSelectedItem(item),
-                                    setComplateLookModal(true)
-                            }}
+            <TouchableOpacity
+                style={{ height: 240, width: 180, justifyContent: 'center', marginHorizontal: SIZES.base, ...trendingStyle }}
+                onPress={() => {
+                    setSelectedItem(item)
+                    setComplateLookModal(true)
+                }}
+            >
+                <Text style={{ color: COLORS.gray, ...FONTS.h5 }}>{item.type}</Text>
+
+                <View style={[{
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                    marginTop: SIZES.base,
+                    borderTopLeftRadius: 10,
+                    borderBottomLeftRadius: 10,
+                    borderBottomRightRadius: 10,
+                    marginRight: SIZES.padding,
+                    paddingLeft: SIZES.radius,
+                    paddingRight: SIZES.padding,
+                    paddingBottom: SIZES.radius,
+                    backgroundColor: item.color
+                }, styles.trendingShadow]}>
+                    <View style={{ height: '35%', justifyContent: 'space-between' }}>
+                        <Text style={{ color: COLORS.white, ...FONTS.body4 }}>{item.name}</Text>
+                        <Text style={{ color: COLORS.white, ...FONTS.h3 }}>{item.price}</Text>
+                    </View>
+                </View>
+
+                <View style={{ position: 'absolute', top: 27, right: 0, width: "95%", height: "100%" }}>
+                    <Svg height="100%" width="100%">
+                        <Polygon
+                            points="0,0 160,0 160,80"
+                            fill="white"
                         />
-                    }
-                    keyExtractor={(item, index) => index.toString()}
+                    </Svg>
+                </View>
+
+                <Image
+                    source={{ uri: item.img }}
+                    resizeMode="cover"
+                    style={{
+                        position: 'absolute',
+                        top: 50,
+                        right: 0,
+                        width: "98%",
+                        height: 80,
+                        transform: [
+                            { rotate: '-15deg' }
+                        ]
+                    }}
                 />
-            </>
-        );
+            </TouchableOpacity>
+        )
     }
     const renderRecomendationViwes = () => {
         return (
             <FlatList
                 showsVerticalScrollIndicator={false}
+                nestedScrollEnabled={true}
                 data={dataSource}
+                style={{ marginTop: 10, }}
                 renderItem={({ item, index }) =>
                     <>
-                        {index === 3 ? renderRecentViews() : null}
+                        {index === 3 ? renderRecentView() : null}
                         <Card
                             index={index}
                             title={item.name}
@@ -206,21 +202,56 @@ function CargoPantsViewController(props) {
             />
         )
     }
+
+    function renderRecentlyViewed(item, index) {
+        return (
+            <TouchableOpacity
+                style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center" }}
+                onPress={() => {
+                    setSelectedItem(item)
+                    setComplateLookModal(true)
+                }}
+            >
+                <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+                    <Image
+                        source={{ uri: item.img }}
+                        resizeMode="contain"
+                        style={{
+                            width: "100%",
+                            height: 100,
+                            justifyContent: "center"
+                        }}
+                    />
+                </View>
+                <View style={{ flex: 1.5, marginLeft: SIZES.radius, justifyContent: "center" }}>
+                    <Text style={{ color: COLORS.gray, ...FONTS.body3 }}>{item.name}</Text>
+                    <Text style={{ ...FONTS.h3 }}>{item.price}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+
     return (
-        <View style={[styles.container, { backgroundColor: "#f0f2f5", }]}>
-            <View style={{ flex: 1, justifyContent: "flex-start" }}>
-                <ScrollView showsVerticalScrollIndicator={false}
-                    onScrollToTop={() => console.log("yha")}
-                >
-                    <View style={{ backgroundColor: colors.white }}>
-                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
-                    </View>
-                    {renderPopularViews()}
-                    <View style={{ marginBottom: 5, }}>
-                        <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
-                    </View>
-                    {renderRecomendationViwes()}
-                </ScrollView>
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            nestedScrollEnabled={true}
+        >
+            <View style={styles.container}>
+                <Text style={{ marginTop: SIZES.radius, marginHorizontal: SIZES.padding, ...FONTS.largeTitleBold }}>TRENDING</Text>
+
+                <View style={{ height: 260, marginTop: SIZES.radius }}>
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={trending}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={({ item, index }) => renderTrendingShoes(item, index)}
+                    />
+                </View>
+                <View style={{ marginBottom: 5, }}>
+                    <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, }}>Our Recomendations</Text>
+                </View>
+                {renderRecomendationViwes()}
             </View>
             {selectedItem && <View>
                 <Modal
@@ -245,11 +276,11 @@ function CargoPantsViewController(props) {
                                  <View>
                                     <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
                                 </View>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}> {''} STEP 2</Text>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
                                 <View>
                                     <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
                                 </View>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}> {''} STEP 3</Text>
                             </Text>
                         </View>
                         <Image style={{
@@ -264,7 +295,7 @@ function CargoPantsViewController(props) {
                         }}>
                             <View style={styles.modelInner}>
                                 <Image
-                                    source={{ uri: selectedItem.brandlogo }}
+                                    source={{ uri: selectedItem.brandLogo }}
                                     resizeMode="contain"
                                     style={{
                                         position: 'absolute',
@@ -327,7 +358,7 @@ function CargoPantsViewController(props) {
                                         setComplateLookModal(false)
                                         //setActivityIndicator(!showActivityIndicator)
                                         setTimeout(function () {
-                                            props.navigation.navigate("Shoes")
+                                            // props.navigation.navigate("Pant", { data: selectedItem.color })
                                         }, 700)
                                         // props.navigation.navigate("Pant")
                                     }}
@@ -337,7 +368,9 @@ function CargoPantsViewController(props) {
                     </View>
                 </Modal>
             </View>}
-        </View>
+
+        </ScrollView >
     )
 }
-export default CargoPantsViewController
+
+export default DressShoesViewController;

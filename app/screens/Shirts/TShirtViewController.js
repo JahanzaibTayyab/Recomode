@@ -83,7 +83,7 @@ function TShirtViewController(props) {
         const subscriber = firestore()
             .collection('shirts')
             .where('type', '==', 'TShirt')
-            .where('color', 'in', shirtColors)
+            .where('color', 'in', shirtColors).limit(5)
             .onSnapshot(querySnapshot => {
                 const shirts = []
                 querySnapshot.forEach(documentSnapshot => {
@@ -102,8 +102,8 @@ function TShirtViewController(props) {
     }
     const populardataView = () => {
         const subscriber = firestore()
-            .collection('shirts')
-            .orderBy('like', 'desc').limit(20)
+            .collection('shirts').limit(3)
+            .orderBy('like', 'desc')
             .get()
             .then(querySnapshot => {
                 const shirt = []

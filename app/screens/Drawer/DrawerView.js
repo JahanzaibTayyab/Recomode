@@ -26,7 +26,7 @@ function DrawerView(props) {
         <View style={{ flex: 1, backgroundColor: colors.bitblue }}></View>
         <View style={{ flex: 1, backgroundColor: colors.bitblue }}></View>
         <View style={styles.content}>
-          {/* <Avatar.Image
+          <Avatar.Image
             style={{ alignSelf: 'center', top: -53 }}
             source={{ uri: user.imageUrl }}
             size={90}
@@ -34,7 +34,7 @@ function DrawerView(props) {
           <View style={{ alignSelf: 'center', top: -30 }}>
             <Text style={styles.userName}>{user.fullName}</Text>
             <Text style={styles.userEmail}>{user.email}</Text>
-          </View> */}
+          </View>
           <DrawerContentScrollView
             showsVerticalScrollIndicator={false}
             style={{ marginTop: -20 }}

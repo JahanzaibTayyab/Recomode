@@ -16,6 +16,7 @@ import {
 } from 'react-native-svg';
 import { BlurView } from "@react-native-community/blur";
 import Modal from "react-native-modal"
+import firestore from '@react-native-firebase/firestore'
 
 import { images, icons, COLORS, FONTS, SIZES } from './constants';
 import Card from "../../components/Card"
@@ -33,89 +34,83 @@ const NikeShoesViewController = (props) => {
     const [showComplateLookModal, setComplateLookModal] = React.useState(false)
     const [liked, setLiked] = React.useState(false);
     const [counter, setCounter] = React.useState(-2);
-
+    const [dataSource, setDataSource] = React.useState(null)
 
     // Dummy Data
     const [trending, setTrending] = React.useState([
-        {
-            id: 0,
-            name: "Nike Air Zoom Pegasus 36",
-            img: images.nikePegasus36,
-            bgColor: "#BF012C",
-            type: "RUNNING",
-            price: "$186",
-            sizes: [6, 7, 8, 9, 10]
-        },
-        {
-            id: 1,
-            name: "Nike Metcon 5",
-            img: images.nikeMetcon5Black,
-            bgColor: "#D39C67",
-            type: "TRAINING",
-            price: "$135",
-            sizes: [6, 7, 8, 9, 10, 11, 12]
-        },
-        {
-            id: 2,
-            name: "Nike Air Zoom Kobe 1 Proto",
-            img: images.nikeZoomKobe1Proto,
-            bgColor: "#7052A0",
-            type: "BASKETBALL",
-            price: "$199",
-            sizes: [6, 7, 8, 9]
-        },
     ]);
 
-    const [recentlyViewed, setRecentlyViewed] = React.useState([
-        {
-            id: 0,
-            name: "Nike Metcon 4",
-            img: images.nikeMetcon4,
-            bgColor: "#414045",
-            type: "TRAINING",
-            price: "$119",
-            sizes: [6, 7, 8]
-        },
-        {
-            id: 1,
-            name: "Nike Metcon 6",
-            img: images.nikeMetcon6,
-            bgColor: "#4EABA6",
-            type: "TRAINING",
-            price: "$135",
-            sizes: [6, 7, 8, 9, 10, 11]
-        },
-        {
-            id: 2,
-            name: "Nike Metcon 5",
-            img: images.nikeMetcon5Purple,
-            bgColor: "#2B4660",
-            type: "TRAINING",
-            price: "$124",
-            sizes: [6, 7, 8, 9]
-        },
-        {
-            id: 3,
-            name: "Nike Metcon 3",
-            img: images.nikeMetcon3,
-            bgColor: "#A69285",
-            type: "TRAINING",
-            price: "$99",
-            sizes: [6, 7, 8, 9, 10, 11, 12, 13]
-        },
-        {
-            id: 4,
-            name: "Nike Metcon Free",
-            img: images.nikeMetconFree,
-            bgColor: "#A02E41",
-            type: "TRAINING",
-            price: "$108",
-            sizes: [6, 7, 8, 9, 10, 11]
-        },
-    ]);
+    const [recentlyViewed, setRecentlyViewed] = React.useState(null);
+    const fetchData = () => {
+        const subscriber = firestore()
+            .collection('shoes')
+            .where('type', '==', 'Jogger').limit(5)
+            .onSnapshot(querySnapshot => {
+                const shoes = []
+                querySnapshot.forEach(documentSnapshot => {
+                    shoes.push({
+                        ...documentSnapshot.data(),
+                        id: documentSnapshot.id,
+                    });
+                });
+                setDataSource(shoes);
+                const TD = []
+                const RV = []
+                for (var x = 0; x < 4; x++) {
+                    TD.push(shoes[x])
+                }
+                for (var x = 0; x < 3; x++) {
+                    RV.push(shoes[x])
+                }
+                setTrending(TD)
+                setRecentlyViewed(RV)
+                console.log("Returned from Firebase ", shoes)
+                console.log('Total : ', shoes.length - 1)
+            });
+        return () => subscriber();
 
+    }
+    React.useEffect(() => {
+        fetchData()
+    }, [])
     // Render
 
+    const renderRecentView = () => {
+        return (
+            <View
+                style={[{
+                    flexDirection: 'row',
+                    marginTop: SIZES.padding,
+                    borderTopLeftRadius: 30,
+                    borderTopRightRadius: 30,
+                    backgroundColor: COLORS.white,
+                    height: 300,
+                    marginTop: -5,
+                    marginBottom: 20,
+                }, styles.recentContainerShadow]}
+            >
+                <View style={{ width: 70, marginLeft: SIZES.base }}>
+                    <Image
+                        source={images.recentlyViewedLabel}
+                        resizeMode="contain"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                        }}
+                    />
+                </View>
+                <View style={{ flex: 1, paddingBottom: SIZES.padding, justifyContent: "center" }}>
+                    <FlatList
+                        showsVerticalScrollIndicator={false}
+                        nestedScrollEnabled={true}
+                        data={recentlyViewed}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={({ item, index }) => renderRecentlyViewed(item, index)}
+                    />
+                </View>
+            </View>
+        )
+    }
     function renderTrendingShoes(item, index) {
         var trendingStyle = {};
 
@@ -146,7 +141,7 @@ const NikeShoesViewController = (props) => {
                     paddingLeft: SIZES.radius,
                     paddingRight: SIZES.padding,
                     paddingBottom: SIZES.radius,
-                    backgroundColor: item.bgColor
+                    backgroundColor: item.color
                 }, styles.trendingShadow]}>
                     <View style={{ height: '35%', justifyContent: 'space-between' }}>
                         <Text style={{ color: COLORS.white, ...FONTS.body4 }}>{item.name}</Text>
@@ -164,7 +159,7 @@ const NikeShoesViewController = (props) => {
                 </View>
 
                 <Image
-                    source={item.img}
+                    source={{ uri: item.img }}
                     resizeMode="cover"
                     style={{
                         position: 'absolute',
@@ -180,11 +175,38 @@ const NikeShoesViewController = (props) => {
             </TouchableOpacity>
         )
     }
+    const renderRecomendationViwes = () => {
+        return (
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                nestedScrollEnabled={true}
+                data={dataSource}
+                style={{ marginTop: 10, }}
+                renderItem={({ item, index }) =>
+                    <>
+                        {index === 3 ? renderRecentView() : null}
+                        <Card
+                            index={index}
+                            title={item.name}
+                            subTitle={item.brand}
+                            image={item.img}
+                            brandlogo={item.brandLogo}
+                            onPress={() => {
+                                setSelectedItem(item),
+                                    setComplateLookModal(true)
+                            }}
+                        />
+                    </>
+                }
+                keyExtractor={(item, index) => index.toString()}
+            />
+        )
+    }
 
     function renderRecentlyViewed(item, index) {
         return (
             <TouchableOpacity
-                style={{ flex: 1, flexDirection: 'row', justifyContent: "center", alignItems: "center" }}
+                style={{ flexDirection: 'row', justifyContent: "center", alignItems: "center" }}
                 onPress={() => {
                     setSelectedItem(item)
                     setComplateLookModal(true)
@@ -192,7 +214,7 @@ const NikeShoesViewController = (props) => {
             >
                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
                     <Image
-                        source={item.img}
+                        source={{ uri: item.img }}
                         resizeMode="contain"
                         style={{
                             width: "100%",
@@ -208,6 +230,7 @@ const NikeShoesViewController = (props) => {
             </TouchableOpacity>
         )
     }
+
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
@@ -225,155 +248,128 @@ const NikeShoesViewController = (props) => {
                         renderItem={({ item, index }) => renderTrendingShoes(item, index)}
                     />
                 </View>
-
-                <View
-                    style={[{
-                        flex: 1,
-                        flexDirection: 'row',
-                        marginTop: SIZES.padding,
-                        borderTopLeftRadius: 30,
-                        borderTopRightRadius: 30,
-                        backgroundColor: COLORS.white,
-                        height: 300,
-                    }, styles.recentContainerShadow]}
-                >
-                    <View style={{ width: 70, marginLeft: SIZES.base }}>
-                        <Image
-                            source={images.recentlyViewedLabel}
-                            resizeMode="contain"
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                            }}
-                        />
-                    </View>
-                    <View style={{ flex: 1, paddingBottom: SIZES.padding, justifyContent: "center" }}>
-                        <FlatList
-                            showsVerticalScrollIndicator={false}
-                            nestedScrollEnabled={true}
-                            data={recentlyViewed}
-                            keyExtractor={item => item.id.toString()}
-                            renderItem={({ item, index }) => renderRecentlyViewed(item, index)}
-                        />
-                    </View>
+                <View style={{ marginBottom: 5, }}>
+                    <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, }}>Our Recomendations</Text>
                 </View>
-                {selectedItem && <View>
-                    <Modal
-                        isVisible={showComplateLookModal}
-                        coverScreen={true}
-                        onSwipeComplete={() => setComplateLookModal(false)}
-                        swipeDirection={['up', 'left', 'right', 'down']}
-                        onBackButtonPress={() => setComplateLookModal(false)}
-                        backdropColor={colors.bitblue}
-                        backdropOpacity={0.5}
-                        animationIn="zoomInDown"
-                        animationOut="zoomOutUp"
-                        animationInTiming={600}
-                        animationOutTiming={600}
-                        backdropTransitionInTiming={300}
-                        backdropTransitionOutTiming={300}
-                    >
-                        <View style={styles.modelCard}>
-                            <View style={{ alignItems: "center" }}>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}>
-                                    STEP 1
+                {renderRecomendationViwes()}
+            </View>
+            {selectedItem && <View>
+                <Modal
+                    isVisible={showComplateLookModal}
+                    coverScreen={true}
+                    onSwipeComplete={() => setComplateLookModal(false)}
+                    swipeDirection={['up', 'left', 'right', 'down']}
+                    onBackButtonPress={() => setComplateLookModal(false)}
+                    backdropColor={colors.bitblue}
+                    backdropOpacity={0.5}
+                    animationIn="zoomInDown"
+                    animationOut="zoomOutUp"
+                    animationInTiming={600}
+                    animationOutTiming={600}
+                    backdropTransitionInTiming={300}
+                    backdropTransitionOutTiming={300}
+                >
+                    <View style={styles.modelCard}>
+                        <View style={{ alignItems: "center" }}>
+                            <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}>
+                                STEP 1
                                  <View>
-                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                    </View>
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
-                                    <View>
-                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                    </View>
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}> {''} STEP 3</Text>
-                                </Text>
-                            </View>
-                            <Image style={{
-                                width: "100%",
-                                height: 300,
-                                marginTop: 10
-                            }} source={selectedItem.img} resizeMode="contain" />
-                            <View style={{
-                                marginHorizontal: 25,
-                                marginBottom: 10,
-                                marginTop: 20,
-                            }}>
-                                <View style={styles.modelInner}>
-                                    <Image
-                                        source={selectedItem.img}
-                                        resizeMode="contain"
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: 10,
-                                            width: "80%",
-                                            height: 100,
-                                        }}
-                                    />
+                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
                                 </View>
-                                <TouchableWithoutFeedback
-                                    onPress={() => {
-                                        setLiked(!liked);
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                <View>
+                                    <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                </View>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}> {''} STEP 3</Text>
+                            </Text>
+                        </View>
+                        <Image style={{
+                            width: "100%",
+                            height: 300,
+                            marginTop: 10
+                        }} source={{ uri: selectedItem.img }} resizeMode="contain" />
+                        <View style={{
+                            marginHorizontal: 25,
+                            marginBottom: 10,
+                            marginTop: 20,
+                        }}>
+                            <View style={styles.modelInner}>
+                                <Image
+                                    source={{ uri: selectedItem.brandLogo }}
+                                    resizeMode="contain"
+                                    style={{
+                                        position: 'absolute',
+                                        bottom: 10,
+                                        width: "80%",
+                                        height: 100,
                                     }}
-                                >
-                                    <View style={styles.modrlHeart}>
-                                        <AIcon
-                                            name='favorite'
-                                            size={25}
-                                            color={liked ? 'red' : 'white'}
-                                        >
-                                        </AIcon>
-                                    </View>
-                                </TouchableWithoutFeedback>
-                                <Text style={{
-                                    marginBottom: 5,
-                                    fontFamily: FONT_SEMIBOLD,
-                                    color: colors.bitblue
-                                }} numberOfLines={1}>
-                                    {selectedItem.name}
-                                </Text>
-                                <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
-                                    {selectedItem.type}
-                                </Text>
-                                <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
-                                    <View style={{ flexDirection: 'row', }}>
-                                        <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
-                                        <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.size}</Text>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', }}>
-                                        <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
-                                        <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.color }]}>
-                                        </View>
+                                />
+                            </View>
+                            <TouchableWithoutFeedback
+                                onPress={() => {
+                                    setLiked(!liked);
+                                }}
+                            >
+                                <View style={styles.modrlHeart}>
+                                    <AIcon
+                                        name='favorite'
+                                        size={25}
+                                        color={liked ? 'red' : 'white'}
+                                    >
+                                    </AIcon>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            <Text style={{
+                                marginBottom: 5,
+                                fontFamily: FONT_SEMIBOLD,
+                                color: colors.bitblue
+                            }} numberOfLines={1}>
+                                {selectedItem.name}
+                            </Text>
+                            <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
+                                {selectedItem.type}
+                            </Text>
+                            <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
+                                    <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.size}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', }}>
+                                    <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
+                                    <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.color }]}>
                                     </View>
                                 </View>
-                                <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
-                                    <FeatherIcons name="heart" />
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>{selectedItem.like}</Text>
-                                </View>
-                                <ScrollView style={{ height: 30, marginTop: 5, }}>
-                                    <Text
-                                        numberOfLines={2}
-                                        style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{selectedItem.description}</Text>
-                                </ScrollView>
-                                <View style={{ alignItems: "center", marginTop: -15, }}>
-                                    <Button
-                                        title="Complete Look"
-                                        titlecolor="white"
-                                        width="60%"
-                                        onPress={() => {
-                                            setComplateLookModal(false)
-                                            //setActivityIndicator(!showActivityIndicator)
-                                            setTimeout(function () {
-                                                props.navigation.navigate("Pant", { data: selectedItem.color })
-                                            }, 700)
-                                            // props.navigation.navigate("Pant")
-                                        }}
-                                    />
-                                </View>
+                            </View>
+                            <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
+                                <FeatherIcons name="heart" />
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>{selectedItem.like}</Text>
+                            </View>
+                            <ScrollView style={{ height: 30, marginTop: 5, }}>
+                                <Text
+                                    numberOfLines={2}
+                                    style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{selectedItem.description}</Text>
+                            </ScrollView>
+                            <View style={{ alignItems: "center", marginTop: -15, }}>
+                                <Button
+                                    title="Complete Look"
+                                    titlecolor="white"
+                                    width="60%"
+                                    onPress={() => {
+                                        setComplateLookModal(false)
+                                        //setActivityIndicator(!showActivityIndicator)
+                                        setTimeout(function () {
+                                            // props.navigation.navigate("Pant", { data: selectedItem.color })
+                                        }, 700)
+                                        // props.navigation.navigate("Pant")
+                                    }}
+                                />
                             </View>
                         </View>
-                    </Modal>
-                </View>}
-            </View>
-        </ScrollView>
+                    </View>
+                </Modal>
+            </View>}
+
+        </ScrollView >
     )
 }
 

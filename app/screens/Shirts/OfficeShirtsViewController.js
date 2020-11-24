@@ -78,7 +78,7 @@ function OfficeShirtsViewController(props) {
         const subscriber = firestore()
             .collection('shirts')
             .where('type', '==', 'Office Shirt')
-            .where('color', 'in', shirtColors)
+            .where('color', 'in', shirtColors).limit(5)
             .onSnapshot(querySnapshot => {
                 const shirts = []
                 querySnapshot.forEach(documentSnapshot => {
@@ -97,7 +97,7 @@ function OfficeShirtsViewController(props) {
     }
     const populardataView = () => {
         const subscriber = firestore()
-            .collection('shirts')
+            .collection('shirts').limit(3)
             .orderBy('like', 'desc')
             .get()
             .then(querySnapshot => {

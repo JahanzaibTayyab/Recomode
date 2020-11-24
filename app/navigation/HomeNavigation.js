@@ -9,19 +9,21 @@ import Height from './TabNavigation';
 import DrawerContent from '../screens/Drawer';
 import ShirtNavigation from './ShirtsNavigation';
 import PantNavigation from './PantsNavigation';
+import ShoesNavigation from "./ShoesNavigation"
 
 const HomeStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
-  // screenOptions={{
-  //   headerStyle: {
-  //     backgroundColor: '#009387',
-  //   },
-  //   headerTintColor: '#fff',
-  //   headerTitleStyle: {
-  //     fontWeight: 'bold'
-  //   }
-  // }}
+    // screenOptions={{
+    //   headerStyle: {
+    //     backgroundColor: '#009387',
+    //   },
+    //   headerTintColor: '#fff',
+    //   headerTitleStyle: {
+    //     fontWeight: 'bold'
+    //   }
+    // }}
+    initialRouteName={"Shirt"}
   >
     <HomeStack.Screen name="Shirt" component={ShirtNavigation}
       options={{ headerShown: false }}
@@ -34,6 +36,7 @@ const HomeStackScreen = ({ navigation }) => (
     />
     <HomeStack.Screen name="Pant" component={PantNavigation}
       options={{ headerShown: false }}
+
     // options={{
     //   title: 'Overview',
     //   headerLeft: () => (
@@ -41,6 +44,8 @@ const HomeStackScreen = ({ navigation }) => (
     //   )
     // }}
     />
+    <HomeStack.Screen name="Shoes" component={ShoesNavigation}
+      options={{ headerShown: false }} />
   </HomeStack.Navigator>
 );
 

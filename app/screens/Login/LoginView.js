@@ -44,7 +44,7 @@ function LoginView(props) {
   const [showActivityIndicator, setActivityIndicator] = useState(false);
 
   //Calling UserContext to set User
-  const { login } = useAuth();
+  const StorageAuth = useAuth();
 
 
   const _changeIcon = () => {
@@ -63,7 +63,7 @@ function LoginView(props) {
         }
         const user = firestoreDocument.data()
         user.shirtColors = ShirtColors(user.skinColor)
-        login(user)
+        StorageAuth.logIn(user)
         console.log(user)
 
       })

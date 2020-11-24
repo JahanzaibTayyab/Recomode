@@ -38,8 +38,10 @@ export default function App() {
   const [hideSplash, setHideSplash] = React.useState(false)
 
   const restoreUser = async () => {
-    const user1 = await authStorage.getUser()
-    if (user1) setUser(user1)
+    await authStorage.getUser().then((user1) => {
+      setUser(user1)
+    })
+
   };
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <ShoesNavigation /> : <ShoesNavigation />}
+        {user ? <HomeNavigation /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

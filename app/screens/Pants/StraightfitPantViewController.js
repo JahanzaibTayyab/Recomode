@@ -81,7 +81,7 @@ const StraightFitPantsController = (props) => {
         const subscriber = firestore()
             .collection('pants')
             .where('type', '==', 'StraigthFit jeans')
-            .where('color', 'in', pantColor)
+            .where('color', 'in', pantColor).limit(5)
             .onSnapshot(querySnapshot => {
                 const pants = []
                 querySnapshot.forEach(documentSnapshot => {
@@ -98,8 +98,8 @@ const StraightFitPantsController = (props) => {
     }
     const populardataView = () => {
         const subscriber = firestore()
-            .collection('pants')
-            .orderBy('like', 'desc').limit(20)
+            .collection('pants').limit(3)
+            .orderBy('like', 'desc')
             .get()
             .then(querySnapshot => {
                 const shirt = []
@@ -237,12 +237,12 @@ const StraightFitPantsController = (props) => {
                 >
                     <View style={styles.modelCard}>
                         <View style={{ alignItems: "center" }}>
-                            <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
+                            <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}>
                                 STEP 1
                                  <View>
                                     <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
                                 </View>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}> {''} STEP 2</Text>
                                 <View>
                                     <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
                                 </View>
@@ -324,7 +324,7 @@ const StraightFitPantsController = (props) => {
                                         setComplateLookModal(false)
                                         //setActivityIndicator(!showActivityIndicator)
                                         setTimeout(function () {
-                                            props.navigation.navigate("Pant", { data: selectedItem.color })
+                                            props.navigation.navigate("Shoes", { data: selectedItem.color })
                                         }, 700)
                                         // props.navigation.navigate("Pant")
                                     }}

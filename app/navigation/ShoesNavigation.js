@@ -3,8 +3,8 @@ import { View, Text, Button, FlatList, TextInput } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import JogerShoesScreen from "../screens/Shoes/NokeShoesViewController"
-import SnekaersShoesScreen from "../screens/Pants/ChinoPantsViewController"
-import DressShoesScreen from "../screens/Pants/KhakiPantsViewController"
+import SnekaersShoesScreen from "../screens/Shoes/SneakerShoesViewController"
+import DressShoesScreen from "../screens/Shoes/DressShoesViewController"
 
 import colors from "../config/colors"
 import { FONT_SEMIBOLD, FONT_Regular } from '../config/Constant';
@@ -21,7 +21,9 @@ function ShirtNavigation(props) {
                     scrollEnabled: true,
                     style: { backgroundColor: 'white', height: 40, marginBottom: 5, elevation: 0 },
                 }}>
-                <Tab.Screen name="Joger" component={JogerShoesScreen} />
+                <Tab.Screen name="Jogger" component={JogerShoesScreen} />
+                <Tab.Screen name="Sneaker" component={SnekaersShoesScreen} />
+                <Tab.Screen name="Formal" component={DressShoesScreen} />
 
             </Tab.Navigator>
         </>
