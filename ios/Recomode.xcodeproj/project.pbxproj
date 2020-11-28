@@ -87,6 +87,8 @@
 		590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */ = {isa = PBXBuildFile; fileRef = 590E380E8083482CB56BC262 /* Shirt1.png */; };
 		93C361ED40FF4F338BE051FC /* Adidas_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */; };
 		F23F6752F3F14C20BFB17CEC /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AA45680FB62949CE8BC177E4 /* Logo.png */; };
+		C9250E6E0B9D416EB38229F8 /* Baloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39477AF849E44C9CAE7D12C3 /* Baloo-Regular.ttf */; };
+		429102D529B744CBB2F54A74 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDCD55D91575405C90CF195A /* OpenSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +195,8 @@
 		590E380E8083482CB56BC262 /* Shirt1.png */ = {isa = PBXFileReference; name = "Shirt1.png"; path = "../app/assets/images/Shirt1.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */ = {isa = PBXFileReference; name = "Adidas_Logo.png"; path = "../app/assets/images/Adidas_Logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		AA45680FB62949CE8BC177E4 /* Logo.png */ = {isa = PBXFileReference; name = "Logo.png"; path = "../app/assets/images/Logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		39477AF849E44C9CAE7D12C3 /* Baloo-Regular.ttf */ = {isa = PBXFileReference; name = "Baloo-Regular.ttf"; path = "../app/assets/fonts/Baloo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BDCD55D91575405C90CF195A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; name = "OpenSans-Regular.ttf"; path = "../app/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +378,8 @@
 				590E380E8083482CB56BC262 /* Shirt1.png */,
 				521AFD7652FC41ACB3A3C7B2 /* Adidas_Logo.png */,
 				AA45680FB62949CE8BC177E4 /* Logo.png */,
+				39477AF849E44C9CAE7D12C3 /* Baloo-Regular.ttf */,
+				BDCD55D91575405C90CF195A /* OpenSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -588,6 +594,8 @@
 				590C0B80FEF54D3DBA0E7E7B /* Shirt1.png in Resources */,
 				93C361ED40FF4F338BE051FC /* Adidas_Logo.png in Resources */,
 				F23F6752F3F14C20BFB17CEC /* Logo.png in Resources */,
+				C9250E6E0B9D416EB38229F8 /* Baloo-Regular.ttf in Resources */,
+				429102D529B744CBB2F54A74 /* OpenSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
