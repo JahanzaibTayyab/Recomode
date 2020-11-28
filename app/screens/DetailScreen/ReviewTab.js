@@ -35,7 +35,7 @@ class ReviewTab extends Component {
     }
 
     if (this.props.reviews && this.props.reviews.length == 0) {
-      return <Text style={styles.message}> {Languages.NoReview}</Text>;
+      return <Text style={styles.message}>Review c</Text>;
     }
 
     if (this.props.reviews && this.props.reviews.length > 0) {
@@ -45,7 +45,7 @@ class ReviewTab extends Component {
           style={styles.list}
           enableEmptySections={true}
           data={this.props.reviews}
-          renderItem={({item, index}) => <ReviewItem key={index} review={item} />}
+          renderItem={({ item, index }) => <ReviewItem key={index} review={item} />}
         />
       );
     }
@@ -70,7 +70,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     ...ownProps,
     ...stateProps,
     fetchReviews: (productId) => {
-      if (!netInfo.isConnected) return toast(Languages.NoConnection);
+      if (!netInfo.isConnected) return toast("Languages.NoConnection");
       actions.fetchReviewsByProductId(dispatch, productId);
     },
   };

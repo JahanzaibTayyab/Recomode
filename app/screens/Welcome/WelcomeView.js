@@ -6,6 +6,8 @@ import Button from '../../components/Button';
 import styles from './styles';
 import routes from '../../navigation/routes';
 import { ic_logo, ic_imagebackgroud } from "../../screens/helper/constants"
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const { width } = Dimensions.get('window');
 
@@ -15,6 +17,34 @@ function WelcomeView(props) {
     width: 1080,
     height: 1230,
   };
+  const handleSubmit = async (data, id) => {
+    const userData = data;
+    await firestore().collection('users').doc(id).set(data).then((response) => {
+      userData['id'] = id;
+      props.navigation.navigate(routes.TAKEIMAGE, { userData });
+    }).catch((error) => {
+      alert(error)
+    })
+  };
+  const gussesUser = () => {
+    auth()
+      .signInAnonymously()
+      .then((response) => {
+        const userid = response.user.uid
+        const data = {
+          email: "",
+          fullName: "Guest User"
+        };
+        console.log(data)
+        handleSubmit(data, userid)
+      })
+      .catch(error => {
+        if (error.code === 'auth/operation-not-allowed') {
+          console.log('Enable anonymous in your firebase console.');
+        }
+        console.error(error);
+      });
+  }
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slide]}>
@@ -60,8 +90,16 @@ function WelcomeView(props) {
               Login to your account below or signup for an amazing experience
             </Text>
             <Button
+              title="Unlock"
+              titlecolor="white"
+              buttoncolor="medium"
+              width="80%"
+              onPress={() => gussesUser()}
+            />
+            <Button
               title="Have an account? Login"
               titlecolor="white"
+              width="80%"
               onPress={() => {
                 props.navigation.navigate(routes.LOGIN);
               }}
@@ -69,6 +107,7 @@ function WelcomeView(props) {
             <Button
               title="Join us , it's Free"
               buttoncolor="lightgrey"
+              titlecolor="primary"
               onPress={() => {
                 props.navigation.navigate(routes.REGISTER);
               }}

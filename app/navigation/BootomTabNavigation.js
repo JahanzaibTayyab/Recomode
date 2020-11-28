@@ -10,10 +10,12 @@ import PantNavigation from './PantsNavigation';
 import ShoesNavigation from "./ShoesNavigation"
 import ProfileScreen from "../screens/Profile"
 import { FONT_Regular, FONT_LIGHT } from "../config/Constant"
+import CartInfo from "../screens/Cart/CartInfo"
 import CameraClickButton from './CamerClickButton';
 
 
 const HomeStack = createStackNavigator();
+const CartStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator
         initialRouteName={"Shirt"}
@@ -27,6 +29,14 @@ const HomeStackScreen = ({ navigation }) => (
         <HomeStack.Screen name="Shoes" component={ShoesNavigation}
             options={{ headerShown: false }} />
     </HomeStack.Navigator>
+);
+const CartStackScreen = ({ navigation }) => (
+    <CartStack.Navigator
+        initialRouteName={"Cart"}
+    >
+        <CartStack.Screen name="Cart" component={CartInfo}
+            options={{ headerShown: false }} />
+    </CartStack.Navigator>
 );
 
 const Tab = createBottomTabNavigator();
@@ -100,7 +110,7 @@ export default function BootomTabNavigation() {
             />
             <Tab.Screen
                 name="Profile"
-                component={HomeStackScreen}
+                component={CartStackScreen}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ focused }) => (

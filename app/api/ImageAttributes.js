@@ -8,7 +8,7 @@ const postImage = (data, onUploadProgress) => {
     params: {
       returnFaceId: true,
       returnFaceLandmarks: false,
-      returnFaceAttributes: 'age,gender,glasses,hair,emotion,smile,accessories,facialHair',
+      returnFaceAttributes: 'age,gender,glasses,hair,smile,accessories,facialHair',
     },
     onUploadProgress: (progress) =>
       onUploadProgress(progress.loaded / progress.total),

@@ -108,55 +108,6 @@ function UserAttributesView(props) {
 
     );
   }
-  const rendeEmtionView = (item) => {
-    return (
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
-        <View style={styles.emojiView}>
-          <Text>😊</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Happiness</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.happiness}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>😠</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Anger</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.anger}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>🙄</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Contempt</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.contempt}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>😨</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Fear</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.fear}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>😐</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Neutral</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.neutral}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>🤢</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Disgust</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.disgust}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>😥</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Sadness</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.sadness}</Text>
-        </View>
-        <View style={styles.emojiView}>
-          <Text>😮</Text>
-          <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }}>Surprise</Text>
-          <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12 }}>{item.surprise}</Text>
-        </View>
-      </ScrollView >
-    );
-  }
   const dataView = () => {
     return dataSource.map((item) => {
       return (
@@ -201,8 +152,6 @@ function UserAttributesView(props) {
               <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, }} >Glasses</Text>
               <Text style={{ fontFamily: FONT_Regular, fontSize: 12 }} >{item.faceAttributes.glasses}</Text>
             </View>
-            <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, marginHorizontal: 20, marginBottom: 5, marginTop: 10 }} >Emotions</Text>
-            {rendeEmtionView(item.faceAttributes.emotion)}
             <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, marginHorizontal: 20, marginBottom: 5, marginTop: 10 }} >Accessories</Text>
             <View style={{ flex: 1, width: "100%" }}>
               {renderAccessoriesView(item.faceAttributes.accessories)}

@@ -37,7 +37,7 @@ class AttributesView extends React.PureComponent {
     } else {
       return (
         <View style={[styles.emptyAttributes, { backgroundColor: lineColor }]}>
-          <Text>{Languages.EmptyProductAttribute}</Text>
+          {/* <Text>{Languages.EmptyProductAttribute}</Text> */}
         </View>
       );
     }

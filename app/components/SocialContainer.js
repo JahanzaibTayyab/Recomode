@@ -28,7 +28,9 @@ const SocialContainer = (props) => {
       .then(() => {
         userData['id'] = id;
         props.navigation.navigate(routes.TAKEIMAGE, { userData });
-      });
+      }).catch(error => {
+        alert(error)
+      })
   }
 
   async function onGoogleButtonPress() {

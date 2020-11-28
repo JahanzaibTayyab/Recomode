@@ -46,20 +46,27 @@ export default function App() {
 
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setHideSplash(true);
-  //   }, 5000); // amount of time the splash is shown from the time component is rendered
-  // }, []);
   useEffect(() => {
-    // if (!hideSplash) {
-    //   restoreUser()
-    // }
-    // hideSplash && 
-    SplashScreen.hide();
+    setTimeout(() => {
+      setHideSplash(true);
+    }, 5000); // amount of time the splash is shown from the time component is rendered
   }, []);
+  useEffect(() => {
+    if (!hideSplash) {
+      restoreUser()
+    }
+    hideSplash &&
+      SplashScreen.hide();
+  }, []);
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (isReady) setIsReady(false);
+  // }
 
-
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
 
 
 
@@ -79,7 +86,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <HomeNavigation />}
+        {user ? <HomeNavigation /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

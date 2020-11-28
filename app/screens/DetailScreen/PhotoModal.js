@@ -7,7 +7,7 @@ import ImageViewer from "react-native-image-zoom-viewer";
 import Modal from "react-native-modalbox";
 
 import { Styles, Languages, Constants } from "@common";
-import { getProductImage } from "@app/Omni";
+//import { getProductImage } from "@app/Omni";
 import styles from "./ProductDetail_Style";
 
 class PhotoModal extends PureComponent {
@@ -37,14 +37,14 @@ class PhotoModal extends PureComponent {
           paginationStyle={{ zIndex: 9999, bottom: -15 }}>
           <ImageViewer
             imageUrls={product.images.map((image, index) => ({
-              url: getProductImage(image.src, Styles.width),
+              url: "https://firebasestorage.googleapis.com/v0/b/recomode-5ce47.appspot.com/o/Shirts%2FBDS1.png?alt=media&token=dd5e6824-2fd5-4da0-99a7-9b8353051207",
             }))}
             renderIndicator={() => <View />}
           />
         </Swiper>
 
         <TouchableOpacity style={styles.iconZoom} onPress={this.close}>
-          <Text style={styles.textClose}>{Languages.close}</Text>
+          <Text style={styles.textClose}>Close</Text>
         </TouchableOpacity>
       </Modal>
     );

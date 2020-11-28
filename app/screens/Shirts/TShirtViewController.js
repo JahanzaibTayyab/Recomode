@@ -40,6 +40,7 @@ function TShirtViewController(props) {
     const [liked, setLiked] = React.useState(false);
     const [counter, setCounter] = React.useState(-2);
     const [popularData, setPopularData] = React.useState(null);
+    const [showCompletButton, setShowCompleteButton] = React.useState(false)
     const [recentData, setRecentData] = React.useState([
         {
             id: 0,
@@ -121,8 +122,8 @@ function TShirtViewController(props) {
         return () => subscriber();
     }
     React.useEffect(() => {
-        // recomendationdata()
-        // populardataView()
+        recomendationdata()
+        populardataView()
     }, [])
     const handleIndexChange = (index) => {
         setSelectedIndex(index)
@@ -231,7 +232,6 @@ function TShirtViewController(props) {
                         isVisible={showComplateLookModal}
                         coverScreen={true}
                         onSwipeComplete={() => setComplateLookModal(false)}
-                        swipeDirection={['up', 'left', 'right', 'down']}
                         onBackButtonPress={() => setComplateLookModal(false)}
                         backdropColor={colors.bitblue}
                         backdropOpacity={0.5}
@@ -243,103 +243,120 @@ function TShirtViewController(props) {
                         backdropTransitionOutTiming={300}
                     >
                         <View style={styles.modelCard}>
-                            <View style={{ alignItems: "center" }}>
-                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
-                                    STEP 1
+                            <ScrollView>
+                                <View style={{ alignItems: "center" }}>
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
+                                        STEP 1
                                  <View>
-                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                    </View>
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
-                                    <View>
-                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                    </View>
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
-                                </Text>
-                            </View>
-                            <Image style={{
-                                width: "100%",
-                                height: 300,
-                                marginTop: 10
-                            }} source={{ uri: selectedItem.img }} resizeMode="contain" />
-                            <View style={{
-                                marginHorizontal: 25,
-                                marginBottom: 10,
-                                marginTop: 20,
-                            }}>
-                                <View style={styles.modelInner}>
-                                    <Image
-                                        source={{ uri: selectedItem.brandlogo }}
-                                        resizeMode="contain"
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: 10,
-                                            width: "80%",
-                                            height: 100,
-                                        }}
-                                    />
+                                            <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                        </View>
+                                        <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                        <View>
+                                            <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                        </View>
+                                        <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
+                                    </Text>
                                 </View>
-                                <TouchableWithoutFeedback
-                                    onPress={() => {
-                                        setLiked(!liked);
-                                    }}
-                                >
-                                    <View style={styles.modrlHeart}>
-                                        <AIcon
-                                            name='favorite'
-                                            size={25}
-                                            color={liked ? 'red' : 'white'}
-                                        >
-                                        </AIcon>
+                                <Image style={{
+                                    width: "100%",
+                                    height: 300,
+                                    marginTop: 10
+                                }} source={{ uri: selectedItem.img }} resizeMode="contain" />
+                                <View style={{
+                                    marginHorizontal: 25,
+                                    marginBottom: 10,
+                                    marginTop: 20,
+                                }}>
+                                    <View style={styles.modelInner}>
+                                        <Image
+                                            source={{ uri: selectedItem.brandlogo }}
+                                            resizeMode="contain"
+                                            style={{
+                                                position: 'absolute',
+                                                bottom: 10,
+                                                width: "80%",
+                                                height: 100,
+                                            }}
+                                        />
                                     </View>
-                                </TouchableWithoutFeedback>
-                                <Text style={{
-                                    marginBottom: 5,
-                                    fontFamily: FONT_SEMIBOLD,
-                                    color: colors.bitblue
-                                }} numberOfLines={1}>
-                                    {selectedItem.name}
-                                </Text>
-                                <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
-                                    {selectedItem.type}
-                                </Text>
-                                <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
-                                    <View style={{ flexDirection: 'row', }}>
-                                        <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
-                                        <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.size}</Text>
-                                    </View>
-                                    <View style={{ flexDirection: 'row', }}>
-                                        <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
-                                        <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.color }]}>
+                                    <TouchableWithoutFeedback
+                                        onPress={() => {
+                                            setLiked(!liked);
+                                        }}
+                                    >
+                                        <View style={styles.modrlHeart}>
+                                            <AIcon
+                                                name='favorite'
+                                                size={25}
+                                                color={liked ? 'red' : 'white'}
+                                            >
+                                            </AIcon>
+                                        </View>
+                                    </TouchableWithoutFeedback>
+                                    <Text style={{
+                                        marginBottom: 5,
+                                        fontFamily: FONT_SEMIBOLD,
+                                        color: colors.bitblue
+                                    }} numberOfLines={1}>
+                                        {selectedItem.name}
+                                    </Text>
+                                    <Text style={{ fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333" }} numberOfLines={2}>
+                                        {selectedItem.type}
+                                    </Text>
+                                    <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: "space-between" }}>
+                                        <View style={{ flexDirection: 'row', }}>
+                                            <Text style={{ fontFamily: FONT_SEMIBOLD }}>Size:</Text>
+                                            <Text style={{ fontFamily: FONT_MEDIUM, marginHorizontal: 10, color: colors.bitblue }}>{selectedItem.size}</Text>
+                                        </View>
+                                        <View style={{ flexDirection: 'row', }}>
+                                            <Text style={{ fontFamily: FONT_SEMIBOLD, marginHorizontal: 10 }}>Color:</Text>
+                                            <View style={[{ width: 30, height: 20, borderRadius: 5 }, { backgroundColor: selectedItem.color }]}>
+                                            </View>
                                         </View>
                                     </View>
+                                    <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
+                                        <FeatherIcons name="heart" />
+                                        <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>{selectedItem.like}</Text>
+                                    </View>
+                                    <ScrollView style={{ height: 30, marginTop: 5, }}>
+                                        <Text
+                                            numberOfLines={2}
+                                            style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{selectedItem.description}</Text>
+                                    </ScrollView>
+                                    <View style={{ alignItems: "center", marginTop: -15, }}>
+                                        <Button
+                                            title="Add to Cart"
+                                            titlecolor="white"
+                                            width="60%"
+                                            onPress={() => {
+                                                setComplateLookModal(false)
+                                                //setActivityIndicator(!showActivityIndicator)
+                                                const color = selectedItem.color
+                                                console.log("color", color)
+                                                setTimeout(function () {
+                                                    props.navigation.navigate("Pant", { color })
+                                                }, 700)
+                                                // props.navigation.navigate("Pant")
+                                            }}
+                                        />
+                                        <Button
+                                            title="Complete Look"
+                                            titlecolor="white"
+                                            width="60%"
+                                            onPress={() => {
+                                                setComplateLookModal(false)
+                                                //setActivityIndicator(!showActivityIndicator)
+                                                const color = selectedItem.color
+                                                console.log("color", color)
+                                                setTimeout(function () {
+                                                    props.navigation.navigate("Pant", { color })
+                                                }, 700)
+                                                // props.navigation.navigate("Pant")
+                                            }}
+                                        />
+                                    </View>
                                 </View>
-                                <View style={{ flexDirection: 'row', marginHorizontal: 5, marginTop: 5, }}>
-                                    <FeatherIcons name="heart" />
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 12, marginHorizontal: 10, }}>{selectedItem.like}</Text>
-                                </View>
-                                <ScrollView style={{ height: 30, marginTop: 5, }}>
-                                    <Text
-                                        numberOfLines={2}
-                                        style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{selectedItem.description}</Text>
-                                </ScrollView>
-                                <View style={{ alignItems: "center", marginTop: -15, }}>
-                                    <Button
-                                        title="Complete Look"
-                                        titlecolor="white"
-                                        width="60%"
-                                        onPress={() => {
-                                            setComplateLookModal(false)
-                                            //setActivityIndicator(!showActivityIndicator)
-                                            const color = selectedItem.color
-                                            console.log("color", color)
-                                            setTimeout(function () {
-                                                props.navigation.navigate("Pant", { color })
-                                            }, 700)
-                                            // props.navigation.navigate("Pant")
-                                        }}
-                                    />
-                                </View>
-                            </View>
+                            </ScrollView>
                         </View>
                     </Modal>
                 </View>}

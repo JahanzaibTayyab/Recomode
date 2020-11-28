@@ -12,7 +12,6 @@ import {
 import styles from "./ReviewItem_Style.js";
 import Rating from "@components/Rating";
 import moment from "moment";
-import { Constants } from "@common";
 
 export default class ReviewItem extends Component {
   render() {

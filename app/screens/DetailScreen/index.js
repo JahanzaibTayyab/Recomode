@@ -253,7 +253,7 @@ class Detail extends PureComponent {
             (item) =>
               item.name.toUpperCase() === selectAttribute.name.toUpperCase() &&
               item.option.toUpperCase() ===
-                selectAttribute.selectedOption.toUpperCase()
+              selectAttribute.selectedOption.toUpperCase()
           );
           if (isMatch !== undefined) {
             matchCount += 1;
@@ -306,9 +306,7 @@ class Detail extends PureComponent {
           }}>
           <TouchableOpacity activeOpacity={1} onPress={this.openPhoto}>
             <Animated.Image
-              source={{
-                uri: getProductImage(this.state.selectedImage, Styles.width),
-              }}
+              source={require("../../assets/images/userprofile.jpg")}
               style={[
                 styles.imageProduct,
                 { transform: [{ scale: imageScale }] },
@@ -331,7 +329,7 @@ class Detail extends PureComponent {
               key={index}
               onPress={this.openPhoto}>
               <Animated.Image
-                source={{ uri: getProductImage(item.src, Styles.width) }}
+                source={require("../../assets/images/userprofile.jpg")}
                 style={[
                   styles.imageProduct,
                   { transform: [{ scale: imageScale }] },
@@ -496,7 +494,7 @@ class Detail extends PureComponent {
       get(product, "stock_status") !== "instock" ||
       (get(product, "manage_stock")
         ? get(product, "stock_quantity") < this.inCartTotal ||
-          get(product, "stock_quantity") < 1
+        get(product, "stock_quantity") < 1
         : false)
     );
   };
@@ -669,10 +667,10 @@ class Detail extends PureComponent {
                 ]}>
                 {attribute.name.toLowerCase() !==
                   Constants.productAttributeColor.toLowerCase() && (
-                  <View style={{ width: width * 0.85 }}>
-                    {this.renderDropdown(attribute)}
-                  </View>
-                )}
+                    <View style={{ width: width * 0.85 }}>
+                      {this.renderDropdown(attribute)}
+                    </View>
+                  )}
               </View>
             ))}
         </View>

@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 14,
     fontFamily: FONT_MEDIUM,
-    marginBottom: 18,
     lineHeight: 16,
     color: colors.COLOR_BORDER,
     textAlign: 'center',
