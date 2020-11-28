@@ -44,17 +44,18 @@ export default function App() {
 
   };
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setHideSplash(true);
+  //   }, 5000); // amount of time the splash is shown from the time component is rendered
+  // }, []);
   useEffect(() => {
-    setTimeout(() => {
-      setHideSplash(true);
-    }, 5000); // amount of time the splash is shown from the time component is rendered
+    // if (!hideSplash) {
+    //   restoreUser()
+    // }
+    // hideSplash && 
+    SplashScreen.hide();
   }, []);
-  useEffect(() => {
-    if (!hideSplash) {
-      restoreUser()
-    }
-    hideSplash && SplashScreen.hide();
-  }, [hideSplash]);
 
 
 
