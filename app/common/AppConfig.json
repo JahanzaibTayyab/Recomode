@@ -1,0 +1,36 @@
+{
+  "HorizonLayout": [
+    {
+      "layout": "circleCategory"
+    },
+    {
+      "layout": "bannerHigh",
+      "tag": 273
+    },
+    {
+      "imageBanner": "https://mstore.io/wp-content/uploads/2017/06/man-large.png",
+      "layout": "bannerImage",
+      "height": 140,
+      "category": 18
+    },
+    {
+      "imageBanner": "https://mstore.io/wp-content/uploads/2017/11/woman-large.png",
+      "layout": "bannerImage",
+      "height": 140,
+      "category": 22
+    },
+    {
+      "name": "featureProducts",
+      "image": "",
+      "layout": "threeColumn",
+      "category": 21
+    },
+    {
+      "name": "bagsCollections",
+      "image": "",
+      "layout": "twoColumn",
+      "category": 23
+    }
+  ],
+  "MainColor": "#3FC1BE"
+}

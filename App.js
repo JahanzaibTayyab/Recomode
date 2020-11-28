@@ -29,6 +29,8 @@ import Header from './app/components/Header';
 import ShoesScreen from "./app/screens/Shoes/NokeShoesViewController"
 import authStorage from "./app/auth/storage";
 import ShoesNavigation from "./app/navigation/ShoesNavigation"
+import Nav from './app/components/Nav';
+import Profile from "./app/screens/Profile"
 
 console.disableYellowBox = true
 
@@ -77,7 +79,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setUser }}>
       <OfflineNotice />
       <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <AuthNavigator />}
+        {user ? <HomeNavigation /> : <HomeNavigation />}
       </NavigationContainer>
     </AuthContext.Provider>
   );

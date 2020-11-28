@@ -121,8 +121,8 @@ function TShirtViewController(props) {
         return () => subscriber();
     }
     React.useEffect(() => {
-        recomendationdata()
-        populardataView()
+        // recomendationdata()
+        // populardataView()
     }, [])
     const handleIndexChange = (index) => {
         setSelectedIndex(index)
