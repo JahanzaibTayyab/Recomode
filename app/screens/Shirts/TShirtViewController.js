@@ -243,20 +243,26 @@ function TShirtViewController(props) {
                         backdropTransitionOutTiming={300}
                     >
                         <View style={styles.modelCard}>
-                            <ScrollView>
-                                <View style={{ alignItems: "center" }}>
-                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
-                                        STEP 1
+                            <TouchableOpacity
+                                style={{ marginHorizontal: 10, marginTop: 10 }}
+                                onPress={() => setComplateLookModal(false)}
+                            >
+                                <Image source={require("../../images/icons/icon-backs.png")} resizeMode="contain" style={{ width: 25 }} />
+                            </TouchableOpacity>
+                            <View style={{ alignItems: "center", marginTop: -20, }}>
+                                <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.primary }}>
+                                    STEP 1
                                  <View>
-                                            <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                        </View>
-                                        <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
-                                        <View>
-                                            <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
-                                        </View>
-                                        <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
-                                    </Text>
-                                </View>
+                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                    </View>
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 2</Text>
+                                    <View>
+                                        <Text style={{ color: colors.lightGrey }}>{' '} _ </Text>
+                                    </View>
+                                    <Text style={{ fontFamily: FONT_LIGHT, fontSize: 8, color: colors.lightGrey }}> {''} STEP 3</Text>
+                                </Text>
+                            </View>
+                            <ScrollView>
                                 <Image style={{
                                     width: "100%",
                                     height: 300,
@@ -323,26 +329,28 @@ function TShirtViewController(props) {
                                             numberOfLines={2}
                                             style={{ fontFamily: FONT_LIGHT, fontSize: 12 }}>{selectedItem.description}</Text>
                                     </ScrollView>
-                                    <View style={{ alignItems: "center", marginTop: -15, }}>
+                                    <View style={{ marginTop: -15, flexDirection: "row", }}>
                                         <Button
                                             title="Add to Cart"
                                             titlecolor="white"
-                                            width="60%"
+                                            buttoncolor="bitblue"
+                                            fontFamily={FONT_Regular}
+                                            width="50%"
                                             onPress={() => {
-                                                setComplateLookModal(false)
-                                                //setActivityIndicator(!showActivityIndicator)
-                                                const color = selectedItem.color
-                                                console.log("color", color)
-                                                setTimeout(function () {
-                                                    props.navigation.navigate("Pant", { color })
-                                                }, 700)
-                                                // props.navigation.navigate("Pant")
+                                                // setComplateLookModal(false)
+                                                // const color = selectedItem.color
+                                                // console.log("color", color)
+                                                // setTimeout(function () {
+                                                //     props.navigation.navigate("Pant", { color })
+                                                // }, 700)
+                                                console.log("Add to cart")
                                             }}
                                         />
                                         <Button
                                             title="Complete Look"
                                             titlecolor="white"
-                                            width="60%"
+                                            fontFamily={FONT_Regular}
+                                            width="50%"
                                             onPress={() => {
                                                 setComplateLookModal(false)
                                                 //setActivityIndicator(!showActivityIndicator)

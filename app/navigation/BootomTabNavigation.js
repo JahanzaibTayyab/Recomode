@@ -9,6 +9,7 @@ import ShirtNavigation from './ShirtsNavigation';
 import PantNavigation from './PantsNavigation';
 import ShoesNavigation from "./ShoesNavigation"
 import ProfileScreen from "../screens/Profile"
+import WishListScreen from "../screens/WishList/WishListInfo"
 import { FONT_Regular, FONT_LIGHT } from "../config/Constant"
 import CartInfo from "../screens/Cart/CartInfo"
 import CameraClickButton from './CamerClickButton';
@@ -16,6 +17,7 @@ import CameraClickButton from './CamerClickButton';
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
+const AccountStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator
         initialRouteName={"Shirt"}
@@ -37,6 +39,16 @@ const CartStackScreen = ({ navigation }) => (
         <CartStack.Screen name="Cart" component={CartInfo}
             options={{ headerShown: false }} />
     </CartStack.Navigator>
+);
+const AccountStackScreen = ({ navigation }) => (
+    <AccountStack.Navigator
+        initialRouteName={"Profile"}
+    >
+        <AccountStack.Screen name="Profile" component={ProfileScreen}
+            options={{ headerShown: false }} />
+        <AccountStack.Screen name="WishList" component={WishListScreen}
+            options={{ headerShown: false }} />
+    </AccountStack.Navigator>
 );
 
 const Tab = createBottomTabNavigator();
@@ -109,7 +121,7 @@ export default function BootomTabNavigation() {
                 })}
             />
             <Tab.Screen
-                name="Profile"
+                name="Cart"
                 component={CartStackScreen}
                 options={{
                     tabBarLabel: '',
@@ -126,7 +138,7 @@ export default function BootomTabNavigation() {
             />
             <Tab.Screen
                 name="UserProfile"
-                component={ProfileScreen}
+                component={AccountStackScreen}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ focused }) => (

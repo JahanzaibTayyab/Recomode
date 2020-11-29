@@ -68,6 +68,23 @@ function SettingsScreen(props) {
           <InfoText text="Account" />
           <View>
             <ListItem
+              // chevron
+              title="WishList"
+              rightTitleStyle={{ fontSize: 15 }}
+              onPress={() => props.navigation.navigate("WishList")}
+              containerStyle={styles.listItemContainer}
+              leftIcon={
+                <BaseIcon
+                  containerStyle={{ backgroundColor: '#FAD291' }}
+                  icon={{
+                    type: 'font-awesome',
+                    name: 'heart',
+                  }}
+                />
+              }
+              rightIcon={<Chevron />}
+            />
+            <ListItem
               hideChevron
               title="Push Notifications"
               containerStyle={styles.listItemContainer}

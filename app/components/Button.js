@@ -10,12 +10,14 @@ function AppButton({
   buttoncolor = 'primary',
   titlecolor = 'bitblue',
   width = '100%',
+  fontFamily = FONT_SEMIBOLD,
+  fontSize = 15
 }) {
   return (
     <TouchableOpacity
       style={[styles.button, { backgroundColor: colors[buttoncolor] }, { width }]}
       onPress={onPress}>
-      <Text style={[styles.text, { color: colors[titlecolor] }]}>{title}</Text>
+      <Text style={[styles.text, { color: colors[titlecolor] }, { fontFamily, fontSize }]}>{title}</Text>
     </TouchableOpacity>
   );
 }
@@ -31,8 +33,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.bitblue,
-    fontSize: 15,
-    fontFamily: FONT_SEMIBOLD,
+    // fontSize: 15,
+    // fontFamily: FONT_SEMIBOLD,
     //textTransform: "uppercase",
     //fontWeight: "bold",
   },
