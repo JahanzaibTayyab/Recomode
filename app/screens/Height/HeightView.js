@@ -12,6 +12,8 @@ import routes from '../../navigation/routes';
 import HomeActivityIndicator from "../../components/HomeActivityIndicator"
 import ShirtColors from './../../api/ShirtColors';
 import useAuth from "../../auth/useAuth";
+import localStorage from "../../auth/storage"
+import constants from "../../assets/stylesheet/Constants"
 
 
 function HeightView(props) {
@@ -25,9 +27,20 @@ function HeightView(props) {
   const weight = props.route.params.weightValue;
   const userData = props.route.params.userdata
   const apiAuth = useAuth();
+  const [isGuest, setIsGuest] = useState(false)
+
+  const checkIfUserGuesstOrNot = () => {
+    localStorage.getKeyFromUserDefaults(constants.KEY_USER_GUEST).then((value) => {
+      console.log(value)
+      if (value) {
+        setIsGuest(true)
+      }
+    });
+  }
   useEffect(() => {
+    checkIfUserGuesstOrNot()
     selection(6.0, 180)
-  }); //Pass Array as second argument
+  }, []); //Pass Array as second argument
 
   //5.1
   const height_5_1 = (weight) => {
@@ -477,19 +490,24 @@ function HeightView(props) {
     }
   }
 
+  const saveGuest = async (imgurl) => {
+    console.log("Guest User")
+    userData.imageUrl = imgurl
+    userData.shirtColors = ShirtColors(userData.skinColor)
+    apiAuth.logIn(constants.KEY_USERINFO, userData)
+    setActivityIndicator(false)
+  }
   const addUser = async (imgurl) => {
     userData.imageUrl = imgurl
     firestore().collection('users').doc(userData.id).update(userData).then(() => {
       userData.shirtColors = ShirtColors(userData.skinColor)
       console.log(userData)
-      apiAuth.logIn(userData)
+      apiAuth.logIn(constants.KEY_USERINFO, userData)
       setActivityIndicator(false)
     }
     )
   }
-
   const uploadImage = async () => {
-    console.log("Yha aya ")
     setActivityIndicator(true)
     const { imageUrl } = userData;
     const filename = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
@@ -502,7 +520,7 @@ function HeightView(props) {
     task.then(async () => {
       const ref = storage().ref(filename);
       const url = await ref.getDownloadURL();
-      addUser(url)
+      { isGuest ? saveGuest(url) : addUser(url) }
       console.log(url)
     })
     try {

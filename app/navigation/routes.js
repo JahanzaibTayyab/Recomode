@@ -13,4 +13,6 @@ export default Object.freeze({
   USERDETAILATTRIBUTES: 'UserDetailAttributes',
   USERHEIGHTANDWEIGHT: 'UserHeightAndWeight',
   HEIGHT: 'Height',
+  WISHLIST: 'WishList',
+  PROFILE: 'Profile'
 });

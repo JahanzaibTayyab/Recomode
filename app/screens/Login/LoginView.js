@@ -30,6 +30,7 @@ import auth from '@react-native-firebase/auth';
 import ActivityIndicator from "../../components/ActivityIndicator"
 import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
 import useAuth from "../../auth/useAuth";
+import constants from './../../assets/stylesheet/Constants';
 
 const validationSchema = yup.object().shape({
   email: yup.string().required().email().label('Email'),
@@ -63,7 +64,7 @@ function LoginView(props) {
         }
         const user = firestoreDocument.data()
         user.shirtColors = ShirtColors(user.skinColor)
-        StorageAuth.logIn(user)
+        StorageAuth.logIn(constants.KEY_USERINFO, userData)
         console.log(user)
 
       })

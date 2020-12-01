@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT_Regular,
     fontSize: 12
   },
-  userName: { fontFamily: FONT_SEMIBOLD, fontSize: 18, alignSelf: "center", textAlign: "center" },
+  userName: { fontFamily: FONT_SEMIBOLD, fontSize: 18, alignSelf: "center", textAlign: "center", color: "black" },
   userEmail: {
     alignSelf: 'center',
     fontFamily: FONT_LIGHT,

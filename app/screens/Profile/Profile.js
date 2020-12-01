@@ -9,6 +9,7 @@ import InfoText from './InfoText'
 import Nav from '../../components/Nav'
 import { FONT_MEDIUM, FONT_SEMIBOLD, FONT_BOLD, FONT_Regular } from "../../config/Constant"
 import colors from '../../config/colors'
+import routes from "../../navigation/routes"
 const styles = StyleSheet.create({
   scroll: {
     backgroundColor: 'white',
@@ -31,9 +32,10 @@ const styles = StyleSheet.create({
     borderColor: '#ECECEC',
   },
 })
-
+import useAuth from "../../auth/useAuth";
 function SettingsScreen(props) {
   const [value, setValue] = React.useState(true)
+  const { user, logOut } = useAuth();
   return (
     <>
       <View style={{ flex: 1 }}>
@@ -44,11 +46,11 @@ function SettingsScreen(props) {
               <Avatar
                 rounded
                 size="large"
-                source={require("../../assets/images/userprofile.jpg")}
+                source={{ uri: user.imageUrl }}
               />
             </View>
             <View style={{ marginHorizontal: 10, }}>
-              <Text style={{ fontSize: 30, color: "black", fontFamily: FONT_BOLD }}>Jahanzaib</Text>
+              <Text style={{ fontSize: 30, color: "black", fontFamily: FONT_BOLD }}>{user.fullName}</Text>
               <Text
                 style={{
                   color: colors.medium,
@@ -56,13 +58,13 @@ function SettingsScreen(props) {
                   fontFamily: FONT_SEMIBOLD,
                 }}
               >
-                jtayyab204@gmail.com
-            </Text>
-              <TouchableOpacity style={{ marginTop: 10, }}
-                onPress={() => console.log("Login Press from User")}
+                {user.email}
+              </Text>
+              {user.email === '' ? <TouchableOpacity style={{ marginTop: 10, }}
+                onPress={() => props.navigation.navigate(routes.LOGIN)}
               >
                 <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 12, color: colors.COLOR_FILLED }}>Login</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> : null}
             </View>
           </View>
           <InfoText text="Account" />
@@ -71,7 +73,7 @@ function SettingsScreen(props) {
               // chevron
               title="WishList"
               rightTitleStyle={{ fontSize: 15 }}
-              onPress={() => props.navigation.navigate("WishList")}
+              onPress={() => props.navigation.navigate(routes.WISHLIST)}
               containerStyle={styles.listItemContainer}
               leftIcon={
                 <BaseIcon

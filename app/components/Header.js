@@ -16,21 +16,21 @@ export default function Header({ topBar, marginBottom = 10, showUserInfo, naviga
                         style={{ marginTop: 20 }}
                         onPress={() => navigation.openDrawer()}
                     >
-                        <FeatherIcons name='menu' color={colors.bitblue} size={25} />
+                        <Image source={require("../images/icons/icon-homes.png")} style={{}} resizeMode="contain" />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{ marginTop: 20, marginLeft: 200, }}
                     >
                         <MaterialIcons name='notifications-none' size={25} color={colors.bitblue} />
                     </TouchableOpacity>
-                    {/* <View style={[styles.ImageContainer, { marginBottom: 0 }]}>
+                    <View style={[styles.ImageContainer, { marginBottom: 0 }]}>
                         <Avatar.Image size={35} source={{ uri: user.imageUrl }} style={{ marginTop: 20, }} />
-                    </View> */}
+                    </View>
                 </View>
                 <View style={{ marginHorizontal: 20, marginTop: -25, }}>
                     <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>Nov 19, 2020</Text>
                     <Text style={styles.text}>Have a nice day,</Text>
-                    {/* <Text style={styles.text}>{user.fullName} !</Text> */}
+                    <Text style={styles.text}>{user.fullName} !</Text>
                 </View>
                 <View style={[styles.textContainer, { marginBottom: 0 }]}>
                     <TextInput
@@ -53,16 +53,16 @@ export default function Header({ topBar, marginBottom = 10, showUserInfo, naviga
                             style={{ marginTop: 20 }}
                             onPress={() => navigation.openDrawer()}
                         >
-                            <FeatherIcons name='menu' color={colors.bitblue} size={25} />
+                            <Image source={require("../images/icons/icon-homes.png")} style={{}} resizeMode="contain" />
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={{ marginTop: 20, marginLeft: 200, }}
                         >
                             <MaterialIcons name='notifications-none' size={25} color={colors.bitblue} />
                         </TouchableOpacity>
-                        {/* <View style={[styles.ImageContainer, { marginBottom }]}>
+                        <View style={[styles.ImageContainer, { marginBottom }]}>
                             <Avatar.Image size={35} source={{ uri: user.imageUrl }} style={{ marginTop: 20, }} />
-                        </View> */}
+                        </View>
                     </View>
                     <View style={styles.textContainer}>
                         <TextInput

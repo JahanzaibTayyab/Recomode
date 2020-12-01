@@ -31,6 +31,7 @@ import authStorage from "./app/auth/storage";
 import ShoesNavigation from "./app/navigation/ShoesNavigation"
 import Nav from './app/components/Nav';
 import Profile from "./app/screens/Profile"
+import constants from "./app/assets/stylesheet/Constants"
 
 console.disableYellowBox = true
 
@@ -40,10 +41,12 @@ export default function App() {
   const [hideSplash, setHideSplash] = React.useState(false)
 
   const restoreUser = async () => {
-    await authStorage.getUser().then((user1) => {
-      setUser(user1)
+    await authStorage.getJSONFromUserDefaults(constants.KEY_USERINFO).then((value) => {
+      console.log(JSON.stringify(value))
+      if (value) {
+        setUser(value)
+      }
     })
-
   };
 
   useEffect(() => {

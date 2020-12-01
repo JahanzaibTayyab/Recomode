@@ -24,6 +24,9 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import ActivityIndicator from "../../components/ActivityIndicator"
 import { FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_BOLD } from "../../config/Constant"
+import constants from './../../assets/stylesheet/Constants';
+import localStorage from "../../auth/storage"
+import useAuth from "../../auth/useAuth";
 
 
 const validationSchema = yup.object().shape({
@@ -39,13 +42,30 @@ function RegisterView(props) {
   const [push, setpush] = useState(false);
   const [showActivityIndicator, setActivityIndicator] = useState(false);
   const [showPopUp, setPopUp] = useState(false);
-
+  const [isGuest, setIsGuest] = useState(false)
+  const [data, setData] = useState(null)
+  const StorageAuth = useAuth();
+  const checkIfUserGuesstOrNot = () => {
+    localStorage.getKeyFromUserDefaults(constants.KEY_USER_GUEST).then((value) => {
+      console.log(value)
+      if (value) {
+        setIsGuest(true)
+        localStorage.getJSONFromUserDefaults(constants.KEY_USERINFO).then((user) => {
+          if (user) {
+            setData(user)
+          }
+        })
+      }
+    });
+  }
   const _changeIcon = () => {
     icon !== 'eye-off-outline'
       ? (setIcon('eye-off-outline'), setHidePassword(true))
       : (setIcon('eye-outline'), setHidePassword(false));
   };
-
+  React.useEffect(() => {
+    checkIfUserGuesstOrNot()
+  }, []); //Pass Array as second argument
   const handleSubmit = async (data, id) => {
     const userData = data;
     await firestore().collection('users').doc(id).set(data).then((response) => {
@@ -59,7 +79,24 @@ function RegisterView(props) {
       alert(error)
     })
   };
+  const dataUpdateFromGuestToRegister = () => {
+    setData({
+      ...data,
+      id: userid,
+      email: email,
+      fullName: name
+    })
+    localStorage.removeToken(constants.KEY_USER_GUEST)
+    localStorage.removeToken(constants.KEY_USERINFO)
+    localStorage.saveJSONInUserDefaults(constants.KEY_USER_EMAIL, email)
+    StorageAuth.logIn(constants.KEY_USERINFO, userData)
+  }
+  const guestUserForward = (email, name, userid) => {
+    {
+      data != null ? dataUpdateFromGuestToRegister : null
+    }
 
+  }
   const registerPress = async ({ email, password, name }) => {
     setActivityIndicator(true)
     await auth().createUserWithEmailAndPassword(email, password)
@@ -70,7 +107,7 @@ function RegisterView(props) {
           fullName: name
         };
         console.log(data)
-        handleSubmit(data, userid)
+        { isGuest ? guestUserForward(email, name, userid) : handleSubmit(data, userid) }
       })
       .catch((error) => {
         alert(error)

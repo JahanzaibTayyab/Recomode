@@ -8,35 +8,30 @@ import routes from '../../navigation/routes';
 import { ic_logo, ic_imagebackgroud } from "../../screens/helper/constants"
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-
+import useAuth from './../../auth/useAuth';
+import constants from "../../assets/stylesheet/Constants"
+import { constant } from 'lodash';
 const { width } = Dimensions.get('window');
 
 function WelcomeView(props) {
+  const authFromLocal = useAuth()
   const picture = {
     uri: require('../../assets/images/lgs.jpg'),
     width: 1080,
     height: 1230,
   };
-  const handleSubmit = async (data, id) => {
-    const userData = data;
-    await firestore().collection('users').doc(id).set(data).then((response) => {
-      userData['id'] = id;
-      props.navigation.navigate(routes.TAKEIMAGE, { userData });
-    }).catch((error) => {
-      alert(error)
-    })
-  };
   const gussesUser = () => {
     auth()
       .signInAnonymously()
-      .then((response) => {
-        const userid = response.user.uid
-        const data = {
+      .then((responce) => {
+        const id = responce.user.uid
+        authFromLocal.guesetUser(constants.KEY_USER_GUEST, "guest")
+        const userData = {
+          id: id,
           email: "",
           fullName: "Guest User"
-        };
-        console.log(data)
-        handleSubmit(data, userid)
+        }
+        props.navigation.navigate(routes.TAKEIMAGE, { userData });
       })
       .catch(error => {
         if (error.code === 'auth/operation-not-allowed') {
@@ -63,14 +58,6 @@ function WelcomeView(props) {
             </View>
 
           </ImageBackground>
-          {/* <Image
-            source={picture.uri}
-            resizeMode="contain"
-            style={{
-              width: width - 75,
-              height: ((width - 75) * picture.height) / picture.width,
-            }}
-          /> */}
         </Animated.View>
       </Animated.View>
       <View style={styles.footer}>

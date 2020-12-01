@@ -11,7 +11,7 @@ function CameraClickButton({ onPress }) {
         <MaterialCommunityIcons
           name="camera"
           color={colors.white}
-          size={35}
+          size={32}
         />
       </View>
     </TouchableOpacity>
@@ -23,12 +23,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.primary,
     borderColor: colors.white,
-    borderRadius: 40,
+    borderRadius: 30,
     borderWidth: 10,
-    bottom: 30,
-    height: 70,
+    bottom: 10,
+    height: 60,
     justifyContent: "center",
-    width: 70,
+    width: 60,
   },
 });
 

@@ -1,58 +1,66 @@
-import AsyncStore from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-community/async-storage";
 
 
-const key = "8ba790f3-5acd-4a08-bc6a-97a36c124f29";
-const key2 = "@MySuperStore:key2";
-
-const storeUser = async (userinfo) => {
-  console.log("User Info Call")
+const saveKeyInUserDefaults = async (key, value) => {
   try {
-    await AsyncStore.setItem(key2, JSON.stringify(userinfo))
+    await AsyncStorage.setItem(key, value);
   } catch (error) {
-    console.log("Error storing the UserToken token", error);
+    alert(error)
+    console.log('Error saving data' + error);
   }
-};
-const getUserInfo = async () => {
-  try {
-    return await AsyncStore.getItem(key2);
-  } catch (error) {
-    console.log("Error getting the auth token", error);
-  }
-};
-const removeUser = async () => {
-  try {
-    await AsyncStore.removeItem(key2);
-  } catch (error) {
-    console.log("Error removing the auth token", error);
-  };
 }
-const storeToken = async (authToken) => {
+const getKeyFromUserDefaults = async (key) => {
   try {
-    await AsyncStore.setItem(key, authToken)
+    const value = await AsyncStorage.getItem(key)
+    return value
   } catch (error) {
-    console.log("Error storing the auth token", error);
+    alert(error)
+    console.log('Error saving data' + error);
   }
-};
-const getToken = async () => {
+}
+const saveJSONInUserDefaults = async (key, value) => {
   try {
-    return await AsyncStore.getItem(key);
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem(key, jsonValue)
   } catch (error) {
-    console.log("Error getting the auth token", error);
+    error(error)
+    console.log('Error saving data' + error);
   }
-};
-const getUser = async () => {
-  const token = await getToken();
-  const userinfo = await getUserInfo()
-  return userinfo
-};
-
-const removeToken = async () => {
+}
+const getJSONFromUserDefaults = async (key) => {
   try {
-    await AsyncStore.removeItem(key);
+    const jsonValue = await AsyncStorage.getItem(key)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    alert(e)
+    console.log('Error saving data' + e);
+  }
+}
+const saveJSONInOrderDefaults = async (key, value) => {
+  try {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem(key, jsonValue)
+  } catch (error) {
+    error(error)
+    console.log('Error saving data' + error);
+  }
+}
+const getJSONFromOrderDefaults = async (key) => {
+  try {
+    const jsonValue = await AsyncStorage.getItem(key)
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    alert(e)
+    console.log('Error saving data' + e);
+  }
+}
+const removeToken = async (key) => {
+  try {
+    await AsyncStorage.removeItem(key);
   } catch (error) {
     console.log("Error removing the auth token", error);
   };
 
 };
 
-export default { getToken, getUser, removeToken, storeToken, storeUser, getUserInfo, removeUser };
+export default { saveKeyInUserDefaults, getKeyFromUserDefaults, removeToken, saveJSONInUserDefaults, getJSONFromUserDefaults, saveJSONInOrderDefaults, getJSONFromOrderDefaults };

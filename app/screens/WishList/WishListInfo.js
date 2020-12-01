@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, FlatList, ScrollView, Image, TouchableOpacity } from 'react-native'
 import EmptyCart from "./Empty"
 import Nav from "../../components/Nav"
-import WishList from "../../components/WishList"
 import Button from "../../components/Button"
 import colors from "../../config/colors"
 import { FONT_BOLD, FONT_Regular, FONT_SEMIBOLD, FONT_LIGHT, FONT_MEDIUM } from '../../config/Constant';

@@ -23,7 +23,7 @@ const PaymentEmpty = (props) => {
         </View>
         <View style={{ marginTop: 20, alignItems: "center" }}>
           <Button title="Shop Now" width="50%" titlecolor="white" onPress={() => {
-            props.navigation.navigate("Feed")
+            props.navigation.navigate("Home")
           }} />
         </View>
       </View>

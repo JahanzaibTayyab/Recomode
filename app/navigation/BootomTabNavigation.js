@@ -13,7 +13,8 @@ import WishListScreen from "../screens/WishList/WishListInfo"
 import { FONT_Regular, FONT_LIGHT } from "../config/Constant"
 import CartInfo from "../screens/Cart/CartInfo"
 import CameraClickButton from './CamerClickButton';
-
+import CartIcon from "../components/CartIcon"
+import LoginScreen from '../screens/Login';
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -48,15 +49,17 @@ const AccountStackScreen = ({ navigation }) => (
             options={{ headerShown: false }} />
         <AccountStack.Screen name="WishList" component={WishListScreen}
             options={{ headerShown: false }} />
+        <AccountStack.Screen name="Login" component={LoginScreen}
+            options={{ headerShown: false }} />
     </AccountStack.Navigator>
 );
 
 const Tab = createBottomTabNavigator();
 
-export default function BootomTabNavigation() {
+export default function BootomTabNavigation(props) {
     return (
         <Tab.Navigator
-            initialRouteName="Feed"
+            initialRouteName="Home"
             tabBarOptions={{
                 activeTintColor: "#A3A3A3",
                 labelStyle: { fontFamily: FONT_Regular, fontSize: 8 },
@@ -70,7 +73,7 @@ export default function BootomTabNavigation() {
             }}
         >
             <Tab.Screen
-                name="Feed"
+                name="Home"
                 component={HomeStackScreen}
                 options={
                     {
@@ -126,13 +129,7 @@ export default function BootomTabNavigation() {
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={focused ? require("../images/icons/icon-cart.png") : require("../assets/icons/inactivecart.png")}
-                            style={{
-                                height: 22.22,
-                                width: 23.5
-                            }}
-                        />
+                        <CartIcon focused={focused} />
                     )
                 }}
             />
