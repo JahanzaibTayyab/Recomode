@@ -23,6 +23,7 @@ import Button from "../../components/Button"
 import FeatherIcons from 'react-native-vector-icons/Feather';
 import AIcon from 'react-native-vector-icons/MaterialIcons';
 import PantColors from './../../api/PantColors';
+import { FlatGrid } from 'react-native-super-grid';
 
 const wait = (timeout) => {
     return new Promise(resolve => {
@@ -77,7 +78,7 @@ function SlimFitPantViewController(props) {
             price: "186 RS",
         },
     ]);
-    const [dataSource, setDataSource] = React.useState(null)
+    const [dataSource, setDataSource] = React.useState([])
     const recomendationdata = () => {
         const subscriber = firestore()
             .collection('pants')
@@ -119,7 +120,7 @@ function SlimFitPantViewController(props) {
     }
     React.useEffect(() => {
         recomendationdata()
-        populardataView()
+        // populardataView()
     }, [])
     const handleIndexChange = (index) => {
         setSelectedIndex(index)
@@ -182,26 +183,26 @@ function SlimFitPantViewController(props) {
     }
     const renderRecomendationViwes = () => {
         return (
-            <FlatList
-                showsVerticalScrollIndicator={false}
+            <FlatGrid
+                itemDimension={130}
                 data={dataSource}
-                renderItem={({ item, index }) =>
-                    <>
-                        {index === 3 ? renderRecentViews() : null}
-                        <Card
-                            index={index}
-                            title={item.name}
-                            subTitle={item.brand}
-                            image={item.img}
-                            brandlogo={item.brandLogo}
-                            onPress={() => {
-                                setSelectedItem(item),
-                                    setComplateLookModal(true)
-                            }}
-                        />
-                    </>
-                }
-                keyExtractor={(item, index) => index.toString()}
+                style={{
+                    flex: 1,
+                }}
+                spacing={10}
+                renderItem={({ item, index }) => (
+                    <Card
+                        index={index}
+                        title={item.title}
+                        subTitle={item.brand}
+                        image={item.img}
+                        brandlogo={item.brandLogo}
+                        onPress={() => {
+                            setSelectedItem(item),
+                                setComplateLookModal(true)
+                        }}
+                    />
+                )}
             />
         )
     }
@@ -211,11 +212,11 @@ function SlimFitPantViewController(props) {
                 <ScrollView showsVerticalScrollIndicator={false}
                     onScrollToTop={() => console.log("yha")}
                 >
-                    <View style={{ backgroundColor: colors.white }}>
+                    {/* <View style={{ backgroundColor: colors.white }}>
                         <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
                     </View>
-                    {renderPopularViews()}
-                    <View style={{ marginBottom: 5, }}>
+                    {renderPopularViews()} */}
+                    <View style={{ marginBottom: 5, backgroundColor: "white" }}>
                         <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
                     </View>
                     {renderRecomendationViwes()}

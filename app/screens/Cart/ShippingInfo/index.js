@@ -27,11 +27,11 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
 
             if (data.permanentAddress != '' && data.shippingAddress != "" && data.city != '' && data.postalCode != '') {
                 //   var isUnique =   checkUserNameisUnique()
-                return true
+                return data
             }
             else {
                 alert("Incomplete Data Shipping", "Please fill all fields")
-                return false
+                return null
             }
         }
     }

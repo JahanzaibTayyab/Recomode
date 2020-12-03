@@ -79,21 +79,34 @@ function RegisterView(props) {
       alert(error)
     })
   };
-  const dataUpdateFromGuestToRegister = () => {
-    setData({
-      ...data,
-      id: userid,
-      email: email,
-      fullName: name
+  const dataUpdateFromGuestToRegister = (email, name, userid) => {
+    console.log(data)
+    let userInfo = {
+      "email": email,
+      "faceAttributes": data.faceAttributes,
+      "fullName": name,
+      "height": data.height,
+      "imageUrl": data.imageUrl,
+      "skinColor": data.skinColor,
+      "weight": data.weight,
+    }
+    console.log("********************************")
+    console.log(userInfo)
+    firestore().collection('users').doc(userid).set(userInfo).then(() => {
+      localStorage.removeToken(constants.KEY_USER_GUEST).then(() => {
+        localStorage.removeToken(constants.KEY_USERINFO).then(() => {
+          localStorage.saveKeyInUserDefaults(constants.KEY_USER_EMAIL, email).then(() => {
+            userInfo['shirtColors'] = data.shirtColors
+            StorageAuth.logIn(constants.KEY_USERINFO, userInfo)
+            setActivityIndicator(false)
+          })
+        })
+      })
     })
-    localStorage.removeToken(constants.KEY_USER_GUEST)
-    localStorage.removeToken(constants.KEY_USERINFO)
-    localStorage.saveJSONInUserDefaults(constants.KEY_USER_EMAIL, email)
-    StorageAuth.logIn(constants.KEY_USERINFO, userData)
   }
   const guestUserForward = (email, name, userid) => {
     {
-      data != null ? dataUpdateFromGuestToRegister : null
+      data != null ? dataUpdateFromGuestToRegister(email, name, userid) : null
     }
 
   }
@@ -111,6 +124,7 @@ function RegisterView(props) {
       })
       .catch((error) => {
         alert(error)
+        setActivityIndicator(false)
       });
   };
   return (

@@ -25,8 +25,9 @@ import styles from './styles'
 import AsyncStore from "@react-native-community/async-storage";
 const SliderScreen = ({ navigation }) => {
 
-    const [screen, setScreen] = React.useState(2);
+    const [screen, setScreen] = React.useState(0);
     const [showBottomView, setShowBottomView] = React.useState(true)
+    const [dataSourceParams, setDatSourParams] = React.useState({})
     const onB2Ref = React.useRef();
     const onB3Ref = React.useRef();
     const onB4Ref = React.useRef();
@@ -35,8 +36,6 @@ const SliderScreen = ({ navigation }) => {
     React.useEffect(() => {
         Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
         Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
-
-        // cleanup function
         return () => {
             Keyboard.removeListener("keyboardDidShow", _keyboardDidShow);
             Keyboard.removeListener("keyboardDidHide", _keyboardDidHide);
@@ -55,30 +54,42 @@ const SliderScreen = ({ navigation }) => {
     const onSwipePerformed = (action) => {
         switch (action) {
             case 'left': {
-                if (screen != constants.FIFTH_ONBOARDING_SCREEN) {
-                    if (screen === constants.SECOND_ONBOARDING_SCREEN) {
-                        let ok = onB2Ref.current.nextBtnTapped()
-                        if (ok) {
-                            setScreen(screen + 1)
-                        }
+                if (screen === 0) {
+                    let obj = onB2Ref.current.nextBtnTapped()
+                    console.log(obj)
+                    if (obj) {
+                        setDatSourParams(obj)
+                        setScreen(screen + 1)
                     }
-                    else if (screen === constants.THIRD_ONBOARDING_SCREEN) {
-                        let ok = onB3Ref.current.nextBtnTapped()
-                        if (ok) {
-                            setScreen(screen + 1)
-                        }
+                    console.log("from Screen  awipe 2")
+                    console.log(dataSourceParams)
+                }
+                else if (screen === 1) {
+                    let obj = onB3Ref.current.nextBtnTapped()
+                    console.log(obj)
+                    if (obj) {
+                        setDatSourParams(obj)
+                        setScreen(screen + 1)
                     }
-                    else if (screen === constants.FOURTH_ONBOARDING_SCREEN) {
-                        let ok = onB4Ref.current.nextBtnTapped()
-                        if (ok) {
-                            setScreen(screen + 1)
-                        }
+                    console.log("from Screen  awipe 3")
+                    console.log(dataSourceParams)
+                }
+                else if (screen === 2) {
+                    let obj = onB4Ref.current.nextBtnTapped()
+                    console.log(obj)
+                    if (obj) {
+                        setDatSourParams(obj)
+                        setScreen(screen + 1)
                     }
-                    else if (screen === constants.FIFTH_ONBOARDING_SCREEN) {
-                        let ok = onB5Ref.current.nextBtnTapped()
-                        if (ok) {
-                            setScreen(screen + 1)
-                        }
+                    console.log("from Screen  awipe 4")
+                    console.log(dataSourceParams)
+                }
+                else if (screen === 3) {
+                    let ok = onB5Ref.current.nextBtnTapped()
+                    if (ok) {
+                        console.log(dataSourceParams)
+                        alert("Last Screen")
+                        // setScreen(screen + 1)
                     }
                 }
                 break;
@@ -86,7 +97,7 @@ const SliderScreen = ({ navigation }) => {
             case 'right': {
 
 
-                if (screen != constants.SECOND_ONBOARDING_SCREEN) {
+                if (screen != 0) {
                     setScreen(screen - 1)
                 }
 
@@ -105,11 +116,6 @@ const SliderScreen = ({ navigation }) => {
             }
         }
     }
-
-
-
-
-
     const OnBoardingScreen2ViewCOntroller = () => {
 
         return (
@@ -140,7 +146,7 @@ const SliderScreen = ({ navigation }) => {
 
         return (
             <View style={styles.onBoargingViewsContainers}>
-                <OnBoard5 ref={onB5Ref} />
+                <OnBoard5 ref={onB5Ref} data={dataSourceParams} />
             </View>
         )
     }
@@ -149,22 +155,22 @@ const SliderScreen = ({ navigation }) => {
         // Depending upond the page control number, the view screen will be returned
 
         switch (screen) {
-            case 2: {
+            case 0: {
 
                 return OnBoardingScreen2ViewCOntroller()
 
             }
-            case 3: {
+            case 1: {
 
                 return OnBoardingScreen3ViewCOntroller()
 
             }
-            case 4: {
+            case 2: {
 
                 return OnBoardingScreen4ViewCOntroller()
 
             }
-            case 5: {
+            case 3: {
 
                 return OnBoardingScreen5ViewCOntroller()
 
@@ -175,66 +181,53 @@ const SliderScreen = ({ navigation }) => {
         }
     }
     const pageControlIndicatorTapped = (val) => {
-
-        if (screen === constants.SECOND_ONBOARDING_SCREEN) {
-            let ok = onB2Ref.current.nextBtnTapped()
-            if (ok) {
-                setScreen(val + 2)
-            }
-        }
-        else if (screen === constants.THIRD_ONBOARDING_SCREEN) {
-            let ok = onB3Ref.current.nextBtnTapped()
-            if (ok) {
-                setScreen(val + 2)
-            }
-        }
-        else if (screen === constants.FOURTH_ONBOARDING_SCREEN) {
-            let ok = onB4Ref.current.nextBtnTapped()
-            if (ok) {
-                setScreen(val + 2)
-            }
-        }
-        else if (screen === constants.FIFTH_ONBOARDING_SCREEN) {
-            let ok = onB5Ref.current.nextBtnTapped()
-            if (ok) {
-                setScreen(val + 2)
-            }
-        }
+        setScreen(val)
     }
     const handleNextBtnPresses = () => {
-
-        if (screen != constants.FIFTH_ONBOARDING_SCREEN) {
-
-            if (screen === constants.SECOND_ONBOARDING_SCREEN) {
-                let ok = onB2Ref.current.nextBtnTapped()
-                if (ok) {
-                    setScreen(screen + 1)
-                }
-
+        if (screen === 0) {
+            let obj = onB2Ref.current.nextBtnTapped()
+            console.log(obj)
+            if (obj) {
+                setDatSourParams(obj)
+                setScreen(screen + 1)
             }
-            else if (screen === constants.THIRD_ONBOARDING_SCREEN) {
-                let ok = onB3Ref.current.nextBtnTapped()
-                if (ok) {
-                    setScreen(screen + 1)
-                }
-            }
-            else if (screen === constants.FOURTH_ONBOARDING_SCREEN) {
-                let ok = onB4Ref.current.nextBtnTapped()
-                if (ok) {
-                    setScreen(screen + 1)
-                }
-            }
-            else if (screen === constants.FIFTH_ONBOARDING_SCREEN) {
-                let ok = onB5Ref.current.nextBtnTapped()
-                if (ok) {
-                    setScreen(screen + 1)
-                }
-            }
+            console.log("from Screen 2")
+            console.log(dataSourceParams)
         }
-        else if (screen === constants.SEVENTH_ONBOARDING_SCREEN) {
-            //  let ok =  onB8Ref.current.nextBtnTapped()
-            // saveData()
-
+        else if (screen === 1) {
+            let obj = onB3Ref.current.nextBtnTapped()
+            if (obj) {
+                let obj2 = dataSourceParams;
+                let obj2Keys = Object.keys(obj2)
+                for (let i = 0; i < obj2Keys.length; i++) {
+                    obj[obj2Keys[i]] = obj2[obj2Keys[i]]
+                }
+                setDatSourParams(obj)
+                setScreen(screen + 1)
+            }
+            console.log("from Screen 3")
+            console.log(dataSourceParams)
+        }
+        else if (screen === 2) {
+            let obj = onB4Ref.current.nextBtnTapped()
+            if (obj) {
+                let obj2 = dataSourceParams;
+                let obj2Keys = Object.keys(obj2)
+                for (let i = 0; i < obj2Keys.length; i++) {
+                    obj[obj2Keys[i]] = obj2[obj2Keys[i]]
+                }
+                setDatSourParams(obj)
+                setScreen(screen + 1)
+            }
+            console.log("from Screen 4")
+            console.log(dataSourceParams)
+        }
+        else if (screen === 3) {
+            let ok = onB5Ref.current.nextBtnTapped()
+            if (ok) {
+                console.log(dataSourceParams)
+                alert("Last Screen")
+            }
         }
     }
 
@@ -296,13 +289,13 @@ const SliderScreen = ({ navigation }) => {
                     {showBottomView ?
                         <View style={styles.pageControll}>
                             <TouchableOpacity style={[styles.buttonMain, { marginTop: Platform.OS === "ios" ? 30 : 20, marginBottom: 10 }]} onPress={() => handleNextBtnPresses()}>
-                                {screen === constants.FIFTH_ONBOARDING_SCREEN ? <Text style={styles.textButtonMain}> Place Order </Text> :
+                                {screen === 3 ? <Text style={styles.textButtonMain}> Place Order </Text> :
                                     <Text style={styles.textButtonMain}> Next </Text>
                                 }
                             </TouchableOpacity>
                             <PageControl
                                 numberOfPages={4}
-                                currentPage={screen - 2}
+                                currentPage={screen}
                                 hidesForSinglePage
                                 pageIndicatorTintColor='#A3A3A3'
                                 currentPageIndicatorTintColor='#656565'

@@ -6,6 +6,7 @@ import FeatherIcons from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { FONT_SEMIBOLD, FONT_MEDIUM, FONT_LIGHT, FONT_Regular } from "../config/Constant"
 import AuthContext from './../auth/context';
+import { formatDate } from "../ultils/Utilities"
 export default function Header({ topBar, marginBottom = 10, showUserInfo, navigation }) {
     const { user } = useContext(AuthContext)
     return (
@@ -28,7 +29,7 @@ export default function Header({ topBar, marginBottom = 10, showUserInfo, naviga
                     </View>
                 </View>
                 <View style={{ marginHorizontal: 20, marginTop: -25, }}>
-                    <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>Nov 19, 2020</Text>
+                    <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>{formatDate(new Date())}</Text>
                     <Text style={styles.text}>Have a nice day,</Text>
                     <Text style={styles.text}>{user.fullName} !</Text>
                 </View>
@@ -63,6 +64,9 @@ export default function Header({ topBar, marginBottom = 10, showUserInfo, naviga
                         <View style={[styles.ImageContainer, { marginBottom }]}>
                             <Avatar.Image size={35} source={{ uri: user.imageUrl }} style={{ marginTop: 20, }} />
                         </View>
+                    </View>
+                    <View style={{ marginHorizontal: 20, marginTop: -25, }}>
+                        <Text style={{ fontFamily: FONT_LIGHT, color: "#292a5e" }}>{formatDate(new Date())}</Text>
                     </View>
                     <View style={styles.textContainer}>
                         <TextInput
@@ -99,9 +103,10 @@ const styles = StyleSheet.create({
         width: "90%",
         height: 40,
         borderColor: colors.bitblue,
+        marginTop: 5,
     },
     text: {
-        fontFamily: FONT_SEMIBOLD, fontSize: 20, color: colors.bitblue
+        fontFamily: FONT_SEMIBOLD, fontSize: 20, color: colors.bitblue, marginBottom: 2
     },
     icon: {
         marginRight: 10,

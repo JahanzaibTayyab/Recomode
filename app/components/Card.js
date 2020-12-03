@@ -8,61 +8,42 @@ import { FONT_SEMIBOLD, FONT_Regular, FONT_MEDIUM } from '../config/Constant';
 function Card({ title, subTitle, image, index, onPress, brandlogo }) {
   const [liked, setLiked] = useState(false);
   const [counter, setCounter] = useState(-2);
+  const [isClick, setClick] = useState(false);
   return (
-    <View style={{ flex: 1, width: "100%" }}>
-      <View style={styles.logoImage}>
-        <Image
-          source={{ uri: brandlogo }}
-          resizeMode="contain"
-          style={{
-            position: 'absolute',
-            bottom: 10,
-            width: "80%",
-            height: 80,
+    <TouchableOpacity style={styles.card}
+      onPress={onPress}
+    >
+      <View style={{ position: "absolute", alignSelf: "flex-end", top: 5, right: 10 }}>
+        <TouchableOpacity
+          onPress={() => {
+            setLiked(!liked);
+            setCounter(index);
           }}
-        />
-      </View>
-      <TouchableWithoutFeedback
-        onPress={onPress}
-      >
-        <View style={styles.card}>
-          <Image style={styles.image} source={{ uri: image }} resizeMode='contain' />
-          <View style={styles.detailsContainer}>
-            <TouchableWithoutFeedback
-              onPress={() => {
-                setLiked(!liked);
-                setCounter(index);
-              }}
-            >
-              <View style={{
-                width: 40, height: 40, borderRadius: 50, position: "absolute", right: 0, bottom: 3,
-                shadowColor: colors.COLOR_FILLED,
-                shadowOpacity: 0.9,
-                elevation: 5,
-                shadowRadius: 10,
-                shadowOffset: { width: 1, height: 50 },
-                alignItems: "center", justifyContent: "center",
-                backgroundColor: colors.bitblue
-              }}>
-                <AIcon
-                  name='favorite'
-                  size={25}
-                  color={liked && index == counter ? 'red' : 'white'}
-                >
-                </AIcon>
-              </View>
-            </TouchableWithoutFeedback>
+        >
+          <AIcon
+            name={liked && index == counter ? 'favorite' : 'favorite-border'}
+            size={25}
+            color={liked && index == counter ? 'red' : 'black'}
+          >
+          </AIcon>
+        </TouchableOpacity>
 
-            <Text style={styles.title} numberOfLines={1}>
-              {title}
-            </Text>
-            <Text style={styles.subTitle} numberOfLines={2}>
-              {subTitle}
-            </Text>
-          </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
+      </View>
+      <View style={styles.ImageContainer}>
+        <Image source={{ uri: image }} style={styles.image} resizeMode="contain" />
+      </View>
+
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+        <Text style={styles.subTitle} numberOfLines={2}>
+          {subTitle}
+        </Text>
+
+      </View>
+
+    </TouchableOpacity>
   );
 }
 
@@ -71,51 +52,27 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
 
   },
-  logoImage: {
-    position: "absolute",
-    right: 25,
-    top: 90,
-    // zIndex: 100,
-    backgroundColor: 'white',
-    borderColor: colors.COLOR_BORDER,
-    borderWidth: 0,
-    justifyContent: 'center',
-    shadowColor: colors.COLOR_FILLED,
-    shadowOpacity: 0.9,
-    shadowRadius: 40,
-    elevation: 80,
-    shadowOffset: { width: 1, height: 50 },
-    overflow: "hidden",
-    backgroundColor: "transparent",
-    width: 50,
-    height: 100
+  ImageContainer: {
+    marginTop: 20,
+    height: 180,
+    width: "100%",
+    overflow: "hidden"
   },
   card: {
-    overflow: "hidden",
-    borderRadius: 20,
-    //zIndex: -40,
+    borderRadius: 10,
     backgroundColor: 'white',
     borderColor: colors.COLOR_BORDER,
     borderWidth: 0,
-    justifyContent: 'center',
-    shadowColor: colors.COLOR_FILLED,
-    shadowOpacity: 0.9,
-    elevation: 40,
-    shadowRadius: 50,
-    shadowOffset: { width: 1, height: 50 },
-    marginHorizontal: 50,
-    marginBottom: 10,
-    // zIndex: 1
+    height: 250,
+    borderColor: colors.COLOR_BORDER,
   },
   detailsContainer: {
-    marginHorizontal: 25,
-    marginBottom: 10,
-    zIndex: -1
+    marginHorizontal: 20,
+    marginTop: 5
   },
   image: {
-    marginTop: 10,
     width: "100%",
-    height: 200,
+    height: "100%",
   },
   subTitle: {
     fontFamily: FONT_MEDIUM, fontSize: 12, color: "#333333"

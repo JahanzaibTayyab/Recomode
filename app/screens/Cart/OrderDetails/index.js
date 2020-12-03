@@ -25,22 +25,20 @@ const OrderDetails = React.forwardRef((props, ref) => {
     React.useImperativeHandle(ref, () => ({
 
         nextBtnTapped() {
+            console.log("yha fucj")
             if (data.firstName != '' && data.email != "" && data.phoneNumber != "") {
-                localStorage.getKeyFromUserDefaults(constants.KEY_USER_EMAIL).then((email) => {
-                    let userInfo = {
-                        "order": {
-                            "full_name": data.firstName,
-                            "email": data.email,
-                            "phoneNumber": data.phoneNumber,
-                        }
+                let obj = {
+                    "order": {
+                        "full_name": data.firstName,
+                        "email": data.email,
+                        "phoneNumber": data.phoneNumber,
                     }
-                    localStorage.saveJSONInOrderDefaults(constants.KEY_USER_ORDER, userInfo)
-                })
-                return true
+                }
+                return obj
             }
             else {
                 alert("Incomplete Data Order", "Please fill all fields")
-                return false
+                return null
             }
         }
     }
@@ -55,26 +53,26 @@ const OrderDetails = React.forwardRef((props, ref) => {
 
     const [show, setShow] = React.useState(false);
     React.useEffect(() => {
-        localStorage.getJSONFromOrderDefaults(constants.KEY_USER_ORDER).then((orderInfo) => {
-            if (orderInfo.order) {
-                setData({
-                    ...data,
-                    firstName: orderInfo.order.full_name,
-                    email: orderInfo.order.email,
-                    phoneNumber: orderInfo.order.phoneNumber,
-                })
-            }
-            else if (orderInfo) {
-                setData({
-                    ...data,
-                    firstName: user.fullName,
-                    email: user.email,
-                    PhoneNumber: orderInfo.phoneNumber,
-                })
-            }
-        }).catch((error) => {
-            console.log(error);
-        });
+        // localStorage.getJSONFromOrderDefaults(constants.KEY_USER_ORDER).then((orderInfo) => {
+        //     if (orderInfo.order) {
+        //         setData({
+        //             ...data,
+        //             firstName: orderInfo.order.full_name,
+        //             email: orderInfo.order.email,
+        //             phoneNumber: orderInfo.order.phoneNumber,
+        //         })
+        //     }
+        //     else if (orderInfo) {
+        //         setData({
+        //             ...data,
+        //             firstName: user.fullName,
+        //             email: user.email,
+        //             PhoneNumber: orderInfo.phoneNumber,
+        //         })
+        //     }
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
     }, [])
 
     const handleFirstNameInput = (val) => {

@@ -27,13 +27,13 @@ const PaymentMethod = React.forwardRef((props, ref) => {
     const [paymentMethodFromApi, setPaymentMethodFromApi] = React.useState([])
     React.useImperativeHandle(ref, () => ({
         nextBtnTapped() {
+            console.log("fuck off calling ")
             if (data.paymentMethod != '') {
-                //   var isUnique =   checkUserNameisUnique()
-                return true
+                return data
             }
             else {
                 alert("Incomplete Data", "Please fill all fields")
-                return false
+                return null
             }
         }
     }
@@ -43,34 +43,6 @@ const PaymentMethod = React.forwardRef((props, ref) => {
     });
     const [show, setShow] = React.useState(false);
     React.useEffect(() => {
-
-        // getJSONFromUserDefaults(constants.KEY_USERINFO).then((userInfo) => {
-
-        //     if (userInfo.user) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.user.first_name,
-        //             lastName: userInfo.user.last_name,
-        //             userName: userInfo.user.user_name,
-        //             //  dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //      graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        //     else if (userInfo) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.first_name,
-        //             lastName: userInfo.last_name,
-        //             userName: userInfo.user_name,
-        //             //   dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //   graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
         paymentMethodFromApiFetch()
     }, [])
     const paymentMethodFromApiFetch = () => {

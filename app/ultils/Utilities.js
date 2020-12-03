@@ -1,6 +1,5 @@
 
 import { Platform, Dimensions, Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import constants from '../assets/stylesheet/Constants'
 import { min } from 'react-native-reanimated';
 export function formatDate(date, format, fromCalander) {
@@ -74,7 +73,20 @@ export function formatDate(date, format, fromCalander) {
     return `${dayS}-${currentDate}`
   }
 
-  return `${day}, ${monthE} ${currentDate}th`;
+  if (day === 1) {
+    return `${day}, ${monthE} ${currentDate}st`;
+  }
+  else if (day === 2) {
+    return `${day}, ${monthE} ${currentDate}nd`;
+  }
+  else if (day === 3) {
+    return `${day}, ${monthE} ${currentDate}rd`;
+  }
+  else {
+    return `${day}, ${monthE} ${currentDate}th`;
+  }
+
+
 }
 
 export function formatTime(timeStamp) {
@@ -121,44 +133,6 @@ export function getNextDate(selectedDate) {
   return nextDate
 
 }
-export async function saveKeyInUserDefaults(key, value) {
-  try {
-    await AsyncStorage.setItem(key, value);
-  } catch (error) {
-    alert(error)
-    console.log('Error saving data' + error);
-  }
-}
-export async function getKeyFromUserDefaults(key) {
-  try {
-    const value = await AsyncStorage.getItem(key)
-    return value
-  } catch (error) {
-    alert(error)
-    console.log('Error saving data' + error);
-  }
-}
-export async function saveJSONInUserDefaults(key, value) {
-  try {
-    const jsonValue = JSON.stringify(value)
-    await AsyncStorage.setItem(key, jsonValue)
-
-  } catch (error) {
-    error(error)
-    console.log('Error saving data' + error);
-  }
-}
-export async function getJSONFromUserDefaults(key) {
-  try {
-    const jsonValue = await AsyncStorage.getItem(key)
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-
-  } catch (e) {
-    alert(e)
-    console.log('Error saving data' + e);
-  }
-}
-
 export function isRunningOniOS() {
   var blnResult = false;
   blnResult = Platform.OS === 'ios' ? true : false;

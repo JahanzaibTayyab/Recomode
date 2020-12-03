@@ -15,6 +15,8 @@ import CartInfo from "../screens/Cart/CartInfo"
 import CameraClickButton from './CamerClickButton';
 import CartIcon from "../components/CartIcon"
 import LoginScreen from '../screens/Login';
+import RegisterScreen from '../screens/Register';
+import ForgetPasswordScreen from '../screens/ForgetPassword';
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -51,6 +53,18 @@ const AccountStackScreen = ({ navigation }) => (
             options={{ headerShown: false }} />
         <AccountStack.Screen name="Login" component={LoginScreen}
             options={{ headerShown: false }} />
+        <AccountStack.Screen name="Register" component={RegisterScreen}
+            options={{ headerShown: false }} />
+        {/* <AccountStack.Screen
+            name="Register"
+            component={RegisterScreen}
+            options={{ headerShown: false }}
+        />
+        <AccountStack.Screenq
+            name="Forgetpassword"
+            component={ForgetPasswordScreen}
+            options={{ headerShown: false }}
+        /> */}
     </AccountStack.Navigator>
 );
 

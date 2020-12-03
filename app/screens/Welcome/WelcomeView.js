@@ -21,24 +21,12 @@ function WelcomeView(props) {
     height: 1230,
   };
   const gussesUser = () => {
-    auth()
-      .signInAnonymously()
-      .then((responce) => {
-        const id = responce.user.uid
-        authFromLocal.guesetUser(constants.KEY_USER_GUEST, "guest")
-        const userData = {
-          id: id,
-          email: "",
-          fullName: "Guest User"
-        }
-        props.navigation.navigate(routes.TAKEIMAGE, { userData });
-      })
-      .catch(error => {
-        if (error.code === 'auth/operation-not-allowed') {
-          console.log('Enable anonymous in your firebase console.');
-        }
-        console.error(error);
-      });
+    authFromLocal.guesetUser(constants.KEY_USER_GUEST, "guest")
+    const userData = {
+      email: "",
+      fullName: "Guest User"
+    }
+    props.navigation.navigate(routes.TAKEIMAGE, { userData });
   }
   return (
     <View style={styles.container}>

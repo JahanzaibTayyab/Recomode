@@ -10,8 +10,11 @@ export default useAuth = () => {
     authStorage.saveJSONInUserDefaults(key, value)
   }
   const logIn = (key, value) => {
-    authStorage.saveJSONInUserDefaults(key, value)
-    setUser(value);
+    authStorage.saveJSONInUserDefaults(key, value).then(() => {
+      setUser(value);
+    }).catch((errror) => {
+      console.warn(errror)
+    })
   };
   const logOut = (key) => {
     authStorage.removeToken(key);

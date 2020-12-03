@@ -21,48 +21,14 @@ const CheckOut = React.forwardRef((props, ref) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [isUserNameUnique, setUserNameUnique] = React.useState(true)
     React.useImperativeHandle(ref, () => ({
-
         nextBtnTapped() {
+
             return true
         }
-    }
-    ));
-    const [data, setData] = React.useState({
-        firstName: '',
-        email: '',
-        phoneNumber: '',
-    });
+    }));
 
     const [show, setShow] = React.useState(false);
     React.useEffect(() => {
-
-        // getJSONFromUserDefaults(constants.KEY_USERINFO).then((userInfo) => {
-
-        //     if (userInfo.user) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.user.first_name,
-        //             lastName: userInfo.user.last_name,
-        //             userName: userInfo.user.user_name,
-        //             //  dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //      graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        //     else if (userInfo) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.first_name,
-        //             lastName: userInfo.last_name,
-        //             userName: userInfo.user_name,
-        //             //   dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //   graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
 
     }, [])
     const [recentData, setRecentData] = React.useState([
@@ -140,12 +106,12 @@ const CheckOut = React.forwardRef((props, ref) => {
                 </View>
                 <View style={{ marginTop: 10 }}>
                     <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 16, color: colors.bitblue, marginHorizontal: 20, }}>Shipping Information</Text>
-                    <Text style={{ fontFamily: FONT_Regular, flex: 1, flexWrap: "wrap", color: "black", fontSize: 14, marginTop: 5, marginHorizontal: 30, marginBottom: 10, }}>Bhla bhla bhla</Text>
+                    <Text style={{ fontFamily: FONT_Regular, flex: 1, flexWrap: "wrap", color: "black", fontSize: 14, marginTop: 5, marginHorizontal: 30, marginBottom: 10, }}>{props.data.shippingAddress}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: colors.COLOR_FILLED, marginHorizontal: 10 }}></View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 20, marginTop: 10, }}>
                     <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 16, color: colors.bitblue }}>Payment Method</Text>
-                    <Text style={{ fontFamily: FONT_Regular, color: "black", fontSize: 14, marginBottom: 10 }}>Cash on Delivery</Text>
+                    <Text style={{ fontFamily: FONT_Regular, color: "black", fontSize: 14, marginBottom: 10 }}>{props.data.paymentMethod}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: colors.COLOR_FILLED, marginHorizontal: 10 }}></View>
                 <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 16, color: colors.bitblue, marginHorizontal: 20, marginTop: 10 }}>Payment Pay on Delivery</Text>
