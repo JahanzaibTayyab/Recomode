@@ -19,7 +19,7 @@ import styles from './styles'
 import Icon from 'react-native-vector-icons/Feather';
 import firestore from '@react-native-firebase/firestore'
 import colors from '../../../config/colors'
-import { color } from 'react-native-reanimated';
+import AwesomeAlert from 'react-native-awesome-alerts';
 const PaymentMethod = React.forwardRef((props, ref) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [isUserNameUnique, setUserNameUnique] = React.useState(true)
@@ -32,7 +32,7 @@ const PaymentMethod = React.forwardRef((props, ref) => {
                 return data
             }
             else {
-                alert("Incomplete Data", "Please fill all fields")
+                setShow(true)
                 return null
             }
         }
@@ -45,6 +45,12 @@ const PaymentMethod = React.forwardRef((props, ref) => {
     React.useEffect(() => {
         paymentMethodFromApiFetch()
     }, [])
+    const ConfrimAlert = () => {
+        setShow(false);
+    };
+    const hideAlert = () => {
+        setShow(false);
+    };
     const paymentMethodFromApiFetch = () => {
         const subscriber = firestore()
             .collection('paymentMethods')
@@ -108,6 +114,28 @@ const PaymentMethod = React.forwardRef((props, ref) => {
     return (
         <KeyboardAwareScrollView style={[styles.keyboardAwareScrollView,]} showsVerticalScrollIndicator={false}>
             <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Payment Method</Text>
+            <AwesomeAlert
+                show={show}
+                showProgress={true}
+                title="Payment"
+                message="Please select atleast one payment method"
+                closeOnTouchOutside={false}
+                closeOnHardwareBackPress={true}
+                showConfirmButton={false}
+                showCancelButton={true}
+                cancelText="Dismiss"
+                cancelButtonColor={colors.danger}
+                confirmButtonColor={colors.primary}
+                titleStyle={{ fontFamily: FONT_BOLD, fontSize: 17, color: colors.primary }}
+                messageStyle={{ fontFamily: FONT_Regular, fontSize: 12, color: colors.black }}
+                cancelButtonTextStyle={{ fontFamily: FONT_SEMIBOLD }}
+                onCancelPressed={() => {
+                    hideAlert();
+                }}
+                onConfirmPressed={() => {
+                    ConfrimAlert();
+                }}
+            />
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={paymentMethodFromApi}

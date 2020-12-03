@@ -2,6 +2,7 @@
 import { Platform, Dimensions, Alert } from 'react-native';
 import constants from '../assets/stylesheet/Constants'
 import { min } from 'react-native-reanimated';
+
 export function formatDate(date, format, fromCalander) {
   var days = [
     'Sunday',

@@ -17,10 +17,12 @@ import CartIcon from "../components/CartIcon"
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
 import ForgetPasswordScreen from '../screens/ForgetPassword';
+import CategoriesScreen from "../screens/Categories"
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
 const AccountStack = createStackNavigator();
+const CategorieStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator
         initialRouteName={"Shirt"}
@@ -42,6 +44,22 @@ const CartStackScreen = ({ navigation }) => (
         <CartStack.Screen name="Cart" component={CartInfo}
             options={{ headerShown: false }} />
     </CartStack.Navigator>
+);
+const CategoriesStackScreen = ({ navigation }) => (
+    <CategorieStack.Navigator
+        initialRouteName={"Categories"}
+    >
+        <CategorieStack.Screen name="Categories" component={CategoriesScreen}
+            options={{ headerShown: false }} />
+        <CategorieStack.Screen name="Shirt" component={ShirtNavigation}
+            options={{ headerShown: false }}
+        />
+        <CategorieStack.Screen name="Pant" component={PantNavigation}
+            options={{ headerShown: false }}
+        />
+        <CategorieStack.Screen name="Shoes" component={ShoesNavigation}
+            options={{ headerShown: false }} />
+    </CategorieStack.Navigator>
 );
 const AccountStackScreen = ({ navigation }) => (
     <AccountStack.Navigator
@@ -104,8 +122,8 @@ export default function BootomTabNavigation(props) {
                     }}
             />
             <Tab.Screen
-                name="Notifications"
-                component={HomeStackScreen}
+                name="TotalCategories"
+                component={CategoriesStackScreen}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ focused }) => (

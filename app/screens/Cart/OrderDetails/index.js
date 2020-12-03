@@ -18,6 +18,8 @@ import styles from './styles'
 import apiAuth from "../../../auth/useAuth"
 import localStorage from "../../../auth/storage"
 import constants from "../../../assets/stylesheet/Constants"
+import AwesomeAlert from 'react-native-awesome-alerts';
+import colors from "../../../config/colors"
 const OrderDetails = React.forwardRef((props, ref) => {
     const { user } = apiAuth()
     const [isLoading, setIsLoading] = React.useState(false)
@@ -37,7 +39,7 @@ const OrderDetails = React.forwardRef((props, ref) => {
                 return obj
             }
             else {
-                alert("Incomplete Data Order", "Please fill all fields")
+                setShow(true)
                 return null
             }
         }
@@ -52,27 +54,13 @@ const OrderDetails = React.forwardRef((props, ref) => {
     });
 
     const [show, setShow] = React.useState(false);
+    const ConfrimAlert = () => {
+        setShow(false);
+    };
+    const hideAlert = () => {
+        setShow(false);
+    };
     React.useEffect(() => {
-        // localStorage.getJSONFromOrderDefaults(constants.KEY_USER_ORDER).then((orderInfo) => {
-        //     if (orderInfo.order) {
-        //         setData({
-        //             ...data,
-        //             firstName: orderInfo.order.full_name,
-        //             email: orderInfo.order.email,
-        //             phoneNumber: orderInfo.order.phoneNumber,
-        //         })
-        //     }
-        //     else if (orderInfo) {
-        //         setData({
-        //             ...data,
-        //             firstName: user.fullName,
-        //             email: user.email,
-        //             PhoneNumber: orderInfo.phoneNumber,
-        //         })
-        //     }
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
     }, [])
 
     const handleFirstNameInput = (val) => {
@@ -102,6 +90,28 @@ const OrderDetails = React.forwardRef((props, ref) => {
         <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} >
             <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Order Details</Text>
             <ScrollView style={{ flex: 1, backgroundColor: "white", }}>
+                <AwesomeAlert
+                    show={show}
+                    showProgress={true}
+                    title="Incomplete Data"
+                    message="Please fill all the fields"
+                    closeOnTouchOutside={false}
+                    closeOnHardwareBackPress={true}
+                    showConfirmButton={false}
+                    showCancelButton={true}
+                    cancelText="Dismiss"
+                    cancelButtonColor={colors.danger}
+                    confirmButtonColor={colors.primary}
+                    titleStyle={{ fontFamily: FONT_BOLD, fontSize: 17, color: colors.primary }}
+                    messageStyle={{ fontFamily: FONT_Regular, fontSize: 12, color: colors.black }}
+                    cancelButtonTextStyle={{ fontFamily: FONT_SEMIBOLD }}
+                    onCancelPressed={() => {
+                        hideAlert();
+                    }}
+                    onConfirmPressed={() => {
+                        ConfrimAlert();
+                    }}
+                />
                 <View style={[styles.containerView, { marginBottom: 130 }]}>
                     <Text style={[styles.txtTitle2, { color: "black" }]}> Welcome {user.fullName} ! </Text>
                     <View style={{ flex: 1, width: SCREEN_WIDTH - 50, marginLeft: 25, marginRight: 25, marginTop: 10, }}>

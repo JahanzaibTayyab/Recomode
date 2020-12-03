@@ -32,6 +32,7 @@ import ShoesNavigation from "./app/navigation/ShoesNavigation"
 import Nav from './app/components/Nav';
 import Profile from "./app/screens/Profile"
 import constants from "./app/assets/stylesheet/Constants"
+import CategoriesScreen from './app/screens/Categories';
 
 console.disableYellowBox = true
 
@@ -92,5 +93,6 @@ export default function App() {
         {user ? <HomeNavigation /> : <AuthNavigator />}
       </NavigationContainer>
     </AuthContext.Provider>
+    // <CategoriesScreen />
   );
 }

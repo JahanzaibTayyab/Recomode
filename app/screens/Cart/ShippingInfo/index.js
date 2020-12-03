@@ -16,6 +16,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { FONT_BOLD, FONT_LIGHT, FONT_Regular, FONT_SEMIBOLD, SCREEN_WIDTH } from "../../../config/Constant"
 import styles from './styles'
 import Icon from 'react-native-vector-icons/Feather';
+import AwesomeAlert from 'react-native-awesome-alerts';
+import colors from "../../../config/colors"
 const DeliveryInfo = React.forwardRef((props, ref) => {
 
     const [isLoading, setIsLoading] = React.useState(false)
@@ -30,7 +32,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                 return data
             }
             else {
-                alert("Incomplete Data Shipping", "Please fill all fields")
+                setShow(true)
                 return null
             }
         }
@@ -49,36 +51,13 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
     const [show, setShow] = React.useState(false);
     React.useEffect(() => {
 
-        // getJSONFromUserDefaults(constants.KEY_USERINFO).then((userInfo) => {
-
-        //     if (userInfo.user) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.user.first_name,
-        //             lastName: userInfo.user.last_name,
-        //             userName: userInfo.user.user_name,
-        //             //  dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //      graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        //     else if (userInfo) {
-        //         setData({
-        //             ...data,
-        //             firstName: userInfo.first_name,
-        //             lastName: userInfo.last_name,
-        //             userName: userInfo.user_name,
-        //             //   dOb:formatDate(userInfo.dob, constants.DATE_FORMAT_MONTH_DATE_YEAR),
-        //             //   graduationDate: formatDate(expected_graduation, 'mm-yy')
-
-        //         })
-        //     }
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
-
     }, [])
-
+    const ConfrimAlert = () => {
+        setShow(false);
+    };
+    const hideAlert = () => {
+        setShow(false);
+    };
     const handleAddressNameInput = (val) => {
         setData({
             ...data,
@@ -117,6 +96,28 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
         <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} showsVerticalScrollIndicator={false}>
             <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Shipping Info</Text>
             <ScrollView style={{ flex: 1, backgroundColor: "white", }}>
+                <AwesomeAlert
+                    show={show}
+                    showProgress={true}
+                    title="Incomplete Data"
+                    message="Please fill all the fields"
+                    closeOnTouchOutside={false}
+                    closeOnHardwareBackPress={true}
+                    showConfirmButton={false}
+                    showCancelButton={true}
+                    cancelText="Dismiss"
+                    cancelButtonColor={colors.danger}
+                    confirmButtonColor={colors.primary}
+                    titleStyle={{ fontFamily: FONT_BOLD, fontSize: 17, color: colors.primary }}
+                    messageStyle={{ fontFamily: FONT_Regular, fontSize: 12, color: colors.black }}
+                    cancelButtonTextStyle={{ fontFamily: FONT_SEMIBOLD }}
+                    onCancelPressed={() => {
+                        hideAlert();
+                    }}
+                    onConfirmPressed={() => {
+                        ConfrimAlert();
+                    }}
+                />
                 <View style={[styles.containerView, { marginBottom: 130 }]}>
                     <View style={{ flex: 1, width: SCREEN_WIDTH - 50, marginLeft: 25, marginRight: 25 }}>
                         <View style={{ marginTop: 10 }}>
