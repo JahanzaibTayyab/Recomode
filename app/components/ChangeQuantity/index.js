@@ -12,13 +12,6 @@ function ChangeQuantity(props) {
     console.log('Prop Received: ', props.quantity);
   }, [props.quantity])
 
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.quantity !== "undefined") {
-  //     this.setState({ quantity: nextProps.quantity });
-  //   }
-  // }
-
   const increase = () => {
     if (quantity < Constants.LimitAddToCart) {
       setQuantity(quantity + 1);

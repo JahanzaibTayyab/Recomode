@@ -18,49 +18,42 @@ import css from "../styles";
 import styles from "./styles";
 import Button from "../../../components/Button"
 import { FONT_Regular } from "../../../config/Constant";
+import { useSelector } from "react-redux"
+import storageAuth from "../../../auth/useAuth"
+import localStorage from "../../../auth/storage"
+import AwesomeAlert from 'react-native-awesome-alerts';
+import Slider from "../SliderScreen"
+import constants from "../../../assets/stylesheet/Constants"
+import { FONT_SEMIBOLD, FONT_BOLD } from './../../../config/Constant';
+import colors from "../../../config/colors"
 function MyCart(props) {
-  const [recentData, setRecentData] = React.useState([
-    {
-      id: 1,
-      product: {
-        name: "T Shirt",
-        img: require("../../../assets/images/Shirt1.png"),
-        type: "Adidas",
-        price: 186,
-      },
-      quantity: 6
-    },
-    {
-      id: 2,
-      product: {
-        name: "T Shirt",
-        img: require("../../../assets/images/Shirt1.png"),
-        price: 187
-      },
-      quantity: 4
-
-    },
-    {
-      id: 3,
-      product: {
-        name: "T Shirt",
-        img: require("../../../assets/images/Shirt1.png"),
-        type: "Adidas",
-        price: 186,
-      },
-      quantity: 5
-
-    },])
-  const { cartItems, isFetching, discountType, currency } = props;
-  let colors = [Color.darkOrange, Color.darkYellow, Color.yellow];
-
-
+  const { user } = storageAuth()
+  const [isGuest, setIsGuest] = React.useState(false)
+  const [show, setShow] = React.useState(false);
+  const cartItems = useSelector(state => state)
+  const { currency } = props;
+  let color = [Color.darkOrange, Color.darkYellow, Color.yellow];
+  const checkIfUserGuesstOrNot = () => {
+    localStorage.getKeyFromUserDefaults(constants.KEY_USER_GUEST).then((value) => {
+      console.log(value)
+      if (value) {
+        setIsGuest(true)
+      }
+    });
+  }
+  const ConfrimAlert = () => {
+    props.navigation.navigate("Login")
+    setShow(false);
+  };
+  const hideAlert = () => {
+    setShow(false);
+  };
   const getTotalPrice = () => {
     console.log("Call The get Price")
     let total = 0;
-    recentData.forEach((cart) => {
+    cartItems.forEach((cart) => {
       console.log(cart)
-      total += cart.product.price * cart.quantity;
+      total += cart.price * 1;
     });
     return total;
   };
@@ -71,8 +64,8 @@ function MyCart(props) {
         key={`hiddenRow-${index}`}
         style={styles.hiddenRow}
         onPress={() =>
-          //this.props.removeCartItem(rowData.product, rowData.variation)
-          console.log("removeCart")
+          // props.removeCartItem(rowData.product)
+          console.log("")
         }>
         <View style={{ marginRight: 23 }}>
           <FontAwesome name="trash" size={30} color="white" />
@@ -80,9 +73,42 @@ function MyCart(props) {
       </TouchableOpacity>
     );
   };
+  const handelNextButton = () => {
+    checkIfUserGuesstOrNot()
+    if (isGuest) {
+      setShow(true)
+    }
+    else {
+      props.navigation.navigate("OrderSlide")
+      setShow(false)
+    }
+  }
   return (
     <View style={styles.container}>
       <ScrollView>
+        <AwesomeAlert
+          show={show}
+          showProgress={false}
+          title="Information"
+          message="Please login or register with us to continue"
+          closeOnTouchOutside={false}
+          closeOnHardwareBackPress={true}
+          showConfirmButton={true}
+          showCancelButton={false}
+          cancelText="Dismiss"
+          cancelButtonColor={colors.danger}
+          confirmButtonColor={colors.primary}
+          confirmText="OK"
+          titleStyle={{ fontFamily: FONT_BOLD, fontSize: 17, color: colors.primary }}
+          messageStyle={{ fontFamily: FONT_Regular, fontSize: 12, color: colors.black }}
+          cancelButtonTextStyle={{ fontFamily: FONT_SEMIBOLD }}
+          onCancelPressed={() => {
+            hideAlert();
+          }}
+          onConfirmPressed={() => {
+            ConfrimAlert();
+          }}
+        />
         <View style={css.row}>
           <Text style={[css.label, { color: "black" }]}>
             {Languages.TotalPrice}
@@ -92,8 +118,8 @@ function MyCart(props) {
           </Text>
         </View>
         <View style={styles.list}>
-          {recentData &&
-            recentData.map((item, index) => (
+          {cartItems &&
+            cartItems.map((item, index) => (
               <SwipeRow
                 key={index.toString()}
                 disableRightSwipe
@@ -103,13 +129,14 @@ function MyCart(props) {
                 <ProductItem
                   key={index.toString()}
                   viewQuantity
-                  product={item.product}
+                  product={item}
                   onPress={() =>
-                    props.onViewProduct({ product: item.product })
+                    console.log("Product View")
+                    //props.onViewProduct({ product: item.product })
                   }
-                  quantity={item.quantity}
-                  variation={item.variation}
-                  //onRemove={removeCartItem}
+                  //quantity={item.quantity}
+                  // variation={item.variation}
+                  onRemove={props.removeCartItem}
                   currency={currency}
                 />
               </SwipeRow>
@@ -121,10 +148,10 @@ function MyCart(props) {
           }} />
           <TouchableOpacity
             activeOpacity={0.6}
-            onPress={() => console.log("Next Button")}
+            onPress={() => handelNextButton()}
             style={{ marginTop: 30, }}
           >
-            <LinearGradient colors={colors} style={styles.btnApply}>
+            <LinearGradient colors={color} style={styles.btnApply}>
               <Text style={styles.btnApplyText}>Next</Text>
             </LinearGradient>
           </TouchableOpacity>

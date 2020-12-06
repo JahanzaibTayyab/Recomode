@@ -18,6 +18,7 @@ import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
 import ForgetPasswordScreen from '../screens/ForgetPassword';
 import CategoriesScreen from "../screens/Categories"
+import SlideScreen from "../screens/Cart/SliderScreen"
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -25,7 +26,7 @@ const AccountStack = createStackNavigator();
 const CategorieStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator
-        initialRouteName={"Shirt"}
+        initialRouteName={"Pant"}
     >
         <HomeStack.Screen name="Shirt" component={ShirtNavigation}
             options={{ headerShown: false }}
@@ -42,6 +43,12 @@ const CartStackScreen = ({ navigation }) => (
         initialRouteName={"Cart"}
     >
         <CartStack.Screen name="Cart" component={CartInfo}
+            options={{ headerShown: false }} />
+        <CartStack.Screen name="Login" component={LoginScreen}
+            options={{ headerShown: false }} />
+        <CartStack.Screen name="Register" component={RegisterScreen}
+            options={{ headerShown: false }} />
+        <CartStack.Screen name="OrderSlide" component={SlideScreen}
             options={{ headerShown: false }} />
     </CartStack.Navigator>
 );

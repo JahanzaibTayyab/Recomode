@@ -80,4 +80,4 @@ class AnimatedHeader extends PureComponent {
   }
 }
 
-export default withTheme(AnimatedHeader);
+export default (AnimatedHeader);

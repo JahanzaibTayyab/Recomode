@@ -14,25 +14,16 @@ import navigationTheme from './app/navigation/navigationTheme';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import HomeNavigation from './app/navigation/HomeNavigation';
 import AuthContext from './app/auth/context';
-import OfflineNotice from './app/components/OfflineNotice';
-import ResetPassword from './app/screens/ResetPassword';
-import UserHeightandWeight from "./app/screens/Height"
-import ShirtNavigator from "./app/navigation/ShirtsNavigation"
-import PantNavigator from "./app/navigation/PantsNavigation"
-import HeightView from "./app/screens/Height"
 
 import CheckScreen from './app/screens/checkScreen';
 import ImageNavigator from './app/navigation/ImageNavigator';
 import UserAttributesContainer from './app/screens/UserAttributes';
 import { YellowBox, Platform, StatusBar } from 'react-native';
-import Header from './app/components/Header';
-import ShoesScreen from "./app/screens/Shoes/NokeShoesViewController"
+
 import authStorage from "./app/auth/storage";
-import ShoesNavigation from "./app/navigation/ShoesNavigation"
-import Nav from './app/components/Nav';
-import Profile from "./app/screens/Profile"
 import constants from "./app/assets/stylesheet/Constants"
-import CategoriesScreen from './app/screens/Categories';
+import { Provider } from "react-redux";
+import store from "./app/redux/store/configureStore";
 
 console.disableYellowBox = true
 
@@ -85,14 +76,15 @@ export default function App() {
   // }, []);
 
   // if (isReady) return null;
-
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      <OfflineNotice />
-      <NavigationContainer theme={navigationTheme}>
-        {user ? <HomeNavigation /> : <AuthNavigator />}
-      </NavigationContainer>
-    </AuthContext.Provider>
+    <Provider store={store}>
+      <AuthContext.Provider value={{ user, setUser }}>
+        {/* <OfflineNotice /> */}
+        <NavigationContainer theme={navigationTheme}>
+          {user ? <HomeNavigation /> : <AuthNavigator />}
+        </NavigationContainer>
+      </AuthContext.Provider>
+    </Provider>
     // <CategoriesScreen />
   );
 }

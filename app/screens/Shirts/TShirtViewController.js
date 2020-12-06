@@ -24,8 +24,9 @@ import FeatherIcons from 'react-native-vector-icons/Feather';
 import AIcon from 'react-native-vector-icons/MaterialIcons';
 import HomeActivityIndicator from './../../components/HomeActivityIndicator';
 import ActivityIndicator from './../../components/ActivityIndicator';
-import useAuth from "../../auth/useAuth";
 import { FlatGrid } from 'react-native-super-grid';
+import { connect } from "react-redux"
+import AuthContext from '../../auth/context';
 
 const wait = (timeout) => {
     return new Promise(resolve => {
@@ -33,7 +34,7 @@ const wait = (timeout) => {
     });
 }
 function TShirtViewController(props) {
-    const { user } = useAuth
+    const { user } = React.useContext(AuthContext)
     const [showActivityIndicator, setActivityIndicator] = React.useState(false);
     const [selectedItem, setSelectedItem] = React.useState(null)
     const [refreshing, setRefreshing] = React.useState(false);
@@ -42,50 +43,18 @@ function TShirtViewController(props) {
     const [counter, setCounter] = React.useState(-2);
     const [popularData, setPopularData] = React.useState(null);
     const [showCompletButton, setShowCompleteButton] = React.useState(false)
-    const [recentData, setRecentData] = React.useState([
-        {
-            id: 0,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 1,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 2,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 3,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-        {
-            id: 4,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186 RS",
-        },
-    ]);
+    const [shirtColors, setShirtColors] = React.useState(user.shirtColors)
+
+    // redux 
+    //const addProductToCart = product => dispatch(addToCart(product))
+
+
     const [dataSource, setDataSource] = React.useState([])
-    var shirtColors = ["black", "gray", "navy Blue", "crimson", "brown", "yellow", "orange", "green", "cream", "khaki"]
     const recomendationdata = () => {
         const subscriber = firestore()
             .collection('shirts')
             .where('type', '==', 'TShirt')
-            .where('color', 'in', shirtColors).limit(5)
+            .where('color', 'in', shirtColors)
             .onSnapshot(querySnapshot => {
                 const shirts = []
                 querySnapshot.forEach(documentSnapshot => {
@@ -102,29 +71,8 @@ function TShirtViewController(props) {
         return () => subscriber();
 
     }
-    const populardataView = () => {
-        const subscriber = firestore()
-            .collection('shirts').limit(3)
-            .orderBy('like', 'desc')
-            .get()
-            .then(querySnapshot => {
-                const shirt = []
-                querySnapshot.forEach(documentSnapshot => {
-                    shirt.push({
-                        ...documentSnapshot.data(),
-                        id: documentSnapshot.id,
-                    });
-                });
-                setPopularData(shirt);
-                console.log("Returned from Firebase ", shirt)
-                console.log('Total : ', shirts.length - 1)
-            });
-        // Unsubscribe from events when no longer in use
-        return () => subscriber();
-    }
     React.useEffect(() => {
         recomendationdata()
-        populardataView()
     }, [])
     const handleIndexChange = (index) => {
         setSelectedIndex(index)
@@ -188,27 +136,6 @@ function TShirtViewController(props) {
     const renderRecomendationViwes = () => {
         console.log(dataSource)
         return (
-            // <FlatList
-            //     showsVerticalScrollIndicator={false}
-            //     data={dataSource}
-            //     renderItem={({ item, index }) =>
-            // <>
-            //     {index === 3 ? renderRecentViews() : null}
-            //     <Card
-            //         index={index}
-            //         title={item.name}
-            //         subTitle={item.brand}
-            //         image={item.img}
-            //         brandlogo={item.brandLogo}
-            //         onPress={() => {
-            //             setSelectedItem(item),
-            //                 setComplateLookModal(true)
-            //         }}
-            //     />
-            // </>
-            //     }
-            //     keyExtractor={(item, index) => index.toString()}
-            // />
             <FlatGrid
                 itemDimension={130}
                 data={dataSource}
@@ -241,10 +168,6 @@ function TShirtViewController(props) {
                     <ScrollView showsVerticalScrollIndicator={false}
                         onScrollToTop={() => console.log("yha")}
                     >
-                        {/* <View style={{ backgroundColor: colors.white }}>
-                            <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16, marginTop: 5, }}>Most Liked</Text>
-                        </View>
-                        {renderPopularViews()} */}
                         <View style={{ marginBottom: 5, backgroundColor: "white" }}>
                             <Text style={{ fontSize: 20, fontFamily: FONT_SEMIBOLD, color: colors.bitblue, marginHorizontal: 16 }}>Our Recomendations</Text>
                         </View>
@@ -361,13 +284,7 @@ function TShirtViewController(props) {
                                             fontFamily={FONT_Regular}
                                             width="50%"
                                             onPress={() => {
-                                                // setComplateLookModal(false)
-                                                // const color = selectedItem.color
-                                                // console.log("color", color)
-                                                // setTimeout(function () {
-                                                //     props.navigation.navigate("Pant", { color })
-                                                // }, 700)
-                                                console.log("Add to cart")
+                                                props.addCartItem(selectedItem)
                                             }}
                                         />
                                         <Button
@@ -396,4 +313,9 @@ function TShirtViewController(props) {
         </>
     )
 }
-export default TShirtViewController
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCartItem: (product) => dispatch({ type: 'ADD_TO_CART', payload: product })
+    }
+}
+export default connect(null, mapDispatchToProps)(TShirtViewController)

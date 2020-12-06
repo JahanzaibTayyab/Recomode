@@ -7,43 +7,19 @@ import ScrollableTabView from "react-native-scrollable-tab-view";
 import styles from "./styles"
 import { FONT_BOLD, FONT_Regular, FONT_SEMIBOLD } from './../../config/Constant';
 import MyCart from './MyCart/index';
-import DeliveryScreen from "./SliderScreen"
-import ChangeQuantity from '../../components/ChangeQuantity';
-import ProductItem from '../../components/ProductItem';
+import { useSelector } from "react-redux"
 import {
     Languages,
     Images,
     Constants,
     Config,
-    withTheme,
+
     Tools,
 } from "@common";
 import StepIndicator from "../../components/StepIndicator"
 export default function CartInfo(props) {
     const [showEmpty, setShowEmpty] = React.useState(false)
-    const [recentData, setRecentData] = React.useState([
-        {
-            id: 0,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186",
-        },
-        {
-            id: 1,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186",
-        },
-        {
-            id: 2,
-            name: "T Shirt",
-            img: require("../../assets/images/Shirt1.png"),
-            type: "Adidas",
-            price: "186",
-        },
-    ]);
+    const cartItems = useSelector(state => state)
     const steps = [
         { label: Languages.MyCart, icon: Images.IconCart },
         { label: Languages.Delivery, icon: Images.IconPin },
@@ -57,11 +33,11 @@ export default function CartInfo(props) {
         <>
             <Nav {...props} />
             {/* <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", position: "absolute", top: 30, left: 30 }}>Cart</Text> */}
-            {showEmpty ? <EmptyCart {...props} /> :
+            {cartItems.length === 0 ? <EmptyCart {...props} /> :
                 <View style={[styles.fill, { backgroundColor: "white" }]}>
                     <View style={styles.content}>
-                        <DeliveryScreen />
-                        {/* <MyCart {...props} /> */}
+                        {/* <DeliveryScreen /> */}
+                        <MyCart {...props} />
 
                         {/* <ScrollableTabView
                             // ref={(tabView) => {

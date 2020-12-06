@@ -95,7 +95,7 @@ function RegisterView(props) {
     firestore().collection('users').doc(userid).set(userInfo).then(() => {
       localStorage.removeToken(constants.KEY_USER_GUEST).then(() => {
         localStorage.removeToken(constants.KEY_USERINFO).then(() => {
-          localStorage.saveKeyInUserDefaults(constants.KEY_USER_EMAIL, email).then(() => {
+          localStorage.saveKeyInUserDefaults(constants.KEY_USER_ID, userid).then(() => {
             userInfo['shirtColors'] = data.shirtColors
             StorageAuth.logIn(constants.KEY_USERINFO, userInfo)
             setActivityIndicator(false)

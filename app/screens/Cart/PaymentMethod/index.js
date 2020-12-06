@@ -27,7 +27,6 @@ const PaymentMethod = React.forwardRef((props, ref) => {
     const [paymentMethodFromApi, setPaymentMethodFromApi] = React.useState([])
     React.useImperativeHandle(ref, () => ({
         nextBtnTapped() {
-            console.log("fuck off calling ")
             if (data.paymentMethod != '') {
                 return data
             }
