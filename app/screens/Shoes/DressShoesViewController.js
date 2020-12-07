@@ -35,7 +35,7 @@ const DressShoesViewController = (props) => {
     const [showComplateLookModal, setComplateLookModal] = React.useState(false)
     const [liked, setLiked] = React.useState(false);
     const [counter, setCounter] = React.useState(-2);
-    const [dataSource, setDataSource] = React.useState(null)
+    const [dataSource, setDataSource] = React.useState([])
 
     // Dummy Data
     const [trending, setTrending] = React.useState([

@@ -19,6 +19,8 @@ import RegisterScreen from '../screens/Register';
 import ForgetPasswordScreen from '../screens/ForgetPassword';
 import CategoriesScreen from "../screens/Categories"
 import SlideScreen from "../screens/Cart/SliderScreen"
+import ConfrimOrder from "../screens/OrderPlaceScreen.js/OrderConformation"
+import ViewOrder from "../screens/OrderPlaceScreen.js/ReviewOrderInformation"
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -26,7 +28,7 @@ const AccountStack = createStackNavigator();
 const CategorieStack = createStackNavigator();
 const HomeStackScreen = ({ navigation }) => (
     <HomeStack.Navigator
-        initialRouteName={"Pant"}
+        initialRouteName={"Shirt"}
     >
         <HomeStack.Screen name="Shirt" component={ShirtNavigation}
             options={{ headerShown: false }}
@@ -49,6 +51,12 @@ const CartStackScreen = ({ navigation }) => (
         <CartStack.Screen name="Register" component={RegisterScreen}
             options={{ headerShown: false }} />
         <CartStack.Screen name="OrderSlide" component={SlideScreen}
+            options={{ headerShown: false }} />
+        <CartStack.Screen name="ConfromationOrder" component={ConfrimOrder}
+            options={{ headerShown: false }} />
+        <CartStack.Screen name="ViewOrder" component={ViewOrder}
+            options={{ headerShown: true }} />
+        <CartStack.Screen name="Home" component={HomeStackScreen}
             options={{ headerShown: false }} />
     </CartStack.Navigator>
 );

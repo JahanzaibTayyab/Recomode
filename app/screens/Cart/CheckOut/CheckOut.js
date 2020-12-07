@@ -24,7 +24,10 @@ const CheckOut = React.forwardRef((props, ref) => {
     const cartItems = useSelector(state => state)
     const [isUserNameUnique, setUserNameUnique] = React.useState(true)
     const [shippingDues, setShippingDues] = React.useState(150)
+    const [productTotalPrice, setProductTotalPrice] = React.useState(0)
     const [data, setData] = React.useState({
+        subTotal: '',
+        shippingTotal: '',
         totalPaid: '',
     });
     React.useImperativeHandle(ref, () => ({
@@ -34,9 +37,6 @@ const CheckOut = React.forwardRef((props, ref) => {
     }));
 
     const [show, setShow] = React.useState(false);
-    React.useEffect(() => {
-
-    }, [])
     const handleNextBtnPresses = () => {
 
     }
@@ -66,6 +66,16 @@ const CheckOut = React.forwardRef((props, ref) => {
             </View>
         )
     }
+    React.useEffect(() => {
+        const totalPrice = getTotalPrice()
+        setProductTotalPrice(totalPrice)
+        setData({
+            ...data,
+            subTotal: totalPrice,
+            shippingTotal: shippingDues,
+            totalPaid: totalPrice + shippingDues
+        })
+    }, [])
     const getTotalPrice = () => {
         let total = 0;
         cartItems.forEach((cart) => {
@@ -74,14 +84,6 @@ const CheckOut = React.forwardRef((props, ref) => {
         });
         return total;
     };
-    const totalprice = getTotalPrice()
-    const countTotal = () => {
-        setData({
-            ...data,
-            totalPaid: totalprice + shippingDues
-        })
-        return data
-    }
     return (
         <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} showsVerticalScrollIndicator={false}>
             <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Check Out</Text>
@@ -100,7 +102,7 @@ const CheckOut = React.forwardRef((props, ref) => {
                 </View>
                 <View style={{ marginTop: 10 }}>
                     <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 16, color: colors.bitblue, marginHorizontal: 20, }}>Shipping Information</Text>
-                    <Text style={{ fontFamily: FONT_Regular, flex: 1, flexWrap: "wrap", color: "black", fontSize: 14, marginTop: 5, marginHorizontal: 30, marginBottom: 10, }}>{props.data.shippingAddress}</Text>
+                    <Text style={{ fontFamily: FONT_Regular, flex: 1, flexWrap: "wrap", color: "black", fontSize: 14, marginTop: 5, marginHorizontal: 30, marginBottom: 10, }}>{props.data.shippingAddress},{props.data.city},{props.data.postalCode}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: colors.COLOR_FILLED, marginHorizontal: 10 }}></View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 20, marginTop: 10, }}>
@@ -115,12 +117,12 @@ const CheckOut = React.forwardRef((props, ref) => {
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginHorizontal: 30, marginTop: 5, }}>
                     <Text style={{ fontFamily: FONT_Regular, fontSize: 14, color: "black" }}>Total Items Price</Text>
-                    <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: "black", marginBottom: 5 }}>{totalprice}</Text>
+                    <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 14, color: "black", marginBottom: 5 }}>{productTotalPrice}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: colors.COLOR_FILLED, marginHorizontal: 10 }}></View>
                 <View style={{ flexDirection: 'row', marginHorizontal: 30, justifyContent: "space-between", marginTop: 5, }}>
                     <Text style={{ fontFamily: FONT_BOLD, fontSize: 20, color: "#3FC1BE" }}>Total</Text>
-                    <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 18, color: "black", marginBottom: 5 }}>{countTotal.totalPaid}</Text>
+                    <Text style={{ fontFamily: FONT_SEMIBOLD, fontSize: 18, color: "black", marginBottom: 5 }}>{data.totalPaid}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderBottomColor: colors.COLOR_FILLED, marginHorizontal: 10, marginBottom: 130, }}></View>
             </ScrollView>

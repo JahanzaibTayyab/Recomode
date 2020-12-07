@@ -11,7 +11,7 @@ import {
     ScrollView,
     Keyboard,
     ActivityIndicator,
-    SafeAreaView
+    SafeAreaView, Modal
 } from 'react-native'
 
 import PageControl from 'react-native-page-control';
@@ -26,9 +26,16 @@ import AsyncStore from "@react-native-community/async-storage";
 import firestore from '@react-native-firebase/firestore';
 import Nav from "../../../components/Nav"
 import useAuth from './../../../auth/useAuth';
+import { formatDate } from "../../../ultils/Utilities"
+import HomeActivityIndicator from "../../../components/HomeActivityIndicator"
+import { useSelector } from "react-redux"
+import localStorage from "../../../auth/storage"
+import LottieView from "lottie-react-native";
 const SliderScreen = ({ navigation }) => {
     const { user } = useAuth()
+    const cartItems = useSelector(state => state)
     const [screen, setScreen] = React.useState(0);
+    const [showLoader, setShowLoader] = React.useState(false)
     const [showBottomView, setShowBottomView] = React.useState(true)
     const [dataSourceParams, setDatSourParams] = React.useState({})
     const onB2Ref = React.useRef();
@@ -52,20 +59,39 @@ const SliderScreen = ({ navigation }) => {
     const _keyboardDidHide = () => {
         setShowBottomView(true)
     };
-
-    const handleSubmit = async () => {
-        dataSourceParams['userId'] = user.id
-        dataSourceParams['orderId'] = new Date()
-        console.log(dataSourceParams)
-        await firestore().collection('orders').doc().set(dataSourceParams).then((response) => {
-            // setActivityIndicator(false);
-            // setPopUp(true)
-            // setTimeout(function () {
-            //     userData['id'] = id;
-            //     props.navigation.navigate(routes.TAKEIMAGE, { userData });
-            // }, 4000)
+    const savedata = async (params, order) => {
+        await firestore().collection('orders').doc().set(params).then((response) => {
+            setShowLoader(false)
+            navigation.navigate('ConfromationOrder', { order });
         }).catch((error) => {
             alert(error)
+        })
+    }
+    const handleSubmit = async () => {
+        setShowLoader(true)
+        localStorage.getKeyFromUserDefaults(constants.KEY_USER_ID).then((userInfo) => {
+            console.log(dataSourceParams)
+            const order = new Date().getTime()
+            let params = {
+                "orderId": order,
+                "orderDate": formatDate(new Date()),
+                "name": dataSourceParams.order.full_name,
+                "email": dataSourceParams.order.email,
+                "phoneNumber": dataSourceParams.order.phoneNumber,
+                "shippingAddress": dataSourceParams.shippingAddress,
+                "city": dataSourceParams.city,
+                "postalCode": dataSourceParams.postalCode,
+                "products": cartItems,
+                "subTotal": dataSourceParams.subTotal,
+                "shippingCharges": dataSourceParams.shippingTotal,
+                "totalDues": dataSourceParams.totalPaid,
+                "paymentMethod": dataSourceParams.paymentMethod,
+                "user_id": userInfo,
+                "status": 'Pending',
+                "vendorNote": dataSourceParams.vendorNote,
+            }
+            savedata(params, order)
+
         })
     };
     const onSwipePerformed = (action) => {
@@ -208,8 +234,6 @@ const SliderScreen = ({ navigation }) => {
                 setDatSourParams(obj)
                 setScreen(screen + 1)
             }
-            console.log("from Screen 2")
-            console.log(dataSourceParams)
         }
         else if (screen === 1) {
             let obj = onB3Ref.current.nextBtnTapped()
@@ -222,8 +246,6 @@ const SliderScreen = ({ navigation }) => {
                 setDatSourParams(obj)
                 setScreen(screen + 1)
             }
-            console.log("from Screen 3")
-            console.log(dataSourceParams)
         }
         else if (screen === 2) {
             let obj = onB4Ref.current.nextBtnTapped()
@@ -236,11 +258,10 @@ const SliderScreen = ({ navigation }) => {
                 setDatSourParams(obj)
                 setScreen(screen + 1)
             }
-            console.log("from Screen 4")
-            console.log(dataSourceParams)
         }
         else if (screen === 3) {
             let obj = onB5Ref.current.nextBtnTapped()
+            console.log(obj)
             if (obj) {
                 let obj2 = dataSourceParams;
                 let obj2Keys = Object.keys(obj2)
@@ -248,63 +269,23 @@ const SliderScreen = ({ navigation }) => {
                     obj[obj2Keys[i]] = obj2[obj2Keys[i]]
                 }
                 setDatSourParams(obj)
+                console.log("Inner")
+                console.log(dataSourceParams)
                 handleSubmit()
             }
         }
     }
-
-
-    const saveData = async () => {
-
-        let settingsObj = await onB8Ref.current.nextBtnTapped()
-
-
-        setIsLoading(true)
-        getJSONFromUserDefaults(constants.KEY_USERINFO).then((userInfo) => {
-
-
-            let params = {
-                "first_name": userInfo.user.first_name,
-                "last_name": userInfo.user.last_name,
-                "user_name": userInfo.user.user_name,
-                "dob": userInfo.user.dob,
-                "image": userInfo.user.image,
-                "expected_graduation": userInfo.user.expected_graduation,
-                "pronoun_id": userInfo.user.pronoun_id,
-                "role_id": userInfo.user.role_id,
-                "institute_id": userInfo.user.institute_id,
-                "email": userInfo.user.email,
-                "accounttype_id": userInfo.user.accounttype_id,
-                "majors": userInfo.majors,
-                "interests": userInfo.interests,
-                "groups": userInfo.groups,
-                "bio": userInfo.bio,
-                "settings": settingsObj
-            }
-            let url = constants.API_SERCER_BASE_URL + 'users/register'
-            callPostReq(url, params, (statusCode, responseJson) => {
-                if (checkAPICallStatus(statusCode)) {
-
-                    setIsLoading(false)
-                    showAlert("Success", "You have signup succesfully")
-                    navigation.navigate('TABS');
-                    AsyncStorage.clear()
-
-                } else {
-                    setIsLoading(false)
-                    console.log(responseJson.code);
-                }
-                setIsLoading(false)
-            },
-            );
-        })
-    }
     return (
         <>
+
             <Nav />
             <View style={styles.onBoargingViewsContainers}>
-                {isLoading ?
-                    <Loader />
+                {showLoader ?
+                    <LottieView
+                        autoPlay
+                        loop
+                        source={require("../../../assets/animations/loader.json")}
+                    />
                     :
                     <SwipeGesture gestureStyle={styles.swipeGestureContainer}
                         onSwipePerformed={(action) => onSwipePerformed(action)}>
