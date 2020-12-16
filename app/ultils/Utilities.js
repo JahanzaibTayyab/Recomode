@@ -14,18 +14,18 @@ export function formatDate(date, format, fromCalander) {
     'Saturday',
   ];
   var months = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   var daysShort = [
@@ -62,7 +62,7 @@ export function formatDate(date, format, fromCalander) {
     return `${monthE} ${currentDate}th, ${year}`;
   }
   else if (format === 'mm-dd') {
-    return `${monthE} ${currentDate}th`;
+    return `${monthE} ${currentDate}`;
   }
   else if (format === 'mm-yy') {
     return `${monthE} ${year}`;
@@ -84,7 +84,7 @@ export function formatDate(date, format, fromCalander) {
     return `${day}, ${monthE} ${currentDate}rd`;
   }
   else {
-    return `${day}, ${monthE} ${currentDate}th`;
+    return `${day}, ${currentDate}-${monthE}-${year}`;
   }
 
 
@@ -108,12 +108,7 @@ export function formatTime(timeStamp) {
     ('0' + hours).slice(-2)
     + ':' + ('0' + t.getMinutes()).slice(-2)
     + ' ' + newformat;
-
-
-
-
   return formatted
-
 }
 
 export function calculateRemainingTime(startedAt) {

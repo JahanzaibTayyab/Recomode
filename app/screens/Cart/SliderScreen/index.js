@@ -38,6 +38,7 @@ const SliderScreen = ({ navigation }) => {
     const [showLoader, setShowLoader] = React.useState(false)
     const [showBottomView, setShowBottomView] = React.useState(true)
     const [dataSourceParams, setDatSourParams] = React.useState({})
+    const [productItem, setProductItem] = React.useState([])
     const onB2Ref = React.useRef();
     const onB3Ref = React.useRef();
     const onB4Ref = React.useRef();
@@ -67,29 +68,40 @@ const SliderScreen = ({ navigation }) => {
             alert(error)
         })
     }
-    const handleSubmit = async () => {
+    const handleSubmit = async (input) => {
         setShowLoader(true)
         localStorage.getKeyFromUserDefaults(constants.KEY_USER_ID).then((userInfo) => {
-            console.log(dataSourceParams)
             const order = new Date().getTime()
+            cartItems.map((item) => {
+                let object = {
+                    "productId": item.id,
+                    "quantity": 1,
+                    "size": item.size,
+                    "img": item.img,
+                    "title": item.title,
+                    "price": item.price
+                }
+                productItem.push(object)
+            });
             let params = {
                 "orderId": order,
-                "orderDate": formatDate(new Date()),
+                "orderDate": new Date().toJSON(),
                 "name": dataSourceParams.order.full_name,
                 "email": dataSourceParams.order.email,
                 "phoneNumber": dataSourceParams.order.phoneNumber,
                 "shippingAddress": dataSourceParams.shippingAddress,
                 "city": dataSourceParams.city,
                 "postalCode": dataSourceParams.postalCode,
-                "products": cartItems,
-                "subTotal": dataSourceParams.subTotal,
-                "shippingCharges": dataSourceParams.shippingTotal,
-                "totalDues": dataSourceParams.totalPaid,
+                "products": productItem,
+                "subTotal": input.subTotal,
+                "shippingCharges": input.shippingTotal,
+                "totalDues": input.totalPaid,
                 "paymentMethod": dataSourceParams.paymentMethod,
                 "user_id": userInfo,
                 "status": 'Pending',
                 "vendorNote": dataSourceParams.vendorNote,
             }
+            console.log(params)
             savedata(params, order)
 
         })
@@ -195,8 +207,6 @@ const SliderScreen = ({ navigation }) => {
     }
 
     const renderViews = () => {
-        // Depending upond the page control number, the view screen will be returned
-
         switch (screen) {
             case 0: {
 
@@ -269,9 +279,7 @@ const SliderScreen = ({ navigation }) => {
                     obj[obj2Keys[i]] = obj2[obj2Keys[i]]
                 }
                 setDatSourParams(obj)
-                console.log("Inner")
-                console.log(dataSourceParams)
-                handleSubmit()
+                handleSubmit(obj)
             }
         }
     }

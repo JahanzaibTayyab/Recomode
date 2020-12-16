@@ -21,6 +21,9 @@ import CategoriesScreen from "../screens/Categories"
 import SlideScreen from "../screens/Cart/SliderScreen"
 import ConfrimOrder from "../screens/OrderPlaceScreen.js/OrderConformation"
 import ViewOrder from "../screens/OrderPlaceScreen.js/ReviewOrderInformation"
+import OrderScreen from './../screens/Orders/OrderScreen';
+import ViewOrderHistory from "../screens/Orders/ReviewOrderInfromation"
+import UserLocation from "../screens/UserLocation/UserLocation"
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -55,7 +58,7 @@ const CartStackScreen = ({ navigation }) => (
         <CartStack.Screen name="ConfromationOrder" component={ConfrimOrder}
             options={{ headerShown: false }} />
         <CartStack.Screen name="ViewOrder" component={ViewOrder}
-            options={{ headerShown: true }} />
+            options={{ headerShown: false }} />
         <CartStack.Screen name="Home" component={HomeStackScreen}
             options={{ headerShown: false }} />
     </CartStack.Navigator>
@@ -88,6 +91,12 @@ const AccountStackScreen = ({ navigation }) => (
             options={{ headerShown: false }} />
         <AccountStack.Screen name="Register" component={RegisterScreen}
             options={{ headerShown: false }} />
+        <AccountStack.Screen name="Orders" component={OrderScreen}
+            options={{ headerShown: false }} />
+        <AccountStack.Screen name="ViewOrder" component={ViewOrderHistory}
+            options={{ headerShown: false }} />
+        <AccountStack.Screen name="Location" component={UserLocation}
+            options={{ headerShown: true }} />
         {/* <AccountStack.Screen
             name="Register"
             component={RegisterScreen}

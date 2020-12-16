@@ -86,6 +86,23 @@ function SettingsScreen(props) {
               }
               rightIcon={<Chevron />}
             />
+            {user.email != '' ? <ListItem
+              // chevron
+              title="Orders"
+              rightTitleStyle={{ fontSize: 15 }}
+              onPress={() => props.navigation.navigate(routes.ORDERS)}
+              containerStyle={styles.listItemContainer}
+              leftIcon={
+                <BaseIcon
+                  containerStyle={{ backgroundColor: colors.COLOR_BORDER }}
+                  icon={{
+                    type: 'font-awesome',
+                    name: 'history',
+                  }}
+                />
+              }
+              rightIcon={<Chevron />}
+            /> : null}
             <ListItem
               hideChevron
               title="Push Notifications"
@@ -111,7 +128,7 @@ function SettingsScreen(props) {
             <ListItem
               // chevron
               title="Currency"
-              rightTitle="Pk"
+              rightTitle="Pakistani Rupee (Rs)"
               rightTitleStyle={{ fontSize: 15 }}
               onPress={() => this.onPressSetting()}
               containerStyle={styles.listItemContainer}
@@ -124,13 +141,12 @@ function SettingsScreen(props) {
                   }}
                 />
               }
-              rightIcon={<Chevron />}
             />
             <ListItem
               title="Location"
               rightTitle="Pakistan"
               rightTitleStyle={{ fontSize: 15 }}
-              onPress={() => this.onPressSetting()}
+              onPress={() => props.navigation.navigate(routes.LOCATION)}
               containerStyle={styles.listItemContainer}
               leftIcon={
                 <BaseIcon
@@ -158,7 +174,6 @@ function SettingsScreen(props) {
                   }}
                 />
               }
-              rightIcon={<Chevron />}
             />
           </View>
           <InfoText text="More" />

@@ -15,12 +15,18 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { FONT_BOLD, FONT_LIGHT, FONT_Regular, FONT_SEMIBOLD, SCREEN_WIDTH } from "../../../config/Constant"
 import styles from './styles'
-import Icon from 'react-native-vector-icons/Feather';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import GetLocation from 'react-native-get-location'
 import colors from "../../../config/colors"
+import MapView, { Marker, ProviderPropType } from 'react-native-maps';
 const DeliveryInfo = React.forwardRef((props, ref) => {
-
     const [isLoading, setIsLoading] = React.useState(false)
+    const [region, setRegion] = React.useState({
+        latitude: 23.8859,
+        longitude: 45.0792,
+        latitudeDelta: 0.009,
+        longitudeDelta: 0.009
+    });
     const [isUserNameUnique, setUserNameUnique] = React.useState(true)
     React.useImperativeHandle(ref, () => ({
 
@@ -47,10 +53,47 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
         postalCode: '',
         vendorNote: '',
     });
-
+    const markerPostion = (val) => {
+        setRegion({
+            ...region,
+            latitude: val.nativeEvent.coordinate.latitude,
+            longitude: val.nativeEvent.coordinate.longitude,
+        });
+    };
+    const getLocation = () => {
+        GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 15000,
+        })
+            .then(location => {
+                setRegion({
+                    ...region,
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                })
+            })
+            .catch(error => {
+                const { code, message } = error;
+                console.warn(code, message);
+            })
+    }
     const [show, setShow] = React.useState(false);
     React.useEffect(() => {
-
+        fetch('https://ipapi.co/json/')
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                setData({
+                    ...data,
+                    city: json.city,
+                    postalCode: json.postal
+                })
+            })
+            .catch((error) => console.error(error))
+            .finally(() => {
+                getLocation();
+                setIsLoading(false)
+            });
     }, [])
     const ConfrimAlert = () => {
         setShow(false);
@@ -93,9 +136,9 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
 
     }
     return (
-        <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} showsVerticalScrollIndicator={false}>
+        <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
             <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Shipping Info</Text>
-            <ScrollView style={{ flex: 1, backgroundColor: "white", }}>
+            <ScrollView nestedScrollEnabled={true}  >
                 <AwesomeAlert
                     show={show}
                     showProgress={true}
@@ -118,7 +161,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                         ConfrimAlert();
                     }}
                 />
-                <View style={[styles.containerView, { marginBottom: 130 }]}>
+                <View style={[styles.containerView]}>
                     <View style={{ flex: 1, width: SCREEN_WIDTH - 50, marginLeft: 25, marginRight: 25 }}>
                         <View style={{ marginTop: 10 }}>
                             <Text style={styles.textFieldHeadings}>
@@ -177,8 +220,23 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                             onChangeText={(val) => handleVendorNotenput(val)}
                         >
                         </TextInput>
-
                     </View>
+                </View>
+                <View style={[styles.viewSearchBar, { height: 180, overflow: "hidden", marginBottom: 130 }]}>
+                    <MapView
+                        style={{ width: '100%', height: "100%" }}
+                        region={region}
+                        onRegionChangeComplete={(region) => setRegion(region)}>
+                        <Marker
+                            stopPropagation={false}
+                            draggable={true}
+                            coordinate={{
+                                latitude: region.latitude,
+                                longitude: region.longitude,
+                            }}
+                            onDragEnd={(val) => markerPostion(val)}
+                        />
+                    </MapView>
                 </View>
             </ScrollView>
         </KeyboardAwareScrollView>
