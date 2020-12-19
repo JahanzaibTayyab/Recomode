@@ -24,6 +24,7 @@ import authStorage from "./app/auth/storage";
 import constants from "./app/assets/stylesheet/Constants"
 import { Provider } from "react-redux";
 import store from "./app/redux/store/configureStore";
+import StripePayment from "./app/screens/Cart/PaymentMethod/StripePayment"
 
 console.disableYellowBox = true
 
@@ -86,5 +87,6 @@ export default function App() {
       </AuthContext.Provider>
     </Provider>
     // <CategoriesScreen />
+   // <StripePayment />
   );
 }

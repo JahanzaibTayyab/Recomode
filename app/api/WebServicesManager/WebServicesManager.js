@@ -24,8 +24,6 @@ export const callGetReq = async (url, callback) => {
 };
 
 export const callPostReq = async (url, params, callback) => {
-
-
   var body = JSON.stringify(params);
   console.log(url)
   await fetch(url, {
@@ -40,9 +38,7 @@ export const callPostReq = async (url, params, callback) => {
     .then((responseJson) => {
       console.log(responseJson)
       let statusCode = responseJson.code;
-
       callback(statusCode, responseJson);
-
     })
     .catch((error) => {
       console.log("API error")

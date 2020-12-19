@@ -12,6 +12,8 @@ target 'Recomode' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
+
   target 'RecomodeTests' do
     inherit! :complete
     # Pods for testing
