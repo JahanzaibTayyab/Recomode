@@ -22,12 +22,10 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import colors from "../../../config/colors"
 const OrderDetails = React.forwardRef((props, ref) => {
     const { user } = apiAuth()
-    const [isLoading, setIsLoading] = React.useState(false)
-    const [isUserNameUnique, setUserNameUnique] = React.useState(true)
+    const [buttonText,setButtonText]=React.useState('Default')
+    const [editable,setEditable]=React.useState(true)
     React.useImperativeHandle(ref, () => ({
-
         nextBtnTapped() {
-            console.log("yha fucj")
             if (data.firstName != '' && data.email != "" && data.phoneNumber != "") {
                 let obj = {
                     "order": {
@@ -45,14 +43,11 @@ const OrderDetails = React.forwardRef((props, ref) => {
         }
     }
     ));
-
-
     const [data, setData] = React.useState({
         firstName: '',
         email: '',
         phoneNumber: '',
     });
-
     const [show, setShow] = React.useState(false);
     const ConfrimAlert = () => {
         setShow(false);
@@ -83,13 +78,47 @@ const OrderDetails = React.forwardRef((props, ref) => {
             phoneNumber: val
         })
     }
-    const handleNextBtnPresses = () => {
-
+    const userDefaults=()=>{
+        if(buttonText.match('Default'))
+        {
+            setData({
+                ...data,
+                firstName:user.fullName,
+                email:user.email
+            })
+            setButtonText('Custom')
+            setEditable(false)
+        }
+        else if(buttonText.match('Custom'))
+        {
+            setData({
+                ...data,
+                firstName:'',
+                email:''
+            })
+            setButtonText('Default')
+            setEditable(true)
+        }
     }
     return (
         <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} >
-            <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Order Details</Text>
-            <ScrollView style={{ flex: 1, backgroundColor: "white", }}>
+            <View style={{flexDirection: 'row',justifyContent:"space-between",marginHorizontal: 30,marginBottom:10,top:5}}>
+            <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black",}}>Order Details</Text>
+            <TouchableOpacity
+                    style={{
+                        height: 25,
+                        backgroundColor: colors.primary,
+                        borderRadius: 10,
+                        alignSelf: "flex-end",
+                        alignItems: "center", position: "absolute",
+                        right: 5
+                    }}
+                    onPress={() => userDefaults()}
+                >
+                    <Text style={styles.joinButton}> {buttonText} </Text>
+                </TouchableOpacity>
+            </View>
+            <ScrollView style={styles.scrollViewContainer}>
                 <AwesomeAlert
                     show={show}
                     showProgress={true}
@@ -124,6 +153,7 @@ const OrderDetails = React.forwardRef((props, ref) => {
                                 style={styles.textFields}
                                 autoCapitalize='none'
                                 value={data.firstName}
+                                editable={editable}
                                 onChangeText={(val) => handleFirstNameInput(val)}
                             />
                         </View>
@@ -136,6 +166,7 @@ const OrderDetails = React.forwardRef((props, ref) => {
                                 style={styles.textFields}
                                 value={data.email}
                                 autoCapitalize='none'
+                                editable={editable}
                                 onChangeText={(val) => handleEmailInput(val)}
                             />
                         </View>

@@ -7,7 +7,6 @@ import { FONT_SEMIBOLD, FONT_Regular, FONT_MEDIUM, FONT_BOLD, FONT_ITALIC, FONT_
 export default StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "white",
   },
   list: {
     flex: 1,
@@ -91,37 +90,6 @@ export default StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     color: Color.green,
-  },
-  card: {
-    overflow: "hidden",
-    backgroundColor: 'white',
-    borderColor: colors.COLOR_BORDER,
-    borderWidth: 0,
-    shadowColor: colors.COLOR_FILLED,
-    shadowOpacity: 0.2,
-    elevation: 2,
-    shadowRadius: 5,
-    shadowOffset: { width: 1, height: 50 },
-    marginBottom: 8,
-    flexDirection: 'row',
-    height: 100,
-  },
-  detailsContainer: {
-    marginHorizontal: 10,
-    marginTop: 10,
-  },
-  cardimage: {
-    width: "100%",
-    height: 90,
-  },
-  subTitle: {
-    fontFamily: FONT_MEDIUM, fontSize: 14, color: "#333333", marginBottom: 2,
-  },
-  title: {
-    marginBottom: 5,
-    fontFamily: FONT_SEMIBOLD,
-    color: colors.bitblue,
-    fontSize: 18
   },
   card: {
     overflow: "hidden",

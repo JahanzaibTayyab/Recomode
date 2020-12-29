@@ -87,6 +87,6 @@ export default function App() {
       </AuthContext.Provider>
     </Provider>
     // <CategoriesScreen />
-   // <StripePayment />
+  //  <StripePayment />
   );
 }

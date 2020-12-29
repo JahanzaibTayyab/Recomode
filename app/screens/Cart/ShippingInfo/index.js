@@ -19,22 +19,30 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import GetLocation from 'react-native-get-location'
 import colors from "../../../config/colors"
 import MapView, { Marker, ProviderPropType } from 'react-native-maps';
+import localStorage from "../../../auth/storage"
+import constants from '../../../assets/stylesheet/Constants';
 const DeliveryInfo = React.forwardRef((props, ref) => {
-    const [isLoading, setIsLoading] = React.useState(false)
+    const [buttonText,setButtonText]=React.useState('Default')
+    const [editable,setEditable]=React.useState(true)
+    const [showButton,setShowButton]=React.useState(false)
+    const [showDefaultButton,setShowDefaultButton]=React.useState(false)
     const [region, setRegion] = React.useState({
         latitude: 23.8859,
         longitude: 45.0792,
         latitudeDelta: 0.009,
         longitudeDelta: 0.009
     });
-    const [isUserNameUnique, setUserNameUnique] = React.useState(true)
+    const checkIfUserHadOrderOrNot = () => {
+        localStorage.getKeyFromUserDefaults(constants.KEY_SHIPPING_IDS).then((value)=>{
+            if(value)
+            {
+                setShowButton(true)
+            }
+        })
+      }
     React.useImperativeHandle(ref, () => ({
-
         nextBtnTapped() {
-            // return true
-
             if (data.permanentAddress != '' && data.shippingAddress != "" && data.city != '' && data.postalCode != '') {
-                //   var isUnique =   checkUserNameisUnique()
                 return data
             }
             else {
@@ -44,8 +52,6 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
         }
     }
     ));
-
-
     const [data, setData] = React.useState({
         permanentAddress: '',
         shippingAddress: '',
@@ -83,15 +89,17 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
             .then((response) => response.json())
             .then((json) => {
                 console.log(json)
-                setData({
+                if(json.city!='')
+               { setData({
                     ...data,
                     city: json.city,
                     postalCode: json.postal
-                })
+                })}
             })
             .catch((error) => console.error(error))
             .finally(() => {
                 getLocation();
+                checkIfUserHadOrderOrNot();
                 setIsLoading(false)
             });
     }, [])
@@ -107,7 +115,6 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
             permanentAddress: val
         })
     }
-
     const handleShippingAddressInput = (val) => {
         setData({
             ...data,
@@ -121,6 +128,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
         })
     }
     const handlePostalCodeInput = (val) => {
+        setShowDefaultButton(true)
         setData({
             ...data,
             postalCode: val
@@ -132,12 +140,72 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
             vendorNote: val
         })
     }
-    const handleNextBtnPresses = () => {
-
+    const handleBtnPresses = () => {
+        if(buttonText.match('Default'))
+        {
+            localStorage.getJSONFromShippingDefaults(constants.KEY_SHIPPING_INFO).then((value) => {
+                if (value) {
+                  setData({
+                      ...data,
+                      permanentAddress:value.permanentAddress,
+                      shippingAddress:value.shippingAddress,
+                      city:value.city,
+                      postalCode:value.postalCode
+                  })
+                }
+              });
+            setButtonText('Custom')
+            setEditable(false)
+        }
+        else if(buttonText.match('Custom'))
+        {
+            setData({
+                ...data,
+                permanentAddress: '',
+                shippingAddress: '',
+                city: '',
+                postalCode: '',
+                vendorNote: '',
+            })
+            setButtonText('Default')
+            setEditable(true)
+        }
+    }
+    const userDefaults=()=>{
+        localStorage.saveKeyInUserDefaults(constants.KEY_SHIPPING_IDS,'1')
+        localStorage.saveJSONShippingDefaults(constants.KEY_SHIPPING_INFO,data)
     }
     return (
         <KeyboardAwareScrollView style={styles.keyboardAwareScrollView} showsVerticalScrollIndicator={false} nestedScrollEnabled={true}>
-            <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black", marginHorizontal: 30, }}>Shipping Info</Text>
+            <View style={{flexDirection: 'row',justifyContent:"space-between",marginHorizontal: 30,marginBottom:10,top:5}}>
+            <Text style={{ fontFamily: FONT_BOLD, fontSize: 16, color: "black"}}>Shipping Info</Text>
+           {showButton? <TouchableOpacity
+                    style={{
+                        height: 25,
+                        backgroundColor: colors.primary,
+                        borderRadius: 10,
+                        alignSelf: "flex-end",
+                        alignItems: "center", position: "absolute",
+                        right: 5
+                    }}
+                    onPress={() => handleBtnPresses()}
+                >
+                    <Text style={styles.joinButton}> {buttonText} </Text>
+                </TouchableOpacity>
+                :showDefaultButton?<TouchableOpacity
+                    style={{
+                        height: 25,
+                        backgroundColor: colors.primary,
+                        borderRadius: 10,
+                        alignSelf: "flex-end",
+                        alignItems: "center", position: "absolute",
+                        right: 5
+                    }}
+                    onPress={() => userDefaults()}
+                >
+                    <Text style={styles.joinButton}> Save as Default </Text>
+                </TouchableOpacity>:null}
+            </View>
             <ScrollView nestedScrollEnabled={true}  >
                 <AwesomeAlert
                     show={show}
@@ -171,6 +239,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                                 placeholder=''
                                 style={styles.textFields}
                                 autoCapitalize='none'
+                                editable={editable}
                                 value={data.permanentAddress}
                                 onChangeText={(val) => handleAddressNameInput(val)}
                             />
@@ -183,6 +252,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                                 placeholder=''
                                 style={styles.textFields}
                                 value={data.shippingAddress}
+                                editable={editable}
                                 autoCapitalize='none'
                                 onChangeText={(val) => handleShippingAddressInput(val)}
                             />
@@ -196,6 +266,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                                 style={styles.textFields}
                                 value={data.city}
                                 autoCapitalize='none'
+                                editable={editable}
                                 onChangeText={(val) => handleCityInput(val)}
                             />
                         </View>
@@ -208,6 +279,7 @@ const DeliveryInfo = React.forwardRef((props, ref) => {
                                 style={styles.textFields}
                                 value={data.postalCode}
                                 autoCapitalize='none'
+                                editable={editable}
                                 onChangeText={(val) => handlePostalCodeInput(val)}
                             />
                         </View>
