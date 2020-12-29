@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import constants from '../assets/stylesheet/Constants';
-import { StyleSheet, Platform, Dimensions } from 'react-native';
+import {StyleSheet, Platform, Dimensions} from 'react-native';
 const styles = StyleSheet.create({
   keyboardAwareScrollView: {
     flex: 1,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     elevation: 6,
     shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
+    shadowOffset: {width: 1, height: 13},
   },
   textBtnSignIn: {
     color: constants.COLOR_FILLED,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 6,
     shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
+    shadowOffset: {width: 1, height: 13},
   },
 
   viewSearchBarOnTopBar: {
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     width: constants.SCREEN_WIDTH - 80,
     marginLeft: 10,
     marginRight: 10,
-    height: 32.21,
+    height: 40.21,
     borderRadius: 20,
     backgroundColor: constants.COLOR_WHITE,
     borderColor: constants.COLOR_BORDER,
@@ -229,16 +229,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 6,
     shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
+    shadowOffset: {width: 1, height: 13},
     flexDirection: 'row',
   },
 
   textInputSearchBar: {
     fontFamily: constants.FONT_FAMILY_SEMIBOLD,
     fontSize: constants.FONT_SIZE_TEN,
-    width: '90%',
+    width: '75%',
     height: '100%',
     color: '#A3A3A3',
+    marginHorizontal: 20,
   },
 
   viewSetting: {
@@ -281,25 +282,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   tabsContainerStyle: {
-    width: 150,
+    width: '100%',
     height: 25,
     borderRadius: 0,
   },
   tabTextStyle: {
     fontFamily: constants.FONT_FAMILY_BOLD,
-    fontSize: constants.FONT_SIZE_TEN,
+    fontSize: constants.FONT_SIZE_TWELEVE,
     color: constants.COLOR_FILLED,
     opacity: 0.3,
   },
   activeTabTextStyel: {
     fontFamily: constants.FONT_FAMILY_BOLD,
-    fontSize: constants.FONT_SIZE_TEN,
+    fontSize: constants.FONT_SIZE_FOURTEEN,
     color: constants.COLOR_FILLED,
     opacity: 1,
   },
   imgBackgroundStyle: {
     flex: 1,
-    // resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%',
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 6,
     shadowRadius: 20,
-    shadowOffset: { width: 1, height: 13 },
+    shadowOffset: {width: 1, height: 13},
   },
   taskView: {
     flexDirection: 'row',
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     marginLeft: 50,
     marginRight: 50,
-    marginTop: 10
+    marginTop: 10,
   },
   blurViewStyles: {
     position: 'absolute',
@@ -364,37 +364,46 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 1,
     shadowRadius: 10,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     height: 124,
     width: 159,
     marginLeft: 15,
   },
   sliderBar: {
-    width: 2, height: 10, borderRightWidth: 1, borderRightColor: "#BEBEBE"
+    width: 2,
+    height: 10,
+    borderRightWidth: 1,
+    borderRightColor: '#BEBEBE',
   },
   sliderCircle: {
-    width: 8, height: 8, backgroundColor: "#BEBEBE", borderRadius: 4
+    width: 8,
+    height: 8,
+    backgroundColor: '#BEBEBE',
+    borderRadius: 4,
   },
   textTaskInfo: {
     fontFamily: constants.FONT_FAMILY_REGULAR,
     fontSize: constants.FONT_SIZE_TWELEVE,
     marginLeft: 10,
-    marginBottom: 15
+    marginBottom: 15,
   },
   imgTaskInfoCheckBox: {
     width: 14,
     height: 14,
-    marginLeft: -20
+    marginLeft: -20,
   },
   switchView: {
-    flexDirection: "row", justifyContent: "space-between", marginHorizontal: 20, flex: 1
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 20,
+    flex: 1,
   },
   recurringButton: {
     borderColor: constants.COLOR_FILLED,
     borderRadius: 14,
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     height: 28,
     marginLeft: 5,
     marginTop: 5,
@@ -409,10 +418,10 @@ const styles = StyleSheet.create({
   recurringNameText: {
     fontFamily: constants.FONT_FAMILY_REGULAR,
     fontSize: constants.FONT_SIZE_FOURTEEN,
-    textAlign: "center",
+    textAlign: 'center',
     alignSelf: 'center',
     padding: 5,
-    color: constants.COLOR_FILLED
+    color: constants.COLOR_FILLED,
   },
 
   weekDayButtonView: {
@@ -424,16 +433,15 @@ const styles = StyleSheet.create({
     borderRadius: 12.5,
     borderWidth: 0.5,
     marginTop: 10,
-    borderColor: constants.COLOR_FILLED
+    borderColor: constants.COLOR_FILLED,
   },
   weekDayText: {
     alignSelf: 'center',
     fontFamily: constants.FONT_FAMILY_SEMIBOLD,
     fontSize: constants.FONT_SIZE_TEN,
-
   },
   containerOnModal: {
-    width: "100%",
+    width: '100%',
     position: 'absolute',
     alignSelf: 'center',
     borderRadius: 10,
@@ -442,11 +450,9 @@ const styles = StyleSheet.create({
     elevation: 1,
     shadowRadius: 10,
     backgroundColor: constants.COLOR_WHITE,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     height: 389,
   },
-
-
 
   textInput: {
     fontSize: constants.FONT_SIZE_FOURTEEN,
@@ -455,10 +461,10 @@ const styles = StyleSheet.create({
     borderBottomColor: constants.COLOR_FILLED,
     paddingTop: 5,
     marginBottom: 10,
-    width: "25%",
-    alignSelf: "center",
-    justifyContent: "center",
-    textAlign: "center",
+    width: '25%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
 
   customRecuringHeadins: {
@@ -466,19 +472,46 @@ const styles = StyleSheet.create({
     fontFamily: constants.FONT_FAMILY_REGULAR,
     color: 'gray',
     marginTop: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
 
   fullContainer: {
-    position: "absolute",
-    width: "100%",
-    height: "100%"
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
   },
-  weeklyEventCalenderView: { margin: 20, height: 50, borderRadius: 25, backgroundColor: '#F9A4A5', flexDirection: 'row', flex: 1 },
-  weeklyEventCalenderViewUser: { height: 45, width: 45, borderRadius: 22.5, backgroundColor: "red", marginHorizontal: 5, marginTop: 2.5 },
-  weeklyEventCalenderViewText: { fontSize: constants.FONT_SIZE_EIGHTEEN, fontFamily: constants.FONT_FAMILY_MEDIUM, color: constants.COLOR_BLACK },
-  weeklyEventCalenderDescripationText: { fontSize: constants.FONT_SIZE_TWELEVE, fontFamily: constants.FONT_FAMILY_MEDIUM },
-  weeklyEventCalenderRenderText: { fontFamily: constants.FONT_FAMILY_SEMIBOLD, marginTop: 30, textAlign: 'left', marginLeft: 5, fontSize: constants.FONT_SIZE_FIFTEEN },
+  weeklyEventCalenderView: {
+    margin: 20,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#F9A4A5',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  weeklyEventCalenderViewUser: {
+    height: 45,
+    width: 45,
+    borderRadius: 22.5,
+    backgroundColor: 'red',
+    marginHorizontal: 5,
+    marginTop: 2.5,
+  },
+  weeklyEventCalenderViewText: {
+    fontSize: constants.FONT_SIZE_EIGHTEEN,
+    fontFamily: constants.FONT_FAMILY_MEDIUM,
+    color: constants.COLOR_BLACK,
+  },
+  weeklyEventCalenderDescripationText: {
+    fontSize: constants.FONT_SIZE_TWELEVE,
+    fontFamily: constants.FONT_FAMILY_MEDIUM,
+  },
+  weeklyEventCalenderRenderText: {
+    fontFamily: constants.FONT_FAMILY_SEMIBOLD,
+    marginTop: 30,
+    textAlign: 'left',
+    marginLeft: 5,
+    fontSize: constants.FONT_SIZE_FIFTEEN,
+  },
   discoverCalenderViewButton: {
     borderRadius: 20,
     backgroundColor: constants.COLOR_WHITE,
@@ -489,34 +522,90 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 3,
     shadowRadius: 10,
-    shadowOffset: { width: 1, height: 50 },
+    shadowOffset: {width: 1, height: 50},
     height: 160,
     width: 137,
     marginLeft: 25,
   },
-  discoverCalenderViewNameText: { fontFamily: constants.FONT_FAMILY_SEMIBOLD, fontSize: constants.FONT_SIZE_TEN, },
-  discoverCalenderViewTimeText: { fontFamily: constants.FONT_FAMILY_REGULAR, fontSize: constants.FONT_SIZE_EIGHT, color: "#656565" },
-  beforeButton: { fontFamily: constants.FONT_FAMILY_REGULAR, fontSize: constants.FONT_SIZE_FOURTEEN, textAlign: "center", alignSelf: 'center', padding: 5, color: constants.COLOR_FILLED },
+  discoverCalenderViewNameText: {
+    fontFamily: constants.FONT_FAMILY_SEMIBOLD,
+    fontSize: constants.FONT_SIZE_TEN,
+  },
+  discoverCalenderViewTimeText: {
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    fontSize: constants.FONT_SIZE_EIGHT,
+    color: '#656565',
+  },
+  beforeButton: {
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    fontSize: constants.FONT_SIZE_FOURTEEN,
+    textAlign: 'center',
+    alignSelf: 'center',
+    padding: 5,
+    color: constants.COLOR_FILLED,
+  },
   CalnderView: {
-    top: -10, width: 25, height: 25, overflow: "hidden", borderColor: constants.COLOR_FILLED, borderWidth: 1, borderRadius: 12, justifyContent: "center", alignSelf: "center", shadowColor: constants.COLOR_SHADOW,
+    top: -10,
+    width: 25,
+    height: 25,
+    overflow: 'hidden',
+    borderColor: constants.COLOR_FILLED,
+    borderWidth: 1,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    shadowColor: constants.COLOR_SHADOW,
     shadowOpacity: 0.1,
     elevation: 4,
     shadowRadius: 1,
     backgroundColor: constants.COLOR_WHITE,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
   },
-  eventCalenderTimeView: { borderColor: constants.COLOR_FILLED, borderRadius: 15, backgroundColor: constants.COLOR_WHITE, borderWidth: 1, padding: 5, width: 100, marginTop: 15, },
-  eventCalenderTimeText: { fontSize: constants.FONT_SIZE_FOURTEEN, fontFamily: constants.FONT_FAMILY_REGULAR, color: constants.COLOR_FILLED, marginHorizontal: 10, },
-  eventCustomView: { fontFamily: constants.FONT_FAMILY_SEMIBOLD, fontSize: constants.FONT_SIZE_TWENTYTWO, marginTop: 10, marginLeft: 10 },
-  eventCustomText: { marginLeft: 10, marginTop: 15, fontFamily: constants.FONT_FAMILY_REGULAR, fontSize: constants.FONT_SIZE_FOURTEEN },
-  eventSwitchText: { fontSize: constants.FONT_SIZE_TEN, marginTop: 5, fontFamily: constants.FONT_FAMILY_REGULAR, marginRight: 10, color: 'gray' },
+  eventCalenderTimeView: {
+    borderColor: constants.COLOR_FILLED,
+    borderRadius: 15,
+    backgroundColor: constants.COLOR_WHITE,
+    borderWidth: 1,
+    padding: 5,
+    width: 100,
+    marginTop: 15,
+  },
+  eventCalenderTimeText: {
+    fontSize: constants.FONT_SIZE_FOURTEEN,
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    color: constants.COLOR_FILLED,
+    marginHorizontal: 10,
+  },
+  eventCustomView: {
+    fontFamily: constants.FONT_FAMILY_SEMIBOLD,
+    fontSize: constants.FONT_SIZE_TWENTYTWO,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  eventCustomText: {
+    marginLeft: 10,
+    marginTop: 15,
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    fontSize: constants.FONT_SIZE_FOURTEEN,
+  },
+  eventSwitchText: {
+    fontSize: constants.FONT_SIZE_TEN,
+    marginTop: 5,
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    marginRight: 10,
+    color: 'gray',
+  },
   dropDown: {
     fontSize: constants.FONT_SIZE_TWELEVE,
     textAlign: 'left',
     fontFamily: constants.FONT_FAMILY_REGULAR,
     color: constants.COLOR_FILLED,
   },
-  eventDisscussViewText: { fontFamily: constants.FONT_FAMILY_REGULAR, fontSize: constants.FONT_SIZE_EIGHT, color: "#333333" },
+  eventDisscussViewText: {
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    fontSize: constants.FONT_SIZE_EIGHT,
+    color: '#333333',
+  },
   eventInfoViewReview: {
     borderRadius: 15,
     backgroundColor: constants.COLOR_WHITE,
@@ -528,11 +617,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 4,
     shadowRadius: 10,
-    shadowOffset: { width: 1, height: 50 },
+    shadowOffset: {width: 1, height: 50},
     height: 82,
     width: 88,
     marginLeft: 12,
-    alignSelf: "center"
+    alignSelf: 'center',
   },
   eventRendertagsView: {
     borderRadius: 10,
@@ -544,35 +633,86 @@ const styles = StyleSheet.create({
     padding: 8,
     marginTop: 5,
   },
-  eventReviewName: { fontFamily: constants.FONT_FAMILY_SEMIBOLD, fontSize: constants.FONT_SIZE_EIGHTEEN, marginHorizontal: 10, marginTop: 5, },
+  eventReviewName: {
+    fontFamily: constants.FONT_FAMILY_SEMIBOLD,
+    fontSize: constants.FONT_SIZE_EIGHTEEN,
+    marginHorizontal: 10,
+    marginTop: 5,
+  },
   eventDescripatonView: {
-    flexDirection: 'row', borderRadius: 10,
-    justifyContent: "space-between", shadowColor: constants.COLOR_SHADOW,
+    flexDirection: 'row',
+    borderRadius: 10,
+    justifyContent: 'space-between',
+    shadowColor: constants.COLOR_SHADOW,
     height: 19,
     shadowOpacity: 0.1,
     elevation: 3,
     shadowRadius: 1,
     backgroundColor: constants.COLOR_WHITE,
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     marginHorizontal: 40,
     marginTop: 10,
     marginBottom: 12,
   },
-  eventPeopleText: { fontFamily: constants.FONT_FAMILY_MEDIUM, fontSize: constants.FONT_SIZE_FOURTEEN, marginTop: 3, marginHorizontal: 10, },
-  eventPeopleInfotextName: { fontFamily: constants.FONT_FAMILY_REGULAR, fontSize: constants.FONT_SIZE_EIGHT },
-  eventTagText: { fontFamily: constants.FONT_FAMILY_MEDIUM, fontSize: 14, marginTop: 3, marginHorizontal: 10 },
+  eventPeopleText: {
+    fontFamily: constants.FONT_FAMILY_MEDIUM,
+    fontSize: constants.FONT_SIZE_FOURTEEN,
+    marginTop: 3,
+    marginHorizontal: 10,
+  },
+  eventPeopleInfotextName: {
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    fontSize: constants.FONT_SIZE_EIGHT,
+  },
+  eventTagText: {
+    fontFamily: constants.FONT_FAMILY_MEDIUM,
+    fontSize: 14,
+    marginTop: 3,
+    marginHorizontal: 10,
+  },
   newPostIconCircle: {
-    width: 40, height: 40, overflow: "hidden", borderColor: constants.COLOR_FILLED, borderWidth: 1, borderRadius: 20, justifyContent: "center", alignSelf: "center"
-    , marginBottom: 5,
+    width: 40,
+    height: 40,
+    overflow: 'hidden',
+    borderColor: constants.COLOR_FILLED,
+    borderWidth: 1,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 5,
   },
-  newPostCircleText: { fontSize: constants.FONT_SIZE_TEN, fontFamily: constants.FONT_FAMILY_REGULAR, alignSelf: "center", color: constants.COLOR_FILLED },
+  newPostCircleText: {
+    fontSize: constants.FONT_SIZE_TEN,
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    alignSelf: 'center',
+    color: constants.COLOR_FILLED,
+  },
   newEventViewController2View: {
-    width: 40, height: 40, overflow: "hidden", borderColor: constants.COLOR_FILLED, borderWidth: 1, borderRadius: 20, justifyContent: "center", alignSelf: "center"
+    width: 40,
+    height: 40,
+    overflow: 'hidden',
+    borderColor: constants.COLOR_FILLED,
+    borderWidth: 1,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
-  newEventViewController2ViewText: { fontSize: constants.FONT_SIZE_FOURTEEN, fontFamily: constants.FONT_FAMILY_MEDIUM, alignSelf: "center" },
-  newEventViewController2ViewText2: { fontSize: constants.FONT_SIZE_TEN, fontFamily: constants.FONT_FAMILY_REGULAR, color: constants.COLOR_BORDER },
-  segmentBarScreenContainer: { width: constants.SCREEN_WIDTH, flex: 1, marginTop: Platform.OS === "ios" ? 130 : 100, height: '100%' }
+  newEventViewController2ViewText: {
+    fontSize: constants.FONT_SIZE_FOURTEEN,
+    fontFamily: constants.FONT_FAMILY_MEDIUM,
+    alignSelf: 'center',
+  },
+  newEventViewController2ViewText2: {
+    fontSize: constants.FONT_SIZE_TEN,
+    fontFamily: constants.FONT_FAMILY_REGULAR,
+    color: constants.COLOR_BORDER,
+  },
+  segmentBarScreenContainer: {
+    width: constants.SCREEN_WIDTH,
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 130 : 100,
+    height: '100%',
+  },
 });
-
 
 export default styles;

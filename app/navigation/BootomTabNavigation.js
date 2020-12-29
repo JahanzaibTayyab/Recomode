@@ -24,6 +24,8 @@ import OrderScreen from './../screens/Orders/OrderScreen';
 import ViewOrderHistory from '../screens/Orders/ReviewOrderInfromation';
 import UserLocation from '../screens/UserLocation/UserLocation';
 import StripePayment from './../screens/Cart/PaymentMethod/StripePayment';
+import ListingDetailsScreen from '../screens/DetailScreen/DetailsScreenViewController';
+import CategoriesDetailContainer from './../screens/Categories/CategoriesDeatils/CategoriesDetailContainer';
 
 const HomeStack = createStackNavigator();
 const CartStack = createStackNavigator();
@@ -44,6 +46,11 @@ const HomeStackScreen = ({navigation}) => (
     <HomeStack.Screen
       name="Shoes"
       component={ShoesNavigation}
+      options={{headerShown: false}}
+    />
+    <HomeStack.Screen
+      name="DetailScreen"
+      component={ListingDetailsScreen}
       options={{headerShown: false}}
     />
   </HomeStack.Navigator>
@@ -100,18 +107,13 @@ const CategoriesStackScreen = ({navigation}) => (
       options={{headerShown: false}}
     />
     <CategorieStack.Screen
-      name="Shirt"
-      component={ShirtNavigation}
+      name="CategorierSelect"
+      component={CategoriesDetailContainer}
       options={{headerShown: false}}
     />
     <CategorieStack.Screen
-      name="Pant"
-      component={PantNavigation}
-      options={{headerShown: false}}
-    />
-    <CategorieStack.Screen
-      name="Shoes"
-      component={ShoesNavigation}
+      name="DetailScreen"
+      component={ListingDetailsScreen}
       options={{headerShown: false}}
     />
   </CategorieStack.Navigator>
