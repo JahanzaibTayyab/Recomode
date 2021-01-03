@@ -6,7 +6,7 @@ const Tab = createMaterialTopTabNavigator();
 export default function TabNavigation() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={FavoriteNavigator} />
+      <Tab.Screen name="Male" component={FavoriteNavigator} />
       <Tab.Screen name="Settings" component={FavoriteNavigator} />
     </Tab.Navigator>
   );

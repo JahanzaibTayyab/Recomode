@@ -16,5 +16,7 @@ export default Object.freeze({
   WISHLIST: 'WishList',
   PROFILE: 'Profile',
   ORDERS: 'Orders',
-  LOCATION: 'Location'
+  LOCATION: 'Location',
+  SIZECHART: 'SizeChart',
+  RECOMMENEDCOLOR: 'RecommendColor',
 });
