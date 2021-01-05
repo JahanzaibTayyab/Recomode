@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "423179659423",
+    "firebase_url": "https://recomode-5ce47.firebaseio.com",
+    "project_id": "recomode-5ce47",
+    "storage_bucket": "recomode-5ce47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423179659423:android:30da122225a125b60e5aaa",
+        "android_client_info": {
+          "package_name": "com.soft.recomode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423179659423-c044j1vt96dd1cfpvgfteccom821ft17.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soft.recomode",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "423179659423-m4qj7qi6no4o72frt7hht3h617rf63vv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmiPxPuz_8-szLr0VXNHPC9be3psmzREA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423179659423-m4qj7qi6no4o72frt7hht3h617rf63vv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

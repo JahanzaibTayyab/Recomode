@@ -1,17 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import colors from '../../../config/colors';
 import Button from '../../../components/Button';
+import { SLIDE_HEIGHT, FONT_MEDIUM, FONT_SEMIBOLD, FONT_BOLD, FONT_BOLDITALIC, FONT_ITALIC, FONT_Regular } from '../../../config/Constant';
 
-function Subslide({subTitle, description, last, onPress}) {
+function Subslide({ subTitle, description, last, onPress }) {
   return (
     <View style={styles.container}>
       <Text style={styles.subtitle}>{subTitle}</Text>
       <Text style={styles.description}>{description}</Text>
       <Button
         title={last ? "Let's get started" : 'Next'}
-        buttoncolor={last ? 'primary' : 'secondary'}
+        buttoncolor={last ? 'primary' : 'lightGrey'}
         titlecolor={last ? 'white' : 'bitblue'}
         onPress={onPress}
       />
@@ -28,17 +29,17 @@ const styles = StyleSheet.create({
     bottom: 10,
   },
   description: {
-    fontSize: 16,
-    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    fontFamily: FONT_MEDIUM,
     marginBottom: 18,
     lineHeight: 20,
-    color: 'rgba(12, 13, 52,0.7)',
+    color: colors.COLOR_BORDER,
     textAlign: 'center',
   },
   subtitle: {
-    fontSize: 24,
-    fontFamily: 'SFProText-Semibold',
-    marginBottom: 12,
+    fontSize: 22,
+    fontFamily: FONT_SEMIBOLD,
+    marginBottom: 14,
     lineHeight: 30,
     color: colors.bitblue,
     textAlign: 'center',

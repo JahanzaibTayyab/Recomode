@@ -1,9 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import colors from '../../config/colors';
-const {height} = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
-import {BORDER_RADIUS} from '../../config/Constant';
+import { BORDER_RADIUS, FONT_BOLD, FONT_MEDIUM, FONT_Regular, FONT_SEMIBOLD, FONT_SEMIBOLDAlter } from '../../config/Constant';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,18 +17,18 @@ const styles = StyleSheet.create({
     bottom: 10,
   },
   description: {
-    fontSize: 16,
-    fontFamily: 'SFProText-Regular',
-    marginBottom: 18,
+    marginTop: 10,
+    fontSize: 14,
+    fontFamily: FONT_MEDIUM,
     lineHeight: 16,
-    color: 'rgba(12, 13, 52,0.7)',
+    color: colors.COLOR_BORDER,
     textAlign: 'center',
   },
   footerContent: {
     flex: 1,
     backgroundColor: colors.white,
     borderTopLeftRadius: BORDER_RADIUS,
-    paddingTop: 40,
+    paddingTop: 25,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
   slide: {
     height: 0.47 * height,
     borderBottomRightRadius: BORDER_RADIUS,
-    backgroundColor: '#F4F0EF',
+    backgroundColor: 'white',
   },
   subtitle: {
-    fontSize: 24,
-    fontFamily: 'SFProText-Semibold',
-    marginBottom: 12,
+    fontSize: 22,
+    fontFamily: FONT_SEMIBOLD,
+    marginBottom: 18,
     lineHeight: 30,
     color: colors.bitblue,
   },
