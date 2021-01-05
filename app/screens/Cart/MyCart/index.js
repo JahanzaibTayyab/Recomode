@@ -18,7 +18,7 @@ import css from "../styles";
 import styles from "./styles";
 import Button from "../../../components/Button"
 import { FONT_Regular } from "../../../config/Constant";
-import { useSelector } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import storageAuth from "../../../auth/useAuth"
 import localStorage from "../../../auth/storage"
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -51,9 +51,13 @@ function MyCart(props) {
   const getTotalPrice = () => {
     console.log("Call The get Price")
     let total = 0;
-    cartItems.forEach((cart) => {
-      console.log(cart)
-      total += cart.price * 1;
+    let totalQuantity=0
+
+    cartItems.forEach((element) => {
+      console.log(element)
+      // total += element.price * 1;
+      totalQuantity = element.qInCart;
+    total=total+(element.price*totalQuantity);
     });
     return total;
   };
@@ -134,7 +138,9 @@ function MyCart(props) {
                     console.log("Product View")
                     //props.onViewProduct({ product: item.product })
                   }
-                  //quantity={item.quantity}
+                  //item.qInCart pas krna hai
+                  // quantity={item.quantity}
+                  quantity={item.qInCart}
                   // variation={item.variation}
                   onRemove={props.removeCartItem}
                   currency={currency}

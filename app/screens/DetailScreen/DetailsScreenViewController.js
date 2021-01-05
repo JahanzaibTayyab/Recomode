@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import { useSelector,useDispatch } from "react-redux"
 
 import styles from './styles';
 import css from '../../Styles/Styles';
@@ -18,6 +19,9 @@ import ReviewsViewController from './ReviewsViewController/ReviewsViewController
 import AIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default function DetailsScreenViewController(props) {
+  const cartItems = useSelector(state => state)
+  const dispatch = useDispatch()
+
   const {item, from} = props.route.params;
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [liked, setLiked] = React.useState(false);
@@ -192,7 +196,10 @@ export default function DetailsScreenViewController(props) {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Text
-            style={{fontFamily: FONT_BOLD, fontSize: 14, color: colors.white}}>
+            style={{fontFamily: FONT_BOLD, fontSize: 14, color: colors.white}}
+            onPress={ () => dispatch({ type: 'ADD_TO_CART', payload: item })}
+            
+            >
             Add to cart
           </Text>
         </TouchableOpacity>

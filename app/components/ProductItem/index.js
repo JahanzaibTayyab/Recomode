@@ -7,6 +7,7 @@ import ChangeQuantity from "../ChangeQuantity";
 import styles from "./styles";
 import { Tools } from "@common";
 import { connect } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 
 function ProductItem(props) {
   const {
@@ -17,11 +18,27 @@ function ProductItem(props) {
     onRemove,
     currency
   } = props;
-  const onChangeQuantity = (quantityIn) => {
-    if (quantity < quantityIn) {
-      props.addCartItem(props.product);
-    } else {
-      props.removeCartItem(props.product);
+  const dispatch = useDispatch()
+  const cartItems = useSelector(state => state)
+
+  const onChangeQuantity = (quantity) => {
+    // quantity=quantityIn
+    console.log("Quantity of a specific Product",cartItems[cartItems.indexOf(product,0)].quantity)
+    console.log("Quantity In",quantity)
+    // console.log("quantityIn ",quantityIn)
+    if (quantity <= cartItems[cartItems.indexOf(product,0)].quantity )
+     {
+      console.log("In if")
+      product.qInCart=quantity
+      props.incrementQuantity(props.product )
+    } 
+    else {
+      console.log("In else")
+
+      product.qInCart=quantity
+      props.decrementQuantity(
+        props.product
+        );
     }
   };
 
@@ -61,6 +78,7 @@ function ProductItem(props) {
             style={styles.quantity}
             quantity={quantity}
             onChangeQuantity={onChangeQuantity}
+            itemId={product}
           />
         )}
       </View>
@@ -68,7 +86,10 @@ function ProductItem(props) {
       {viewQuantity && (
         <TouchableOpacity
           style={styles.btnTrash}
-          onPress={() => onRemove(product)}>
+          onPress={
+            // () => onRemove(product)}
+        () => dispatch({ type: 'REMOVE_FROM_CART', payload: product })}
+            >
           <Image
             source={require("@images/ic_trash.png")}
             style={[styles.icon, { tintColor: "black" }]}
@@ -87,6 +108,8 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     addCartItem: (product) => {
       actions.addCartItem(dispatch, product);
     },
+    incrementQuantity:(product) => dispatch({ type: 'INCREMENT_QUANTITY', payload: product }),
+    decrementQuantity:(product) => dispatch({ type: 'DECREMENT_QUANTITY', payload: product }),
     removeCartItem: (product) => {
       actions.removeCartItem(dispatch, product);
     },
